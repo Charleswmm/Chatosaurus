@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  website:
+    container_name: ${CONTAINER_NAME}
+    image: nginx:latest
+    volumes:
+      - ${FRONT_END_FOLDER}:/usr/share/nginx/html:ro
+    environment:
+      VIRTUAL_HOST: ${FRONT_END_HOST}
+      VIRTUAL_PORT: ${FRONT_END_PORT}
+    expose:
+      - 80
+
+networks:
+  default:
+    external:
+      name: ${DEFAULT_EXTERNAL_NETWORK_NAME}
