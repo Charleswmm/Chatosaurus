@@ -10,7 +10,7 @@ Webpack is a module bundler. Its purpose is to bundle JavaScript files for usage
     - html-webpack-plugin:
         - This plugin takes 'template.html' and outputs 'index.html'. It also add \<link> for css and \<script> for js
     - html-loader:
-        - This loader imports every loadable attributes (for example - \<img src="image.png">) so then file-loader can move the file and change the 'src' in the output HTML file
+        - This loader imports every loadable attributes (for example - \<img src="image.png">) so then the file-loader can parse these files
     
 - CSS
     - sass-loader:
