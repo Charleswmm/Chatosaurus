@@ -36,7 +36,7 @@ module.exports = {
         use: ['html-loader'],                                                  // can move the file and change the 'src' in the output HTML file
       },
       {
-        test: /\.(png|jpe?g|gif|woff|ttf)$/i,
+        test: /\.(png|jpe?g|gif|woff|ttf|svg)$/i,
         use: {
           loader: 'file-loader',
           options: {
