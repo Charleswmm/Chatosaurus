@@ -1,0 +1,13 @@
+
+$primary-color: red;
+
+h1 {
+    color: $primary-color;
+}
+
+p{
+    width:50px;
+    height:50px;
+    background-image: url("../img/diamond.svg");
+    background-size: contain;
+}
