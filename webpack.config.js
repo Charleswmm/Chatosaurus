@@ -33,10 +33,12 @@ module.exports = {
       },
       {
         test: /\.html$/,                                                       // html-loader imports every loadable attributes (for example - <img src="image.png">) so then the below file-loader
-        use: ['html-loader'],                                                  // can move the file and change the 'src' in the output HTML file
+        use: {                                                                 // can move the file and change the 'src' in the output HTML file
+          loader: 'html-loader'
+        },
       },
       {
-        test: /\.(png|jpe?g|gif|woff|ttf|svg)$/i,
+        test: /\.(png|jpe?g|gif|woff|ttf)$/i,
         use: {
           loader: 'file-loader',
           options: {
@@ -45,6 +47,13 @@ module.exports = {
           }
         },
       },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      }
     ],
   },
   output: {
