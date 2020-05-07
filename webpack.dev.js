@@ -13,7 +13,7 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({                  // This plugin takes the template and outputs a new HTML file at the public folder. it also adds <link> css and <script> JS tags
       filename: 'index.html',
       template: 'src/index.html',
-      //    favicon: 'src/img/disc.ico',
+      favicon: 'src/img/icons/disc.ico',
     }),
   ],
   module: {
