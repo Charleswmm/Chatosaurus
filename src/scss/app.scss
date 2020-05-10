@@ -1,4 +1,6 @@
-@import "./components/_normalise";
+@import "media";
+@import "typography";
+@import "components/normalise";
 
 $background-primary: #36393f;
 $background-secondary: #2f3136;
@@ -7,139 +9,129 @@ $background-tertiary: #202225;
 $background-accent: #4f545c;
 $background-floating: #18191c;
 $border-primary: rgba(4,4,5,0.5);
-$header-primary: #fff;
-$header-secondary: #b9bbbe;
-$text-normal: #dcddde;
-$text-soft: #72767d;
-$text-channel: #8e9297;
-$interact-normal: #b9bbbe;
 $interact-hover: #dcddde;
 $interact-active: #fff;
 $interact-muted: #4f545c;
 
-html {
-    font-family: Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;
-    font-size: 62.5%;
-}
-
 .app {
     background-color: $background-tertiary;
-    width: 100vw;
     height: 100vh;
+    width: 100%;
     display: flex;
+
+    @include breakpoint(sm) {
+        flex-direction: column;
+    }
 }
 
 .side {
     background-color: $background-tertiary;
-    width: 312px;
     height: 100%;
     display: flex;
     flex: 0 0 auto;
 
-    .side-server {
-        background-color: $background-tertiary;
+    @include breakpoint(sm) {
+        width: auto;
+        height: 500px;
+    }
+}
+
+.side-server {
+    width: 72px;
+    height: 100%;
+    padding: 8px;
+    flex: 0 0 auto;
+}
+
+.side-server-home {
+
+}
+
+.side-server-channel {
+
+}
+
+.side-server-download {
+
+}
+
+
+.side-message {
+    background-color: $background-secondary;
+    width: 240px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+
+    @include breakpoint(md) {
         width: 72px;
-        height: 100%;
-        padding: 8px;
-        flex: 0 0 auto;
+    }
 
-        .side-server-home {
+    @include breakpoint(sm) {
+        width: auto;
+        font-size: 1rem;
+    }
+}
 
-        }
-        .side-server-channel {
+.side-message-start {
+    height: 48px;
+    padding: 0 10px;
+    border-bottom: 1px solid $border-primary;
+    flex: 0 0 auto;
 
-        }
-        .side-server-download {
+}
 
+.side-message-menu {
+    flex: 0 0 auto;
+
+}
+
+.side-message-convo {
+    flex: 1 0 auto;
+
+    @include breakpoint(sm) {
+        font-size: 1.2rem;
+    }
+
+    .side-message-convo-head {
+        padding: 1.8em .8em .4em 1.8em;
+
+        span {
+            @include typo(h4, 1.2em);
+            line-height: 1.333em;
         }
     }
-    .side-message {
-        background-color: $background-secondary;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        flex: 1 0 auto;
-
-        .side-message-start {
-            width: 100%;
-            height: 48px;
-            padding: 0 10px;
-            border-bottom: 1px solid $border-primary;
-            flex: 0 0 auto;
-
-        }
-        .side-message-menu {
-            flex: 0 0 auto;
-
-        }
-        .side-message-convo {
-            flex: 1 0 auto;
-
-            .side-message-convo-head {
-                padding: 18px 8px 4px 18px;
-
-                span {
-                    color: $text-channel;
-                    font-size: 1.2rem;
-                    font-weight: 600;
-                    line-height: 1.6rem;
-                }
-            }
-        }
-        .side-message-options {
-            background-color: $background-secondary-alt;
-            width: 100%;
-            height: 53px;
-            padding: 0 8px;
-            flex: 0 0 auto;
-        }
-    }
+}
+.side-message-options {
+    background-color: $background-secondary-alt;
+    height: 53px;
+    padding: 0 8px;
+    flex: 0 0 auto;
 }
 
 .chat {
     background-color: $background-primary;
-    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
-
-    .chat-top {
-        width: 100%;
-        height: 48px;
-        padding: 0 8px;
-        flex: 0 0 auto;
-        border-bottom: 1px solid $border-primary;
-    }
-    .chat-content {
-        width: 100%;
-        flex: 1 0 auto;
-
-    }
-    .chat-message {
-        width: 100%;
-        height: 68px;
-        padding: 0 16px;
-        flex: 0 0 auto;
-    }
 }
 
-@media screen and (max-width: 848px) {
-    .side {
-        width: 144px;
-    }
+.chat-top {
+    height: 48px;
+    padding: 0 8px;
+    flex: 0 0 auto;
+    border-bottom: 1px solid $border-primary;
 }
 
-@media screen and (max-width: 480px) {
-    .app {
-        height: 100%;
-        flex-direction: column;
-    }
-    .side {
-        width: 100%;
-        height: 500px;
-    }
-    .chat {
-        height: 600px;
-    }
+.chat-content {
+    flex: 1 0 auto;
+
+}
+
+.chat-send {
+    height: 68px;
+    padding: 0 16px;
+    flex: 0 0 auto;
 }

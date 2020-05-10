@@ -20,6 +20,15 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+html {
+  font-family: Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 62.5%;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
 *, *::after, *::before {
   box-sizing: border-box;
 }

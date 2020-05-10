@@ -1,0 +1,34 @@
+// Media Queries
+// to use: @include breakpoint('screen size');
+// use presents or to use a custom size, eg. @include breakpoint(320);
+
+// max for desktop to mobile, min for mobile to desktop
+$min-or-max: max;
+$screen-sm: 480;
+$screen-md: 848;
+$screen-lg: 1024;
+$screen-xl: 1600;
+
+@mixin breakpoint($size) {
+  @if $size == sm {
+    @media (#{$min-or-max}-width: #{$screen-sm}px) {
+      @content;
+    }
+  } @else if $size == md {
+    @media (#{$min-or-max}-width: #{$screen-md}px) {
+      @content;
+    }
+  } @else if $size == lg {
+    @media (#{$min-or-max}-width: #{$screen-lg}px) {
+      @content;
+    }
+  } @else if $size == xl {
+    @media (#{$min-or-max}-width: #{$screen-xl}px) {
+      @content;
+    }
+  } @else if type_of($size)  == number {
+    @media (#{$min-or-max}-width: #{$size}px) {
+      @content;
+    }
+  }
+}

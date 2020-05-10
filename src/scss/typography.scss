@@ -1,0 +1,47 @@
+// Typography
+// to use: @include typo('type of typography', 'font size rem, em, px, %');
+
+$h1-color: #ffffff;
+$h2-color: #ffffff;
+$h3-color: #dcddde;
+$h4-color: #8e9297;
+$h5-color: #72767d;
+$para-color: #b9bbbe;
+$cap-color: #72767d;
+
+@mixin typo($type, $size) {
+  @if $type == h1 {
+    font-size: $size;
+    color: $h1-color;
+
+  } @else if $type == h2 {
+    font-size: $size;
+    color: $h2-color;
+
+  } @else if $type == h3 {
+    font-size: $size;
+    color: $h3-color;
+    font-weight: 600;
+
+  } @else if $type == h4 {
+    font-size: $size;
+    color: $h4-color;
+    font-weight: 600;
+
+  } @else if $type == h5 {
+    font-size: $size;
+    color: $h5-color;
+    font-weight: 500;
+
+  } @else if $type == para {
+    font-size: $size;
+    color: $para-color;
+    font-weight: 400;
+
+  } @else if $type == cap {
+    font-size: $size;
+    color: $cap-color;
+    font-weight: 400;
+
+  }
+}
