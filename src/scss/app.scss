@@ -1,13 +1,122 @@
+@import "utilities/media";
+@import "utilities/typography";
+@import "utilities/normalise";
 
-$primary-color: green;
+$background-primary: #36393f;
+$background-secondary: #2f3136;
+$background-secondary-alt: #292b2f;
+$background-tertiary: #202225;
+$background-accent: #4f545c;
+$background-floating: #18191c;
+$border-primary: rgba(4,4,5,0.5);
+$interact-hover: #dcddde;
+$interact-active: #fff;
+$interact-muted: #4f545c;
 
-h1 {
-    color: $primary-color;
+.app {
+    background-color: $background-tertiary;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+
+    @include breakpoint(sm) {
+        flex-direction: column;
+    }
 }
 
-p{
-    width:50px;
-    height:50px;
-    background-image: url("../img/diamond.svg");
-    background-size: contain;
+.side {
+    background-color: $background-tertiary;
+    height: 100%;
+    display: flex;
+    flex: 0 0 auto;
+
+    @include breakpoint(sm) {
+        width: auto;
+        height: 500px;
+    }
+}
+
+.side-server {
+    width: 7.2rem;
+    height: 100%;
+    padding: 0 0.8rem;
+    flex: 0 0 auto;
+}
+
+.side-message {
+    background-color: $background-secondary;
+    width: 24rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+
+    @include breakpoint(md) {
+        width: 7.2rem;
+    }
+
+    @include breakpoint(sm) {
+        width: auto;
+        font-size: 1rem;
+    }
+}
+
+.side-message-start {
+    height: 4.8rem;
+    padding: 0 1rem;
+    border-bottom: 1px solid $border-primary;
+    flex: 0 0 auto;
+}
+
+.side-message-menu {
+    flex: 0 0 auto;
+}
+
+.side-message-convo {
+    flex: 1 0 auto;
+
+    @include breakpoint(sm) {
+        font-size: 1.2rem;
+    }
+
+    .side-message-convo-head {
+        padding: 1.8em .8em .4em 1.8em;
+
+        span {
+            @include typo(h4, 1.2em);
+            line-height: 1.333em;
+        }
+    }
+}
+
+.side-message-options {
+    background-color: $background-secondary-alt;
+    height: 5.3rem;
+    padding: 0 0.8rem;
+    flex: 0 0 auto;
+}
+
+.chat {
+    background-color: $background-primary;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.chat-top {
+    height: 4.8rem;
+    padding: 0 0.8rem;
+    flex: 0 0 auto;
+    border-bottom: 1px solid $border-primary;
+}
+
+.chat-content {
+    flex: 1 0 auto;
+}
+
+.chat-send {
+    height: 6.8rem;
+    padding: 0 1.6rem;
+    flex: 0 0 auto;
 }
