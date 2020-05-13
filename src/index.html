@@ -7,31 +7,78 @@
 </head>
 <body>
 	<div class="app">
-		<nav class="side">
-			<div class="side-server">
-				<div class="side-server-home"></div>
-				<div class="side-server-channel"></div>
-				<div class="side-server-download"></div>
-			</div>
-			<div class="side-message">
-				<div class="side-message-start"></div>
-				<div class="side-message-menu"></div>
-				<div class="side-message-convo">
-					<div class="side-message-convo-head">
-						<span>DIRECT MESSAGES</span>
+		<nav class="nav-side">
+			<div class="nav-column nav-column-server">
+				<div class="nav-group nav-group-server">
+					<div class="nav-item nav-item-blue nav-item-active">
+						<div class="svg svg-home"></div>
+						<div class="tool-tip">Home</div>
 					</div>
-					<div class="side-message-convo-content"></div>
 				</div>
-				<div class="side-message-options"></div>
+				<div class="nav-group nav-group-separator"></div>
+				<div class="nav-group nav-group-server">
+					<div class="nav-item nav-item-blue">
+						<div class="nav-item-content">fs</div>
+						<div class="tool-tip">Pytho's Server</div>
+					</div>
+					<div class="nav-item nav-item-blue nav-item-image">
+						<div class="nav-item-content"></div>
+						<div class="tool-tip">Jakx's Server</div>
+					</div>
+					<div class="nav-item nav-item-green">
+						<div class="svg svg-add"></div>
+						<div class="tool-tip">Add a Server</div>
+					</div>
+					<div class="nav-item nav-item-green">
+						<div class="svg svg-discover"></div>
+						<div class="tool-tip">Server Discovery</div>
+					</div>
+				</div>
+				<div class="nav-group nav-group-separator"></div>
+				<div class="nav-group nav-group-server">
+					<div class="nav-item  nav-item-green">
+						<div class="svg svg-download"></div>
+						<div class="tool-tip">Download Apps</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav-column nav-column-message">
+				<div class="nav-group nav-group-top">
+					<div class="nav-item-start">
+						<button class="btn btn-start">Find or start a conversation</button>
+					</div>
+				</div>
+				<div class="nav-group">
+					<div class="nav-item nav-item-menu">Friends</div>
+					<div class="nav-item nav-item-menu">Nitro</div>
+				</div>
+				<div class="nav-group nav-group-grow">
+					<div class="nav-item-head">
+						DIRECT MESSAGES
+					</div>
+					<div class="nav-item nav-item-dm">Pytho</div>
+					<div class="nav-item nav-item-dm">Jakx</div>
+				</div>
+				<div class="nav-group nav-group-foot">
+					<div class="nav-foot"></div>
+				</div>
 			</div>
 		</nav>
 		<main class="chat">
 			<div class="chat-top">
-				<div class="chat-top-menu"></div>
-				<div class="chat-top-icons"></div>
+				<nav class="nav-top">
+					<div class="nav-group nav-group-top">
+						<div class="nav-item"></div>
+						<div class="nav-item nav-item-grow"></div>
+						<div class="nav-item"></div>
+						<div class="nav-item"></div>
+						<div class="nav-item"></div>
+						<div class="nav-item"></div>
+					</div>
+				</nav>
 			</div>
-			<div class="chat-content"></div>
-			<div class="chat-send"></div>
+			<div class="chat-main"></div>
+			<div class="chat-foot"></div>
 		</main>
 	</div>
 </body>
