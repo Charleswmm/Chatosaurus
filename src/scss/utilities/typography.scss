@@ -2,12 +2,13 @@
 // to use: @include typo('type of typography', 'font size rem, em, px, %');
 
 $h1-color: #ffffff;
-$h2-color: #ffffff;
-$h3-color: #dcddde;
+$h2-color: #dcddde;
+$h3-color: #8e9297;
 $h4-color: #8e9297;
 $h5-color: #72767d;
 $para-color: #b9bbbe;
 $cap-color: #72767d;
+$tt-color: #ffffff; //Tool tip
 
 @mixin typo($type, $size) {
   @if $type == h1 {
@@ -26,7 +27,7 @@ $cap-color: #72767d;
   } @else if $type == h4 {
     font-size: $size;
     color: $h4-color;
-    font-weight: 600;
+    font-weight: 500;
 
   } @else if $type == h5 {
     font-size: $size;
@@ -42,6 +43,11 @@ $cap-color: #72767d;
     font-size: $size;
     color: $cap-color;
     font-weight: 400;
+
+  } @else if $type == tt {
+    font-size: $size;
+    color: $tt-color;
+    font-weight: 600;
 
   }
 }
