@@ -108,7 +108,7 @@ $hover-black: #000;
         border-radius: 0 4px 4px 0;
         background-color: $hover-white;
         transform: scale(0);
-        transition: transform 0.2s;
+        transition: all 0.2s;
     }
 
     .nav-channel {
