@@ -161,19 +161,19 @@ $hover-black: #000;
         background-color: $hover-green;
     }
 
-    .nav-channel:hover>.svg {
+    .nav-channel:hover > .svg {
         filter: brightness(400%);
     }
 
-    .nav-channel:hover>.nav-channel-content {
+    .nav-channel:hover > .nav-channel-content {
         color: $text-white;
     }
 
-    .nav-channel:hover~.tool-tip {
+    .nav-channel:hover ~ .tool-tip {
         transform: scale(1);
     }
 
-    .nav-channel:hover~.pip {
+    .nav-channel:hover ~ .pip {
         transform: scale(1);
     }
 
@@ -225,17 +225,17 @@ $hover-black: #000;
         background-color: $normal-brand-green;
     }
 
-    .nav-channel-active~.pip {
+    .nav-channel-active ~ .pip {
         transform: scale(1);
         height: 4rem;
         top: 0.4rem;
     }
 
-    .nav-channel-active>.svg {
+    .nav-channel-active > .svg {
         filter: brightness(400%);
     }
 
-    .nav-channel-active>.nav-channel-content {
+    .nav-channel-active > .nav-channel-content {
         color: $text-white;
     }
 }
