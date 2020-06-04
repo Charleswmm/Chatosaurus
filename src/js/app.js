@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import '../scss/app.scss';
-import Top from "./components/text";
 
+const App = () => (
+  <div className="app">
+  </div>
+)
 
-ReactDOM.render(<Top />, document.getElementById("container"));
-
-console.log('app.js is working, ok');
+ReactDOM.render(<App />, document.getElementById("root"));
