@@ -1,0 +1,106 @@
+@import "../../utilities/media";
+@import "../../utilities/typography";
+@import "../../variables";
+
+.nav-side {
+  background-color: $darker-shadow-grey;
+  height: 100%;
+  display: flex;
+  flex: 0 0 auto;
+
+  .nav-column {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  @include breakpoint(sm) {
+    width: auto;
+    height: 500px;
+  }
+}
+
+.nav-column-server {
+  width: 7.2rem;
+  flex: 0 0 auto;
+  padding-top: 1.2rem;
+
+  .nav-group-separator {
+    height: 0.2rem;
+    width: 3.2rem;
+    border-radius: 0.1rem;
+    background-color: $light-outline-grey;
+    margin-bottom: 0.8rem;
+  }
+}
+
+.nav-column-message {
+  background-color: $neutral-shadow-grey;
+  width: 24rem;
+  flex: 1 0 auto;
+  font-size: 1rem;
+
+  .nav-group-top {
+    height: 4.8rem;
+  }
+
+  .nav-item-start {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .btn {
+    cursor: pointer;
+    box-shadow: none;
+    border: 0;
+  }
+
+  .btn-start {
+    background-color: $darker-shadow-grey;
+    height: 2.8rem;
+    width: 100%;
+    border-radius: 4px;
+    text-align: left;
+    @include typo(h5, 1.2em);
+  }
+
+  .nav-item-head {
+    text-transform: uppercase;
+    padding: 1.5em .666em .333em 1.5em;
+    width: 100%;
+    @include typo(h3, 1.1em);
+  }
+
+  .nav-item {
+    height: 4.4rem;
+    margin-top: 0.8rem;
+    @include typo(h4, 1.5em);
+  }
+
+  .nav-group-foot {
+    height: 5.3rem;
+    background-color: $dark-shadow-grey;
+    padding: 0 0.8rem;
+  }
+
+  @include breakpoint(md) {
+    width: 7.2rem;
+  }
+
+  @include breakpoint(sm) {
+    width: auto;
+    font-size: 1rem;
+  }
+}
+
