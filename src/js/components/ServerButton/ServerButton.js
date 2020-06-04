@@ -2,57 +2,70 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import '../../../scss/components/ServerButton/ServerButton.scss';
 
+export const iconClassNames = {
+  svg: 'svg',
+  home: 'svg-home',
+  add: 'svg-add',
+  discover: 'svg-discover',
+  download: 'svg-download',
+}
+
+export const uiClassNames = {
+  base: 'nav-channel',
+  content: 'nav-channel-content',
+  active: 'nav-channel-active',
+  blue: 'nav-channel-blue',
+  green: 'nav-channel-green',
+  image: 'nav-channel-image',
+}
+
 class ServerButton extends Component {
   static defaultProps = {
-    type: 'home',
-    color: 'blue',
     title: 'Home',
-    initials: '',
-    image: false,
-    active: false,
-    svgClasses: {
-      home: "svg svg-home",
-      add: "svg svg-add",
-      discover: "svg svg-discover",
-      download: "svg svg-download"
-    },
-    buttonClasses: {
-      blue: "nav-channel-blue",
-      green: "nav-channel-green",
-      initials: "nav-channel-initials",
-      image: "nav-channel-image",
-      active: "nav-channel-active"
-    }
+    iconClassName: null,
+    imageSrc: null,
+    channelExtraClassNames: [],
+    contentExtraClassNames: [],
   }
 
-  constructor(props) {
-    super(props);
-  }
+  /**
+   * Resolve the channel element's class names
+   * @returns {string}
+   */
+  channelClassNames = () => [
+    uiClassNames.base,
+    ...this.props.channelExtraClassNames,
+    ...(this.props.imageSrc ? [uiClassNames.image] : []),
+    ...(this.isActive() ? [uiClassNames.active] : [])
+  ].join(' ');
 
-  contentClass(type, initials, image, svgClasses) {
-    if (initials || image) {
-      return "nav-channel-content"
-    }
-    return svgClasses[type]
-  }
-
-  channelClass(color, active, image, initials, buttonClasses) {
-    color = color === "green" ? buttonClasses.green : buttonClasses.blue;
-    active = active ? buttonClasses.active : '';
-    image = image ? buttonClasses.image : '';
-    initials = initials ? buttonClasses.initials : '';
-
-    return `nav-channel ${color} ${active} ${image} ${initials}`;
-  }
+  /**
+   * Resolve the content element's class names
+   * @returns {string}
+   */
+  contentClassNames = () => [
+    ...(this.props.iconClassName ? [iconClassNames.svg, this.props.iconClassName] : [uiClassNames.content]),
+    ...this.props.contentExtraClassNames,
+  ].join(' ');
 
   title = () => this.props.title;
 
+  titleInitials = () => (!(this.props.imageSrc||this.props.iconClassName))
+    ? this.title().split(' ').map((ar)=> ar.charAt(0)).join('')
+    : null;
+
+  /**
+   * Determine if this button is active
+   * @todo Derive from state
+   * @returns {boolean}
+   */
+  isActive = () => this.title() === 'Home';
+
   render() {
-    const { type, color, initials, image, active, buttonClasses, svgClasses } = this.props;
     return (
       <button className="nav-item nav-item-server">
-        <div className={ this.channelClass(color, active, image, initials, buttonClasses) }>
-          <div className={ this.contentClass(type, initials, image, svgClasses) }>{ initials }</div>
+        <div className={ this.channelClassNames() }>
+          <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
         </div>
         <div className="pip"/>
         <div className="tool-tip">{ this.title() }</div>
@@ -62,14 +75,11 @@ class ServerButton extends Component {
 }
 
 ServerButton.propTypes = {
-  type: PropTypes.string,
-  color: PropTypes.string,
   title: PropTypes.string,
-  initials: PropTypes.string,
-  image: PropTypes.bool,
-  active: PropTypes.bool,
-  buttonClasses: PropTypes.object,
-  svgClasses: PropTypes.object
+  iconClassName: PropTypes.string,
+  imageSrc: PropTypes.string,
+  channelExtraClassNames: PropTypes.array,
+  contentExtraClassNames: PropTypes.array,
 }
 
 export default ServerButton;

@@ -86,9 +86,10 @@
 
   .nav-channel-content {
     color: $light-text-grey;
-    font-size: 1.7rem;
+    font-size: 1.7em;
     font-weight: 500;
     user-select: none;
+    overflow: hidden;
   }
 
   .nav-channel-image {

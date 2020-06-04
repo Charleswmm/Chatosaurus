@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import '../../../scss/components/SideNav/SideNav.scss';
-import ServerButton from "../ServerButton/ServerButton";
+import ServerButton, { iconClassNames, uiClassNames } from "../ServerButton/ServerButton";
 
 class SideNav extends Component {
   render() {
@@ -8,18 +8,18 @@ class SideNav extends Component {
       <nav className="nav-side">
         <div className="nav-column nav-column-server">
           <div className="nav-group">
-            <ServerButton active />
+            <ServerButton title="Home" iconClassName={iconClassNames.home} channelExtraClassNames={[uiClassNames.blue]} />
           </div>
           <div className="nav-group nav-group-separator"/>
           <div className="nav-group">
-            <ServerButton title="Pytho's Server" initials="fs" />
-            <ServerButton title="Jakx's Server" image />
-            <ServerButton type="add" color="green" title="Add a Server" />
-            <ServerButton type="discover" color="green" title="Server Discovery" />
+            <ServerButton title="Pytho's Server" channelExtraClassNames={[uiClassNames.blue]} />
+            <ServerButton title="Jakx's Server" imageSrc="url" channelExtraClassNames={[uiClassNames.blue]} />
+            <ServerButton title="Add a Server" iconClassName={iconClassNames.add} channelExtraClassNames={[uiClassNames.green]} />
+            <ServerButton title="Server Discovery" iconClassName={iconClassNames.discover} channelExtraClassNames={[uiClassNames.green]} />
           </div>
           <div className="nav-group nav-group-separator"/>
           <div className="nav-group">
-            <ServerButton type="download" color="green" title="Download Apps" />
+            <ServerButton title="Download Apps" iconClassName={iconClassNames.download} channelExtraClassNames={[uiClassNames.green]} />
           </div>
         </div>
         <div className="nav-column nav-column-message">
