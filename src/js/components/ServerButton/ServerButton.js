@@ -17,7 +17,31 @@ export const uiClassNames = {
   blue: 'nav-channel-blue',
   green: 'nav-channel-green',
   image: 'nav-channel-image',
+  separator: 'nav-channel-separator',
 }
+
+export const staticButtons = [
+  {
+    title: "Home",
+    iconClassName: iconClassNames.home,
+    channelExtraClassNames: [ uiClassNames.blue, uiClassNames.separator, ],
+  },
+  {
+    title: "Add a Server",
+    iconClassName: iconClassNames.add,
+    channelExtraClassNames: [ uiClassNames.green ],
+  },
+  {
+    title: "Server Discovery",
+    iconClassName: iconClassNames.discover,
+    channelExtraClassNames: [ uiClassNames.green, uiClassNames.separator, ],
+  },
+  {
+    title: "Download Apps",
+    iconClassName: iconClassNames.download,
+    channelExtraClassNames: [ uiClassNames.green ],
+  },
+]
 
 class ServerButton extends Component {
   static defaultProps = {
@@ -33,11 +57,11 @@ class ServerButton extends Component {
    * @returns {string}
    */
   channelClassNames = () => [
-    uiClassNames.base,
-    ...this.props.channelExtraClassNames,
-    ...(this.props.imageSrc ? [uiClassNames.image] : []),
-    ...(this.isActive() ? [uiClassNames.active] : [])
-  ].join(' ');
+      uiClassNames.base,
+      ...this.props.channelExtraClassNames,
+      ...(this.props.imageSrc ? [uiClassNames.image] : []),
+      ...(this.props.isActive ? [uiClassNames.active] : [])
+    ].join(' ')
 
   /**
    * Resolve the content element's class names
@@ -54,17 +78,14 @@ class ServerButton extends Component {
     ? this.title().split(' ').map((ar)=> ar.charAt(0)).join('')
     : null;
 
-  /**
-   * Determine if this button is active
-   * @todo Derive from state
-   * @returns {boolean}
-   */
-  isActive = () => this.title() === 'Home';
+  clickHandler = () => {
+    this.props.getServerButtonClick(this.props.title)
+  }
 
   render() {
     return (
       <button className="nav-item nav-item-server">
-        <div className={ this.channelClassNames() }>
+        <div className={ this.channelClassNames() } onClick={this.clickHandler} >
           <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
         </div>
         <div className="pip"/>
@@ -78,6 +99,8 @@ ServerButton.propTypes = {
   title: PropTypes.string,
   iconClassName: PropTypes.string,
   imageSrc: PropTypes.string,
+  isActive: PropTypes.bool,
+  getServerButtonClick: PropTypes.func,
   channelExtraClassNames: PropTypes.array,
   contentExtraClassNames: PropTypes.array,
 }
