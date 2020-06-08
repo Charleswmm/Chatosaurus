@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import '../../../scss/components/ServerButton/ServerButton.scss';
+import { GlobalContext } from "../../contexts/context";
 
 export const iconClassNames = {
   svg: 'svg',
@@ -21,6 +22,7 @@ export const uiClassNames = {
 }
 
 class ServerButton extends Component {
+  static contextType = GlobalContext;
   static defaultProps = {
     title: 'Home',
     iconClassName: null,
@@ -56,15 +58,16 @@ class ServerButton extends Component {
     : null;
 
   isActive = () => {
-    return this.props.id === this.props.currentButtonId;
+    return this.props.id === this.context.currentServerButtonId;
   }
 
   render() {
-    const { setCurrentButtonId, id } = this.props;
+    const { id } = this.props;
+    const { setCurrentServerButtonId } = this.context;
 
     return (
       <button className="nav-item nav-item-server">
-        <div className={ this.channelClassNames() } onClick={ () => setCurrentButtonId(id) } >
+        <div className={ this.channelClassNames() } onClick={ () => setCurrentServerButtonId(id) } >
           <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
         </div>
         <div className="pip"/>
@@ -79,11 +82,8 @@ ServerButton.propTypes = {
   title: PropTypes.string,
   iconClassName: PropTypes.string,
   imageSrc: PropTypes.string,
-  isActive: PropTypes.bool,
-  setCurrentButtonId: PropTypes.func,
   channelExtraClassNames: PropTypes.array,
   contentExtraClassNames: PropTypes.array,
-  currentButtonId: PropTypes.string,
 }
 
 export default ServerButton;

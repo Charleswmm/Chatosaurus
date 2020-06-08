@@ -4,7 +4,6 @@ import ServerButton, { iconClassNames, uiClassNames } from "../ServerButton/Serv
 
 class ServerNav extends Component {
   state = {
-    currentButtonId: "home",
     buttons: [
       {
         id: "home",
@@ -44,11 +43,6 @@ class ServerNav extends Component {
       },
     ],
   }
-  /**
-   * This function is called by the button child component and sets the state of 'active' to the title of the component
-   * @param id
-   */
-  setCurrentButtonId = (id) => this.setState({ currentButtonId: id });
 
   render() {
     const { buttons } = this.state;
@@ -56,7 +50,7 @@ class ServerNav extends Component {
     return (
       <div className="nav-column nav-column-server">
           <div className="nav-group">
-            <ServerButtons buttons={ buttons } setCurrentButtonId={ this.setCurrentButtonId } currentButtonId={ this.state.currentButtonId } />
+            <ServerButtons buttons={ buttons } />
           </div>
       </div>
     )
@@ -64,13 +58,11 @@ class ServerNav extends Component {
 }
 
 const ServerButtons = (props) => {
-  const { buttons, setCurrentButtonId, currentButtonId } = props;
+  const { buttons } = props;
 
   return buttons.map((button, index) =>
     <ServerButton
       key={index.toString()}
-      setCurrentButtonId={setCurrentButtonId}
-      currentButtonId={currentButtonId}
       {...button}
     />
   )
