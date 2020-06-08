@@ -1,14 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from 'react-dom';
 import '../scss/app.scss';
-import SideNav from "./components/SideNav/SideNav";
 import Chat from "./components/Chat/Chat";
+import ServerNav from "./components/ServerNav/ServerNav";
+import GroupNav from "./components/GroupNav/GroupNav";
+import { ContextProvider } from "./contexts/context";
 
 const App = () => (
-  <div className="app">
-    <SideNav />
+  <ContextProvider>
+    <nav className="nav-side">
+      <ServerNav />
+      <GroupNav />
+    </nav>
     <Chat />
-  </div>
+  </ContextProvider>
 )
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("app"));

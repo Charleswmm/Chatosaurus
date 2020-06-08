@@ -3,7 +3,7 @@
 @import "utilities/normalise";
 @import "./variables";
 
-.app {
+#app {
     background-color: $darker-shadow-grey;
     height: 100vh;
     width: 100%;
@@ -37,4 +37,29 @@
     display: flex;
 }
 
+.nav-side {
+    background-color: $darker-shadow-grey;
+    height: 100%;
+    display: flex;
+    flex: 0 0 auto;
+
+    .nav-column {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    @include breakpoint(sm) {
+        width: auto;
+        height: 500px;
+    }
+}
 

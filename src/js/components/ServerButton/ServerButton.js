@@ -20,29 +20,6 @@ export const uiClassNames = {
   separator: 'nav-channel-separator',
 }
 
-export const staticButtons = [
-  {
-    title: "Home",
-    iconClassName: iconClassNames.home,
-    channelExtraClassNames: [ uiClassNames.blue, uiClassNames.separator, ],
-  },
-  {
-    title: "Add a Server",
-    iconClassName: iconClassNames.add,
-    channelExtraClassNames: [ uiClassNames.green ],
-  },
-  {
-    title: "Server Discovery",
-    iconClassName: iconClassNames.discover,
-    channelExtraClassNames: [ uiClassNames.green, uiClassNames.separator, ],
-  },
-  {
-    title: "Download Apps",
-    iconClassName: iconClassNames.download,
-    channelExtraClassNames: [ uiClassNames.green ],
-  },
-]
-
 class ServerButton extends Component {
   static defaultProps = {
     title: 'Home',
@@ -60,8 +37,8 @@ class ServerButton extends Component {
       uiClassNames.base,
       ...this.props.channelExtraClassNames,
       ...(this.props.imageSrc ? [uiClassNames.image] : []),
-      ...(this.props.isActive ? [uiClassNames.active] : [])
-    ].join(' ')
+      ...(this.isActive() ? [uiClassNames.active] : [])
+    ].join(' ');
 
   /**
    * Resolve the content element's class names
@@ -78,14 +55,16 @@ class ServerButton extends Component {
     ? this.title().split(' ').map((ar)=> ar.charAt(0)).join('')
     : null;
 
-  clickHandler = () => {
-    this.props.getServerButtonClick(this.props.title)
+  isActive = () => {
+    return this.props.id === this.props.currentButtonId;
   }
 
   render() {
+    const { setCurrentButtonId, id } = this.props;
+
     return (
       <button className="nav-item nav-item-server">
-        <div className={ this.channelClassNames() } onClick={this.clickHandler} >
+        <div className={ this.channelClassNames() } onClick={ () => setCurrentButtonId(id) } >
           <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
         </div>
         <div className="pip"/>
@@ -96,13 +75,15 @@ class ServerButton extends Component {
 }
 
 ServerButton.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
   iconClassName: PropTypes.string,
   imageSrc: PropTypes.string,
   isActive: PropTypes.bool,
-  getServerButtonClick: PropTypes.func,
+  setCurrentButtonId: PropTypes.func,
   channelExtraClassNames: PropTypes.array,
   contentExtraClassNames: PropTypes.array,
+  currentButtonId: PropTypes.string,
 }
 
 export default ServerButton;
