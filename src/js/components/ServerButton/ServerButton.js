@@ -58,16 +58,16 @@ class ServerButton extends Component {
     : null;
 
   isActive = () => {
-    return this.props.id === this.context.currentServerButtonId;
+    return this.props.id === this.context.currentMainNavButtonId;
   }
 
-  onClickHandler(){
-    this.context.setCurrentServerButtonId(this.props.id)
+  onClickHandler = () => {
+    this.context.setCurrentMainNavButtonId(this.props.id)
   }
 
   render = () => (
     <button className="nav-item nav-item-server">
-      <div className={ this.channelClassNames() } onClick={ this.onClickHandler.bind(this) } >
+      <div className={ this.channelClassNames() } onClick={ this.onClickHandler } >
         <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
       </div>
       <div className="pip"/>

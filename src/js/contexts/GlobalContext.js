@@ -5,8 +5,8 @@ export const GlobalContext = createContext('');
 
 export class GlobalContextProvider extends Component {
   state = {
-    currentServerButtonId: "home",
-    serverNavButtons: [
+    currentMainNavButtonId: "home",
+    mainNavButtons: [
       {
         id: "home",
         title: "Home",
@@ -16,12 +16,6 @@ export class GlobalContextProvider extends Component {
       {
         id: "pythos-server",
         title: "Pytho's Server",
-        imageSrc: 'url',
-        channelExtraClassNames: [ uiClassNames.blue ],
-      },
-      {
-        id: "jakxs-server",
-        title: "Jakx's Server",
         imageSrc: null,
         channelExtraClassNames: [ uiClassNames.blue ],
       },
@@ -45,16 +39,28 @@ export class GlobalContextProvider extends Component {
       },
     ],
   }
-
   /**
-   *  Sets 'currentServerButtonId' in state to give the active server button its' active styling
+   *  Sets 'currentMainNavButtonId' in state to give the active server button its' active styling
    * @param id
    */
-  setCurrentServerButtonId = (id) => this.setState({ currentServerButtonId: id });
+  setCurrentMainNavButtonId = (id) => this.setState({ currentMainNavButtonId: id });
+
+  addNewServerButton = (button) => {
+    const currentButtonsState = this.state.mainNavButtons
+
+    currentButtonsState.splice(-3, 0, button)
+
+    this.setState({ currentMainNavButtonId: button.id, mainNavButtons: currentButtonsState })
+  }
+
+  func = {
+    setCurrentMainNavButtonId: this.setCurrentMainNavButtonId,
+    addNewServerButton: this.addNewServerButton,
+  }
 
   render() {
     return (
-      <GlobalContext.Provider value={{ ...this.state, setCurrentServerButtonId: this.setCurrentServerButtonId }}>
+      <GlobalContext.Provider value={{ ...this.state, ...this.func }}>
         {this.props.children}
       </GlobalContext.Provider>
     )

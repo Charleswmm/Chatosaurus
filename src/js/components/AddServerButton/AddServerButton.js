@@ -1,11 +1,28 @@
 import React from "react";
-import ServerButton from "../ServerButton/ServerButton";
+import ServerButton, {uiClassNames} from "../ServerButton/ServerButton";
 
 class AddServerButton extends ServerButton {
 
-  onClickHandler() {
-    alert('Open a fucking modal bro!!!');
-    super.onClickHandler()
+  onClickHandler = () => {
+    /*
+     * Random number for placeholder IDs and random imageSrc
+     */
+    let randomId = Math.floor(Math.random() * 10000 ).toString()
+    let addImageSrc = ''
+    if (randomId > 5000) {
+      addImageSrc = 'url'
+    }
+    /*
+     *  New server button template
+     */
+    const newServerButton = {
+      id: randomId,
+      title: `New Server ${randomId}`,
+      imageSrc: addImageSrc,
+      channelExtraClassNames: [uiClassNames.blue ],
+    }
+
+    this.context.addNewServerButton(newServerButton)
   }
 }
 
