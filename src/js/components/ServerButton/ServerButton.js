@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import '../../../scss/components/ServerButton/ServerButton.scss';
-import { GlobalContext } from "../../contexts/context";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 export const iconClassNames = {
   svg: 'svg',
@@ -61,20 +61,19 @@ class ServerButton extends Component {
     return this.props.id === this.context.currentServerButtonId;
   }
 
-  render() {
-    const { id } = this.props;
-    const { setCurrentServerButtonId } = this.context;
-
-    return (
-      <button className="nav-item nav-item-server">
-        <div className={ this.channelClassNames() } onClick={ () => setCurrentServerButtonId(id) } >
-          <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
-        </div>
-        <div className="pip"/>
-        <div className="tool-tip">{ this.title() }</div>
-      </button>
-    )
+  onClickHandler(){
+    this.context.setCurrentServerButtonId(this.props.id)
   }
+
+  render = () => (
+    <button className="nav-item nav-item-server">
+      <div className={ this.channelClassNames() } onClick={ this.onClickHandler.bind(this) } >
+        <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
+      </div>
+      <div className="pip"/>
+      <div className="tool-tip">{ this.title() }</div>
+    </button>
+  );
 }
 
 ServerButton.propTypes = {

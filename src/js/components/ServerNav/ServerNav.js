@@ -1,56 +1,19 @@
 import React, { Component } from "react";
 import '../../../scss/components/ServerNav/ServerNav.scss';
-import ServerButton, { iconClassNames, uiClassNames } from "../ServerButton/ServerButton";
+import ServerButton from "../ServerButton/ServerButton";
+import { GlobalContext } from "../../contexts/GlobalContext";
+import AddServerButton from "../AddServerButton/AddServerButton";
 
 class ServerNav extends Component {
-  state = {
-    buttons: [
-      {
-        id: "home",
-        title: "Home",
-        iconClassName: iconClassNames.home,
-        channelExtraClassNames: [ uiClassNames.blue, uiClassNames.separator ],
-      },
-      {
-        id: "pythos-server",
-        title: "Pytho's Server",
-        imageSrc: 'url',
-        channelExtraClassNames: [ uiClassNames.blue ],
-      },
-      {
-        id: "jakxs-server",
-        title: "Jakx's Server",
-        imageSrc: null,
-        channelExtraClassNames: [ uiClassNames.blue ],
-      },
-      {
-        id: "add-a-server",
-        title: "Add a Server",
-        iconClassName: iconClassNames.add,
-        channelExtraClassNames: [ uiClassNames.green ],
-      },
-      {
-        id: "server-discovery",
-        title: "Server Discovery",
-        iconClassName: iconClassNames.discover,
-        channelExtraClassNames: [ uiClassNames.green, uiClassNames.separator ],
-      },
-      {
-        id: "download-apps",
-        title: "Download Apps",
-        iconClassName: iconClassNames.download,
-        channelExtraClassNames: [ uiClassNames.green ],
-      },
-    ],
-  }
+  static contextType = GlobalContext;
 
   render() {
-    const { buttons } = this.state;
+    const { serverNavButtons } = this.context;
 
     return (
       <div className="nav-column nav-column-server">
           <div className="nav-group">
-            <ServerButtons buttons={ buttons } />
+            <ServerButtons buttons={ serverNavButtons } />
           </div>
       </div>
     )
@@ -60,12 +23,26 @@ class ServerNav extends Component {
 const ServerButtons = (props) => {
   const { buttons } = props;
 
-  return buttons.map((button, index) =>
-    <ServerButton
-      key={index.toString()}
-      {...button}
-    />
-  )
+  /**
+   * A lookup table of buttons ids -> components
+   *
+   * @todo Move to CMS-able source
+   */
+  const customButtons = [
+    {
+      id: 'add-a-server',
+      component: AddServerButton
+    }
+  ];
+
+  return buttons.map((button, index) => {
+    // Check if the button id is listed in our custom buttons
+    const match = customButtons.find( x => x.id === button.id);
+    // Use a custom button's component or just default to ServerButton
+    let component = match ? match.component : ServerButton;
+    // Render whichever component is needed
+    return React.createElement(component, { key: index.toString(), ...button });
+  });
 };
 
 export default ServerNav;

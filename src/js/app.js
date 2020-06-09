@@ -4,7 +4,7 @@ import '../scss/app.scss';
 import Chat from "./components/Chat/Chat";
 import ServerNav from "./components/ServerNav/ServerNav";
 import GroupNav from "./components/GroupNav/GroupNav";
-import { GlobalContextProvider } from "./contexts/context";
+import { GlobalContextProvider } from "./contexts/GlobalContext";
 
 const App = () => (
   <GlobalContextProvider>
