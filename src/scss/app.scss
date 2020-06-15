@@ -3,7 +3,7 @@
 @import "utilities/normalise";
 @import "./variables";
 
-#app {
+.app-wrapper {
     background-color: $darker-shadow-grey;
     height: 100vh;
     width: 100%;

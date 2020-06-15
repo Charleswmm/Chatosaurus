@@ -1,5 +1,5 @@
 import React, { Component, createContext } from "react";
-import {iconClassNames, uiClassNames} from "../components/ServerButton/ServerButton";
+import {iconClassNames, uiClassNames} from "../components/MainNavButtons/MainNavButtons";
 
 export const GlobalContext = createContext('');
 
@@ -39,6 +39,7 @@ export class GlobalContextProvider extends Component {
       },
     ],
   }
+
   /**
    *  Sets 'currentMainNavButtonId' in state to give the active server button its' active styling
    * @param id

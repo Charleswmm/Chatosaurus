@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import '../../../scss/components/ServerButton/ServerButton.scss';
+import '../../../scss/components/MainNavButtons/MainNavButtons.scss';
 import { GlobalContext } from "../../contexts/GlobalContext";
 
 export const iconClassNames = {
@@ -21,7 +21,7 @@ export const uiClassNames = {
   separator: 'nav-channel-separator',
 }
 
-class ServerButton extends Component {
+class MainNavButtons extends Component {
   static contextType = GlobalContext;
   static defaultProps = {
     title: 'Home',
@@ -76,7 +76,7 @@ class ServerButton extends Component {
   );
 }
 
-ServerButton.propTypes = {
+MainNavButtons.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   iconClassName: PropTypes.string,
@@ -85,4 +85,4 @@ ServerButton.propTypes = {
   contentExtraClassNames: PropTypes.array,
 }
 
-export default ServerButton;
+export default MainNavButtons;

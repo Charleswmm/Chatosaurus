@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import '../../../scss/components/MainNav/MainNav.scss';
-import ServerButton from "../ServerButton/ServerButton";
+import MainNavButtons from "../MainNavButtons/MainNavButtons";
 import AddServerButton from "../AddServerButton/AddServerButton";
 import { GlobalContext } from "../../contexts/GlobalContext";
 
@@ -40,7 +40,7 @@ const ServerButtons = (props) => {
     const match = customButtons.find( x => x.id === button.id);
 
     // Use a custom button's component or just default to ServerButton
-    let component = match ? match.component : ServerButton;
+    let component = match ? match.component : MainNavButtons;
 
     // Render whichever component is needed
     return React.createElement(component, { key: index.toString(), ...button });
