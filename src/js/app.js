@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import '../scss/app.scss';
 import Chat from "./components/Chat/Chat";
-import MainNav from "./components/MainNav/MainNav";
+import MainNavButton from "./components/MainNavButton/MainNavButton";
 import GroupNav from "./components/GroupNav/GroupNav";
 import { GlobalContextProvider } from "./contexts/GlobalContext";
 
 const App = () => (
   <GlobalContextProvider>
     <nav className="nav-side">
-      <MainNav />
+      <MainNavButton />
       <GroupNav />
     </nav>
     <Chat />

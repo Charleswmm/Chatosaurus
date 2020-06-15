@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import '../../../scss/components/MainNav/MainNav.scss';
-import MainNavButtons from "../MainNavButtons/MainNavButtons";
+import '../../../scss/components/MainNavButton/MainNavButton.scss';
+import ServerButton from "../ServerButton/ServerButton";
 import AddServerButton from "../AddServerButton/AddServerButton";
 import { GlobalContext } from "../../contexts/GlobalContext";
 
-class MainNav extends Component {
+class MainNavButton extends Component {
   static contextType = GlobalContext;
 
   render() {
@@ -40,11 +40,11 @@ const ServerButtons = (props) => {
     const match = customButtons.find( x => x.id === button.id);
 
     // Use a custom button's component or just default to ServerButton
-    let component = match ? match.component : MainNavButtons;
+    let component = match ? match.component : ServerButton;
 
     // Render whichever component is needed
     return React.createElement(component, { key: index.toString(), ...button });
   });
 };
 
-export default MainNav;
+export default MainNavButton;

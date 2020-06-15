@@ -1,7 +1,7 @@
 import React from "react";
-import MainNavButtons, {uiClassNames} from "../MainNavButtons/MainNavButtons";
+import ServerButton, {uiClassNames} from "../ServerButton/ServerButton";
 
-class AddServerButton extends MainNavButtons {
+class AddServerButton extends ServerButton {
 
   onClickHandler = () => {
     // Random number for placeholder IDs and random imageSrc
