@@ -1,5 +1,5 @@
 import React, { Component, createContext } from "react";
-import {iconClassNames, uiClassNames} from "../components/ServerButton/ServerButton";
+import {iconClassNames, uiClassNames} from "../components/MainNavButton/MainNavButton";
 
 export const GlobalContext = createContext('');
 
