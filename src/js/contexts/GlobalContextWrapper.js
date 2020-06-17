@@ -19,7 +19,6 @@ export class GlobalContextWrapper extends Component {
    */
   buildMainNavButtons = () => {
     const mainNavButtons = [...this._staticNavButtons]
-    // Adds new server buttons after the 'Home' button
     mainNavButtons.splice(1, 0, ...this.state.newServerButtons )
     return mainNavButtons
   }
