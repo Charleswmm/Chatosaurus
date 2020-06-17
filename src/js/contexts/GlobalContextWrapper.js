@@ -3,41 +3,35 @@ import {iconClassNames, uiClassNames} from "../components/MainNavButton/MainNavB
 
 export const GlobalContext = createContext('');
 
-export class GlobalContextProvider extends Component {
+export class GlobalContextWrapper extends Component {
   state = {
     currentMainNavButtonId: "home",
     mainNavButtons: [
       {
-        id: "home",
-        title: "Home",
+        id: 'home',
+        title: 'Home',
         iconClassName: iconClassNames.home,
-        channelExtraClassNames: [ uiClassNames.blue, uiClassNames.separator ],
+        channelExtraClassNames: [ uiClassNames.blue, uiClassNames.separator ]
       },
       {
-        id: "pythos-server",
-        title: "Pytho's Server",
-        imageSrc: null,
-        channelExtraClassNames: [ uiClassNames.blue ],
-      },
-      {
-        id: "add-a-server",
-        title: "Add a Server",
+        id: 'add-a-server',
+        title: 'Add a Server',
         iconClassName: iconClassNames.add,
-        channelExtraClassNames: [ uiClassNames.green ],
+        channelExtraClassNames: [ uiClassNames.green ]
       },
       {
-        id: "server-discovery",
-        title: "Server Discovery",
+        id: 'server-discovery',
+        title: 'Server Discovery',
         iconClassName: iconClassNames.discover,
-        channelExtraClassNames: [ uiClassNames.green, uiClassNames.separator ],
+        channelExtraClassNames: [ uiClassNames.green, uiClassNames.separator ]
       },
       {
-        id: "download-apps",
-        title: "Download Apps",
+        id: 'download-apps',
+        title: 'Download Apps',
         iconClassName: iconClassNames.download,
-        channelExtraClassNames: [ uiClassNames.green ],
-      },
-    ],
+        channelExtraClassNames: [ uiClassNames.green ]
+      }
+    ]
   }
 
   /**

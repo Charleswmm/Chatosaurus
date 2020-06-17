@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import '../../../scss/components/MainNav/MainNav.scss';
 import MainNavButton from "../MainNavButton/MainNavButton";
 import AddServerButton from "../AddServerButton/AddServerButton";
-import { GlobalContext } from "../../contexts/GlobalContext";
+import { GlobalContext } from "../../contexts/GlobalContextWrapper";
 
 class MainNav extends Component {
   static contextType = GlobalContext;
