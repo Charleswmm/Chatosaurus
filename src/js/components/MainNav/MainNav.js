@@ -9,7 +9,6 @@ class MainNav extends Component {
 
   render() {
     const { mainNavButtons } = this.context;
-
     return (
       <div className="nav-column nav-column-server">
           <div className="nav-group">
