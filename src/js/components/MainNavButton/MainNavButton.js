@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import '../../../scss/components/MainNavButton/MainNavButton.scss';
-import { GlobalContext } from "../../contexts/GlobalContext";
+import { GlobalContext } from "../../contexts/GlobalContextWrapper";
 
 export const iconClassNames = {
   svg: 'svg',
@@ -58,7 +58,7 @@ class MainNavButton extends Component {
     : null;
 
   isActive = () => {
-    return this.props.id === this.context.currentMainNavButtonId;
+    return this.props.id === this.context.state.currentMainNavButtonId;
   }
 
   onClickHandler = () => {
