@@ -12,7 +12,7 @@ export class Config {
   };
 
   /**
-   * @param {array} fields
+   * @param {[]} fields
    * @returns {{}}
    */
   get(fields) {
@@ -22,16 +22,23 @@ export class Config {
       const value = this._data[field];
 
       if (value === undefined) {
-        console.warn(`'${field}' is not available in the database`);
+        console.warn(`'${field}' is not available in the config`);
         // Skip this field (in the loop)
         return;
       }
 
       // Add the value to the result
-      result[field] = value;
+      result[field] = JSON.parse(JSON.stringify(value));
     });
 
     return result;
+  }
+
+  /**
+   * @param {{}} data
+   */
+  set(data) {
+    this._data = {...this._data, ...data};
   }
 }
 

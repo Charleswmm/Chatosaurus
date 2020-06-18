@@ -8,7 +8,7 @@ class MainNav extends Component {
   static contextType = GlobalContext;
 
   render() {
-    const { mainNavButtons } = this.context;
+    const { mainNavButtons } = this.context.Config.get(['mainNavButtons']);
     return (
       <div className="nav-column nav-column-server">
           <div className="nav-group">
@@ -24,7 +24,6 @@ const MainNavButtons = (props) => {
 
   /**
    * A lookup table of buttons ids -> components
-   *
    * @todo Move to CMS-able source
    */
   const customButtons = [
@@ -33,6 +32,8 @@ const MainNavButtons = (props) => {
       component: AddServerButton
     }
   ];
+
+  buttons.sort((a, b) => a.sort - b.sort);
 
   return buttons.map((button, index) => {
     // Check if the button id is listed in our custom buttons
