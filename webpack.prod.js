@@ -13,7 +13,7 @@ module.exports = merge(common, {
   plugins: [
     new CleanWebpackPlugin(),                          // deletes old hashed files
     new MiniCssExtractPlugin({
-      filename: 'assets/style-[chunkhash:10].css',    // To replace cached files replace with 'assets/style-[chunkhash:10].css' to get hashed.css. The hash relates to the css chunk of content
+      filename: 'css/style-[chunkhash:10].css',    // To replace cached files replace with 'assets/style-[chunkhash:10].css' to get hashed.css. The hash relates to the css chunk
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
