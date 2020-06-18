@@ -6,8 +6,8 @@ import { GlobalContext } from "../../contexts/GlobalContextWrapper";
 export const iconClassNames = {
   svg: 'svg',
   home: 'svg-home',
-  add: 'svg-add',
-  discover: 'svg-discover',
+  add: 'svg-plus',
+  discover: 'svg-search',
   download: 'svg-download',
 }
 

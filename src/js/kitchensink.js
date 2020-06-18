@@ -19,7 +19,7 @@ class KitchenSink extends Component {
           <MainNavButton id={'test'} title={'Test Button'} iconClassName={''} imageSrc={''} channelExtraClassNames={['nav-channel-blue']} contentExtraClassNames={['']} sort={''} />
         </div>
         <div className="dishes">
-          <AddServerButton id={'add-a-server'} title={'Add a Server'} iconClassName={'svg svg-add'} imageSrc={''} channelExtraClassNames={['nav-channel-green']} contentExtraClassNames={['']} sort={''} />
+          <AddServerButton id={'add-a-server'} title={'Add a Server'} iconClassName={'svg svg-plus'} imageSrc={''} channelExtraClassNames={['nav-channel-green']} contentExtraClassNames={['']} sort={''} />
         </div>
         <div className="dishes">
           <MainNav />

@@ -17,18 +17,27 @@
 .svg {
     background-repeat: no-repeat;
     background-size: contain;
-    width: 48px;
-    height: 48px;
-    transform: scale(0.5);
 }
 
-.nav-group-grow {
+.svg-plus {
+    background-image: url("../img/icons/plus.svg");
+}
+.svg-search {
+    background-image: url("../img/icons/search.svg");
+}
+.svg-download {
+    background-image: url("../img/icons/download.svg");
+}
+.svg-cross {
+    background-image: url("../img/icons/cross.svg");
+}
+
+.flex-grow {
     flex: 1 0 auto;
 }
 
 .nav-group-top {
     border-bottom: 1px solid $darkest-outline-grey;
-    padding: 0 1rem;
     flex: 0 0 auto;
 }
 
