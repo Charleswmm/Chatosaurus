@@ -30,5 +30,6 @@ export const configuration = {
       channelExtraClassNames: [ uiClassNames.green ],
       sort: 3,
     }
-  ]
+  ],
+  insertMainNavButtonsBeforeId: 'add-a-server',
 }

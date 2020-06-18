@@ -11,10 +11,10 @@ class AddServerButton extends MainNavButton {
     randomId = randomId.toString();
 
     // New server button template
-    const { mainNavButtons } = this.context.Config.get(['mainNavButtons']);
+    const { mainNavButtons, insertMainNavButtonsBeforeId } = this.context.Config.get(['mainNavButtons', 'insertMainNavButtonsBeforeId']);
 
     // Determine the sort at entry-point
-    let { sort } = mainNavButtons.find((e) => e.id === 'add-a-server');
+    let { sort } = mainNavButtons.find((e) => e.id === insertMainNavButtonsBeforeId);
 
     const button = {
         id: randomId,
