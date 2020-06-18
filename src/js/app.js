@@ -11,7 +11,7 @@ import { configuration } from "./config/app";
 class App extends Component {
   render () {
     return (
-      <GlobalContextWrapper initialConfig={new Config(configuration)} >
+      <GlobalContextWrapper Config={new Config(configuration)} >
         <nav className="nav-side">
           <MainNav />
           <GroupNav />

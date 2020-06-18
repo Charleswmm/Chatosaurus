@@ -58,7 +58,7 @@ class MainNavButton extends Component {
     : null;
 
   isActive = () => {
-    return this.props.id === this.context.currentMainNavButtonId;
+    return this.props.id === this.context.state.currentMainNavButtonId;
   }
 
   onClickHandler = () => {
