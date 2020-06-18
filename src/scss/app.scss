@@ -47,14 +47,12 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
     }
 
     .nav-group {
         display: flex;
-        flex-direction: column;
         width: 100%;
-        align-items: center;
+        flex-direction: column;
     }
 
     @include breakpoint(sm) {
