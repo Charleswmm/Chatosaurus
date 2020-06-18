@@ -8,6 +8,7 @@ const TerserPlugin = require('terser-webpack-plugin');          // part of webpa
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(common, {
+  entry: './src/js/app.js',
   mode: 'production',
   plugins: [
     new CleanWebpackPlugin(),                          // deletes old hashed files

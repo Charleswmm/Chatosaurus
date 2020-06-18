@@ -6,7 +6,7 @@ import MainNav from "./components/MainNav/MainNav";
 import GroupNav from "./components/GroupNav/GroupNav";
 import { GlobalContextWrapper } from "./contexts/GlobalContextWrapper";
 import Config from "./utilities/Config";
-import { configuration } from "./config/app";
+import { configuration } from "./config/kitchensink";
 
 class KitchenSink extends Component {
   render () {
