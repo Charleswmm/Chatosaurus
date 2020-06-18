@@ -14,21 +14,21 @@ export const configuration = {
       title: 'Add a Server',
       iconClassName: iconClassNames.add,
       channelExtraClassNames: [ uiClassNames.green ],
-      sort: 2,
+      sort: 1,
     },
     {
       id: 'server-discovery',
       title: 'Server Discovery',
       iconClassName: iconClassNames.discover,
       channelExtraClassNames: [ uiClassNames.green, uiClassNames.separator ],
-      sort: 3,
+      sort: 2,
     },
     {
       id: 'download-apps',
       title: 'Download Apps',
       iconClassName: iconClassNames.download,
       channelExtraClassNames: [ uiClassNames.green ],
-      sort: 4,
+      sort: 3,
     }
   ]
 }
