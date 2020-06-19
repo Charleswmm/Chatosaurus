@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import '../../../scss/components/GroupNav/GroupNav.scss';
+import GroupNavDMButton from "../GroupNavDMButton/GroupNavDMButton";
 
 class GroupNav extends Component {
   render() {
@@ -32,26 +33,8 @@ class GroupNav extends Component {
             <div className="svg svg-plus select-action"/>
             <div className="tool-tip">Create DM</div>
           </div>
-          <div className="nav-item nav-item-dm">
-            <button className="nav-item-btn">
-              <div className="avatar avatar-default" />
-              <div className="nav-item-btn-text flex-grow">
-                <div className="flex-grow" >Pytho</div>
-                <div className="nav-item-dm-subtext">1 Member</div>
-              </div>
-              <div className="svg svg-cross" />
-            </button>
-          </div>
-          <div className="nav-item nav-item-dm">
-            <button className="nav-item-btn">
-              <div className="avatar avatar-default" />
-              <div className="nav-item-btn-text flex-grow">
-                <div className="flex-grow" >Jakx</div>
-                <div className="nav-item-dm-subtext">2 Member</div>
-              </div>
-              <div className="svg svg-cross" />
-            </button>
-          </div>
+          <GroupNavDMButton />
+          <GroupNavDMButton />
         </div>
         <div className="nav-group nav-group-foot">
           <div className="nav-foot"/>

@@ -10,11 +10,15 @@ import MainNavButton from "./components/MainNavButton/MainNavButton";
 import Config from "./utilities/Config";
 import { configuration } from "./config/kitchensink";
 import { GlobalContextWrapper } from "./contexts/GlobalContextWrapper";
+import GroupNavDMButton from "./components/GroupNavDMButton/GroupNavDMButton";
 
 class KitchenSink extends Component {
   render () {
     return (
       <GlobalContextWrapper Config={ new Config(configuration) } >
+        <div className="dishes">
+          <GroupNavDMButton />
+        </div>
         <div className="dishes">
           <MainNavButton id={'test'} title={'Test Button'} iconClassName={''} imageSrc={''} channelExtraClassNames={['nav-channel-blue']} contentExtraClassNames={['']} sort={''} />
         </div>

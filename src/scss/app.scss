@@ -65,7 +65,37 @@
 .nav-item {
     width: 100%;
     display: flex;
+
+    .nav-item-btn {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        height: 4.2rem;
+        width: 100%;
+        padding: 0.1rem 0.8rem;
+        border-radius: 0.4rem;
+        @include typo(h4, 1.5rem);
+    }
+
+    .nav-item-btn:hover {
+        background-color: #33363C;
+    }
+
+    .nav-item-btn:hover > .svg-cross {
+        visibility: visible;
+    }
+
+    .nav-item-btn:hover > .nav-item-btn-text {
+        filter: brightness(150%);
+    }
+
+    .nav-item-btn-text {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
 }
+
 
 .nav-side {
     background-color: $darker-shadow-grey;
