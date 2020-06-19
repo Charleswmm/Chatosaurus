@@ -37,29 +37,15 @@
     transition: background-color 0.2s, border-radius 0.2s;
   }
 
-  .tool-tip::before {
-    content: '';
-    position: absolute;
-    top: 0.9rem;
-    left: -0.5rem;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right:10px solid $hover-black;
+  .tool-tip {
+    top: 6px;
+    left: 80px;
+    @include typo(tt, 1.5rem);
   }
 
-  .tool-tip {
-    position: absolute;
-    top: 6px;
-    left: 69px;
-    background-color: $hover-black;
-    border-radius: 4px;
-    padding: 1rem;
-    white-space: nowrap;
-    transform: scale(0);
-    transition: transform 0.015s;
-    @include typo(tt, 1.5em);
+  .tool-tip::before {
+    top: 0.9rem;
+    left: -0.5rem;
   }
 
   .nav-channel:hover {

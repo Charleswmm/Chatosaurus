@@ -12,21 +12,30 @@ class GroupNav extends Component {
         </div>
         <div className="nav-group">
           <div className="nav-item nav-item-menu">
-            <button className="nav-item-btn">Friends</button>
+            <button className="nav-item-btn">
+              <div className="nav-item-btn-text">
+                Friends
+              </div>
+            </button>
           </div>
           <div className="nav-item nav-item-menu">
-            <button className="nav-item-btn">Nitro</button>
+            <button className="nav-item-btn">
+              <div className="nav-item-btn-text">
+                Nitro
+              </div>
+            </button>
           </div>
         </div>
         <div className="nav-group flex-grow">
           <div className="nav-item nav-item-head">
             <div className="flex-grow">Direct Messages</div>
-            <div className="svg svg-plus"/>
+            <div className="svg svg-plus select-action"/>
+            <div className="tool-tip">Create DM</div>
           </div>
           <div className="nav-item nav-item-dm">
             <button className="nav-item-btn">
               <div className="avatar avatar-default" />
-              <div className="nav-item-dm-text flex-grow">
+              <div className="nav-item-btn-text flex-grow">
                 <div className="flex-grow" >Pytho</div>
                 <div className="nav-item-dm-subtext">1 Member</div>
               </div>
@@ -36,7 +45,7 @@ class GroupNav extends Component {
           <div className="nav-item nav-item-dm">
             <button className="nav-item-btn">
               <div className="avatar avatar-default" />
-              <div className="nav-item-dm-text flex-grow">
+              <div className="nav-item-btn-text flex-grow">
                 <div className="flex-grow" >Jakx</div>
                 <div className="nav-item-dm-subtext">2 Member</div>
               </div>

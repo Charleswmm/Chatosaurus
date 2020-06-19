@@ -36,6 +36,27 @@
     flex: 1 0 auto;
 }
 
+.tool-tip {
+    position: absolute;
+    z-index: 10;
+    background-color: $hover-black;
+    border-radius: 4px;
+    padding: 1rem;
+    white-space: nowrap;
+    transform: scale(0);
+    transition: transform 0.015s;
+}
+
+.tool-tip::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right:10px solid $hover-black;
+}
+
 .nav-group-top {
     border-bottom: 1px solid $darkest-outline-grey;
     flex: 0 0 auto;
