@@ -10,8 +10,8 @@ const avatarClassNames = {
 }
 
 const btnClasses = {
-  btnBase: 'nav-item-btn',
-  btnActive: 'nav-item-btn-active',
+  btnBase: 'btn btn-nav-item',
+  btnActive: 'btn-nav-item-active',
 }
 
 export const backgroundColorClassNames = {
@@ -30,6 +30,10 @@ class GroupNavDMButton extends Component {
     backgroundColor: backgroundColorClassNames.avatarBlue,
   }
 
+  /**
+   * Resolve button classes
+   * @returns {string}
+   */
   btnClasses = () => [
     btnClasses.btnBase,
     ( this.isActive() ? btnClasses.btnActive : '' )
@@ -37,6 +41,10 @@ class GroupNavDMButton extends Component {
 
   isActive = () => this.props.id === this.context.state.currentGroupNavDMButtonId;
 
+  /**
+   * Resolves classes for the avatar if there is a avatar
+   * @returns {string}
+   */
   avatar = () => [
     avatarClassNames.baseAvatar,
     ...( this.props.avatarSrc ? [ avatarClassNames.availableAvatar ] : [ avatarClassNames.noAvatar, this.props.backgroundColor ] ),
@@ -44,7 +52,11 @@ class GroupNavDMButton extends Component {
 
   title = () => this.props.title;
 
-  members = () => !this.props.members ? '' : this.props.members + ' Member' + ( this.props.members === 1 ? '':'s' );
+  members = () => !this.props.members
+    ? ''
+    : this.props.members + ' Member' + ( this.props.members === 1
+      ? ''
+      :'s' );
 
   onClickHandler = () => this.context.setCurrentGroupNavDMButtonId(this.props.id);
 
@@ -54,11 +66,11 @@ class GroupNavDMButton extends Component {
     return (
       <div className="nav-item nav-item-dm">
         <button className={ this.btnClasses() }>
-          <div className="nav-item-btn-content flex-grow" onClick={ this.onClickHandler }>
+          <div className="btn-nav-item-content flex-grow" onClick={ this.onClickHandler }>
             <div className={ this.avatar() }/>
-            <div className="nav-item-btn-text flex-grow">
+            <div className="btn-nav-item-text flex-grow">
               <div className="flex-grow">{ this.title() }</div>
-              <div className="nav-item-dm-subtext">{ this.members() }</div>
+              <div className="btn-nav-item-subtext">{ this.members() }</div>
             </div>
           </div>
           <div className="svg svg-cross" onClick={ this.removeButtonClickHandler }/>

@@ -85,7 +85,7 @@
     width: 100%;
     display: flex;
 
-    .nav-item-btn {
+    .btn-nav-item {
         display: flex;
         align-items: center;
         cursor: pointer;
@@ -96,29 +96,29 @@
         @include typo(h4, 1.4rem);
     }
 
-    .nav-item-btn:hover {
+    .btn-nav-item:hover {
         background-color: $dark-surround-grey;
     }
 
-    .nav-item-btn:hover > .svg-cross {
+    .btn-nav-item:hover > .svg-cross {
         visibility: visible;
     }
 
-    .nav-item-btn:hover > .nav-item-btn-text {
+    .btn-nav-item:hover > .btn-nav-item-text {
         filter: brightness(150%);
     }
 
-    .nav-item-btn-text {
+    .btn-nav-item-text {
         display: flex;
         flex-direction: column;
         text-align: left;
     }
 
-    .nav-item-btn-active, .nav-item-btn-active:hover {
+    .btn-nav-item-active, .btn-nav-item-active:hover {
         background-color: $neutral-surround-grey;
     }
 
-    .nav-item-btn-active .nav-item-btn-text, .nav-item-btn-active:hover .nav-item-btn-text{
+    .btn-nav-item-active .btn-nav-item-text, .btn-nav-item-active:hover .btn-nav-item-text{
         filter: brightness(180%);
     }
 }

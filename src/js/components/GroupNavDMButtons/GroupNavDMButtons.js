@@ -26,22 +26,27 @@ class GroupNavDMButtons extends Component {
     };
   }
 
+  /**
+   * Adds a new random group nav DM button to the configuration
+   */
   addButtonClickHandler = () => {
     const button = this.randomNewGroupNavDMButton();
     this.context.Config.set({ groupNavDMButtons: [ button, ...this.getGroupNavDMButtons() ] });
     this.context.setCurrentGroupNavDMButtonId(button.id);
   }
 
+  /**
+   * Called by the children to remove them selves from the configuration
+   * @param id
+   */
   removeButtonClickHandler = (id) => {
     const newGroupNavDMButtons = this.getGroupNavDMButtons().filter(button => button.id !== id)
     this.context.Config.set({ groupNavDMButtons: newGroupNavDMButtons });
-    const activeButton = this.context.state.currentGroupNavDMButtonId === id ? id : this.context.state.currentGroupNavDMButtonId;
+    const activeButton = this.context.state.currentGroupNavDMButtonId === id
+      ? id
+      : this.context.state.currentGroupNavDMButtonId;
     this.context.setCurrentGroupNavDMButtonId(activeButton);
   }
-
-  createGroupNavDMButtons = () => this.getGroupNavDMButtons().map((button, index) =>
-    <GroupNavDMButton key={index.toString()} removeButtonFunc={ this.removeButtonClickHandler } {...button} />
-  );
 
   getGroupNavDMButtons = () => this.context.Config.get(['groupNavDMButtons']).groupNavDMButtons;
 
@@ -53,10 +58,16 @@ class GroupNavDMButtons extends Component {
           <div className="svg svg-plus add-group-dm" onClick={ this.addButtonClickHandler }/>
           <div className="tool-tip">Create DM</div>
         </div>
-        { this.createGroupNavDMButtons() }
+        <CreateGroupNavDMButtons buttons={ this.getGroupNavDMButtons() } removeButtonFunc={ this.removeButtonClickHandler } />
       </div>
     )
   }
+}
+
+const CreateGroupNavDMButtons = (props) => {
+  const { buttons, removeButtonFunc } = props;
+
+  return buttons.map((button, index) => <GroupNavDMButton key={index.toString()} removeButtonFunc={ removeButtonFunc } {...button} />);
 }
 
 export default GroupNavDMButtons

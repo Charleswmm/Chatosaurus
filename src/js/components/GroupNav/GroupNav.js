@@ -14,13 +14,13 @@ class GroupNav extends Component {
         <div className="nav-group nav-group-dm flex-grow">
           <div className="nav-subgroup nav-subgroup-menu">
             <div className="nav-item nav-item-menu">
-              <button className="nav-item-btn">
-                <div className="nav-item-btn-text">Friends</div>
+              <button className="btn btn-nav-item">
+                <div className="btn-nav-item-text">Friends</div>
               </button>
             </div>
             <div className="nav-item nav-item-menu">
-              <button className="nav-item-btn">
-                <div className="nav-item-btn-text">Nitro</div>
+              <button className="btn btn-nav-item">
+                <div className="btn-nav-item-text">Nitro</div>
               </button>
             </div>
           </div>
