@@ -9,7 +9,12 @@
   .svg {
     height: 1.6rem;
     width: 1.6rem;
-    margin-left: 0.8rem;
+    margin-left: 0.4rem;
+  }
+
+  .nav-item-btn-content {
+    display: flex;
+    align-items: center;
   }
 
   .avatar {
@@ -23,6 +28,11 @@
 
   .avatar-default {
     background-image: url("../../../img/icons/people.svg");
+  }
+
+  .avatar-image {
+    background-image: url("../../../img/icons/discord.svg");
+    background-color: $darker-shadow-grey;
   }
 
   .nav-item-dm-subtext {

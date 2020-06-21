@@ -8,24 +8,21 @@
   flex: 1 0 auto;
   font-size: 1rem;
 
-  .svg {
-    height: 1.6rem;
-    width: 1.6rem;
-    margin-left: 0.8rem;
-  }
-
-  .svg-plus {
-    filter: grayscale(100%) brightness(120%);
-  }
-
   .nav-group-top {
     height: 4.8rem;
-    margin-bottom: 0.8rem;
+    min-height: 4.8rem;
+  }
+
+  .nav-group-dm {
+    padding-top: 0.8rem;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .nav-item {
     align-items: center;
     height: 4.4rem;
+    min-height: 4.4rem;
   }
 
   .nav-item-start {
@@ -55,47 +52,9 @@
 
   }
 
-  .nav-item-head {
-    position: relative;
-    z-index: 0;
-    align-items: start;
-    height: 4rem;
-    max-width: 22.4rem;
-    user-select: none;
-    text-transform: uppercase;
-    padding: 1.8rem 0 0.4rem 1.8rem;
-    @include typo(h3, 1.15em);
-  }
-
-  .nav-item-head:hover > :first-child {
-    filter: brightness(150%);
-  }
-
-  .tool-tip::before {
-    bottom: -1rem;
-    left: 3.8rem;
-    transform: rotate(-90deg);
-  }
-
-  .tool-tip {
-    text-transform: none;
-    top: -26px;
-    right: -33px;
-    @include typo(tt, 1.2rem);
-    font-weight: 400;
-    letter-spacing: 0.06em;
-  }
-
-  .select-action {
-    cursor: pointer;
-  }
-
-  .select-action:hover + .tool-tip {
-    transform: scale(1);
-  }
-
   .nav-group-foot {
     height: 5.3rem;
+    min-height: 5.3rem;
     background-color: $dark-shadow-grey;
     padding: 0 0.8rem;
   }

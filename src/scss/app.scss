@@ -32,8 +32,27 @@
     background-image: url("../img/icons/cross.svg");
 }
 
+.background-brand-blue {
+    background-color: $normal-brand-blue;
+}
+.background-brand-green {
+    background-color: $normal-brand-green;
+}
+.background-brand-orange {
+    background-color: $normal-brand-orange;
+}
+.background-brand-purple {
+    background-color: $normal-brand-purple;
+}
+.background-brand-red {
+    background-color: $normal-brand-red;
+}
+.background-brand-yellow {
+    background-color: $normal-brand-yellow;
+}
+
 .flex-grow {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
 }
 
 .tool-tip {
@@ -74,11 +93,11 @@
         width: 100%;
         padding: 0.1rem 0.8rem;
         border-radius: 0.4rem;
-        @include typo(h4, 1.5rem);
+        @include typo(h4, 1.4rem);
     }
 
     .nav-item-btn:hover {
-        background-color: #33363C;
+        background-color: $dark-surround-grey;
     }
 
     .nav-item-btn:hover > .svg-cross {
@@ -93,6 +112,14 @@
         display: flex;
         flex-direction: column;
         text-align: left;
+    }
+
+    .nav-item-btn-active, .nav-item-btn-active:hover {
+        background-color: $neutral-surround-grey;
+    }
+
+    .nav-item-btn-active .nav-item-btn-text, .nav-item-btn-active:hover .nav-item-btn-text{
+        filter: brightness(180%);
     }
 }
 

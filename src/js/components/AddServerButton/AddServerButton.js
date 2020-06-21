@@ -6,8 +6,7 @@ class AddServerButton extends MainNavButton {
   onClickHandler = () => {
     // Random number for placeholder IDs and random imageSrc
     let randomId = Math.floor(Math.random() * 10000 );
-    let addImageSrc = '';
-    if (randomId > 5000) addImageSrc = 'url';
+    const addImageSrc = randomId > 7000 ? 'url' : '';
     randomId = randomId.toString();
 
     // New server button template

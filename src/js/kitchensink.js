@@ -11,6 +11,7 @@ import Config from "./utilities/Config";
 import { configuration } from "./config/kitchensink";
 import { GlobalContextWrapper } from "./contexts/GlobalContextWrapper";
 import GroupNavDMButton from "./components/GroupNavDMButton/GroupNavDMButton";
+import GroupNavDMButtons from "./components/GroupNavDMButtons/GroupNavDMButtons";
 
 class KitchenSink extends Component {
   render () {
@@ -27,6 +28,9 @@ class KitchenSink extends Component {
         </div>
         <div className="dishes">
           <MainNav />
+        </div>
+        <div className="dishes">
+          <GroupNavDMButtons />
         </div>
         <div className="dishes">
           <GroupNav />

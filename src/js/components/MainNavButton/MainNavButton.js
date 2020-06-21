@@ -39,7 +39,7 @@ class MainNavButton extends Component {
       uiClassNames.base,
       ...this.props.channelExtraClassNames,
       ...(this.props.imageSrc ? [uiClassNames.image] : []),
-      ...(this.isActive() ? [uiClassNames.active] : [])
+      ...(this.isActive() ? [uiClassNames.active] : []),
     ].join(' ');
 
   /**
@@ -57,22 +57,18 @@ class MainNavButton extends Component {
     ? this.title().split(' ').map((ar)=> ar.charAt(0)).join('')
     : null;
 
-  isActive = () => {
-    return this.props.id === this.context.state.currentMainNavButtonId;
-  }
+  isActive = () => this.props.id === this.context.state.currentMainNavButtonId;
 
-  onClickHandler = () => {
-    this.context.setCurrentMainNavButtonId(this.props.id)
-  }
+  onClickHandler = () => this.context.setCurrentMainNavButtonId(this.props.id);
 
   render = () => (
-    <button className="nav-item nav-item-server">
-      <div className={ this.channelClassNames() } onClick={ this.onClickHandler } >
+    <div className="nav-item nav-item-server">
+      <button className={ this.channelClassNames() } onClick={ this.onClickHandler } >
         <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
-      </div>
+      </button>
       <div className="pip"/>
       <div className="tool-tip">{ this.title() }</div>
-    </button>
+    </div>
   );
 }
 
