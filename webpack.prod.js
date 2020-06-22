@@ -39,8 +39,9 @@ module.exports = merge(common, {
         use: {
           loader: 'file-loader',
           options: {
-            name: '[name]-[hash:10].[ext]',            // hashes assets
-            outputPath: 'assets'
+            name: '[name]-[hash:10].[ext]',          // hashes assets
+            publicPath: '../img/',
+            outputPath: 'img',
           }
         },
       },
