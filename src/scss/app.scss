@@ -17,25 +17,112 @@
 .svg {
     background-repeat: no-repeat;
     background-size: contain;
-    width: 48px;
-    height: 48px;
-    transform: scale(0.5);
 }
 
-.nav-group-grow {
-    flex: 1 0 auto;
+.svg-plus {
+    background-image: url("../img/icons/plus.svg");
+}
+.svg-search {
+    background-image: url("../img/icons/search.svg");
+}
+.svg-download {
+    background-image: url("../img/icons/download.svg");
+}
+.svg-cross {
+    background-image: url("../img/icons/cross.svg");
+}
+
+.background-brand-blue {
+    background-color: $normal-brand-blue;
+}
+.background-brand-green {
+    background-color: $normal-brand-green;
+}
+.background-brand-orange {
+    background-color: $normal-brand-orange;
+}
+.background-brand-purple {
+    background-color: $normal-brand-purple;
+}
+.background-brand-red {
+    background-color: $normal-brand-red;
+}
+.background-brand-yellow {
+    background-color: $normal-brand-yellow;
+}
+
+.flex-grow {
+    flex: 1 1 auto;
+}
+
+.tool-tip {
+    position: absolute;
+    z-index: 10;
+    background-color: $hover-black;
+    border-radius: 4px;
+    padding: 1rem;
+    white-space: nowrap;
+    transform: scale(0);
+    transition: transform 0.015s;
+}
+
+.tool-tip::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right:10px solid $hover-black;
 }
 
 .nav-group-top {
     border-bottom: 1px solid $darkest-outline-grey;
-    padding: 0 1rem;
     flex: 0 0 auto;
 }
 
 .nav-item {
     width: 100%;
     display: flex;
+
+    .btn-nav-item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        height: 4.2rem;
+        width: 100%;
+        padding: 0.1rem 0.8rem;
+        border-radius: 0.4rem;
+        @include typo(h4, 1.4rem);
+    }
+
+    .btn-nav-item:hover {
+        background-color: $dark-surround-grey;
+    }
+
+    .btn-nav-item:hover > .svg-cross {
+        visibility: visible;
+    }
+
+    .btn-nav-item:hover > .btn-nav-item-text {
+        filter: brightness(150%);
+    }
+
+    .btn-nav-item-text {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .btn-nav-item-active, .btn-nav-item-active:hover {
+        background-color: $neutral-surround-grey;
+    }
+
+    .btn-nav-item-active .btn-nav-item-text, .btn-nav-item-active:hover .btn-nav-item-text{
+        filter: brightness(180%);
+    }
 }
+
 
 .nav-side {
     background-color: $darker-shadow-grey;

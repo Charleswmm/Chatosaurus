@@ -1,0 +1,46 @@
+@import "../../utilities/typography";
+@import "../../variables";
+
+.nav-item-dm {
+  background-color: $neutral-shadow-grey;
+  max-width: 22.4rem;
+  margin-left: 0.8rem;
+
+  .svg {
+    height: 1.6rem;
+    width: 1.6rem;
+    margin-left: 0.4rem;
+  }
+
+  .btn-nav-item-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .avatar {
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 3.2rem;
+    width: 3.2rem;
+    border-radius: 1.6rem;
+    margin-right: 1.2rem;
+  }
+
+  .avatar-default {
+    background-image: url("../../../img/icons/people.svg");
+  }
+
+  .avatar-image {
+    background-image: url("../../../img/icons/discord.svg");
+    background-color: $darker-shadow-grey;
+  }
+
+  .btn-nav-item-subtext {
+    @include typo(h4, 1.2rem);
+  }
+
+  .svg-cross {
+    filter: brightness(60%);
+    visibility: hidden;
+  }
+}

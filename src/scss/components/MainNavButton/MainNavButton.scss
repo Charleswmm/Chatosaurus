@@ -6,6 +6,12 @@
   position: relative;
   width: 7.2rem;
 
+  .svg {
+    width: 48px;
+    height: 48px;
+    transform: scale(0.5);
+  }
+
   .pip {
     position: absolute;
     top: 14px;
@@ -31,29 +37,15 @@
     transition: background-color 0.2s, border-radius 0.2s;
   }
 
-  .tool-tip::before {
-    content: '';
-    position: absolute;
-    top: 0.9rem;
-    left: -0.5rem;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right:10px solid $hover-black;
+  .tool-tip {
+    top: 6px;
+    left: 80px;
+    @include typo(tt, 1.5rem);
   }
 
-  .tool-tip {
-    position: absolute;
-    top: 6px;
-    left: 69px;
-    background-color: $hover-black;
-    border-radius: 4px;
-    padding: 1rem;
-    white-space: nowrap;
-    transform: scale(0);
-    transition: transform 0.015s;
-    @include typo(tt, 1.5em);
+  .tool-tip::before {
+    top: 0.9rem;
+    left: -0.5rem;
   }
 
   .nav-channel:hover {
@@ -99,16 +91,6 @@
     background-position: 0 0.5rem;
   }
 
-  .svg-add {
-    background-image: url("../../../img/icons/plus.svg");
-  }
-  .svg-discover {
-    background-image: url("../../../img/icons/search.svg");
-  }
-  .svg-download {
-    background-image: url("../../../img/icons/download.svg");
-  }
-
   .svg-home {
     background-image: url("../../../img/icons/discord.svg");
     transform: scale(1);
@@ -127,11 +109,11 @@
   }
 
   .nav-channel-active.nav-channel-blue {
-    background-color: $normal-brand-blue;
+    background-color: $light-brand-blue;
   }
 
   .nav-channel-active.nav-channel-green {
-    background-color: $normal-brand-green;
+    background-color: $light-brand-green;
   }
 
   .nav-channel-active ~ .pip {
@@ -149,14 +131,14 @@
   }
 
   .nav-channel-separator {
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.8rem;
     position: relative;
   }
 
   .nav-channel-separator::after {
     content: '';
     position: absolute;
-    bottom: -0.9rem;
+    bottom: -1rem;
     left: 0.8rem;
     height: 0.2rem;
     width: 3.2rem;

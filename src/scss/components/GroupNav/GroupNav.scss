@@ -10,46 +10,51 @@
 
   .nav-group-top {
     height: 4.8rem;
+    min-height: 4.8rem;
+  }
+
+  .nav-group-dm {
+    padding-top: 0.8rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .nav-item {
+    align-items: center;
+    height: 4.4rem;
+    min-height: 4.4rem;
   }
 
   .nav-item-start {
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
+    padding: 0.1rem 1rem;
   }
 
-  .btn {
+  .btn-nav-item-start {
+    padding-left: 0.8rem;
+    line-height: 2.8rem;
     cursor: pointer;
-    box-shadow: none;
-    border: 0;
-  }
-
-  .btn-start {
-    background-color: $darker-shadow-grey;
-    height: 2.8rem;
-    width: 100%;
-    border-radius: 4px;
+    user-select: none;
     text-align: left;
-    @include typo(h5, 1.2em);
-  }
-
-  .nav-item-head {
-    text-transform: uppercase;
-    padding: 1.5em .666em .333em 1.5em;
     width: 100%;
-    @include typo(h3, 1.1em);
+    height: 2.8rem;
+    border-radius: 4px;
+    background-color: $darker-shadow-grey;
+    @include typo(h5, 1.2rem);
   }
 
-  .nav-item {
-    height: 4.4rem;
-    margin-top: 0.8rem;
-    @include typo(h4, 1.5em);
+  .nav-item-menu {
+    max-width: 22.4rem;
+    margin-left: 0.8rem;
+
   }
 
   .nav-group-foot {
     height: 5.3rem;
+    min-height: 5.3rem;
     background-color: $dark-shadow-grey;
     padding: 0 0.8rem;
   }

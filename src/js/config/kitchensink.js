@@ -1,4 +1,5 @@
 import { uiClassNames, iconClassNames } from "../components/MainNavButton/MainNavButton";
+import {backgroundColorClassNames} from "../components/GroupNavDMButton/GroupNavDMButton";
 
 export const configuration = {
   mainNavButtons: [
@@ -29,6 +30,14 @@ export const configuration = {
       iconClassName: iconClassNames.add,
       channelExtraClassNames: [ uiClassNames.green ],
       sort: 3,
+    },
+  ],
+  groupNavDMButtons: [
+    {
+      id: 'pytho',
+      title: 'Pytho',
+      avatarSrc: 'url',
+      backgroundColor: backgroundColorClassNames.avatarBlue,
     },
   ],
   insertMainNavButtonsBeforeId: 'add-a-server',
