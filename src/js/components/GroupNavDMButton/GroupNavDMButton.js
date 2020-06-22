@@ -10,8 +10,8 @@ const avatarClassNames = {
 }
 
 const btnClasses = {
-  btnBase: 'btn btn-nav-item',
-  btnActive: 'btn-nav-item-active',
+  btnBase: 'nav-btn',
+  btnActive: 'nav-btn-active',
 }
 
 export const backgroundColorClassNames = {
@@ -66,11 +66,11 @@ class GroupNavDMButton extends Component {
     return (
       <div className="nav-item nav-item-dm">
         <button className={ this.btnClasses() }>
-          <div className="btn-nav-item-content flex-grow" onClick={ this.onClickHandler }>
+          <div className="btn-content" onClick={ this.onClickHandler }>
             <div className={ this.avatar() }/>
-            <div className="btn-nav-item-text flex-grow">
-              <div className="flex-grow">{ this.title() }</div>
-              <div className="btn-nav-item-subtext">{ this.members() }</div>
+            <div className="btn-text">
+              <div className="btn-title">{ this.title() }</div>
+              <div className="btn-subtitle">{ this.members() }</div>
             </div>
           </div>
           <div className="svg svg-cross" onClick={ this.removeButtonClickHandler }/>

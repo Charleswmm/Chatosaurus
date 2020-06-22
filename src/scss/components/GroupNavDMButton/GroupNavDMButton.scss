@@ -12,11 +12,6 @@
     margin-left: 0.4rem;
   }
 
-  .btn-nav-item-content {
-    display: flex;
-    align-items: center;
-  }
-
   .avatar {
     background-repeat: no-repeat;
     background-size: contain;
@@ -35,7 +30,7 @@
     background-color: $darker-shadow-grey;
   }
 
-  .btn-nav-item-subtext {
+  .btn-subtitle {
     @include typo(h4, 1.2rem);
   }
 
