@@ -8,7 +8,7 @@ class GroupNav extends Component {
       <div className="nav-column nav-column-message">
         <div className="nav-group nav-group-top">
           <div className="nav-item nav-item-start">
-            <button className="nav-item-start-content">Find or start a conversation</button>
+            <button className="btn btn-nav-item-start">Find or start a conversation</button>
           </div>
         </div>
         <div className="nav-group nav-group-dm flex-grow">
