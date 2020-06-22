@@ -39,7 +39,7 @@ module.exports = merge(common, {
         use: {
           loader: 'file-loader',
           options: {
-            name: '[name]-[hash:10].[ext]',          // hashes assets
+            name: '[hash:10].[ext]',          // hashes assets
             publicPath: '../img/',
             outputPath: 'img',
           }
@@ -49,6 +49,6 @@ module.exports = merge(common, {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name]-[contentHash:10].js',           // To replace cached files replace with '[name]-[contentHash:10].js' to get a hashed.js file. The hash is related to the content
+    filename: 'js/app-[contentHash:10].js',    // To replace cached files replace with 'app-[contentHash:10].js' to get a hashed.js file. The hash is related to the content
   }
 });

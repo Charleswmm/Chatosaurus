@@ -14,17 +14,17 @@ module.exports = {
         use: {
           loader: 'svg-url-loader',
           options: {
-            limit: 8192,
-            fallback: 'file-loader',              // If a svg is larger the 8kb webpack will fallback to use file-loader
+            limit: 4096,
+            fallback: 'file-loader',              // If a svg is larger the 4kb webpack will fallback to use file-loader
             name: '[name].[ext]',                 // The options after the fallback are the options for the fallback and not svg-url-loader
-            publicPath: '../../img/',
+            publicPath: '../img/',
             outputPath: 'img',
           },
         },
       },
       {
-        test: /\.html$/,                                                       // html-loader imports every loadable attributes (for example - <img src="image.png">) so then the below file-loader
-        use: {                                                                 // can move the file and change the 'src' in the output HTML file
+        test: /\.html$/,                          // html-loader imports every loadable attributes (for example - <img src="image.png">) so then the below file-loader
+        use: {                                    // can move the file and change the 'src' in the output HTML file
           loader: 'html-loader'
         },
       },

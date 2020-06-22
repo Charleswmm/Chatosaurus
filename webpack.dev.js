@@ -12,7 +12,7 @@ module.exports = merge(common, {
   mode: 'development',
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'scss/[name]/style.css',
+      filename: 'css/[name].css',
     }),
     new HtmlWebpackPlugin({                  // This plugin takes the template and outputs a new HTML file at the public folder. it also adds <link> css and <script> JS tags
       filename: 'index.html',
@@ -44,6 +44,6 @@ module.exports = merge(common, {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].js',
+    filename: 'js/[name].js',
   }
 });
