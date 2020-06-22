@@ -31,6 +31,12 @@
 .svg-cross {
     background-image: url("../img/icons/cross.svg");
 }
+.svg-friend {
+    background-image: url("../img/icons/friend.svg");
+}
+.svg-nitro {
+    background-image: url("../img/icons/nitro.svg");
+}
 
 .background-brand-blue {
     background-color: $normal-brand-blue;
@@ -85,7 +91,7 @@
     width: 100%;
     display: flex;
 
-    .btn-nav-item {
+    .nav-btn {
         display: flex;
         align-items: center;
         cursor: pointer;
@@ -96,29 +102,40 @@
         @include typo(h4, 1.4rem);
     }
 
-    .btn-nav-item:hover {
+    .btn-content {
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+    }
+
+    .nav-btn:hover {
         background-color: $dark-surround-grey;
     }
 
-    .btn-nav-item:hover > .svg-cross {
+    .nav-btn:hover .svg-cross {
         visibility: visible;
     }
 
-    .btn-nav-item:hover > .btn-nav-item-text {
+    .nav-btn:hover .btn-content .btn-text {
         filter: brightness(150%);
     }
 
-    .btn-nav-item-text {
+    .btn-text {
         display: flex;
         flex-direction: column;
         text-align: left;
+        flex: 1 1 auto;
     }
 
-    .btn-nav-item-active, .btn-nav-item-active:hover {
+    .btn-title {
+        flex: 1 1 auto;
+    }
+
+    .nav-btn-active, .nav-btn-active:hover {
         background-color: $neutral-surround-grey;
     }
 
-    .btn-nav-item-active .btn-nav-item-text, .btn-nav-item-active:hover .btn-nav-item-text{
+    .nav-btn-active .btn-text, .nav-btn-active:hover .btn-content .btn-text {
         filter: brightness(180%);
     }
 }
