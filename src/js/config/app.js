@@ -1,5 +1,6 @@
 import { uiClassNames, iconClassNames } from "../components/MainNavButton/MainNavButton";
 import { backgroundColorClassNames } from "../components/GroupNavDMButton/GroupNavDMButton";
+import placeHolderImage from '../../img/discord-placeholder.png';
 
 export const configuration = {
   mainNavButtons: [
@@ -41,4 +42,5 @@ export const configuration = {
     },
   ],
   insertMainNavButtonsBeforeId: 'add-a-server',
+  mainNavButtonPlaceholderImageSrc: placeHolderImage,
 }
