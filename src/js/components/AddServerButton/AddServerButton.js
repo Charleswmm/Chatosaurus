@@ -4,13 +4,17 @@ import MainNavButton, {uiClassNames} from "../MainNavButton/MainNavButton";
 class AddServerButton extends MainNavButton {
 
   onClickHandler = () => {
+    // New server button template
+    const { mainNavButtons, insertMainNavButtonsBeforeId, mainNavButtonPlaceholderImageSrc } = this.context.Config.get([
+      'mainNavButtons',
+      'insertMainNavButtonsBeforeId',
+      'mainNavButtonPlaceholderImageSrc'
+    ]);
+
     // Random number for placeholder IDs and random imageSrc
     let randomId = Math.floor(Math.random() * 10000 );
-    const addImageSrc = randomId > 7000 ? 'url' : '';
+    const addImageSrc = randomId > 7000 ? mainNavButtonPlaceholderImageSrc : '';
     randomId = randomId.toString();
-
-    // New server button template
-    const { mainNavButtons, insertMainNavButtonsBeforeId } = this.context.Config.get(['mainNavButtons', 'insertMainNavButtonsBeforeId']);
 
     // Determine the sort at entry-point
     let { sort } = mainNavButtons.find((e) => e.id === insertMainNavButtonsBeforeId);

@@ -32,6 +32,12 @@ class MainNavButton extends Component {
   }
 
   /**
+   * Sets the background image style as the image url that was passed in as a prop
+   * @returns {*}
+   */
+  backgroundImageStyle = () => this.props.imageSrc ? { backgroundImage: `url(${ this.props.imageSrc })` } : null;
+
+  /**
    * Resolve the channel element's class names
    * @returns {string}
    */
@@ -42,6 +48,8 @@ class MainNavButton extends Component {
       ...(this.isActive() ? [uiClassNames.active] : []),
     ].join(' ');
 
+  isActive = () => this.props.id === this.context.state.currentMainNavButtonId;
+
   /**
    * Resolve the content element's class names
    * @returns {string}
@@ -51,19 +59,17 @@ class MainNavButton extends Component {
     ...this.props.contentExtraClassNames,
   ].join(' ');
 
-  title = () => this.props.title;
-
   titleInitials = () => (!(this.props.imageSrc||this.props.iconClassName))
     ? this.title().split(' ').map((ar)=> ar.charAt(0)).join('')
     : null;
 
-  isActive = () => this.props.id === this.context.state.currentMainNavButtonId;
+  title = () => this.props.title;
 
   onClickHandler = () => this.context.setCurrentMainNavButtonId(this.props.id);
 
   render = () => (
     <div className="nav-item nav-item-server">
-      <button className={ this.channelClassNames() } onClick={ this.onClickHandler } >
+      <button style={ this.backgroundImageStyle() } className={ this.channelClassNames() } onClick={ this.onClickHandler }>
         <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
       </button>
       <div className="pip"/>
