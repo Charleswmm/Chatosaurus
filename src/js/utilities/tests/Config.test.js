@@ -7,6 +7,17 @@ describe('Config', () => {
     bar: 'bar',
   };
 
+  let consoleOut = [];
+
+  const mockedConsoleWarn = (output) => consoleOut.push(output);
+
+  beforeEach(() => {
+    // Reset consoleOut
+    consoleOut = [];
+    // Mock console.warn()
+    console.warn = mockedConsoleWarn;
+  });
+
   it('constructs', () => {
       const config = new Config(mockData);
 
@@ -17,6 +28,13 @@ describe('Config', () => {
     const config = new Config(mockData);
 
     expect(config.get(['foo'])).toMatchObject({ foo: 'foo' });
+  });
+
+  it('ommits undefined fields', () => {
+    const config = new Config(mockData);
+
+    expect(config.get(['foo', 'bin'])).toMatchObject({ foo: 'foo' });
+    expect(consoleOut).toContain("'bin' is not available in the config");
   });
 
   it('can set data', () => {
