@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from 'enzyme';
-import MainNavButton, {uiClassNames} from "./MainNavButton";
+import MainNavButton from "./MainNavButton";
 import { GlobalContext } from "../../contexts/GlobalContextWrapper";
 
 // it gets a tooltip with the button’s label
