@@ -32,8 +32,6 @@ describe('GroupNavDMButtons', () => {
       </GlobalContext.Provider>
     );
 
-    // console.log(wrapper.debug())
-
     expect(wrapper.find('GroupNavDMButton').exists()).toBeTruthy()
   });
 
@@ -61,10 +59,6 @@ describe('GroupNavDMButtons', () => {
     const { groupNavDMButtons } = fooConfig.get(['groupNavDMButtons'])
 
     const newButtonAdded = groupNavDMButtons.filter((testButton) => testButton.id !==  'foo')[0];
-
-
-    console.log(wrapper.debug())
-
 
     // check button properties
     expect(newButtonAdded).toHaveProperty('id');
