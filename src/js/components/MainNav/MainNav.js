@@ -1,26 +1,22 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import '../../../scss/components/MainNav/MainNav.scss';
 import MainNavButton from "../MainNavButton/MainNavButton";
 import AddServerButton from "../AddServerButton/AddServerButton";
 import { GlobalContext } from "../../contexts/GlobalContextWrapper";
 
-class MainNav extends Component {
-  static contextType = GlobalContext;
-
-  render() {
-    const { mainNavButtons } = this.context.Config.get(['mainNavButtons']);
-    return (
-      <div className="nav-column nav-column-server">
-          <div className="nav-group">
-            <MainNavButtons buttons={ mainNavButtons } />
-          </div>
+const MainNav = () => {
+  return (
+    <div className="nav-column nav-column-server">
+      <div className="nav-group">
+        <MainNavButtons />
       </div>
-    )
-  }
+    </div>
+  )
 }
 
-const MainNavButtons = (props) => {
-  const { buttons } = props;
+export const MainNavButtons = () => {
+  const { Config } = useContext(GlobalContext)
+  const { mainNavButtons } = Config.get(['mainNavButtons']);
 
   /**
    * A lookup table of buttons ids -> components
@@ -33,9 +29,9 @@ const MainNavButtons = (props) => {
     }
   ];
 
-  buttons.sort((a, b) => a.sort - b.sort);
+  mainNavButtons.sort((a, b) => a.sort - b.sort);
 
-  return buttons.map((button, index) => {
+  return mainNavButtons.map((button, index) => {
     // Check if the button id is listed in our custom buttons
     const match = customButtons.find( x => x.id === button.id);
 

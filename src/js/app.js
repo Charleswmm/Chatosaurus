@@ -8,9 +8,8 @@ import { GlobalContextWrapper } from "./contexts/GlobalContextWrapper";
 import Config from "./utilities/Config";
 import { configuration } from "./config/app";
 
-class App extends Component {
-  render () {
-    return (
+const App = () => {
+  return (
       <GlobalContextWrapper Config={new Config(configuration)} >
         <nav className="nav-side">
           <MainNav />
@@ -18,8 +17,7 @@ class App extends Component {
         </nav>
         <Chat />
       </GlobalContextWrapper>
-    );
-  };
-}
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById("app"));
