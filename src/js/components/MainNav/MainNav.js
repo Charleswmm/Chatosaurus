@@ -15,7 +15,8 @@ const MainNav = () => {
 }
 
 export const MainNavButtons = () => {
-  const { mainNavButtons } = useContext(GlobalContext).Config.get(['mainNavButtons']);
+  const { Config } = useContext(GlobalContext)
+  const { mainNavButtons } = Config.get(['mainNavButtons']);
 
   /**
    * A lookup table of buttons ids -> components

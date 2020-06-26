@@ -3,12 +3,6 @@ import { mount } from 'enzyme';
 import MainNavButton from "./MainNavButton";
 import { GlobalContext } from "../../contexts/GlobalContextWrapper";
 
-// it gets a tooltip with the button’s label
-// it displays an active state
-// it has an image used as the button
-// it has a set of initials
-// it display as a specific colour (e.g theme green, or theme blue)
-
 describe('MainNavButton', () => {
   const fooValues = {
     state: {
@@ -18,7 +12,7 @@ describe('MainNavButton', () => {
 
   // The “hover state" is created in css
   // The "button's label" is the `title` prop
-  it("gets a tooltip with the button’s label", () => {
+  it('gets a tooltip with the button’s label', () => {
     const wrapper = mount(
       <GlobalContext.Provider value={ fooValues } >
         <MainNavButton title={ 'foo' } />

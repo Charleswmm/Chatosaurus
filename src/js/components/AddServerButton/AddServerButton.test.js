@@ -4,8 +4,6 @@ import AddServerButton from "./AddServerButton";
 import Config from "../../utilities/Config";
 import { GlobalContext } from "../../contexts/GlobalContextWrapper";
 
-// it adds a new server button, when I click on the add a server button
-
 describe('AddServerButton', () => {
   const fooConfiguration = {
     mainNavButtons: [
@@ -38,8 +36,10 @@ describe('AddServerButton', () => {
     // when I click on the add a server button
     wrapper.find('button').prop('onClick')();
 
-    const newButtonAdded = fooConfig._data.mainNavButtons.filter((testButton) => testButton.id !==  'foo')[0];
-    const testButton = fooConfig._data.mainNavButtons.filter((testButton) => testButton.id ===  'foo')[0];
+    const { mainNavButtons } = fooConfig.get(['mainNavButtons'])
+
+    const newButtonAdded = mainNavButtons.filter((testButton) => testButton.id !==  'foo')[0];
+    const testButton = mainNavButtons.filter((testButton) => testButton.id ===  'foo')[0];
 
     expect(typeof newButtonAdded).toBe('object');
 

@@ -4,11 +4,6 @@ import GroupNavDMButtons from "./GroupNavDMButtons";
 import Config from "../../utilities/Config";
 import { GlobalContext } from "../../contexts/GlobalContextWrapper";
 
-// it displays a “Direct messages” component in the secondary navigation
-// it displays an “add” button
-// it displays a new Direct message placeholder button, when I interact with the “add” button
-// it removes the the DM component item from view, when I interact with the “remove” button
-
 describe('GroupNavDMButtons', () => {
   const fooConfiguration = {
     groupNavDMButtons: [
@@ -30,17 +25,19 @@ describe('GroupNavDMButtons', () => {
     fooConfig = new Config(fooConfiguration)
   })
 
-  it("displays a “Direct messages” component in the secondary navigation", () => {
+  it('displays a “Direct messages” component in the secondary navigation', () => {
     const wrapper = mount(
       <GlobalContext.Provider value={{ ...fooValues, Config: fooConfig,}}>
         <GroupNavDMButtons />
       </GlobalContext.Provider>
     );
 
+    // console.log(wrapper.debug())
+
     expect(wrapper.find('GroupNavDMButton').exists()).toBeTruthy()
   });
 
-  it("displays an “add” button", () => {
+  it('displays an “add” button', () => {
     const wrapper = mount(
       <GlobalContext.Provider value={{ ...fooValues, Config: fooConfig,}}>
         <GroupNavDMButtons />
@@ -50,7 +47,7 @@ describe('GroupNavDMButtons', () => {
     expect(wrapper.find('.svg-plus').hasClass('add-group-dm')).toBeTruthy();
   });
 
-  it("displays a new Direct message placeholder button, when I interact with the “add” button", () => {
+  it('adds a new Direct message placeholder button, when I interact with the “add” button', () => {
     const bar = () => '';
 
     const wrapper = mount(
@@ -61,7 +58,13 @@ describe('GroupNavDMButtons', () => {
 
     wrapper.find('.add-group-dm').prop('onClick')();
 
-    const newButtonAdded = fooConfig._data.groupNavDMButtons.filter((testButton) => testButton.id !==  'foo')[0];
+    const { groupNavDMButtons } = fooConfig.get(['groupNavDMButtons'])
+
+    const newButtonAdded = groupNavDMButtons.filter((testButton) => testButton.id !==  'foo')[0];
+
+
+    console.log(wrapper.debug())
+
 
     // check button properties
     expect(newButtonAdded).toHaveProperty('id');
@@ -79,7 +82,7 @@ describe('GroupNavDMButtons', () => {
     expect(typeof newButtonAdded.backgroundColor).toBe('string');
   });
 
-  it("removes the the DM component item from view, when I interact with the “remove” button", () => {
+  it('removes the the DM component item, when I interact with the “remove” button', () => {
     const bar = () => '';
 
     const wrapper = mount(
@@ -90,6 +93,8 @@ describe('GroupNavDMButtons', () => {
 
     wrapper.find('.svg-cross').prop('onClick')();
 
-    expect(fooConfig._data.groupNavDMButtons).toHaveLength(0)
+    const { groupNavDMButtons } = fooConfig.get(['groupNavDMButtons'])
+
+    expect(groupNavDMButtons).toHaveLength(0)
   });
 });

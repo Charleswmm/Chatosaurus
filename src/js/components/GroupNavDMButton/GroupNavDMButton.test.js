@@ -3,9 +3,6 @@ import { mount } from 'enzyme';
 import GroupNavDMButton from "./GroupNavDMButton";
 import { GlobalContext } from "../../contexts/GlobalContextWrapper";
 
-// it displays a remove button on the Direct message component
-// it displays an active state
-
 describe('GroupNavDMButton', () => {
   const fooValues = {
     state: {
@@ -14,7 +11,7 @@ describe('GroupNavDMButton', () => {
   }
 
   // "Direct message" component is the "GroupNavDMButton" component
-  it("displays a remove button on the Direct message component", () => {
+  it('displays a remove button on the Direct message component', () => {
     const wrapper = mount(
       <GlobalContext.Provider value={ fooValues } >
         <GroupNavDMButton title={ 'foo' } />
