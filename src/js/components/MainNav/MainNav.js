@@ -3,11 +3,13 @@ import '../../../scss/components/MainNav/MainNav.scss';
 import MainNavButton from "../MainNavButton/MainNavButton";
 import AddServerButton from "../AddServerButton/AddServerButton";
 import { GlobalContext } from "../../contexts/GlobalContextWrapper";
+import { Route } from "react-router";
 
 const MainNav = () => {
   return (
     <div className="nav-column nav-column-server">
       <div className="nav-group">
+
         <MainNavButtons />
       </div>
     </div>

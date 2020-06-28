@@ -85,6 +85,12 @@
     border-right:10px solid $hover-black;
 }
 
+.nav-group {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
 .nav-group-top {
     border-bottom: 1px solid $darkest-outline-grey;
     flex: 0 0 auto;
@@ -142,29 +148,3 @@
         filter: brightness(180%);
     }
 }
-
-
-.nav-side {
-    background-color: $darker-shadow-grey;
-    height: 100%;
-    display: flex;
-    flex: 0 0 auto;
-
-    .nav-column {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .nav-group {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-    }
-
-    @include breakpoint(sm) {
-        width: auto;
-        height: 500px;
-    }
-}
-
