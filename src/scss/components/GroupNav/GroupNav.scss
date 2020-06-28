@@ -4,9 +4,12 @@
 
 .nav-column-message {
   background-color: $neutral-shadow-grey;
+  height: 100%;
   width: 24rem;
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   font-size: 1rem;
+  display: flex;
+  flex-direction: column;
 
   .nav-group-top {
     height: 4.8rem;

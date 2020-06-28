@@ -6,6 +6,7 @@ import MainNav from "./components/MainNav/MainNav";
 import GroupNav from "./components/GroupNav/GroupNav";
 import { GlobalContextWrapper } from "./contexts/GlobalContextWrapper";
 import { BrowserRouter } from "react-router-dom";
+import { Route, Redirect } from "react-router";
 import Config from "./utilities/Config";
 import { configuration } from "./config/app";
 
@@ -13,11 +14,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <GlobalContextWrapper Config={new Config(configuration)} >
-        <nav className="nav-side">
-          <MainNav />
+        <Route exact path='/' render={() => <Redirect to='/channels/@me' /> } />
+        <MainNav />
+        <Route path="/channels/@me">
           <GroupNav />
-        </nav>
-        <Chat />
+          <Chat />
+        </Route>
       </GlobalContextWrapper>
     </BrowserRouter>
   );
