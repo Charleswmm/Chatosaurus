@@ -69,7 +69,7 @@ class MainNavItem extends Component {
 
   render = () => (
     <div className="nav-item nav-item-server">
-      <div className={ this.channelClassNames() }>
+      <div className={ this.channelClassNames() } style={ this.backgroundImageStyle() } >
         <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
       </div>
       <div className="pip"/>

@@ -4,20 +4,12 @@ export const GlobalContext = createContext('');
 
 export class GlobalContextWrapper extends Component {
   state = {
-    currentMainNavButtonId: '@me',
     currentGroupNavDMButtonId: '',
   }
-
-  /**
-   *  Sets 'currentMainNavButtonId' in state to give the active server button its' active styling
-   * @param id
-   */
-  setCurrentMainNavButtonId = (id) => this.setState({ currentMainNavButtonId: id });
 
   setCurrentGroupNavDMButtonId = (id) => this.setState({ currentGroupNavDMButtonId: id });
 
   func = {
-    setCurrentMainNavButtonId: this.setCurrentMainNavButtonId,
     setCurrentGroupNavDMButtonId: this.setCurrentGroupNavDMButtonId,
   }
 
