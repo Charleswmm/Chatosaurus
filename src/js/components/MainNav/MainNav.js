@@ -3,18 +3,19 @@ import '../../../scss/components/MainNav/MainNav.scss';
 import MainNavButton from "../MainNavButton/MainNavButton";
 import AddServerButton from "../AddServerButton/AddServerButton";
 import { GlobalContext } from "../../contexts/GlobalContextWrapper";
-import { Route } from "react-router";
+import ServerLink from "../ServerLink/ServerLink";
+import { withRouter } from "react-router";
 
-const MainNav = () => {
-  return (
-    <div className="nav-column nav-column-server">
-      <div className="nav-group">
-
-        <MainNavButtons />
-      </div>
+/**
+ * Let's wrap the component with withRouter() to make it receptive to route changes
+ */
+const MainNav = withRouter(() => (
+  <div className="nav-column nav-column-server">
+    <div className="nav-group">
+      <MainNavButtons />
     </div>
-  )
-}
+  </div>
+))
 
 export const MainNavButtons = () => {
   const { Config } = useContext(GlobalContext)
@@ -26,7 +27,11 @@ export const MainNavButtons = () => {
    */
   const customButtons = [
     {
-      id: 'add-a-server',
+      type: 'link',
+      component: ServerLink,
+    },
+    {
+      type: 'add-server-button',
       component: AddServerButton
     }
   ];
@@ -35,7 +40,7 @@ export const MainNavButtons = () => {
 
   return mainNavButtons.map((button, index) => {
     // Check if the button id is listed in our custom buttons
-    const match = customButtons.find( x => x.id === button.id);
+    const match = customButtons.find( x => x.type === button.type);
 
     // Use a custom button's component or just default to ServerButton
     let component = match ? match.component : MainNavButton;

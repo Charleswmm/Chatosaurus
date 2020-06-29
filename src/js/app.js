@@ -14,7 +14,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <GlobalContextWrapper Config={new Config(configuration)} >
-        <Route exact path='/' render={() => <Redirect to='/channels/@me' /> } />
+        <Route exact path={['/', '/channels']} render={() => <Redirect to='/channels/@me' /> } />
         <MainNav />
         <Route path="/channels/@me">
           <GroupNav />

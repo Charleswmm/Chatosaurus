@@ -1,14 +1,15 @@
-import { uiClassNames, iconClassNames } from "../components/MainNavButton/MainNavButton";
+import { uiClassNames, iconClassNames } from "../components/MainNavItem/MainNavItem";
 import { backgroundColorClassNames } from "../components/GroupNavDMButton/GroupNavDMButton";
 import placeHolderImage from '../../img/discord-placeholder.png';
 
 export const configuration = {
   mainNavButtons: [
     {
-      id: 'home',
+      id: '@me',
       title: 'Home',
       iconClassName: iconClassNames.home,
       channelExtraClassNames: [ uiClassNames.blue, uiClassNames.separator ],
+      type: 'link',
       sort: 0,
     },
     {
@@ -16,6 +17,7 @@ export const configuration = {
       title: 'Add a Server',
       iconClassName: iconClassNames.add,
       channelExtraClassNames: [ uiClassNames.green ],
+      type: 'add-server-button',
       sort: 1,
     },
     {
