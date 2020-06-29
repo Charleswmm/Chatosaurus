@@ -4,7 +4,7 @@ export const GlobalContext = createContext('');
 
 export class GlobalContextWrapper extends Component {
   state = {
-    currentMainNavButtonId: "home",
+    currentMainNavButtonId: '@me',
     currentGroupNavDMButtonId: '',
   }
 

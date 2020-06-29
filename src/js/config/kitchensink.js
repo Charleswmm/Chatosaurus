@@ -1,4 +1,4 @@
-import { uiClassNames, iconClassNames } from "../components/MainNavButton/MainNavButton";
+import { uiClassNames, iconClassNames } from "../components/MainNavItem/MainNavItem";
 import {backgroundColorClassNames} from "../components/GroupNavDMButton/GroupNavDMButton";
 
 export const configuration = {

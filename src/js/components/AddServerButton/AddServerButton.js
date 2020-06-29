@@ -1,7 +1,12 @@
 import React from "react";
-import MainNavButton, {uiClassNames} from "../MainNavButton/MainNavButton";
+import { uiClassNames } from "../MainNavItem/MainNavItem";
+import { withRouter } from "react-router";
+import { serverLink } from "../ServerLink/ServerLink";
+import MainNavButton from "../MainNavButton/MainNavButton";
+import { GlobalContext } from "../../contexts/GlobalContextWrapper";
 
 class AddServerButton extends MainNavButton {
+  static contextType = GlobalContext;
 
   onClickHandler = () => {
     // New server button template
@@ -24,6 +29,7 @@ class AddServerButton extends MainNavButton {
         title: `New Server ${randomId}`,
         imageSrc: addImageSrc,
         channelExtraClassNames: [ uiClassNames.blue ],
+        type: 'link',
         sort: sort,
     };
 
@@ -37,8 +43,10 @@ class AddServerButton extends MainNavButton {
 
     this.context.Config.set({ mainNavButtons: [ button, ...mainNavButtons ] });
 
-    this.context.setCurrentMainNavButtonId(randomId);
+    // this.props.history is made available when this component is wrapped by withRouter()
+    this.props.history.push(serverLink(button.id));
   }
 }
 
-export default AddServerButton;
+// Use withRouter to make history available to the component
+export default withRouter(AddServerButton);

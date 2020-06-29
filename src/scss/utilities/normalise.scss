@@ -41,6 +41,11 @@ a:focus {
   padding:0;
 }
 
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
 // Remove firefox button border
 
 button::-moz-focus-inner {
