@@ -10,7 +10,7 @@ class MainNavButton extends MainNavItem {
 
   render = () => (
     <div className="nav-item nav-item-server">
-      <button style={ this.backgroundImageStyle() } className={ this.channelClassNames() } onClick={ this.onClickHandler }>
+      <button className={ this.channelClassNames() } style={ this.backgroundImageStyle() } onClick={ this.onClickHandler }>
         <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
       </button>
       <div className="pip"/>

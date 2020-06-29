@@ -3,6 +3,7 @@ import { mount } from 'enzyme';
 import AddServerButton from "./AddServerButton";
 import Config from "../../utilities/Config";
 import { GlobalContext } from "../../contexts/GlobalContextWrapper";
+import { BrowserRouter } from "react-router-dom";
 
 describe('AddServerButton', () => {
   const fooConfiguration = {
@@ -16,20 +17,16 @@ describe('AddServerButton', () => {
     mainNavButtonPlaceholderImageSrc: '../../foobar.png',
   };
 
-  const fooValues = {
-    state: {
-      currentMainNavButtonId: '',
-    }
-  }
-
   it('adds a new server button, when I click on the add a server button', () => {
     const fooConfig = new Config(fooConfiguration)
 
     const bar = () => '';
 
     const wrapper = mount(
-      <GlobalContext.Provider value={{ ...fooValues, Config: fooConfig, setCurrentMainNavButtonId: bar }} >
-        <AddServerButton />
+      <GlobalContext.Provider value={{ Config: fooConfig, setCurrentMainNavButtonId: bar }} >
+        <BrowserRouter>
+          <AddServerButton />
+        </BrowserRouter>
       </GlobalContext.Provider>
     );
 
