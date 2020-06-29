@@ -1,16 +1,16 @@
 import React from "react";
 import { mount } from 'enzyme';
 import ServerLink from "../ServerLink/ServerLink";
-import { BrowserRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router";
 
 describe('ServerLink', () => {
   it('displays an active state', () => {
     const wrapper = mount(
-      <BrowserRouter>
+      <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
         <ServerLink id={ 'foo' } />
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
-    expect(wrapper.find('NavLink').prop('activeClassName')).toEqual('nav-channel-active');
+    expect(wrapper.find('a').hasClass('nav-channel-active')).toBeTruthy();
   });
 });
