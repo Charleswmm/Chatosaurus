@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import '../../../scss/components/MainNavItem/MainNavItem.scss';
 
 export const iconClassNames = {
@@ -8,7 +8,7 @@ export const iconClassNames = {
   add: 'svg-plus',
   discover: 'svg-search',
   download: 'svg-download',
-}
+};
 
 export const uiClassNames = {
   base: 'nav-channel',
@@ -18,10 +18,9 @@ export const uiClassNames = {
   green: 'nav-channel-green',
   image: 'nav-channel-image',
   separator: 'nav-channel-separator',
-}
+};
 
 class MainNavItem extends Component {
-
   static defaultProps = {
     title: 'Home',
     iconClassName: null,
@@ -34,57 +33,76 @@ class MainNavItem extends Component {
    * Sets the background image style as the image url that was passed in as a prop
    * @returns {*}
    */
-  backgroundImageStyle = () => this.props.imageSrc ? { backgroundImage: `url(${ this.props.imageSrc })` } : null;
+  backgroundImageStyle = () => {
+    const { imageSrc } = this.props;
+
+    return imageSrc ? { backgroundImage: `url(${imageSrc})` } : null;
+  }
 
   /**
    * Resolve the channel element's class names
    * @returns {string}
    */
-  channelClassNames = () => [
-    uiClassNames.base,
-    ...this.props.channelExtraClassNames,
-    ...(this.props.imageSrc ? [uiClassNames.image] : []),
-  ].join(' ');
+  channelClassNames = () => {
+    const { channelExtraClassNames, imageSrc } = this.props;
+
+    return [
+      uiClassNames.base,
+      ...channelExtraClassNames,
+      ...(imageSrc ? [uiClassNames.image] : []),
+    ].join(' ');
+  }
 
   /**
    * Resolve the content element's class names
    * @returns {string}
    */
-  contentClassNames = () => [
-    ...(this.props.iconClassName ? [iconClassNames.svg, this.props.iconClassName] : [uiClassNames.content]),
-    ...this.props.contentExtraClassNames,
-  ].join(' ');
+  contentClassNames = () => {
+    const { iconClassName, contentExtraClassNames } = this.props;
+
+    return [
+      ...(iconClassName ? [iconClassNames.svg, iconClassName] : [uiClassNames.content]),
+      ...contentExtraClassNames,
+    ].join(' ');
+  }
 
   /**
    * @returns {string}
    */
-  title = () => this.props.title;
+  title = () => {
+    const { title } = this.props;
+
+    return title;
+  }
 
   /**
    * @returns {string}
    */
-  titleInitials = () => (!(this.props.imageSrc||this.props.iconClassName))
-    ? this.title().split(' ').map((ar)=> ar.charAt(0)).join('')
-    : null;
+  titleInitials = () => {
+    const { imageSrc, iconClassName } = this.props;
+
+    return ((!(imageSrc || iconClassName))
+      ? this.title().split(' ').map((ar) => ar.charAt(0)).join('')
+      : null);
+  }
 
   render = () => (
     <div className="nav-item nav-item-server">
-      <div className={ this.channelClassNames() } style={ this.backgroundImageStyle() } >
-        <div className={ this.contentClassNames() }>{ this.titleInitials() }</div>
+      <div className={this.channelClassNames()} style={this.backgroundImageStyle()}>
+        <div className={this.contentClassNames()}>{ this.titleInitials() }</div>
       </div>
-      <div className="pip"/>
+      <div className="pip" />
       <div className="tool-tip">{ this.title() }</div>
     </div>
   );
 }
 
 MainNavItem.propTypes = {
-  id: PropTypes.string,
   title: PropTypes.string,
   iconClassName: PropTypes.string,
   imageSrc: PropTypes.string,
-  channelExtraClassNames: PropTypes.array,
-  contentExtraClassNames: PropTypes.array,
-}
+  channelExtraClassNames: PropTypes.arrayOf(PropTypes.string),
+  contentExtraClassNames: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default MainNavItem;

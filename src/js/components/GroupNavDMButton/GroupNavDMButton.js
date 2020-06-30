@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import '../../../scss/components/GroupNavDMButton/GroupNavDMButton.scss';
-import PropTypes from "prop-types";
-import { GlobalContext } from "../../contexts/GlobalContextWrapper";
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
 const avatarClassNames = {
   baseAvatar: 'avatar',
   noAvatar: 'avatar-default',
   availableAvatar: 'avatar-image',
-}
+};
 
 const btnClasses = {
   btnBase: 'nav-btn',
   btnActive: 'nav-btn-active',
-}
+};
 
 export const backgroundColorClassNames = {
   avatarBlue: 'background-brand-blue',
@@ -21,13 +21,18 @@ export const backgroundColorClassNames = {
   avatarPurple: 'background-brand-purple',
   avatarRed: 'background-brand-red',
   avatarYellow: 'background-brand-yellow',
-}
+};
 
 class GroupNavDMButton extends Component {
   static contextType = GlobalContext;
+
   static defaultProps = {
+    id: null,
     title: 'Unnamed',
+    members: null,
+    avatarSrc: null,
     backgroundColor: backgroundColorClassNames.avatarBlue,
+    removeButtonFunc: null,
   }
 
   /**
@@ -36,47 +41,73 @@ class GroupNavDMButton extends Component {
    */
   btnClasses = () => [
     btnClasses.btnBase,
-    ( this.isActive() ? btnClasses.btnActive : '' )
+    (this.isActive() ? btnClasses.btnActive : ''),
   ].join(' ');
 
-  isActive = () => this.props.id === this.context.state.currentGroupNavDMButtonId;
+  isActive = () => {
+    const { state } = this.context;
+    const { id } = this.props;
+
+    return id === state.currentGroupNavDMButtonId;
+  }
 
   /**
    * Resolves classes for the avatar if there is a avatar
    * @returns {string}
    */
-  avatar = () => [
-    avatarClassNames.baseAvatar,
-    ...( this.props.avatarSrc ? [ avatarClassNames.availableAvatar ] : [ avatarClassNames.noAvatar, this.props.backgroundColor ] ),
-  ].join(' ');
+  avatar = () => {
+    const { avatarSrc, backgroundColor } = this.props;
 
-  title = () => this.props.title;
+    return [
+      avatarClassNames.baseAvatar,
+      ...(
+        avatarSrc
+          ? [avatarClassNames.availableAvatar]
+          : [avatarClassNames.noAvatar, backgroundColor]
+      ),
+    ].join(' ');
+  }
 
-  members = () => !this.props.members
-    ? ''
-    : this.props.members + ' Member' + ( this.props.members === 1
-      ? ''
-      :'s' );
+  title = () => {
+    const { title } = this.props;
 
-  onClickHandler = () => this.context.setCurrentGroupNavDMButtonId(this.props.id);
+    return title;
+  }
 
-  removeButtonClickHandler = () => this.props.removeButtonFunc(this.props.id);
+  members = () => {
+    const { members } = this.props;
+
+    return (!members ? '' : `${members} Member${members === 1 ? '' : 's'}`);
+  }
+
+  onClickHandler = () => {
+    const { setCurrentGroupNavDMButtonId } = this.context;
+    const { id } = this.props;
+
+    return setCurrentGroupNavDMButtonId(id);
+  }
+
+  removeButtonClickHandler = () => {
+    const { removeButtonFunc, id } = this.props;
+
+    return removeButtonFunc(id);
+  }
 
   render() {
     return (
       <div className="nav-item nav-item-dm">
-        <button className={ this.btnClasses() }>
-          <div className="btn-content" onClick={ this.onClickHandler }>
-            <div className={ this.avatar() }/>
+        <button type="button" className={this.btnClasses()}>
+          <div className="btn-content" onClick={this.onClickHandler}>
+            <div className={this.avatar()} />
             <div className="btn-text">
-              <div className="btn-title">{ this.title() }</div>
-              <div className="btn-subtitle">{ this.members() }</div>
+              <div className="btn-title">{this.title()}</div>
+              <div className="btn-subtitle">{this.members()}</div>
             </div>
           </div>
-          <div className="svg svg-cross" onClick={ this.removeButtonClickHandler }/>
+          <div className="svg svg-cross" onClick={this.removeButtonClickHandler} />
         </button>
       </div>
-    )
+    );
   }
 }
 
@@ -87,6 +118,6 @@ GroupNavDMButton.propTypes = {
   avatarSrc: PropTypes.string,
   backgroundColor: PropTypes.string,
   removeButtonFunc: PropTypes.func,
-}
+};
 
 export default GroupNavDMButton;

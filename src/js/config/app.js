@@ -1,14 +1,14 @@
-import { uiClassNames, iconClassNames } from "../components/MainNavItem/MainNavItem";
-import { backgroundColorClassNames } from "../components/GroupNavDMButton/GroupNavDMButton";
+import { uiClassNames, iconClassNames } from '../components/MainNavItem/MainNavItem';
+import { backgroundColorClassNames } from '../components/GroupNavDMButton/GroupNavDMButton';
 import placeHolderImage from '../../img/discord-placeholder.png';
 
-export const configuration = {
+export default {
   mainNavButtons: [
     {
       id: '@me',
       title: 'Home',
       iconClassName: iconClassNames.home,
-      channelExtraClassNames: [ uiClassNames.blue, uiClassNames.separator ],
+      channelExtraClassNames: [uiClassNames.blue, uiClassNames.separator],
       type: 'link',
       sort: 0,
     },
@@ -16,24 +16,24 @@ export const configuration = {
       id: 'add-a-server',
       title: 'Add a Server',
       iconClassName: iconClassNames.add,
-      channelExtraClassNames: [ uiClassNames.green ],
+      channelExtraClassNames: [uiClassNames.green],
       type: 'add-server-button',
       sort: 1,
-    },
-    {
-      id: 'server-discovery',
-      title: 'Server Discovery',
-      iconClassName: iconClassNames.discover,
-      channelExtraClassNames: [ uiClassNames.green, uiClassNames.separator ],
-      sort: 2,
     },
     {
       id: 'download-apps',
       title: 'Download Apps',
       iconClassName: iconClassNames.download,
-      channelExtraClassNames: [ uiClassNames.green ],
+      channelExtraClassNames: [uiClassNames.green],
       sort: 3,
-    }
+    },
+    {
+      id: 'server-discovery',
+      title: 'Server Discovery',
+      iconClassName: iconClassNames.discover,
+      channelExtraClassNames: [uiClassNames.green, uiClassNames.separator],
+      sort: 2,
+    },
   ],
   groupNavDMButtons: [
     {
@@ -45,4 +45,4 @@ export const configuration = {
   ],
   insertMainNavButtonsBeforeId: 'add-a-server',
   mainNavButtonPlaceholderImageSrc: placeHolderImage,
-}
+};

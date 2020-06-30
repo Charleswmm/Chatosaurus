@@ -1,34 +1,34 @@
-import { uiClassNames, iconClassNames } from "../components/MainNavItem/MainNavItem";
-import {backgroundColorClassNames} from "../components/GroupNavDMButton/GroupNavDMButton";
+import { backgroundColorClassNames } from '../components/GroupNavDMButton/GroupNavDMButton';
+import { iconClassNames, uiClassNames } from '../components/MainNavItem/MainNavItem';
 
-export const configuration = {
+export default {
   mainNavButtons: [
     {
       id: 'home',
       title: 'Home',
       iconClassName: iconClassNames.home,
-      channelExtraClassNames: [ uiClassNames.blue, uiClassNames.separator ],
+      channelExtraClassNames: [uiClassNames.blue, uiClassNames.separator],
       sort: 0,
     },
     {
       id: 'green',
       title: 'This is a green button',
       imageSrc: 'url',
-      channelExtraClassNames: [ uiClassNames.green ],
+      channelExtraClassNames: [uiClassNames.green],
       sort: 1,
     },
     {
       id: 'blue',
       title: 'This is a blue button',
       imageSrc: 'url',
-      channelExtraClassNames: [ uiClassNames.blue ],
+      channelExtraClassNames: [uiClassNames.blue],
       sort: 2,
     },
     {
       id: 'add-a-server',
       title: 'Add a Server',
       iconClassName: iconClassNames.add,
-      channelExtraClassNames: [ uiClassNames.green ],
+      channelExtraClassNames: [uiClassNames.green],
       sort: 3,
     },
   ],
@@ -41,4 +41,4 @@ export const configuration = {
     },
   ],
   insertMainNavButtonsBeforeId: 'add-a-server',
-}
+};

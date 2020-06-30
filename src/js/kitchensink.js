@@ -1,46 +1,60 @@
-import React, { Component }  from "react";
+import React from 'react';
 import ReactDOM from 'react-dom';
 import '../scss/app.scss';
 import '../scss/kitchensink.scss';
-import Chat from "./components/Chat/Chat";
-import MainNav from "./components/MainNav/MainNav";
-import GroupNav from "./components/GroupNav/GroupNav";
-import AddServerButton from "./components/AddServerButton/AddServerButton";
-import MainNavButton from "./components/MainNavButton/MainNavButton";
-import Config from "./utilities/Config";
-import { configuration } from "./config/kitchensink";
-import { GlobalContextWrapper } from "./contexts/GlobalContextWrapper";
-import GroupNavDMButton from "./components/GroupNavDMButton/GroupNavDMButton";
-import GroupNavDMButtons from "./components/GroupNavDMButtons/GroupNavDMButtons";
+import AddServerButton from './components/AddServerButton/AddServerButton';
+import Chat from './components/Chat/Chat';
+import GroupNav from './components/GroupNav/GroupNav';
+import GroupNavDMButton from './components/GroupNavDMButton/GroupNavDMButton';
+import GroupNavDMButtons from './components/GroupNavDMButtons/GroupNavDMButtons';
+import MainNav from './components/MainNav/MainNav';
+import MainNavButton from './components/MainNavButton/MainNavButton';
+import configuration from './config/kitchensink';
+import { GlobalContextWrapper } from './contexts/GlobalContextWrapper';
+import Config from './utilities/Config';
 
-class KitchenSink extends Component {
-  render () {
-    return (
-      <GlobalContextWrapper Config={ new Config(configuration) } >
-        <div className="dishes">
-          <GroupNavDMButton />
-        </div>
-        <div className="dishes">
-          <MainNavButton id={'test'} title={'Test Button'} iconClassName={''} imageSrc={''} channelExtraClassNames={['nav-channel-blue']} contentExtraClassNames={['']} sort={''} />
-        </div>
-        <div className="dishes">
-          <AddServerButton id={'add-a-server'} title={'Add a Server'} iconClassName={'svg svg-plus'} imageSrc={''} channelExtraClassNames={['nav-channel-green']} contentExtraClassNames={['']} sort={''} />
-        </div>
-        <div className="dishes">
-          <MainNav />
-        </div>
-        <div className="dishes">
-          <GroupNavDMButtons />
-        </div>
-        <div className="dishes">
-          <GroupNav />
-        </div>
-        <div className="dishes">
-          <Chat />
-        </div>
-      </GlobalContextWrapper>
-    );
-  };
+function KitchenSink() {
+  return (
+    <GlobalContextWrapper Config={new Config(configuration)}>
+      <div className="dishes">
+        <GroupNavDMButton />
+      </div>
+      <div className="dishes">
+        <MainNavButton
+          id="test"
+          title="Test Button"
+          iconClassName=""
+          imageSrc=""
+          channelExtraClassNames={['nav-channel-blue']}
+          contentExtraClassNames={['']}
+          sort=""
+        />
+      </div>
+      <div className="dishes">
+        <AddServerButton
+          id="add-a-server"
+          title="Add a Server"
+          iconClassName="svg svg-plus"
+          imageSrc=""
+          channelExtraClassNames={['nav-channel-green']}
+          contentExtraClassNames={['']}
+          sort=""
+        />
+      </div>
+      <div className="dishes">
+        <MainNav />
+      </div>
+      <div className="dishes">
+        <GroupNavDMButtons />
+      </div>
+      <div className="dishes">
+        <GroupNav />
+      </div>
+      <div className="dishes">
+        <Chat />
+      </div>
+    </GlobalContextWrapper>
+  );
 }
 
-ReactDOM.render(<KitchenSink />, document.getElementById("kitchensink"));
+ReactDOM.render(<KitchenSink />, document.getElementById('kitchensink'));
