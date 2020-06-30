@@ -8,6 +8,7 @@
         "plugin:react/recommended",
         "airbnb"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -18,12 +19,17 @@
     "plugins": [
         "react",
         "react-hooks",
-        "jest",
-        "import"
+        "jest"
     ],
     "rules": {
         "semi": ["error", "always"],
         "quotes": ["error", "single"],
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "import/no-named-as-default": "off",
+        "react/state-in-constructor": "off",
+        "react/no-unused-state": "off",
+        "react/static-property-placement": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off"
     }
 }
