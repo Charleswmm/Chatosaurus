@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../scss/app.scss';
 import '../scss/kitchensink.scss';
+import { BrowserRouter } from 'react-router-dom';
 import AddServerButton from './components/AddServerButton/AddServerButton';
 import Chat from './components/Chat/Chat';
 import GroupNav from './components/GroupNav/GroupNav';
@@ -15,45 +16,47 @@ import Config from './utilities/Config';
 
 function KitchenSink() {
   return (
-    <GlobalContextWrapper Config={new Config(configuration)}>
-      <div className="dishes">
-        <GroupNavDMButton />
-      </div>
-      <div className="dishes">
-        <MainNavButton
-          id="test"
-          title="Test Button"
-          iconClassName=""
-          imageSrc=""
-          channelExtraClassNames={['nav-channel-blue']}
-          contentExtraClassNames={['']}
-          sort=""
-        />
-      </div>
-      <div className="dishes">
-        <AddServerButton
-          id="add-a-server"
-          title="Add a Server"
-          iconClassName="svg svg-plus"
-          imageSrc=""
-          channelExtraClassNames={['nav-channel-green']}
-          contentExtraClassNames={['']}
-          sort=""
-        />
-      </div>
-      <div className="dishes">
-        <MainNav />
-      </div>
-      <div className="dishes">
-        <GroupNavDMButtons />
-      </div>
-      <div className="dishes">
-        <GroupNav />
-      </div>
-      <div className="dishes">
-        <Chat />
-      </div>
-    </GlobalContextWrapper>
+    <BrowserRouter>
+      <GlobalContextWrapper Config={new Config(configuration)}>
+        <div className="dishes">
+          <GroupNavDMButton />
+        </div>
+        <div className="dishes">
+          <MainNavButton
+            id="test"
+            title="Test Button"
+            iconClassName=""
+            imageSrc=""
+            channelExtraClassNames={['nav-channel-blue']}
+            contentExtraClassNames={['']}
+            sort=""
+          />
+        </div>
+        <div className="dishes">
+          <AddServerButton
+            id="add-a-server"
+            title="Add a Server"
+            iconClassName="svg svg-plus"
+            imageSrc=""
+            channelExtraClassNames={['nav-channel-green']}
+            contentExtraClassNames={['']}
+            sort=""
+          />
+        </div>
+        <div className="dishes">
+          <MainNav />
+        </div>
+        <div className="dishes">
+          <GroupNavDMButtons />
+        </div>
+        <div className="dishes">
+          <GroupNav />
+        </div>
+        <div className="dishes">
+          <Chat />
+        </div>
+      </GlobalContextWrapper>
+    </BrowserRouter>
   );
 }
 
