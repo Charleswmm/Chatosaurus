@@ -1,45 +1,45 @@
-import React from "react";
 import { mount } from 'enzyme';
-import GroupNavDMButtons from "./GroupNavDMButtons";
-import Config from "../../utilities/Config";
-import { GlobalContext } from "../../contexts/GlobalContextWrapper";
+import React from 'react';
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import Config from '../../utilities/Config';
+import GroupNavDMButtons from './GroupNavDMButtons';
 
 describe('GroupNavDMButtons', () => {
   const fooConfiguration = {
     groupNavDMButtons: [
       {
-        id: 'foo'
+        id: 'foo',
       },
-    ]
+    ],
   };
 
   const fooValues = {
     state: {
       currentGroupNavDMButtonId: '',
-    }
-  }
+    },
+  };
 
   let fooConfig;
 
   beforeEach(() => {
-    fooConfig = new Config(fooConfiguration)
-  })
+    fooConfig = new Config(fooConfiguration);
+  });
 
   it('displays a “Direct messages” component in the secondary navigation', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ ...fooValues, Config: fooConfig,}}>
+      <GlobalContext.Provider value={{ ...fooValues, Config: fooConfig }}>
         <GroupNavDMButtons />
-      </GlobalContext.Provider>
+      </GlobalContext.Provider>,
     );
 
-    expect(wrapper.find('GroupNavDMButton').exists()).toBeTruthy()
+    expect(wrapper.find('GroupNavDMButton').exists()).toBeTruthy();
   });
 
   it('displays an “add” button', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ ...fooValues, Config: fooConfig,}}>
+      <GlobalContext.Provider value={{ ...fooValues, Config: fooConfig }}>
         <GroupNavDMButtons />
-      </GlobalContext.Provider>
+      </GlobalContext.Provider>,
     );
 
     expect(wrapper.find('.svg-plus').hasClass('add-group-dm')).toBeTruthy();
@@ -49,16 +49,18 @@ describe('GroupNavDMButtons', () => {
     const bar = () => '';
 
     const wrapper = mount(
-      <GlobalContext.Provider value={{ ...fooValues, Config: fooConfig, setCurrentGroupNavDMButtonId: bar }}>
+      <GlobalContext.Provider
+        value={{ ...fooValues, Config: fooConfig, setCurrentGroupNavDMButtonId: bar }}
+      >
         <GroupNavDMButtons />
-      </GlobalContext.Provider>
+      </GlobalContext.Provider>,
     );
 
     wrapper.find('.add-group-dm').prop('onClick')();
 
-    const { groupNavDMButtons } = fooConfig.get(['groupNavDMButtons'])
+    const { groupNavDMButtons } = fooConfig.get(['groupNavDMButtons']);
 
-    const newButtonAdded = groupNavDMButtons.filter((testButton) => testButton.id !==  'foo')[0];
+    const newButtonAdded = groupNavDMButtons.filter((testButton) => testButton.id !== 'foo')[0];
 
     // check button properties
     expect(newButtonAdded).toHaveProperty('id');
@@ -80,15 +82,17 @@ describe('GroupNavDMButtons', () => {
     const bar = () => '';
 
     const wrapper = mount(
-      <GlobalContext.Provider value={{ ...fooValues, Config: fooConfig, setCurrentGroupNavDMButtonId: bar }}>
+      <GlobalContext.Provider
+        value={{ ...fooValues, Config: fooConfig, setCurrentGroupNavDMButtonId: bar }}
+      >
         <GroupNavDMButtons />
-      </GlobalContext.Provider>
+      </GlobalContext.Provider>,
     );
 
     wrapper.find('.svg-cross').prop('onClick')();
 
-    const { groupNavDMButtons } = fooConfig.get(['groupNavDMButtons'])
+    const { groupNavDMButtons } = fooConfig.get(['groupNavDMButtons']);
 
-    expect(groupNavDMButtons).toHaveLength(0)
+    expect(groupNavDMButtons).toHaveLength(0);
   });
 });

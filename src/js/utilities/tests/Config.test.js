@@ -1,7 +1,6 @@
-import Config from "../Config";
+import Config from '../Config';
 
 describe('Config', () => {
-
   const mockData = {
     foo: 'foo',
     bar: 'bar',
@@ -15,13 +14,14 @@ describe('Config', () => {
     // Reset consoleOut
     consoleOut = [];
     // Mock console.warn()
+    // eslint-disable-next-line no-console
     console.warn = mockedConsoleWarn;
   });
 
   it('constructs', () => {
-      const config = new Config(mockData);
+    const config = new Config(mockData);
 
-      expect(config).toBeInstanceOf(Config);
+    expect(config).toBeInstanceOf(Config);
   });
 
   it('can get data', () => {
@@ -34,7 +34,7 @@ describe('Config', () => {
     const config = new Config(mockData);
 
     expect(config.get(['foo', 'bin'])).toMatchObject({ foo: 'foo' });
-    expect(consoleOut).toContain("'bin' is not available in the config");
+    expect(consoleOut).toContain('\'bin\' is not available in the config');
   });
 
   it('can set data', () => {
@@ -47,5 +47,4 @@ describe('Config', () => {
 
     expect(config.get(['bin'])).toMatchObject(extraData);
   });
-
 });

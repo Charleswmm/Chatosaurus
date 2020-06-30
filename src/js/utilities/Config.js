@@ -2,14 +2,17 @@
  * Store the "config" in memory and use this transport to access it
  */
 export class Config {
-  _data = {};
+  /**
+   * @todo refactor to make private
+   */
+  data = {};
 
   /**
    * @param {{}} data
    */
   constructor(data) {
-    this._data = data;
-  };
+    this.data = data;
+  }
 
   /**
    * @param {[]} fields
@@ -19,9 +22,10 @@ export class Config {
     // Return multiple fields
     const result = {};
     fields.forEach((field) => {
-      const value = this._data[field];
+      const value = this.data[field];
 
       if (value === undefined) {
+        // eslint-disable-next-line no-console
         console.warn(`'${field}' is not available in the config`);
         // Skip this field (in the loop)
         return;
@@ -38,7 +42,7 @@ export class Config {
    * @param {{}} data
    */
   set(data) {
-    this._data = {...this._data, ...data};
+    this.data = { ...this.data, ...data };
   }
 }
 

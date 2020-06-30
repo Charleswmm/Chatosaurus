@@ -1,9 +1,9 @@
-import React from "react";
 import { mount } from 'enzyme';
-import AddServerButton from "./AddServerButton";
-import Config from "../../utilities/Config";
-import { GlobalContext } from "../../contexts/GlobalContextWrapper";
-import { BrowserRouter } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import Config from '../../utilities/Config';
+import AddServerButton from './AddServerButton';
 
 describe('AddServerButton', () => {
   const fooConfiguration = {
@@ -18,25 +18,25 @@ describe('AddServerButton', () => {
   };
 
   it('adds a new server button, when I click on the add a server button', () => {
-    const fooConfig = new Config(fooConfiguration)
+    const fooConfig = new Config(fooConfiguration);
 
     const bar = () => '';
 
     const wrapper = mount(
-      <GlobalContext.Provider value={{ Config: fooConfig, setCurrentMainNavButtonId: bar }} >
+      <GlobalContext.Provider value={{ Config: fooConfig, setCurrentMainNavButtonId: bar }}>
         <BrowserRouter>
           <AddServerButton />
         </BrowserRouter>
-      </GlobalContext.Provider>
+      </GlobalContext.Provider>,
     );
 
     // when I click on the add a server button
     wrapper.find('button').prop('onClick')();
 
-    const { mainNavButtons } = fooConfig.get(['mainNavButtons'])
+    const { mainNavButtons } = fooConfig.get(['mainNavButtons']);
 
-    const newButtonAdded = mainNavButtons.filter((testButton) => testButton.id !==  'foo')[0];
-    const testButton = mainNavButtons.filter((testButton) => testButton.id ===  'foo')[0];
+    const newButtonAdded = mainNavButtons.filter((b) => b.id !== 'foo')[0];
+    const testButton = mainNavButtons.filter((b) => b.id === 'foo')[0];
 
     expect(typeof newButtonAdded).toBe('object');
 
