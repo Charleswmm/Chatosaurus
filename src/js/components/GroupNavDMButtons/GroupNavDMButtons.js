@@ -20,7 +20,7 @@ class GroupNavDMButtons extends Component {
 
     return {
       id: randomId,
-      title: `Server ${randomId.toUpperCase()}`,
+      title: 'Unnamed',
       avatarSrc: `${addAvatarSrc}`,
       members: randomMembers,
       backgroundColor: `${randomBackgroundColor}`,
@@ -83,7 +83,11 @@ const CreateGroupNavDMButtons = (props) => {
     <GroupNavDMButton
       key={index.toString()}
       removeButtonFunc={removeButtonFunc}
-      {...button}
+      id={button.id}
+      title={button.title}
+      members={button.members}
+      avatarSrc={button.avatarSrc}
+      backgroundColor={button.backgroundColor}
     />
   ));
 };

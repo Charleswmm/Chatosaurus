@@ -46,6 +46,7 @@ export const MainNavButtons = () => {
     const component = match ? match.component : MainNavButton;
 
     // Render whichever component is needed
+    // Prop spreading is used to save on overheads due to components having different props
     return React.createElement(component, { key: index.toString(), ...button });
   });
 };
