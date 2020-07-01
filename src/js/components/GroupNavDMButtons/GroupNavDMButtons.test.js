@@ -72,7 +72,7 @@ describe('GroupNavDMButtons', () => {
     // check button value types
     expect(typeof newButtonAdded.id).toBe('string');
     expect(typeof newButtonAdded.title).toBe('string');
-    expect(newButtonAdded.title).toMatch(/Server/);
+    expect(newButtonAdded.title).toMatch(/Unnamed/);
     expect(typeof newButtonAdded.avatarSrc).toBe('string');
     expect(typeof newButtonAdded.members).toBe('number');
     expect(typeof newButtonAdded.backgroundColor).toBe('string');

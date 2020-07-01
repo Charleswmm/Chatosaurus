@@ -1,21 +1,11 @@
 import React from 'react';
 import '../../../scss/components/Chat/Chat.scss';
+import ChatTopBar from '../ChatTopBar/ChatTopBar';
 
 function Chat() {
   return (
     <main className="chat">
-      <div className="chat-top">
-        <nav className="nav-top">
-          <div className="nav-group nav-group-top">
-            <div className="nav-item" />
-            <div className="nav-item flex-grow" />
-            <div className="nav-item" />
-            <div className="nav-item" />
-            <div className="nav-item" />
-            <div className="nav-item" />
-          </div>
-        </nav>
-      </div>
+      <ChatTopBar />
       <div className="chat-body">
         <div className="svg svg-wumpus" />
       </div>

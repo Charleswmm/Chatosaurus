@@ -5,8 +5,8 @@ import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
 const avatarClassNames = {
   baseAvatar: 'avatar',
-  noAvatar: 'avatar-default',
-  availableAvatar: 'avatar-image',
+  noAvatar: 'svg-people',
+  availableAvatar: 'svg-discord',
 };
 
 const btnClasses = {

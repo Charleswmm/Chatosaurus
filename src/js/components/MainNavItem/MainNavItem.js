@@ -4,7 +4,7 @@ import '../../../scss/components/MainNavItem/MainNavItem.scss';
 
 export const iconClassNames = {
   svg: 'svg',
-  home: 'svg-home',
+  home: 'svg-discord',
   add: 'svg-plus',
   discover: 'svg-search',
   download: 'svg-download',
