@@ -7,7 +7,7 @@ class AddServerButton extends MainNavButton {
   static contextType = GlobalContext;
 
   onClickHandler = () => {
-    const { Config, joinBaseRoute } = this.context;
+    const { Config, joinRoutePath } = this.context;
 
     // New server button template
     const config = Config.get([
@@ -48,7 +48,7 @@ class AddServerButton extends MainNavButton {
     this.context.Config.set({ mainNavButtons: [button, ...sortedMainNavButtons] });
 
     // this.props.history is made available when this component is wrapped by withRouter()
-    this.props.history.push(joinBaseRoute([button.id]));
+    this.props.history.push(joinRoutePath([button.id]));
   }
 }
 

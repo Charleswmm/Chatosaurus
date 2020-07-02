@@ -34,12 +34,12 @@ class GroupNavDMButtons extends Component {
    */
   addButtonClickHandler = () => {
     const { history } = this.props;
-    const { Config, joinBaseRoute } = this.context;
+    const { Config, joinRoutePath } = this.context;
     const button = this.randomNewGroupNavDMButton();
 
     Config.set({ groupNavDMButtons: [button, ...this.getGroupNavDMButtons()] });
 
-    history.push(joinBaseRoute(['@me', button.id]));
+    history.push(joinRoutePath(['@me', button.id]));
   }
 
   /**
@@ -52,7 +52,7 @@ class GroupNavDMButtons extends Component {
       console.warn('`removeButtonClickHandler` requires an id to be passed');
     }
     const { location, history } = this.props;
-    const { Config, safeUpdate, joinBaseRoute } = this.context;
+    const { Config, safeUpdate, joinRoutePath } = this.context;
     const newGroupNavDMButtons = this.getGroupNavDMButtons().filter((button) => button.id !== id);
 
     Config.set({ groupNavDMButtons: newGroupNavDMButtons });
@@ -60,7 +60,7 @@ class GroupNavDMButtons extends Component {
     const currentPageId = location.pathname.split('/').pop();
 
     if (id === currentPageId) {
-      history.push(joinBaseRoute(['@me']));
+      history.push(joinRoutePath(['@me']));
     }
     safeUpdate();
   }

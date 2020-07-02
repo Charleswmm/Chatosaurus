@@ -9,7 +9,7 @@ class ServerLink extends MainNavItem {
 
   render() {
     const { id } = this.props;
-    const { joinBaseRoute } = this.context;
+    const { joinRoutePath } = this.context;
 
     return (
       <div className="nav-item nav-item-server">
@@ -17,7 +17,7 @@ class ServerLink extends MainNavItem {
           style={this.backgroundImageStyle()}
           className={this.channelClassNames()}
           onClick={this.onClickHandler}
-          to={joinBaseRoute([id])}
+          to={joinRoutePath([id])}
           activeClassName={uiClassNames.active}
         >
           <div className={this.contentClassNames()}>{this.titleInitials()}</div>

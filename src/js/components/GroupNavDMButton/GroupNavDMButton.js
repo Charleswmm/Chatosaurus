@@ -73,13 +73,13 @@ class GroupNavDMButton extends Component {
 
   render() {
     const { id } = this.props;
-    const { joinBaseRoute } = this.context;
+    const { joinRoutePath } = this.context;
 
     return (
       <div className="nav-item nav-item-dm">
         <NavLink
           className={btnClasses.btnBase}
-          to={joinBaseRoute(['@me', id])}
+          to={joinRoutePath(['@me', id])}
           activeClassName={btnClasses.btnActive}
         >
           <div className={this.avatar()} />

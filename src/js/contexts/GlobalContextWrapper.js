@@ -19,7 +19,7 @@ export class GlobalContextWrapper extends Component {
   constructor(props) {
     super(props);
     this.func = {
-      joinBaseRoute: this.joinBaseRoute,
+      joinRoutePath: this.joinRoutePath,
       safeUpdate: this.safeUpdate,
     };
   }
@@ -29,7 +29,7 @@ export class GlobalContextWrapper extends Component {
    * @returns {string}
    * @param params
    */
-  joinBaseRoute = (params) => {
+  joinRoutePath = (params) => {
     if (!Array.isArray(params)) {
       console.warn('`joinBaseRoute` requires an array to be passed'); // eslint-disable-line no-console
     }

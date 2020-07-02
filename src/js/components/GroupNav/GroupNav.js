@@ -6,7 +6,7 @@ import { btnClasses } from '../GroupNavDMButton/GroupNavDMButton';
 import GroupNavDMButtons from '../GroupNavDMButtons/GroupNavDMButtons';
 
 function GroupNav() {
-  const { joinBaseRoute } = useContext(GlobalContext);
+  const { joinRoutePath } = useContext(GlobalContext);
 
   return (
     <div className="nav-column nav-column-message">
@@ -21,7 +21,7 @@ function GroupNav() {
             <NavLink
               exact
               className="nav-link"
-              to={joinBaseRoute(['@me'])}
+              to={joinRoutePath(['@me'])}
               activeClassName={btnClasses.btnActive}
             >
               <div className="svg svg-friend" />
