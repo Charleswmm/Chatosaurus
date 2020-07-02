@@ -1,0 +1,27 @@
+@import "../../utilities/typography";
+@import "../../variables";
+
+.chat {
+  background-color: $alt-neutral-shadow-grey;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+
+  .chat-body {
+    flex: 1 1 auto;
+
+    .svg-wumpus {
+      height: 218px;
+      width: 421px;
+      margin: 50px auto;
+    }
+  }
+
+  .chat-foot {
+    height: 6.8rem;
+    min-height: 6.8rem;
+    padding: 0 1.6rem;
+    flex: 0 0 auto;
+  }
+}

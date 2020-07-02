@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import '../../../scss/components/Chat/Chat.scss';
+import '../../../scss/components/ChatControl/ChatControl.scss';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
-import ChatTopBar from '../ChatTopBar/ChatTopBar';
+import ChatView from '../ChatView/ChatView';
 
-const Chat = (props) => {
+const ChatControl = (props) => {
   const context = useContext(GlobalContext);
   const { match } = props;
   const { Config } = context;
@@ -21,23 +21,15 @@ const Chat = (props) => {
     );
   }
 
-  const { id, title } = button;
-
-  return (
-    <main className="chat">
-      <ChatTopBar id={id} title={title} />
-      <div className="chat-body" />
-      <div className="chat-foot" />
-    </main>
-  );
+  return <ChatView button={button} />;
 };
 
-Chat.propTypes = {
+ChatControl.propTypes = {
   match: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
-Chat.defaultProps = {
+ChatControl.defaultProps = {
   match: null,
 };
 
-export default Chat;
+export default ChatControl;

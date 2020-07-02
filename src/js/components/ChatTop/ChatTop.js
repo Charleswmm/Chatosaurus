@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import '../../../scss/components/ChatTopBar/ChatTopBar.scss';
+import '../../../scss/components/ChatTop/ChatTop.scss';
 
-const ChatTopBar = (props) => {
+const ChatTop = (props) => {
   const { title } = props;
 
   return (
@@ -24,12 +24,12 @@ const ChatTopBar = (props) => {
   );
 };
 
-ChatTopBar.propTypes = {
+ChatTop.propTypes = {
   title: PropTypes.string,
 };
 
-ChatTopBar.defaultProps = {
+ChatTop.defaultProps = {
   title: null,
 };
 
-export default ChatTopBar;
+export default ChatTop;

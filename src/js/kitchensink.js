@@ -4,7 +4,7 @@ import '../scss/app.scss';
 import '../scss/kitchensink.scss';
 import { BrowserRouter } from 'react-router-dom';
 import AddServerButton from './components/AddServerButton/AddServerButton';
-import Chat from './components/Chat/Chat';
+import ChatControl from './components/ChatControl/ChatControl';
 import GroupNav from './components/GroupNav/GroupNav';
 import GroupNavDMButton from './components/GroupNavDMButton/GroupNavDMButton';
 import GroupNavDMButtons from './components/GroupNavDMButtons/GroupNavDMButtons';
@@ -53,7 +53,7 @@ function KitchenSink() {
           <GroupNav />
         </div>
         <div className="dishes">
-          <Chat />
+          <ChatControl />
         </div>
       </GlobalContextWrapper>
     </BrowserRouter>
