@@ -9,7 +9,6 @@
   .svg {
     height: 1.6rem;
     width: 1.6rem;
-    margin-left: 0.4rem;
   }
 
   .avatar {
@@ -27,14 +26,5 @@
 
   .svg-discord {
     background-color: $darker-shadow-grey;
-  }
-
-  .btn-subtitle {
-    @include typo(h4, 1.2rem);
-  }
-
-  .svg-cross {
-    filter: brightness(60%);
-    visibility: hidden;
   }
 }

@@ -2,14 +2,15 @@ import { withRouter } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import MainNavButton from '../MainNavButton/MainNavButton';
 import { uiClassNames } from '../MainNavItem/MainNavItem';
-import { serverLink } from '../ServerLink/ServerLink';
 
 class AddServerButton extends MainNavButton {
   static contextType = GlobalContext;
 
   onClickHandler = () => {
+    const { Config, joinBaseRoute } = this.context;
+
     // New server button template
-    const config = this.context.Config.get([
+    const config = Config.get([
       'mainNavButtons',
       'insertMainNavButtonsBeforeId',
       'mainNavButtonPlaceholderImageSrc',
@@ -47,7 +48,7 @@ class AddServerButton extends MainNavButton {
     this.context.Config.set({ mainNavButtons: [button, ...sortedMainNavButtons] });
 
     // this.props.history is made available when this component is wrapped by withRouter()
-    this.props.history.push(serverLink(button.id));
+    this.props.history.push(joinBaseRoute([button.id]));
   }
 }
 

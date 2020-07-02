@@ -1,14 +1,17 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import '../../../scss/components/ChatTopBar/ChatTopBar.scss';
 
-function ChatTopBar() {
+const ChatTopBar = (props) => {
+  const { title } = props;
+
   return (
     <div className="chat-top">
       <nav className="nav-row">
         <div className="nav-group">
           <div className="nav-item">
             <div className="svg svg-people" />
-            <div className="nav-text">Unnamed</div>
+            <div className="nav-text">{title}</div>
           </div>
           <div className="nav-item flex-grow" />
           <div className="nav-item" />
@@ -19,6 +22,14 @@ function ChatTopBar() {
       </nav>
     </div>
   );
-}
+};
+
+ChatTopBar.propTypes = {
+  title: PropTypes.string,
+};
+
+ChatTopBar.defaultProps = {
+  title: null,
+};
 
 export default ChatTopBar;

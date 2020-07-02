@@ -11,7 +11,7 @@ export class GlobalContextWrapper extends Component {
   }
 
   state = {
-    currentGroupNavDMButtonId: '',
+    key: 0,
   }
 
   func = {}
@@ -19,11 +19,36 @@ export class GlobalContextWrapper extends Component {
   constructor(props) {
     super(props);
     this.func = {
-      setCurrentGroupNavDMButtonId: this.setCurrentGroupNavDMButtonId,
+      joinBaseRoute: this.joinBaseRoute,
+      safeUpdate: this.safeUpdate,
     };
   }
 
-  setCurrentGroupNavDMButtonId = (id) => this.setState({ currentGroupNavDMButtonId: id });
+  /**
+   * Used to create a url string from a global base route
+   * @returns {string}
+   * @param params
+   */
+  joinBaseRoute = (params) => {
+    if (!Array.isArray(params)) {
+      console.warn('`joinBaseRoute` requires an array to be passed'); // eslint-disable-line no-console
+    }
+
+    const { Config } = this.props;
+    const { baseRoute } = Config.get(['baseRoute']);
+
+    return [
+      baseRoute.replace(/\/$/, ''),
+      ...params,
+    ].join('/');
+  }
+
+  /**
+   * Used to rerender, useful when changing data in the configuration and not setting state
+   */
+  safeUpdate = () => {
+    this.setState({ key: Math.random() });
+  }
 
   render() {
     const { Config, children } = this.props;

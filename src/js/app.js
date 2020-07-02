@@ -12,12 +12,13 @@ import Config from './utilities/Config';
 
 const App = () => (
   <BrowserRouter>
+    <Route exact path={['/', '/channels']} render={() => <Redirect to="/channels/@me" />} />
     <GlobalContextWrapper Config={new Config(configuration)}>
-      <Route exact path={['/', '/channels']} render={() => <Redirect to="/channels/@me" />} />
       <MainNav />
       <Route path="/channels/@me">
         <GroupNav />
-        <Chat />
+        <Route path="/channels/@me/:id" component={Chat} />
+        {/* @todo Friends view goes here */}
       </Route>
     </GlobalContextWrapper>
   </BrowserRouter>

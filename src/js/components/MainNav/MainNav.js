@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import '../../../scss/components/MainNav/MainNav.scss';
 import { withRouter } from 'react-router';
-import MainNavButton from '../MainNavButton/MainNavButton';
-import AddServerButton from '../AddServerButton/AddServerButton';
-import ServerLink from '../ServerLink/ServerLink';
+import '../../../scss/components/MainNav/MainNav.scss';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import AddServerButton from '../AddServerButton/AddServerButton';
+import MainNavButton from '../MainNavButton/MainNavButton';
+import ServerLink from '../ServerLink/ServerLink';
 
 /**
  * Let's wrap the component with withRouter() to make it receptive to route changes

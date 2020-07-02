@@ -1,20 +1,19 @@
 import { mount } from 'enzyme';
 import React from 'react';
+import { MemoryRouter } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import GroupNavDMButton from './GroupNavDMButton';
 
 describe('GroupNavDMButton', () => {
-  const fooValues = {
-    state: {
-      currentGroupNavDMButtonId: 'foo',
-    },
-  };
+  const foo = () => '';
 
   // "Direct message" component is the "GroupNavDMButton" component
   it('displays a remove button on the Direct message component', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={fooValues}>
-        <GroupNavDMButton title="foo" />
+      <GlobalContext.Provider value={{ joinBaseRoute: foo }}>
+        <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
+          <GroupNavDMButton title="foo" />
+        </MemoryRouter>
       </GlobalContext.Provider>,
     );
 
@@ -23,11 +22,13 @@ describe('GroupNavDMButton', () => {
 
   it('displays an active state', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={fooValues}>
-        <GroupNavDMButton id="foo" />
+      <GlobalContext.Provider value={{ joinBaseRoute: foo }}>
+        <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
+          <GroupNavDMButton id="foo" />
+        </MemoryRouter>
       </GlobalContext.Provider>,
     );
 
-    expect(wrapper.find('.nav-btn').hasClass('nav-btn-active')).toBeTruthy();
+    expect(wrapper.find('a').hasClass('nav-link-active')).toBeTruthy();
   });
 });

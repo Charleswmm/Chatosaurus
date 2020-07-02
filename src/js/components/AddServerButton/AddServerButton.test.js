@@ -17,13 +17,13 @@ describe('AddServerButton', () => {
     mainNavButtonPlaceholderImageSrc: '../../foobar.png',
   };
 
+  const foo = () => '';
+
   it('adds a new server button, when I click on the add a server button', () => {
     const fooConfig = new Config(fooConfiguration);
 
-    const bar = () => '';
-
     const wrapper = mount(
-      <GlobalContext.Provider value={{ Config: fooConfig, setCurrentMainNavButtonId: bar }}>
+      <GlobalContext.Provider value={{ joinBaseRoute: foo, Config: fooConfig }}>
         <BrowserRouter>
           <AddServerButton />
         </BrowserRouter>
