@@ -35,8 +35,8 @@ describe('AddServerButton', () => {
 
     const { mainNavButtons } = fooConfig.get(['mainNavButtons']);
 
-    const newButtonAdded = mainNavButtons.filter((b) => b.id !== 'foo')[0];
-    const testButton = mainNavButtons.filter((b) => b.id === 'foo')[0];
+    const newButtonAdded = mainNavButtons.filter((b) => b.id !== 'foo').shift();
+    const testButton = mainNavButtons.filter((b) => b.id === 'foo').shift();
 
     expect(typeof newButtonAdded).toBe('object');
 
