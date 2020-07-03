@@ -4,7 +4,7 @@ import '../../../scss/components/ChatView/ChatView.scss';
 import ChatTop from '../ChatTop/ChatTop';
 
 const ChatView = (props) => {
-  const { button: { id, title } } = props;
+  const { id, title } = props;
 
   return (
     <main className="chat">
@@ -16,11 +16,13 @@ const ChatView = (props) => {
 };
 
 ChatView.propTypes = {
-  button: PropTypes.objectOf(PropTypes.string),
+  id: PropTypes.string,
+  title: PropTypes.string,
 };
 
 ChatView.defaultProps = {
-  button: null,
+  id: null,
+  title: null,
 };
 
 export default ChatView;

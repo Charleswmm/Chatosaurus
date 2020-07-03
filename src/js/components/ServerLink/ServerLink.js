@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import MainNavItem, { uiClassNames } from '../MainNavItem/MainNavItem';
@@ -29,4 +28,4 @@ class ServerLink extends MainNavItem {
   }
 }
 
-export default withRouter(ServerLink);
+export default ServerLink;

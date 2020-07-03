@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import '../../../scss/components/ChatControl/ChatControl.scss';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import ChatView from '../ChatView/ChatView';
+import NoChat from '../NoChat/NoChat';
 
 const ChatControl = (props) => {
   const context = useContext(GlobalContext);
@@ -12,19 +13,12 @@ const ChatControl = (props) => {
   const button = groupNavDMButtons.filter((e) => e.id === match.params.id).shift();
 
   if (!button) {
-    return (
-      <main className="no-chat">
-        <div className="svg svg-no-chat" />
-        <div className="chat-text">No Text Channels</div>
-        <div className="chat-subtext">
-          You find yourself in a strange place. You don&apos;t have access to any text channels,
-          or there are none in this server.
-        </div>
-      </main>
-    );
+    return <NoChat />;
   }
 
-  return <ChatView button={button} />;
+  const { id, title } = button;
+
+  return <ChatView id={id} title={title} />;
 };
 
 ChatControl.propTypes = {

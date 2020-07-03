@@ -35,11 +35,12 @@ class GroupNavDMButtons extends Component {
   addButtonClickHandler = () => {
     const { history } = this.props;
     const { Config, joinRoutePath } = this.context;
+    const { homeRoute } = Config.get(['homeRoute']);
     const button = this.randomNewGroupNavDMButton();
 
     Config.set({ groupNavDMButtons: [button, ...this.getGroupNavDMButtons()] });
 
-    history.push(joinRoutePath(['@me', button.id]));
+    history.push(joinRoutePath([homeRoute, button.id]));
   }
 
   /**
@@ -53,6 +54,7 @@ class GroupNavDMButtons extends Component {
     }
     const { location, history } = this.props;
     const { Config, safeUpdate, joinRoutePath } = this.context;
+    const { homeRoute } = Config.get(['homeRoute']);
     const newGroupNavDMButtons = this.getGroupNavDMButtons().filter((button) => button.id !== id);
 
     Config.set({ groupNavDMButtons: newGroupNavDMButtons });
@@ -60,7 +62,7 @@ class GroupNavDMButtons extends Component {
     const currentPageId = location.pathname.split('/').pop();
 
     if (id === currentPageId) {
-      history.push(joinRoutePath(['@me']));
+      history.push(joinRoutePath([homeRoute]));
     }
     safeUpdate();
   }

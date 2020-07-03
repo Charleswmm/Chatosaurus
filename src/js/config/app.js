@@ -4,6 +4,7 @@ import placeHolderImage from '../../img/discord-placeholder.png';
 
 export default {
   baseRoute: '/channels/',
+  homeRoute: '@me',
   mainNavButtons: [
     {
       id: '@me',
