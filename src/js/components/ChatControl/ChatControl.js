@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import '../../../scss/components/ChatControl/ChatControl.scss';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import ChatView from '../ChatView/ChatView';
 import NoChat from '../NoChat/NoChat';
