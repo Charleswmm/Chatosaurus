@@ -4,7 +4,7 @@ import '../../../scss/components/MainNavItem/MainNavItem.scss';
 
 export const iconClassNames = {
   svg: 'svg',
-  home: 'svg-home',
+  home: 'svg-discord',
   add: 'svg-plus',
   discover: 'svg-search',
   download: 'svg-download',
@@ -86,15 +86,17 @@ class MainNavItem extends Component {
       : null);
   }
 
-  render = () => (
-    <div className="nav-item nav-item-server">
-      <div className={this.channelClassNames()} style={this.backgroundImageStyle()}>
-        <div className={this.contentClassNames()}>{ this.titleInitials() }</div>
+  render() {
+    return (
+      <div className="nav-item nav-item-server">
+        <div className={this.channelClassNames()} style={this.backgroundImageStyle()}>
+          <div className={this.contentClassNames()}>{ this.titleInitials() }</div>
+        </div>
+        <div className="pip" />
+        <div className="tool-tip">{ this.title() }</div>
       </div>
-      <div className="pip" />
-      <div className="tool-tip">{ this.title() }</div>
-    </div>
-  );
+    );
+  }
 }
 
 MainNavItem.propTypes = {

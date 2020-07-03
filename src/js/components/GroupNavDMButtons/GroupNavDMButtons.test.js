@@ -1,5 +1,6 @@
 import { mount } from 'enzyme';
 import React from 'react';
+import { MemoryRouter } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import Config from '../../utilities/Config';
 import GroupNavDMButtons from './GroupNavDMButtons';
@@ -13,11 +14,7 @@ describe('GroupNavDMButtons', () => {
     ],
   };
 
-  const fooValues = {
-    state: {
-      currentGroupNavDMButtonId: '',
-    },
-  };
+  const foo = () => '';
 
   let fooConfig;
 
@@ -27,8 +24,10 @@ describe('GroupNavDMButtons', () => {
 
   it('displays a “Direct messages” component in the secondary navigation', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ ...fooValues, Config: fooConfig }}>
-        <GroupNavDMButtons />
+      <GlobalContext.Provider value={{ joinBaseRoute: foo, safeUpdate: foo, Config: fooConfig }}>
+        <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
+          <GroupNavDMButtons />
+        </MemoryRouter>
       </GlobalContext.Provider>,
     );
 
@@ -37,8 +36,10 @@ describe('GroupNavDMButtons', () => {
 
   it('displays an “add” button', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ ...fooValues, Config: fooConfig }}>
-        <GroupNavDMButtons />
+      <GlobalContext.Provider value={{ joinBaseRoute: foo, safeUpdate: foo, Config: fooConfig }}>
+        <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
+          <GroupNavDMButtons />
+        </MemoryRouter>
       </GlobalContext.Provider>,
     );
 
@@ -46,13 +47,11 @@ describe('GroupNavDMButtons', () => {
   });
 
   it('adds a new Direct message placeholder button, when I interact with the “add” button', () => {
-    const bar = () => '';
-
     const wrapper = mount(
-      <GlobalContext.Provider
-        value={{ ...fooValues, Config: fooConfig, setCurrentGroupNavDMButtonId: bar }}
-      >
-        <GroupNavDMButtons />
+      <GlobalContext.Provider value={{ joinBaseRoute: foo, safeUpdate: foo, Config: fooConfig }}>
+        <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
+          <GroupNavDMButtons />
+        </MemoryRouter>
       </GlobalContext.Provider>,
     );
 
@@ -72,20 +71,18 @@ describe('GroupNavDMButtons', () => {
     // check button value types
     expect(typeof newButtonAdded.id).toBe('string');
     expect(typeof newButtonAdded.title).toBe('string');
-    expect(newButtonAdded.title).toMatch(/Server/);
+    expect(newButtonAdded.title).toMatch(/Unnamed/);
     expect(typeof newButtonAdded.avatarSrc).toBe('string');
     expect(typeof newButtonAdded.members).toBe('number');
     expect(typeof newButtonAdded.backgroundColor).toBe('string');
   });
 
   it('removes the the DM component item, when I interact with the “remove” button', () => {
-    const bar = () => '';
-
     const wrapper = mount(
-      <GlobalContext.Provider
-        value={{ ...fooValues, Config: fooConfig, setCurrentGroupNavDMButtonId: bar }}
-      >
-        <GroupNavDMButtons />
+      <GlobalContext.Provider value={{ joinBaseRoute: foo, safeUpdate: foo, Config: fooConfig }}>
+        <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
+          <GroupNavDMButtons />
+        </MemoryRouter>
       </GlobalContext.Provider>,
     );
 

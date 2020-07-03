@@ -1,13 +1,31 @@
 @import "../../utilities/typography";
 @import "../../variables";
 
-.nav-subgroup-dm {
+.nav-subgroup-menu {
 
-  .svg {
-    height: 1.6rem;
-    width: 1.6rem;
+  .nav-item-menu {
+    max-width: 22.4rem;
     margin-left: 0.8rem;
+
+    .svg {
+      height: 2.4rem;
+      width: 2.4rem;
+      margin-left: 0.4rem;
+      margin-right: 1.6rem;
+      filter: brightness(60%);
+    }
+
+    .nav-link-active .svg {
+      filter: brightness(95%);
+    }
+
+    .nav-link:hover .svg {
+      filter: brightness(85%);
+    }
   }
+}
+
+.nav-subgroup-dm {
 
   .svg-plus {
     filter: grayscale(100%) brightness(105%);

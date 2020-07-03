@@ -17,13 +17,13 @@ describe('AddServerButton', () => {
     mainNavButtonPlaceholderImageSrc: '../../foobar.png',
   };
 
+  const foo = () => '';
+
   it('adds a new server button, when I click on the add a server button', () => {
     const fooConfig = new Config(fooConfiguration);
 
-    const bar = () => '';
-
     const wrapper = mount(
-      <GlobalContext.Provider value={{ Config: fooConfig, setCurrentMainNavButtonId: bar }}>
+      <GlobalContext.Provider value={{ joinBaseRoute: foo, Config: fooConfig }}>
         <BrowserRouter>
           <AddServerButton />
         </BrowserRouter>
@@ -35,8 +35,8 @@ describe('AddServerButton', () => {
 
     const { mainNavButtons } = fooConfig.get(['mainNavButtons']);
 
-    const newButtonAdded = mainNavButtons.filter((b) => b.id !== 'foo')[0];
-    const testButton = mainNavButtons.filter((b) => b.id === 'foo')[0];
+    const newButtonAdded = mainNavButtons.filter((b) => b.id !== 'foo').shift();
+    const testButton = mainNavButtons.filter((b) => b.id === 'foo').shift();
 
     expect(typeof newButtonAdded).toBe('object');
 

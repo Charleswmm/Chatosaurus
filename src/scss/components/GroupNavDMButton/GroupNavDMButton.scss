@@ -9,33 +9,22 @@
   .svg {
     height: 1.6rem;
     width: 1.6rem;
-    margin-left: 0.4rem;
   }
 
   .avatar {
     background-repeat: no-repeat;
-    background-size: contain;
+    background-position: center;
     height: 3.2rem;
     width: 3.2rem;
     border-radius: 1.6rem;
     margin-right: 1.2rem;
   }
 
-  .avatar-default {
-    background-image: url("../../../img/icons/people.svg");
+  .svg-people {
+    background-size: 52%;
   }
 
-  .avatar-image {
-    background-image: url("../../../img/icons/discord.svg");
+  .svg-discord {
     background-color: $darker-shadow-grey;
-  }
-
-  .btn-subtitle {
-    @include typo(h4, 1.2rem);
-  }
-
-  .svg-cross {
-    filter: brightness(60%);
-    visibility: hidden;
   }
 }

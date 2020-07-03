@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import '../../../scss/components/GroupNavDMButtons/GroupNavDMButtons.scss';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import GroupNavDMButton, { backgroundColorClassNames } from '../GroupNavDMButton/GroupNavDMButton';
@@ -11,16 +13,16 @@ class GroupNavDMButtons extends Component {
    * @returns {{backgroundColor: *, avatarSrc: string, id: string, title: string}}
    */
   randomNewGroupNavDMButton = () => {
-    let randomId = Math.floor(Math.random() * 10000);
-    const addAvatarSrc = randomId > 8000 ? 'url' : '';
+    let randomId = Math.floor(Math.random() * 90000 + 10000);
+    const addAvatarSrc = randomId > 80000 ? 'url' : '';
     const backgroundColors = Object.values(backgroundColorClassNames);
-    const randomBackgroundColor = backgroundColors[Math.floor(randomId / 2000 + 1)];
-    const randomMembers = Math.floor(randomId / 2500);
-    randomId = randomId.toString(16);
+    const randomBackgroundColor = backgroundColors[Math.floor(randomId / 20000 + 1)];
+    const randomMembers = Math.floor(randomId / 25000);
+    randomId = randomId.toString();
 
     return {
       id: randomId,
-      title: `Server ${randomId.toUpperCase()}`,
+      title: 'Unnamed',
       avatarSrc: `${addAvatarSrc}`,
       members: randomMembers,
       backgroundColor: `${randomBackgroundColor}`,
@@ -31,11 +33,14 @@ class GroupNavDMButtons extends Component {
    * Adds a new random group nav DM button to the configuration
    */
   addButtonClickHandler = () => {
-    const { Config, setCurrentGroupNavDMButtonId } = this.context;
-
+    const { history } = this.props;
+    const { Config, joinRoutePath } = this.context;
+    const { homeRoute } = Config.get(['homeRoute']);
     const button = this.randomNewGroupNavDMButton();
+
     Config.set({ groupNavDMButtons: [button, ...this.getGroupNavDMButtons()] });
-    setCurrentGroupNavDMButtonId(button.id);
+
+    history.push(joinRoutePath([homeRoute, button.id]));
   }
 
   /**
@@ -43,20 +48,34 @@ class GroupNavDMButtons extends Component {
    * @param id
    */
   removeButtonClickHandler = (id) => {
-    const { Config, state, setCurrentGroupNavDMButtonId } = this.context;
-
+    if (!id) {
+      // eslint-disable-next-line no-console
+      console.warn('`removeButtonClickHandler` requires an id to be passed');
+    }
+    const { location, history } = this.props;
+    const { Config, safeUpdate, joinRoutePath } = this.context;
+    const { homeRoute } = Config.get(['homeRoute']);
     const newGroupNavDMButtons = this.getGroupNavDMButtons().filter((button) => button.id !== id);
+
     Config.set({ groupNavDMButtons: newGroupNavDMButtons });
-    const activeButton = state.currentGroupNavDMButtonId === id
-      ? id
-      : state.currentGroupNavDMButtonId;
-    setCurrentGroupNavDMButtonId(activeButton);
+
+    const currentPageId = location.pathname.split('/').pop();
+
+    if (id === currentPageId) {
+      history.push(joinRoutePath([homeRoute]));
+    }
+    safeUpdate();
   }
 
+  /**
+   * Gets the button properties from config
+   * @returns {*}
+   */
   getGroupNavDMButtons = () => {
     const { Config } = this.context;
+    const { groupNavDMButtons } = Config.get(['groupNavDMButtons']);
 
-    return Config.get(['groupNavDMButtons']).groupNavDMButtons;
+    return groupNavDMButtons;
   }
 
   render() {
@@ -83,9 +102,23 @@ const CreateGroupNavDMButtons = (props) => {
     <GroupNavDMButton
       key={index.toString()}
       removeButtonFunc={removeButtonFunc}
-      {...button}
+      id={button.id}
+      title={button.title}
+      members={button.members}
+      avatarSrc={button.avatarSrc}
+      backgroundColor={button.backgroundColor}
     />
   ));
 };
 
-export default GroupNavDMButtons;
+GroupNavDMButtons.propTypes = {
+  history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  location: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+};
+
+GroupNavDMButtons.defaultProps = {
+  history: null,
+  location: null,
+};
+
+export default withRouter(GroupNavDMButtons);

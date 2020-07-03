@@ -3,6 +3,8 @@ import { backgroundColorClassNames } from '../components/GroupNavDMButton/GroupN
 import placeHolderImage from '../../img/discord-placeholder.png';
 
 export default {
+  baseRoute: '/channels/',
+  homeRoute: '@me',
   mainNavButtons: [
     {
       id: '@me',
@@ -37,7 +39,7 @@ export default {
   ],
   groupNavDMButtons: [
     {
-      id: 'pytho',
+      id: '12345',
       title: 'Pytho',
       avatarSrc: 'url',
       backgroundColor: backgroundColorClassNames.avatarBlue,

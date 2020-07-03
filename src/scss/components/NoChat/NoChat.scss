@@ -1,0 +1,33 @@
+@import "../../utilities/typography";
+@import "../../variables";
+
+.no-chat {
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+
+  .svg-no-chat {
+    height: 22.2rem;
+    width: 27.2rem;
+    margin-bottom: 4rem;
+  }
+
+  .chat-text {
+    text-transform: uppercase;
+    filter: brightness(75%);
+    @include typo(h3, 1.6rem);
+  }
+
+  .chat-subtext {
+    filter: brightness(75%);
+    line-height: 2rem;
+    text-align: center;
+    width: 44rem;
+    margin-top: 0.8rem;
+    @include typo(h4, 1.5rem);
+  }
+}

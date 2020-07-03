@@ -22,6 +22,12 @@
 .svg-plus {
     background-image: url("../img/icons/plus.svg");
 }
+.svg-discord {
+    background-image: url("../img/icons/discord.svg");
+}
+.svg-people {
+    background-image: url("../img/icons/people.svg");
+}
 .svg-search {
     background-image: url("../img/icons/search.svg");
 }
@@ -39,6 +45,9 @@
 }
 .svg-wumpus {
     background-image: url("../img/wumpus.svg");
+}
+.svg-no-chat {
+    background-image: url("../img/no-channel.svg");
 }
 
 .background-brand-blue {
@@ -88,7 +97,6 @@
 .nav-group {
     display: flex;
     width: 100%;
-    flex-direction: column;
 }
 
 .nav-group-top {
@@ -97,54 +105,5 @@
 }
 
 .nav-item {
-    width: 100%;
     display: flex;
-
-    .nav-btn {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        height: 4.2rem;
-        width: 100%;
-        padding: 0.1rem 0.8rem;
-        border-radius: 0.4rem;
-        @include typo(h4, 1.4rem);
-    }
-
-    .btn-content {
-        display: flex;
-        align-items: center;
-        flex: 1 1 auto;
-    }
-
-    .nav-btn:hover {
-        background-color: $dark-surround-grey;
-    }
-
-    .nav-btn:hover .svg-cross {
-        visibility: visible;
-    }
-
-    .nav-btn:hover .btn-content .btn-text {
-        filter: brightness(150%);
-    }
-
-    .btn-text {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-        flex: 1 1 auto;
-    }
-
-    .btn-title {
-        flex: 1 1 auto;
-    }
-
-    .nav-btn-active, .nav-btn-active:hover {
-        background-color: $neutral-surround-grey;
-    }
-
-    .nav-btn-active .btn-text, .nav-btn-active:hover .btn-content .btn-text {
-        filter: brightness(180%);
-    }
 }

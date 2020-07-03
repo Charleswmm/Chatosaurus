@@ -1,17 +1,18 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import '../../../scss/components/GroupNavDMButton/GroupNavDMButton.scss';
+import { NavLink } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
 const avatarClassNames = {
   baseAvatar: 'avatar',
-  noAvatar: 'avatar-default',
-  availableAvatar: 'avatar-image',
+  noAvatar: 'svg-people',
+  availableAvatar: 'svg-discord',
 };
 
-const btnClasses = {
-  btnBase: 'nav-btn',
-  btnActive: 'nav-btn-active',
+export const btnClasses = {
+  btnBase: 'nav-link',
+  btnActive: 'nav-link-active',
 };
 
 export const backgroundColorClassNames = {
@@ -33,22 +34,6 @@ class GroupNavDMButton extends Component {
     avatarSrc: null,
     backgroundColor: backgroundColorClassNames.avatarBlue,
     removeButtonFunc: null,
-  }
-
-  /**
-   * Resolve button classes
-   * @returns {string}
-   */
-  btnClasses = () => [
-    btnClasses.btnBase,
-    (this.isActive() ? btnClasses.btnActive : ''),
-  ].join(' ');
-
-  isActive = () => {
-    const { state } = this.context;
-    const { id } = this.props;
-
-    return id === state.currentGroupNavDMButtonId;
   }
 
   /**
@@ -80,13 +65,6 @@ class GroupNavDMButton extends Component {
     return (!members ? '' : `${members} Member${members === 1 ? '' : 's'}`);
   }
 
-  onClickHandler = () => {
-    const { setCurrentGroupNavDMButtonId } = this.context;
-    const { id } = this.props;
-
-    return setCurrentGroupNavDMButtonId(id);
-  }
-
   removeButtonClickHandler = () => {
     const { removeButtonFunc, id } = this.props;
 
@@ -94,18 +72,25 @@ class GroupNavDMButton extends Component {
   }
 
   render() {
+    const { id } = this.props;
+    const { joinRoutePath } = this.context;
+
     return (
       <div className="nav-item nav-item-dm">
-        <button type="button" className={this.btnClasses()}>
-          <div className="btn-content" onClick={this.onClickHandler}>
-            <div className={this.avatar()} />
-            <div className="btn-text">
-              <div className="btn-title">{this.title()}</div>
-              <div className="btn-subtitle">{this.members()}</div>
-            </div>
+        <NavLink
+          className={btnClasses.btnBase}
+          to={joinRoutePath(['@me', id])}
+          activeClassName={btnClasses.btnActive}
+        >
+          <div className={this.avatar()} />
+          <div className="link-text">
+            <div className="link-title">{this.title()}</div>
+            <div className="link-subtitle">{this.members()}</div>
           </div>
+        </NavLink>
+        <div className="nav-remove">
           <div className="svg svg-cross" onClick={this.removeButtonClickHandler} />
-        </button>
+        </div>
       </div>
     );
   }

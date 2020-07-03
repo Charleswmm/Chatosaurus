@@ -2,6 +2,7 @@ import { backgroundColorClassNames } from '../components/GroupNavDMButton/GroupN
 import { iconClassNames, uiClassNames } from '../components/MainNavItem/MainNavItem';
 
 export default {
+  baseRoute: '/channels/',
   mainNavButtons: [
     {
       id: 'home',
