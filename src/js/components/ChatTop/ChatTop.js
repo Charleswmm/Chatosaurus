@@ -77,7 +77,7 @@ export const TopButton = ({ iconClass, tip }) => (
 const TopSearch = () => (
   <div className="nav-item">
     <div className="top-search">
-      <input className="search-input" type="text" name="search" value="Search" />
+      <input className="search-input" type="text" name="search" defaultValue="Search" />
       <div className="svg svg-search" />
     </div>
   </div>

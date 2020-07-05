@@ -44,7 +44,7 @@ describe('ChatControl', () => {
       </GlobalContext.Provider>,
     );
 
-    const currentDMLogId = wrapper.find('ChatView').prop('button').id;
+    const currentDMLogId = wrapper.find('ChatView').prop('id');
 
     const currentURL = wrapper.find('Router').prop('history').location.pathname;
 

@@ -10,7 +10,7 @@ describe('GroupNavDMButton', () => {
   // "Direct message" component is the "GroupNavDMButton" component
   it('displays a remove button on the Direct message component', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinBaseRoute: foo }}>
+      <GlobalContext.Provider value={{ joinRoutePath: foo }}>
         <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
           <GroupNavDMButton title="foo" />
         </MemoryRouter>
@@ -22,7 +22,7 @@ describe('GroupNavDMButton', () => {
 
   it('displays an active state and matched the current DM log', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinBaseRoute: foo }}>
+      <GlobalContext.Provider value={{ joinRoutePath: foo }}>
         <MemoryRouter initialEntries={['/channels/']} initialIndex={0}>
           <GroupNavDMButton id="foo" />
         </MemoryRouter>
@@ -39,7 +39,7 @@ describe('GroupNavDMButton', () => {
 
   it('navigated to the view for that DM log, when I click a secondary nav item', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinBaseRoute: foo }}>
+      <GlobalContext.Provider value={{ joinRoutePath: foo }}>
         <MemoryRouter initialEntries={['/channels/']} initialIndex={0}>
           <GroupNavDMButton id="foo" />
         </MemoryRouter>

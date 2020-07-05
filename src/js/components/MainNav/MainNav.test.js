@@ -30,7 +30,7 @@ describe('MainNavButtons', () => {
 
   it('sorts mainNavButtons in order of the buttons sort value', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinBaseRoute: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{ joinRoutePath: foo, Config: fooConfig }}>
         <BrowserRouter>
           <MainNavButtons />
         </BrowserRouter>
@@ -44,7 +44,7 @@ describe('MainNavButtons', () => {
 
   it('adds a server button component', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinBaseRoute: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{ joinRoutePath: foo, Config: fooConfig }}>
         <BrowserRouter>
           <MainNavButtons />
         </BrowserRouter>
@@ -56,7 +56,7 @@ describe('MainNavButtons', () => {
 
   it('navigated to a section in the app, when I clicked on the button', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinBaseRoute: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{ joinRoutePath: foo, Config: fooConfig }}>
         <MemoryRouter initialEntries={['/foo']} initialIndex={0}>
           <MainNavButtons />
         </MemoryRouter>
