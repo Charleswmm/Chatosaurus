@@ -67,7 +67,7 @@ export const TopButton = ({ iconClass, tip }) => (
     <button className="top-btn" type="button">
       <div className={iconClass} />
     </button>
-    <div className="sm-tool-tip">
+    <div className="tool-tip tool-tip-sm">
       <div className="tool-tip-arrow tool-tip-arrow-top" />
       <div className="tool-tip-text">{tip}</div>
     </div>

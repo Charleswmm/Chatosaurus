@@ -31,12 +31,12 @@
     filter: brightness(85%);
   }
 
-  .sm-tool-tip {
+  .tool-tip {
     top: 3.3rem;
     right: 1.2rem;
   }
 
-  .top-btn:hover ~ .sm-tool-tip {
+  .top-btn:hover ~ .tool-tip {
     visibility: visible;
     opacity: 1;
   }

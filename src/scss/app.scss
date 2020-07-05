@@ -106,42 +106,32 @@
     flex: 1 1 auto;
 }
 
+.tool-tip-sm {
+    transform: translateX(50%);
+}
+
 .tool-tip {
     box-shadow: 4px 6px 15px -2px rgba(0, 0, 0, 0.5);
     position: absolute;
     z-index: 10;
     background-color: $hover-black;
     border-radius: 4px;
-    padding: 1rem;
-    white-space: nowrap;
-    user-select: none;
-    transition: opacity 0.1s ease-in;
+    transition: opacity 0.15s ease-in;
     visibility: hidden;
     opacity: 0;
-}
 
-.tool-tip::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right:10px solid $hover-black;
-}
+    .tool-tip-arrow {
+        position: relative;
+        width: 100%;
+    }
 
-.sm-tool-tip {
-    box-shadow: 4px 6px 15px -2px rgba(0, 0, 0, 0.5);
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    right: 0;
-    background-color: $hover-black;
-    border-radius: 4px;
-    transform: translateX(50%);
-    transition: opacity 0.1s ease-in;
-    visibility: hidden;
-    opacity: 0;
+    .tool-tip-arrow-top {
+        transform: translateX(-50%);
+    }
+
+    .tool-tip-arrow-bottom {
+        transform: translateX(-50%);
+    }
 
     .tool-tip-text {
         font-size: 1.2rem;
@@ -153,10 +143,8 @@
         user-select: none;
     }
 
-    .tool-tip-arrow {
-        position: relative;
-        width: 100%;
-        transform: translateX(-50%);
+    .tool-tip-text-lg {
+        @include typo(tt, 1.5rem);
     }
 
     .tool-tip-arrow::before {
@@ -164,17 +152,27 @@
         position: absolute;
         width: 0;
         height: 0;
-        top: -0.5rem;
-        right: -1rem;
+    }
+
+    .tool-tip-arrow-left::before {
+        top: 0.8rem;
+        left: -0.5rem;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right:10px solid $hover-black;
     }
 
     .tool-tip-arrow-top::before {
+        top: -0.5rem;
+        right: -1rem;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
         border-bottom:10px solid $hover-black;
     }
 
-    .tool-tip-arrow-bot::before {
+    .tool-tip-arrow-bottom::before {
+        top: -0.5rem;
+        right: -1rem;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
         border-top:10px solid $hover-black;
