@@ -79,6 +79,9 @@
 .svg-help {
     background-image: url("../img/icons/help.svg");
 }
+.svg-add-dm {
+    background-image: url("../img/icons/add-dm.svg");
+}
 
 .background-brand-blue {
     background-color: $normal-brand-blue;
@@ -111,9 +114,10 @@
     border-radius: 4px;
     padding: 1rem;
     white-space: nowrap;
-    transform: scale(0);
-    transition: all 0.02s cubic-bezier(1,0,0,1);
     user-select: none;
+    transition: opacity 0.1s ease-in;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .tool-tip::before {
@@ -135,6 +139,7 @@
     background-color: $hover-black;
     border-radius: 4px;
     transform: translateX(50%);
+    transition: opacity 0.1s ease-in;
     visibility: hidden;
     opacity: 0;
 
@@ -159,19 +164,17 @@
         position: absolute;
         width: 0;
         height: 0;
+        top: -0.5rem;
+        right: -1rem;
     }
 
     .tool-tip-arrow-top::before {
-        top: -0.5rem;
-        right: -1rem;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
         border-bottom:10px solid $hover-black;
     }
 
     .tool-tip-arrow-bot::before {
-        top: 2rem;
-        right: 2rem;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
         border-top:10px solid $hover-black;

@@ -9,7 +9,7 @@ const topButtons = [
   },
   {
     iconClass: 'svg svg-video-call',
-    tip: 'Browser Not Supported',
+    tip: 'Start Video Call',
   },
   {
     iconClass: 'svg svg-pin',
@@ -22,6 +22,9 @@ const topButtons = [
   {
     iconClass: 'svg svg-people',
     tip: 'Member List',
+  },
+  {
+    search: true,
   },
   {
     iconClass: 'svg svg-inbox',
@@ -51,13 +54,15 @@ const ChatTop = (props) => {
   );
 };
 
-const TopButtons = () => topButtons.map((properties, index) => {
-  const { iconClass, tip } = properties;
+const TopButtons = () => topButtons.map(({ iconClass, tip, search }, index) => {
+  if (search) {
+    return <TopSearch key={index.toString()} />;
+  }
 
   return <TopButton key={index.toString()} iconClass={iconClass} tip={tip} />;
 });
 
-const TopButton = ({ iconClass, tip }) => (
+export const TopButton = ({ iconClass, tip }) => (
   <div className="nav-item">
     <button className="top-btn" type="button">
       <div className={iconClass} />
@@ -69,6 +74,23 @@ const TopButton = ({ iconClass, tip }) => (
   </div>
 );
 
+const TopSearch = () => (
+  <div className="nav-item">
+    <div className="top-search">
+      <input className="search-input" type="text" name="search" value="Search" />
+      <div className="svg svg-search" />
+    </div>
+  </div>
+);
+
+ChatTop.propTypes = {
+  title: PropTypes.string,
+};
+
+ChatTop.defaultProps = {
+  title: null,
+};
+
 TopButton.propTypes = {
   iconClass: PropTypes.string,
   tip: PropTypes.string,
@@ -77,14 +99,6 @@ TopButton.propTypes = {
 TopButton.defaultProps = {
   iconClass: null,
   tip: null,
-};
-
-ChatTop.propTypes = {
-  title: PropTypes.string,
-};
-
-ChatTop.defaultProps = {
-  title: null,
 };
 
 export default ChatTop;

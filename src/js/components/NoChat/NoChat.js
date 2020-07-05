@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../../scss/components/NoChat/NoChat.scss';
 
 const NoChat = () => (
   <main className="no-chat">

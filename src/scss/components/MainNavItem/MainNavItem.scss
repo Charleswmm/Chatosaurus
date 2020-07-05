@@ -69,7 +69,8 @@
   }
 
   .nav-channel:hover ~ .tool-tip {
-    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
   }
 
   .nav-channel:hover ~ .pip {

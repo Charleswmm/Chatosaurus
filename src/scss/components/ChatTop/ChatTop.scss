@@ -32,12 +32,11 @@
   }
 
   .sm-tool-tip {
-    top: 3.2rem;
+    top: 3.3rem;
     right: 1.2rem;
   }
 
   .top-btn:hover ~ .sm-tool-tip {
-    transition: opacity 0.1s ease-in;
     visibility: visible;
     opacity: 1;
   }
@@ -53,7 +52,31 @@
   }
 
   .nav-text {
-    padding: 0 0.6rem;
+    padding: 0 0.7rem;
     @include typo(h2, 1.5rem);
+  }
+
+  .top-search {
+    display: flex;
+    border-radius: 0.4rem;
+    cursor: text;
+    background-color: $darker-shadow-grey;
+    padding: 0 0.5rem;
+    height: 2.4rem;
+    align-items: center;
+
+    .search-input{
+      width: 11rem;
+      background: none;
+      border: none;
+      @include typo(h4, 1.2rem);
+      filter: brightness(90%);
+    }
+
+    .svg-search {
+      filter: grayscale(100%) brightness(80%);
+      height: 1.6rem;
+      width: 1.6rem;
+    }
   }
 }

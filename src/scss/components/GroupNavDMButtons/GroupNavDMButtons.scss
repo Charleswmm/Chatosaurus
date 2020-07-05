@@ -36,8 +36,21 @@
     width: 1rem;
   }
 
-  .svg-plus:hover + .tool-tip {
-    transform: scale(1);
+  .svg-plus:hover + .sm-tool-tip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .sm-tool-tip {
+    top: -2.8rem;
+    right: 0.5rem;
+  }
+
+  .tool-tip-text {
+    text-transform: none;
+    @include typo(tt, 1.2rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
   }
 
   .nav-item-head {
@@ -54,20 +67,5 @@
 
   .nav-item-head:hover > :first-child {
     filter: brightness(150%);
-  }
-
-  .tool-tip::before {
-    bottom: -1rem;
-    left: 3.8rem;
-    transform: rotate(-90deg);
-  }
-
-  .tool-tip {
-    text-transform: none;
-    top: -26px;
-    right: -33px;
-    @include typo(tt, 1.2rem);
-    font-weight: 400;
-    letter-spacing: 0.06em;
   }
 }

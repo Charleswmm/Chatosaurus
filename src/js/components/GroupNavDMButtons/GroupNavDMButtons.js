@@ -84,7 +84,10 @@ class GroupNavDMButtons extends Component {
         <div className="nav-item nav-item-head">
           <div className="flex-grow">Direct Messages</div>
           <div className="svg svg-plus add-group-dm" onClick={this.addButtonClickHandler} />
-          <div className="tool-tip">Create DM</div>
+          <div className="sm-tool-tip">
+            <div className="tool-tip-text">Create DM</div>
+            <div className="tool-tip-arrow tool-tip-arrow-bot" />
+          </div>
         </div>
         <CreateGroupNavDMButtons
           buttons={this.getGroupNavDMButtons()}
