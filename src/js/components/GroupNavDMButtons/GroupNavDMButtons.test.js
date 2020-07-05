@@ -44,7 +44,7 @@ describe('GroupNavDMButtons', () => {
       </GlobalContext.Provider>,
     );
 
-    expect(wrapper.find('.svg-plus').hasClass('add-group-dm')).toBeTruthy();
+    expect(wrapper.find('.add-group-dm').exists()).toBeTruthy();
   });
 
   it('adds a new Direct message placeholder button, when I interact with the “add” button', () => {
