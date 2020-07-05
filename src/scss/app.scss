@@ -49,6 +49,36 @@
 .svg-no-chat {
     background-image: url("../img/no-channel.svg");
 }
+.svg-add {
+    background-image: url("../img/icons/add.svg");
+}
+.svg-dm {
+    background-image: url("../img/icons/add-dm.svg");
+}
+.svg-add-friend {
+    background-image: url("../img/icons/add-friend.svg");
+}
+.svg-gif {
+    background-image: url("../img/icons/gif.svg");
+}
+.svg-gift {
+    background-image: url("../img/icons/gift.svg");
+}
+.svg-inbox {
+    background-image: url("../img/icons/inbox.svg");
+}
+.svg-pin {
+    background-image: url("../img/icons/pin.svg");
+}
+.svg-video-call {
+    background-image: url("../img/icons/video-call.svg");
+}
+.svg-voice-call {
+    background-image: url("../img/icons/voice-call.svg");
+}
+.svg-help {
+    background-image: url("../img/icons/help.svg");
+}
 
 .background-brand-blue {
     background-color: $normal-brand-blue;
@@ -74,6 +104,7 @@
 }
 
 .tool-tip {
+    box-shadow: 4px 6px 15px -2px rgba(0, 0, 0, 0.5);
     position: absolute;
     z-index: 10;
     background-color: $hover-black;
@@ -81,7 +112,8 @@
     padding: 1rem;
     white-space: nowrap;
     transform: scale(0);
-    transition: transform 0.015s;
+    transition: all 0.02s cubic-bezier(1,0,0,1);
+    user-select: none;
 }
 
 .tool-tip::before {
@@ -92,6 +124,58 @@
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-right:10px solid $hover-black;
+}
+
+.sm-tool-tip {
+    box-shadow: 4px 6px 15px -2px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    background-color: $hover-black;
+    border-radius: 4px;
+    transform: translateX(50%);
+    visibility: hidden;
+    opacity: 0;
+
+    .tool-tip-text {
+        font-size: 1.2rem;
+        color: #ffffff;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+        margin: 1rem;
+        user-select: none;
+    }
+
+    .tool-tip-arrow {
+        position: relative;
+        width: 100%;
+        transform: translateX(-50%);
+    }
+
+    .tool-tip-arrow::before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+
+    .tool-tip-arrow-top::before {
+        top: -0.5rem;
+        right: -1rem;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom:10px solid $hover-black;
+    }
+
+    .tool-tip-arrow-bot::before {
+        top: 2rem;
+        right: 2rem;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top:10px solid $hover-black;
+    }
 }
 
 .nav-group {
