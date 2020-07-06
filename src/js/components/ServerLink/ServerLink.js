@@ -22,7 +22,10 @@ class ServerLink extends MainNavItem {
           <div className={this.contentClassNames()}>{this.titleInitials()}</div>
         </NavLink>
         <div className="pip" />
-        <div className="tool-tip">{this.title()}</div>
+        <div className="tool-tip">
+          <div className="tool-tip-arrow tool-tip-arrow-left" />
+          <div className="tool-tip-text tool-tip-text-lg">{this.title()}</div>
+        </div>
       </div>
     );
   }

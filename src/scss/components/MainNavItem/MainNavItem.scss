@@ -40,12 +40,6 @@
   .tool-tip {
     top: 6px;
     left: 80px;
-    @include typo(tt, 1.5rem);
-  }
-
-  .tool-tip::before {
-    top: 0.9rem;
-    left: -0.5rem;
   }
 
   .nav-channel:hover {
@@ -69,7 +63,8 @@
   }
 
   .nav-channel:hover ~ .tool-tip {
-    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
   }
 
   .nav-channel:hover ~ .pip {

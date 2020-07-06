@@ -7,6 +7,7 @@ import GroupNavDMButtons from './GroupNavDMButtons';
 
 describe('GroupNavDMButtons', () => {
   const fooConfiguration = {
+    homeRoute: '',
     groupNavDMButtons: [
       {
         id: 'foo',
@@ -24,7 +25,7 @@ describe('GroupNavDMButtons', () => {
 
   it('displays a “Direct messages” component in the secondary navigation', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinBaseRoute: foo, safeUpdate: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{ joinRoutePath: foo, safeUpdate: foo, Config: fooConfig }}>
         <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
           <GroupNavDMButtons />
         </MemoryRouter>
@@ -36,19 +37,19 @@ describe('GroupNavDMButtons', () => {
 
   it('displays an “add” button', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinBaseRoute: foo, safeUpdate: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{ joinRoutePath: foo, safeUpdate: foo, Config: fooConfig }}>
         <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
           <GroupNavDMButtons />
         </MemoryRouter>
       </GlobalContext.Provider>,
     );
 
-    expect(wrapper.find('.svg-plus').hasClass('add-group-dm')).toBeTruthy();
+    expect(wrapper.find('.add-group-dm').exists()).toBeTruthy();
   });
 
   it('adds a new Direct message placeholder button, when I interact with the “add” button', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinBaseRoute: foo, safeUpdate: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{ joinRoutePath: foo, safeUpdate: foo, Config: fooConfig }}>
         <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
           <GroupNavDMButtons />
         </MemoryRouter>
@@ -79,7 +80,7 @@ describe('GroupNavDMButtons', () => {
 
   it('removes the the DM component item, when I interact with the “remove” button', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinBaseRoute: foo, safeUpdate: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{ joinRoutePath: foo, safeUpdate: foo, Config: fooConfig }}>
         <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
           <GroupNavDMButtons />
         </MemoryRouter>

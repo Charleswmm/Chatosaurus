@@ -23,7 +23,7 @@ describe('AddServerButton', () => {
     const fooConfig = new Config(fooConfiguration);
 
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinBaseRoute: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{ joinRoutePath: foo, Config: fooConfig }}>
         <BrowserRouter>
           <AddServerButton />
         </BrowserRouter>

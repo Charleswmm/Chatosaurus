@@ -90,10 +90,13 @@ class MainNavItem extends Component {
     return (
       <div className="nav-item nav-item-server">
         <div className={this.channelClassNames()} style={this.backgroundImageStyle()}>
-          <div className={this.contentClassNames()}>{ this.titleInitials() }</div>
+          <div className={this.contentClassNames()}>{this.titleInitials()}</div>
         </div>
         <div className="pip" />
-        <div className="tool-tip">{ this.title() }</div>
+        <div className="tool-tip">
+          <div className="tool-tip-arrow tool-tip-arrow-left" />
+          <div className="tool-tip-text tool-tip-text-lg">{this.title()}</div>
+        </div>
       </div>
     );
   }

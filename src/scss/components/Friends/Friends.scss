@@ -1,0 +1,51 @@
+@import "../../utilities/typography";
+@import "../../variables";
+
+.nav-group-friends {
+
+  .nav-item-first {
+    margin: 0 0 0 0.8rem;
+  }
+
+  .svg-friend {
+    filter: brightness(50%);
+  }
+
+  .friends-divider {
+    background-color: $light-outline-grey;
+    width: 0.1rem;
+    height: 2.4rem;
+  }
+
+  .nav-subtext {
+    line-height: 2.4rem;
+    padding: 0.1rem 0.7rem;
+    font-size: 1.4rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    color: #b9bbbe;
+    background-color: $alt-neutral-shadow-grey;
+    user-select: none;
+    font-weight: 500;
+  }
+
+  .nav-subtext-green {
+    color: $text-white;
+    background-color: #43B581;
+  }
+
+  .nav-subtext:hover {
+    color: $hover-grey;
+    background-color: #393D44;
+  }
+
+  .nav-subtext-green:hover {
+    color: $text-white;
+    background-color: #43B581;
+  }
+
+  .nav-subtext-active {
+    color: $hover-white;
+    background-color: #3E4248;
+  }
+}

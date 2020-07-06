@@ -18,17 +18,65 @@
   .nav-item {
     display: flex;
     align-items: center;
+    margin: 0 0.8rem;
+    position: relative;
   }
 
-  .svg-people {
+  .top-btn {
+    filter: brightness(70%);
+    cursor: pointer;
+  }
+
+  .top-btn:hover {
+    filter: brightness(85%);
+  }
+
+  .tool-tip {
+    top: 3.3rem;
+    right: 1.2rem;
+  }
+
+  .top-btn:hover ~ .tool-tip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .svg {
     height: 2.4rem;
     width: 2.4rem;
+  }
+
+  .svg-people-grey {
     background-position: center;
     filter: brightness(50%);
   }
 
   .nav-text {
-    padding: 0 0.6rem;
+    padding: 0 0.7rem;
     @include typo(h2, 1.5rem);
+  }
+
+  .top-search {
+    display: flex;
+    border-radius: 0.4rem;
+    cursor: text;
+    background-color: $darker-shadow-grey;
+    padding: 0 0.5rem;
+    height: 2.4rem;
+    align-items: center;
+
+    .search-input{
+      width: 11rem;
+      background: none;
+      border: none;
+      @include typo(h4, 1.2rem);
+      filter: brightness(90%);
+    }
+
+    .svg-search {
+      filter: grayscale(100%) brightness(80%);
+      height: 1.6rem;
+      width: 1.6rem;
+    }
   }
 }

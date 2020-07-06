@@ -45,6 +45,39 @@ export default {
       backgroundColor: backgroundColorClassNames.avatarBlue,
     },
   ],
+  chatTopButtons: [
+    {
+      title: 'Start Voice Call',
+      iconClass: 'svg svg-voice-call',
+    },
+    {
+      title: 'Start Video Call',
+      iconClass: 'svg svg-video-call',
+    },
+    {
+      title: 'Pinned Messages',
+      iconClass: 'svg svg-pin',
+    },
+    {
+      title: 'Add Friends to DM',
+      iconClass: 'svg svg-add-friend',
+    },
+    {
+      title: 'Member List',
+      iconClass: 'svg svg-people',
+    },
+    {
+      type: 'search',
+    },
+    {
+      title: 'Inbox',
+      iconClass: 'svg svg-inbox',
+    },
+    {
+      title: 'Help',
+      iconClass: 'svg svg-help',
+    },
+  ],
   insertMainNavButtonsBeforeId: 'add-a-server',
   mainNavButtonPlaceholderImageSrc: placeHolderImage,
 };
