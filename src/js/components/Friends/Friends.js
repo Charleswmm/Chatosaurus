@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../../scss/components/Friends/Friends.scss';
-import { TopButton } from '../ChatTop/ChatTop';
+import { TopItem } from '../ChatTop/ChatTop';
 
 const Friends = () => (
   <main className="chat">
@@ -28,10 +28,10 @@ const Friends = () => (
             <div className="nav-subtext nav-subtext-green">Add Friend</div>
           </div>
           <div className="nav-item flex-grow" />
-          <TopButton tip="New Group DM" iconClass="svg svg-add-dm" />
+          <TopItem title="New Group DM" iconClass="svg svg-add-dm" />
           <div className="nav-item friends-divider" />
-          <TopButton tip="Inbox" iconClass="svg svg-inbox" />
-          <TopButton tip="Help" iconClass="svg svg-help" />
+          <TopItem title="Inbox" iconClass="svg svg-inbox" />
+          <TopItem title="Help" iconClass="svg svg-help" />
         </div>
       </nav>
     </div>

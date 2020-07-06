@@ -1,40 +1,7 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import '../../../scss/components/ChatTop/ChatTop.scss';
-
-const topButtons = [
-  {
-    iconClass: 'svg svg-voice-call',
-    tip: 'Start Voice Call',
-  },
-  {
-    iconClass: 'svg svg-video-call',
-    tip: 'Start Video Call',
-  },
-  {
-    iconClass: 'svg svg-pin',
-    tip: 'Pinned Messages',
-  },
-  {
-    iconClass: 'svg svg-add-friend',
-    tip: 'Add Friends to DM',
-  },
-  {
-    iconClass: 'svg svg-people',
-    tip: 'Member List',
-  },
-  {
-    search: true,
-  },
-  {
-    iconClass: 'svg svg-inbox',
-    tip: 'Inbox',
-  },
-  {
-    iconClass: 'svg svg-help',
-    tip: 'Help',
-  },
-];
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
 const ChatTop = (props) => {
   const { title } = props;
@@ -47,29 +14,35 @@ const ChatTop = (props) => {
             <div className="svg svg-people svg-people-grey" />
             <div className="nav-text">{title}</div>
           </div>
-          <TopButtons />
+          <TopItems />
         </div>
       </nav>
     </div>
   );
 };
 
-const TopButtons = () => topButtons.map(({ iconClass, tip, search }, index) => {
-  if (search) {
-    return <TopSearch key={index.toString()} />;
-  }
+const TopItems = () => {
+  const { Config } = useContext(GlobalContext);
+  const { chatTopButtons } = Config.get(['chatTopButtons']);
+  const searchType = 'search';
 
-  return <TopButton key={index.toString()} iconClass={iconClass} tip={tip} />;
-});
+  return chatTopButtons.map(({ iconClass, title, type }, index) => {
+    if (type === searchType) {
+      return <TopSearch key={index.toString()} />;
+    }
 
-export const TopButton = ({ iconClass, tip }) => (
+    return <TopItem key={index.toString()} iconClass={iconClass} title={title} />;
+  });
+};
+
+export const TopItem = ({ iconClass, title }) => (
   <div className="nav-item">
     <button className="top-btn" type="button">
       <div className={iconClass} />
     </button>
     <div className="tool-tip tool-tip-sm">
       <div className="tool-tip-arrow tool-tip-arrow-top" />
-      <div className="tool-tip-text">{tip}</div>
+      <div className="tool-tip-text">{title}</div>
     </div>
   </div>
 );
@@ -91,14 +64,14 @@ ChatTop.defaultProps = {
   title: null,
 };
 
-TopButton.propTypes = {
+TopItem.propTypes = {
   iconClass: PropTypes.string,
-  tip: PropTypes.string,
+  title: PropTypes.string,
 };
 
-TopButton.defaultProps = {
+TopItem.defaultProps = {
   iconClass: null,
-  tip: null,
+  title: null,
 };
 
 export default ChatTop;

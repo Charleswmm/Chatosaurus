@@ -1,23 +1,36 @@
 import { mount } from 'enzyme';
 import React from 'react';
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import Config from '../../utilities/Config';
 import ChatView from './ChatView';
+import configuration from '../../config/app';
 
 describe('ChatView', () => {
+  let fooConfig;
+
+  beforeEach(() => {
+    fooConfig = new Config(configuration);
+  });
+
   it('displays the top bar actions', () => {
     const wrapper = mount(
-      <ChatView />,
+      <GlobalContext.Provider value={{ Config: fooConfig }}>
+        <ChatView />
+      </GlobalContext.Provider>,
     );
 
     // Displays a top bar
     expect(wrapper.find('ChatTop').exists()).toBeTruthy();
 
     // Displays a top bar actions
-    expect(wrapper.find('TopButtons').exists()).toBeTruthy();
+    expect(wrapper.find('TopItems').exists()).toBeTruthy();
   });
 
   it('shows a tooltip that displays the action label', () => {
     const wrapper = mount(
-      <ChatView />,
+      <GlobalContext.Provider value={{ Config: fooConfig }}>
+        <ChatView />
+      </GlobalContext.Provider>,
     );
 
     const actionLabels = [
@@ -33,7 +46,7 @@ describe('ChatView', () => {
     // console.log(wrapper.debug());
 
     // Tooltip action label
-    const toolTipActionLabels = wrapper.find('TopButton').map((e) => e.props().tip);
+    const toolTipActionLabels = wrapper.find('TopItem').map((e) => e.props().title);
 
     expect(toolTipActionLabels).toEqual(actionLabels);
 

@@ -83,9 +83,9 @@ class GroupNavDMButtons extends Component {
       <div className="nav-subgroup nav-subgroup-dm">
         <div className="nav-item nav-item-head">
           <div className="flex-grow">Direct Messages</div>
-          <div className="add-group-dm" onClick={this.addButtonClickHandler}>
+          <button type="button" className="add-group-dm" onClick={this.addButtonClickHandler}>
             <div className="svg svg-plus" />
-          </div>
+          </button>
           <div className="tool-tip tool-tip-sm">
             <div className="tool-tip-text">Create DM</div>
             <div className="tool-tip-arrow tool-tip-arrow-bottom" />

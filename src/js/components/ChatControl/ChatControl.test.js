@@ -15,6 +15,11 @@ describe('ChatControl', () => {
         title: 'bar',
       },
     ],
+    chatTopButtons: [
+      {
+        id: foo,
+      },
+    ],
   };
 
   let fooConfig;
