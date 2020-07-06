@@ -17,7 +17,7 @@ import Config from './utilities/Config';
 function KitchenSink() {
   return (
     <BrowserRouter>
-      <GlobalContextWrapper Config={new Config(configuration)}>
+      <GlobalContextWrapper Config={new Config(cconfiguration)}>
         <div className="dishes">
           <GroupNavDMButton />
         </div>
@@ -28,7 +28,7 @@ function KitchenSink() {
             iconClassName=""
             imageSrc=""
             channelExtraClassNames={['nav-channel-blue']}
-            contentExtraClassNames={['']}
+            contentExtraClassNamess={['']}
             sort=""
           />
         </div>
