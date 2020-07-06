@@ -48,6 +48,7 @@
   },
   "scripts": {
     "test": "jest",
+    "lint": "eslint src",
     "build": "webpack --config webpack.dev.js",
     "watch": "webpack --watch --config webpack.dev.js",
     "build:prod": "webpack --config webpack.prod.js"
