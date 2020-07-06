@@ -14,7 +14,7 @@ import configuration from './config/kitchensink';
 import { GlobalContextWrapper } from './contexts/GlobalContextWrapper';
 import Config from './utilities/Config';
 
-function KitchenSink() {
+function KitchenSinks() {
   return (
     <BrowserRouter>
       <GlobalContextWrapper Config={new Config(cconfiguration)}>
@@ -28,7 +28,7 @@ function KitchenSink() {
             iconClassName=""
             imageSrc=""
             channelExtraClassNames={['nav-channel-blue']}
-            contentExtraClassNamess={['']}
+            contentExtraClassNames={['']}
             sort=""
           />
         </div>
