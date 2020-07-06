@@ -14,10 +14,10 @@ import configuration from './config/kitchensink';
 import { GlobalContextWrapper } from './contexts/GlobalContextWrapper';
 import Config from './utilities/Config';
 
-function KitchenSinks() {
+function KitchenSink() {
   return (
     <BrowserRouter>
-      <GlobalContextWrapper Config={new Config(cconfiguration)}>
+      <GlobalContextWrapper Config={new Config(configuration)}>
         <div className="dishes">
           <GroupNavDMButton />
         </div>
