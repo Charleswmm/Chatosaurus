@@ -28,7 +28,7 @@
   }
 
   .top-btn:hover {
-    filter: brightness(85%);
+    filter: brightness(88%);
   }
 
   .tool-tip {
@@ -65,12 +65,17 @@
     height: 2.4rem;
     align-items: center;
 
-    .search-input{
+    .search-input {
+      height: 1.6rem;
       width: 11rem;
       background: none;
       border: none;
       @include typo(h4, 1.2rem);
       filter: brightness(90%);
+    }
+
+    .search-input {
+      padding:0;
     }
 
     .svg-search {

@@ -30,8 +30,11 @@ body {
 }
 
 button,
+input,
+textarea,
 button:focus,
 button:active,
+input:focus,
 a:focus {
   border:none;
   background:none;

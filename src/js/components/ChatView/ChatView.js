@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import '../../../scss/components/ChatView/ChatView.scss';
+import ChatBody from '../ChatBody/ChatBody';
+import ChatFoot from '../ChatFoot/ChatFoot';
 import ChatTop from '../ChatTop/ChatTop';
 
 const ChatView = (props) => {
@@ -9,8 +11,8 @@ const ChatView = (props) => {
   return (
     <main className="chat">
       <ChatTop id={id} title={title} />
-      <div className="chat-body" />
-      <div className="chat-foot" />
+      <ChatBody title={title} />
+      <ChatFoot title={title} />
     </main>
   );
 };

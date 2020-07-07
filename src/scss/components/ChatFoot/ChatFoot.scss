@@ -1,0 +1,88 @@
+@import "../../utilities/typography";
+@import "../../variables";
+
+.chat-foot {
+  padding: 0 1.6rem;
+  flex: 0 0 auto;
+
+  .svg {
+    height: 2.4rem;
+    width: 2.4rem;
+    filter: brightness(70%);
+  }
+
+  .chat-foot-content {
+    margin-bottom: 1.2rem;
+    position: relative;
+    top: -8px;
+    left: 0;
+    border-radius: 0.8rem;
+    background-color: $lighter-shadow-grey;
+  }
+
+  .chat-form {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .chat-action {
+    position: relative;
+    padding: 0.4rem;
+    margin: 0.6rem 0.4rem;
+    cursor: pointer;
+  }
+
+  .chat-action:hover .svg {
+    filter: brightness(88%);
+  }
+
+  .chat-action:hover .svg-emoji {
+    filter: brightness(95%) grayscale(1);
+  }
+
+  .chat-action-attach {
+    padding: 1rem 1.6rem;
+    margin: 0;
+  }
+
+  .chat-action-gift:hover .tool-tip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .tool-tip {
+    top: -7.6rem;
+    left: 1.4rem;
+    transform: translateX(-50%);
+  }
+
+  .tool-tip-text {
+    width: 15.7rem;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .chat-textarea {
+    height: 2.2rem;
+    font-size: 1.5rem;
+    color: $light-text-grey;
+    resize: none;
+    margin: 1.1rem 1rem 1.1rem 0;
+    line-height: 2.2rem;
+    scrollbar-width: none;
+  }
+
+  .chat-textarea::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chat-textarea::placeholder {
+    color: $lightest-shadow-grey;
+  }
+
+  .svg-emoji {
+    filter: brightness(80%) grayscale(1);
+    background-size: 150%;
+    background-position: center;
+  }
+}

@@ -1,0 +1,15 @@
+@import "../../utilities/typography";
+@import "../../variables";
+
+.chat-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .chat-test {
+    height: 5rem;
+    width: 100%;
+    padding: 0 1.6rem;
+    font-size: 2rem;
+    color: #8e9297;
+  }
+}
