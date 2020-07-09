@@ -130,9 +130,38 @@ const ChatLogItem = (props) => {
         <div className="message-content">
           <div className="message-title">
             <div className="message-user">{name}</div>
-            <div className="message-time ">07/07/2020</div>
+            <div className="message-time">
+              <span>07/07/2020</span>
+              <div className="tool-tip tool-tip-sm">
+                <div className="tool-tip-text">Wednesday, July 8, 2020 10:09 AM</div>
+                <div className="tool-tip-arrow tool-tip-arrow-bottom" />
+              </div>
+            </div>
           </div>
           <div className="message-text">{message}</div>
+        </div>
+        <div className="message-actions">
+          <div className="message-action">
+            <div className="svg svg-reaction" />
+            <div className="tool-tip tool-tip-sm">
+              <div className="tool-tip-text">Add Reaction</div>
+              <div className="tool-tip-arrow tool-tip-arrow-bottom" />
+            </div>
+          </div>
+          <div className="message-action">
+            <div className="svg svg-edit" />
+            <div className="tool-tip tool-tip-sm">
+              <div className="tool-tip-text">Edit</div>
+              <div className="tool-tip-arrow tool-tip-arrow-bottom" />
+            </div>
+          </div>
+          <div className="message-action">
+            <div className="svg svg-more" />
+            <div className="tool-tip tool-tip-sm">
+              <div className="tool-tip-text">More</div>
+              <div className="tool-tip-arrow tool-tip-arrow-bottom" />
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -141,10 +170,39 @@ const ChatLogItem = (props) => {
   return (
     <div className="chat-log-item">
       <div className="message-tab">
-        <div className="message-time">10:09 AM</div>
+        <div className="message-time">
+          <span>10:09 AM</span>
+          <div className="tool-tip tool-tip-sm">
+            <div className="tool-tip-text">Wednesday, July 8, 2020 10:09 AM</div>
+            <div className="tool-tip-arrow tool-tip-arrow-bottom" />
+          </div>
+        </div>
       </div>
       <div className="message-content">
         <div className="message-text">{message}</div>
+      </div>
+      <div className="message-actions">
+        <div className="message-action">
+          <div className="svg svg-reaction" />
+          <div className="tool-tip tool-tip-sm">
+            <div className="tool-tip-text">Add Reaction</div>
+            <div className="tool-tip-arrow tool-tip-arrow-bottom" />
+          </div>
+        </div>
+        <div className="message-action">
+          <div className="svg svg-edit" />
+          <div className="tool-tip tool-tip-sm">
+            <div className="tool-tip-text">Edit</div>
+            <div className="tool-tip-arrow tool-tip-arrow-bottom" />
+          </div>
+        </div>
+        <div className="message-action">
+          <div className="svg svg-more" />
+          <div className="tool-tip tool-tip-sm">
+            <div className="tool-tip-text">More</div>
+            <div className="tool-tip-arrow tool-tip-arrow-bottom" />
+          </div>
+        </div>
       </div>
     </div>
   );
