@@ -15,9 +15,21 @@ const ChatControl = (props) => {
     return <NoChat />;
   }
 
-  const { id, title } = button;
+  const {
+    id,
+    title,
+    avatarSrc,
+    backgroundColor,
+  } = button;
 
-  return <ChatView id={id} title={title} />;
+  return (
+    <ChatView
+      id={id}
+      title={title}
+      avatarSrc={avatarSrc}
+      backgroundColor={backgroundColor}
+    />
+  );
 };
 
 ChatControl.propTypes = {

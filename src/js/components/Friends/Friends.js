@@ -35,7 +35,7 @@ const Friends = () => (
         </div>
       </nav>
     </div>
-    <div className="chat-body">
+    <div className="chat-body chat-body-friends">
       <div className="svg-wumpus" />
       <div className="wumpus-caption">No one&apos;s around to play with Wumpus.</div>
     </div>

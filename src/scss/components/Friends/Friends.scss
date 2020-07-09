@@ -1,6 +1,23 @@
 @import "../../utilities/typography";
 @import "../../variables";
 
+.chat-body.chat-body-friends {
+  align-items: center;
+  justify-content: center;
+
+  .svg-wumpus {
+    height: 218px;
+    width: 421px;
+    margin-bottom: 4rem;
+  }
+
+  .wumpus-caption {
+    text-align: center;
+    color: #72767d;
+    font-size: 1.5rem;
+  }
+}
+
 .nav-group-friends {
 
   .nav-item-first {

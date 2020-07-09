@@ -4,12 +4,139 @@
 .chat-body {
   overflow-y: auto;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 
-  .chat-test {
-    height: 5rem;
-    width: 100%;
-    padding: 0 1.6rem;
-    font-size: 2rem;
-    color: #8e9297;
+  .chat-log-spacer {
+    flex: 1 1 auto;
+  }
+
+  .chat-log-head {
+    padding: 1.6rem 1.6rem 0;
+    margin-bottom: 1.7rem;
+
+    .avatar {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 4rem;
+      height: 8rem;
+      width: 8rem;
+    }
+
+    .svg-people {
+      background-size: 50%;
+    }
+
+    .svg-discord {
+      background-color: $hover-black;
+    }
+
+    .log-head-title {
+      line-height: 4rem;
+      margin: 0.8rem 0;
+      @include typo(h1, 3rem);
+    }
+
+    .log-head-text {
+      line-height: 2rem;
+      @include typo(para, 1.5rem);
+    }
+  }
+
+  .chat-log-end {
+    min-height: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .chat-log-day {
+    .log-day-divider {
+      display: flex;
+      align-items: flex-end;
+      padding: 0 1.6rem;
+      margin: 0 0 0.8rem;
+
+      .divider {
+        flex: 1 1 auto;
+        height: 0.8rem;
+        border-top: 1px solid $light-outline-grey;
+      }
+
+      .date {
+        line-height: 1.7rem;
+        flex: 0 0 auto;
+        @include typo(cap, 1.2rem);
+        font-weight: 600;
+        margin: 0 0.4rem;
+      }
+    }
+  }
+
+  .chat-log-element {
+    margin-bottom: 1.7rem;
+  }
+
+  .chat-log-item {
+    display: flex;
+    padding: 0.2rem 0;
+
+    .avatar {
+      background-size: contain;
+      height: 4rem;
+      width: 4rem;
+      border-radius: 2rem;
+      margin: 0 auto;
+    }
+
+    .message-tab {
+      width: 7.2rem;
+      flex: 0 0 auto;
+
+      .message-time {
+        visibility: hidden;
+        user-select: none;
+      }
+    }
+
+    .message-time {
+      cursor: default;
+      padding-right: 1rem;
+      text-align: right;
+      line-height: 2.2rem;
+      @include typo(cap, 1.2rem);
+    }
+
+    .message-title {
+      display: flex;
+    }
+
+    .message-user {
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: 500;
+      line-height: 2.2rem;
+      cursor: pointer;
+      flex: 0 0 auto;
+      margin-right: 1rem;
+    }
+
+    .message-user:hover {
+      text-decoration: underline;
+    }
+
+    .message-text {
+      filter: brightness(90%);
+      line-height: 2.2rem;
+      @include typo(message, 1.5rem);
+      word-break: break-word;
+    }
+  }
+
+  .chat-log-item:hover {
+    background-color: $hover-dark-grey;
+
+    .message-tab .message-time {
+      visibility: visible;
+    }
   }
 }

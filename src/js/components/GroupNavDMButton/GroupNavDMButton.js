@@ -4,7 +4,7 @@ import '../../../scss/components/GroupNavDMButton/GroupNavDMButton.scss';
 import { NavLink } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
-const avatarClassNames = {
+export const avatarClassNames = {
   baseAvatar: 'avatar',
   noAvatar: 'svg-people',
   availableAvatar: 'svg-discord',

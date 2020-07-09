@@ -6,12 +6,21 @@ import ChatFoot from '../ChatFoot/ChatFoot';
 import ChatTop from '../ChatTop/ChatTop';
 
 const ChatView = (props) => {
-  const { id, title } = props;
+  const {
+    id,
+    title,
+    avatarSrc,
+    backgroundColor,
+  } = props;
 
   return (
     <main className="chat">
       <ChatTop id={id} title={title} />
-      <ChatBody title={title} />
+      <ChatBody
+        title={title}
+        avatarSrc={avatarSrc}
+        backgroundColor={backgroundColor}
+      />
       <ChatFoot title={title} />
     </main>
   );
@@ -20,11 +29,15 @@ const ChatView = (props) => {
 ChatView.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
+  avatarSrc: PropTypes.string,
+  backgroundColor: PropTypes.string,
 };
 
 ChatView.defaultProps = {
   id: null,
   title: null,
+  avatarSrc: null,
+  backgroundColor: null,
 };
 
 export default ChatView;

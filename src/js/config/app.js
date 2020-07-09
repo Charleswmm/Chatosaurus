@@ -3,6 +3,11 @@ import { backgroundColorClassNames } from '../components/GroupNavDMButton/GroupN
 import placeHolderImage from '../../img/discord-placeholder.png';
 
 export default {
+  userConfig:
+    {
+      name: 'User',
+      avatar: placeHolderImage,
+    },
   baseRoute: '/channels/',
   homeRoute: '@me',
   mainNavButtons: [
@@ -80,4 +85,14 @@ export default {
   ],
   insertMainNavButtonsBeforeId: 'add-a-server',
   mainNavButtonPlaceholderImageSrc: placeHolderImage,
+  chatLogPlaceholderText: [
+    'Suspendisse viverra, orci nec eleifend.',
+    'Ok',
+    'In ut lobortis nibh, non rutrum dolor. Vestibulum ante ipsum priimis in faucibus orci'
+    + ' luctus et ultrices posuere cubilia curae; Vivamus ut lectus egeet urna facilisis maximus'
+    + ' a sit amet ex. Cras nunc sem, consectetur vel nunc vel, tempor blandit quam.',
+    'Sed aliquam ipsum nec mauris consequat, id. ',
+    'Lamcorper mauris sed faucibus faucibus. Fusce et rutrum arcu. Suspendisse vitae malesuada'
+    + ' tellus. Aenean suscipit augue at justo viverra. ',
+  ],
 };
