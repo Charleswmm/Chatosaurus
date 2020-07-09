@@ -1,0 +1,137 @@
+@import "../../utilities/typography";
+@import "../../variables";
+
+.chat-log-item {
+  position: relative;
+  display: flex;
+  padding: 0.2rem 0;
+
+  .avatar {
+    background-size: contain;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 2rem;
+    margin: 0 auto;
+  }
+
+  .message-tab {
+    width: 7.2rem;
+    flex: 0 0 auto;
+
+    .message-time {
+      visibility: hidden;
+      user-select: none;
+    }
+  }
+
+  .message-time {
+    position: relative;
+    cursor: default;
+    padding-right: 1rem;
+    width: 7.2rem;
+    text-align: right;
+    line-height: 2.2rem;
+    @include typo(cap, 1.2rem);
+  }
+
+  .message-time:hover .tool-tip {
+    transition-delay: 1s;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .tool-tip {
+    transform: translateX(-50%);
+    top: -3.7rem;
+    left: 3.1rem;
+  }
+
+  .message-title {
+    display: flex;
+  }
+
+  .message-user {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 500;
+    line-height: 2.2rem;
+    cursor: pointer;
+    flex: 0 0 auto;
+    margin-right: 1rem;
+  }
+
+  .message-user:hover {
+    text-decoration: underline;
+  }
+
+  .message-text {
+    filter: brightness(90%);
+    line-height: 2.2rem;
+    @include typo(message, 1.5rem);
+    word-break: break-word;
+  }
+
+  .message-actions {
+    position: absolute;
+    right: 1.8rem;
+    top: -2.4rem;
+    display: flex;
+    background-color: #36393f;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px rgba(4,4,5,0.15);
+    user-select: none;
+    transition: box-shadow .1s ease-out;
+    visibility: hidden;
+    opacity: 0;
+
+    .tool-tip {
+      top: -4rem;
+      left: 1.6rem;
+    }
+  }
+
+  .message-action {
+    background-color: #36393f;
+    height: 3.2rem;
+    width: 3.2rem;
+    padding: 0.6rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .message-actions:hover {
+    box-shadow: 0 0 0 1px rgba(4,4,5,0.15),0 4px 4px rgba(0,0,0,0.16);
+  }
+
+  .message-action:hover {
+    filter: brightness(108%);
+
+    .svg {
+      filter: brightness(80%);
+    }
+
+    .tool-tip {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .svg {
+    height: 2rem;
+    width: 2rem;
+    filter: brightness(70%);
+  }
+}
+
+.chat-log-item:hover {
+  background-color: $hover-dark-grey;
+
+  .message-tab .message-time {
+    visibility: visible;
+  }
+
+  .message-actions {
+    visibility: visible;
+    opacity: 1;
+  }
+}
