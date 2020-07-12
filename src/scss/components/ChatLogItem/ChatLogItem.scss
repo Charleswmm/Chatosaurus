@@ -3,8 +3,7 @@
 
 .chat-log-item {
   position: relative;
-  display: flex;
-  padding: 0.2rem 0;
+  padding: 0.2rem 4.8rem 0.2rem 0;
 
   .avatar {
     background-size: contain;
@@ -25,25 +24,29 @@
   }
 
   .message-time {
-    position: relative;
     cursor: default;
     padding-right: 1rem;
-    width: 7.2rem;
     text-align: right;
     line-height: 2.2rem;
     @include typo(cap, 1.2rem);
   }
 
   .message-time:hover .tool-tip {
-    transition-delay: 1s;
+    transition-delay: 0.8s;
     visibility: visible;
     opacity: 1;
   }
 
+  .message-tool-tip {
+    position: relative;
+    transform: translateX(50%);
+    width: 100%;
+  }
+
   .tool-tip {
     transform: translateX(-50%);
-    top: -3.7rem;
-    left: 3.1rem;
+    top: -6rem;
+    left: 0;
   }
 
   .message-title {
@@ -58,6 +61,7 @@
     cursor: pointer;
     flex: 0 0 auto;
     margin-right: 1rem;
+    text-transform: capitalize;
   }
 
   .message-user:hover {
@@ -133,5 +137,30 @@
   .message-actions {
     visibility: visible;
     opacity: 1;
+  }
+}
+
+.chat-log-item-start {
+  margin-top: 1.7rem;
+}
+
+.chat-log-divider {
+  align-items: flex-end;
+  padding: 0 1.6rem;
+  margin-top: 1.5rem;
+
+  .log-divider-line {
+    flex: 1 1 auto;
+    height: 0.8rem;
+    border-top: 1px solid $light-outline-grey;
+  }
+
+  .log-divider-day {
+    line-height: 1.7rem;
+    flex: 0 0 auto;
+    @include typo(cap, 1.2rem);
+    font-weight: 600;
+    margin: 0 0.4rem;
+    cursor: default;
   }
 }

@@ -1,20 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import '../../../scss/components/ChatBody/ChatBody.scss';
-import ChatLogElements from '../ChatLogElements/ChatLogElements';
+import ChatLogControl from '../ChatLogControl/ChatLogControl';
 import { avatarClassNames } from '../GroupNavDMButton/GroupNavDMButton';
-
-/**
- * Placeholder function to give a random list of message Ids
- * @returns {string[]}
- */
-const randomMessageIds = () => {
-  const numberOfLines = Math.floor(Math.random() * 9);
-  const randomArray = [0, 1, 2, 3, 4, 0, 1, 2];
-  randomArray.sort(() => Math.random() - 0.5);
-  randomArray.splice(0, numberOfLines);
-  return randomArray.map(String);
-};
 
 const ChatBody = ({ title, avatarSrc, backgroundColor }) => {
   const refChatBody = useRef(null);
@@ -42,8 +30,8 @@ const ChatBody = ({ title, avatarSrc, backgroundColor }) => {
 
   return (
     <div className="chat-body" ref={refChatBody}>
-      <div className="chat-log-spacer" />
-      <div className="chat-log-head">
+      <div className="chat-log chat-log-spacer" />
+      <div className="chat-log chat-log-head">
         <div className={avatar()} />
         <div className="log-head-title">{title}</div>
         <div className="log-head-text">
@@ -51,29 +39,8 @@ const ChatBody = ({ title, avatarSrc, backgroundColor }) => {
           <strong>{` @${title}`}</strong>
         </div>
       </div>
-      <ChatLogDay />
-      <div className="chat-log-end" />
-    </div>
-  );
-};
-
-const ChatLogDay = () => {
-  const messageIds = randomMessageIds();
-
-  if (!Array.isArray(messageIds) || !messageIds.length) {
-    return (
-      <div className="chat-log-empty" />
-    );
-  }
-
-  return (
-    <div className="chat-log-day">
-      <div className="log-day-divider">
-        <div className="log-day-line" />
-        <div className="log-day-date">July 7, 2020</div>
-        <div className="log-day-line" />
-      </div>
-      <ChatLogElements messageIds={messageIds} />
+      <ChatLogControl />
+      <div className="chat-log chat-log-end" />
     </div>
   );
 };

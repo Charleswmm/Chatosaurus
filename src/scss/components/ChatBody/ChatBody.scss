@@ -7,13 +7,17 @@
   display: flex;
   flex-direction: column;
 
+  .chat-log {
+    display: flex;
+  }
+
   .chat-log-spacer {
     flex: 1 1 auto;
   }
 
   .chat-log-head {
     padding: 1.6rem 1.6rem 0;
-    margin-bottom: 1.7rem;
+    flex-direction: column;
 
     .avatar {
       background-size: contain;
@@ -45,31 +49,7 @@
   }
 
   .chat-log-end {
-    min-height: 1.4rem;
-    height: 1.4rem;
-  }
-
-  .chat-log-day {
-    .log-day-divider {
-      display: flex;
-      align-items: flex-end;
-      padding: 0 1.6rem;
-      margin: 0 0 0.8rem;
-
-      .log-day-line {
-        flex: 1 1 auto;
-        height: 0.8rem;
-        border-top: 1px solid $light-outline-grey;
-      }
-
-      .log-day-date {
-        line-height: 1.7rem;
-        flex: 0 0 auto;
-        @include typo(cap, 1.2rem);
-        font-weight: 600;
-        margin: 0 0.4rem;
-        cursor: default;
-      }
-    }
+    min-height: 2.8rem;
+    height: 2.8rem;
   }
 }

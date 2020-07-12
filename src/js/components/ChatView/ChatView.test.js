@@ -5,8 +5,15 @@ import Config from '../../utilities/Config';
 import ChatView from './ChatView';
 import configuration from '../../config/app';
 
+// Mocks react and overrides useEffect with a dummy function
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useEffect: () => null,
+}));
+
 describe('ChatView', () => {
   let fooConfig;
+  const foo = 'foo';
 
   beforeEach(() => {
     fooConfig = new Config(configuration);
@@ -15,7 +22,11 @@ describe('ChatView', () => {
   it('displays the top bar actions', () => {
     const wrapper = mount(
       <GlobalContext.Provider value={{ Config: fooConfig }}>
-        <ChatView />
+        <ChatView
+          title={foo}
+          avatarSrc={foo}
+          backgroundColor={foo}
+        />
       </GlobalContext.Provider>,
     );
 
@@ -24,38 +35,5 @@ describe('ChatView', () => {
 
     // Displays a top bar actions
     expect(wrapper.find('TopItems').exists()).toBeTruthy();
-  });
-
-  it('shows a tooltip that displays the action label', () => {
-    const wrapper = mount(
-      <GlobalContext.Provider value={{ Config: fooConfig }}>
-        <ChatView />
-      </GlobalContext.Provider>,
-    );
-
-    const actionLabels = [
-      'Start Voice Call',
-      'Start Video Call',
-      'Pinned Messages',
-      'Add Friends to DM',
-      'Member List',
-      'Inbox',
-      'Help',
-    ];
-
-    // console.log(wrapper.debug());
-
-    // Tooltip action label
-    const toolTipActionLabels = wrapper.find('TopItem').map((e) => e.props().title);
-
-    expect(toolTipActionLabels).toEqual(actionLabels);
-
-    // Tool tip display action text
-    const toolTipActionText = wrapper.find('.tool-tip-text').map((e) => e.text());
-
-    expect(toolTipActionText).toEqual(actionLabels);
-
-    // Search Action
-    expect(wrapper.find('TopSearch').exists()).toBeTruthy();
   });
 });
