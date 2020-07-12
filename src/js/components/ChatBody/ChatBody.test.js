@@ -65,10 +65,10 @@ describe('ChatBody', () => {
   });
 
   it('displays a  divider denoting the date', () => {
-    expect(wrapper.find('.chat-log-divider').exists()).toBeTruthy();
-    expect(wrapper.find('.log-divider-day').text()).toBeTruthy();
+    expect(wrapper.find('.chat-log-item-divider').exists()).toBeTruthy();
+    expect(wrapper.find('.log-divider-date').text()).toBeTruthy();
 
-    const dividerDate = wrapper.find('.log-divider-day').text();
+    const dividerDate = wrapper.find('.log-divider-date').text();
 
     const fooDate = new Date(fooTimeStamp);
     fooDate.setHours(0, 0, 0, 0);

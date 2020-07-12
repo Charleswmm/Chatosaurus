@@ -1,7 +1,7 @@
 @import "../../utilities/typography";
 @import "../../variables";
 
-.chat-log-item {
+.chat-log-item-message {
   position: relative;
   padding: 0.2rem 4.8rem 0.2rem 0;
 
@@ -127,7 +127,7 @@
   }
 }
 
-.chat-log-item:hover {
+.chat-log-item-message:hover {
   background-color: $hover-dark-grey;
 
   .message-tab .message-time {
@@ -144,7 +144,7 @@
   margin-top: 1.7rem;
 }
 
-.chat-log-divider {
+.chat-log-item-divider {
   align-items: flex-end;
   padding: 0 1.6rem;
   margin-top: 1.5rem;
@@ -155,7 +155,7 @@
     border-top: 1px solid $light-outline-grey;
   }
 
-  .log-divider-day {
+  .log-divider-date {
     line-height: 1.7rem;
     flex: 0 0 auto;
     @include typo(cap, 1.2rem);

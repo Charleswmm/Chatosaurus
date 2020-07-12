@@ -7,15 +7,15 @@
   display: flex;
   flex-direction: column;
 
-  .chat-log {
+  .chat-log-item {
     display: flex;
   }
 
-  .chat-log-spacer {
+  .chat-log-item-spacer {
     flex: 1 1 auto;
   }
 
-  .chat-log-head {
+  .chat-log-item-head {
     padding: 1.6rem 1.6rem 0;
     flex-direction: column;
 
@@ -48,7 +48,7 @@
     }
   }
 
-  .chat-log-end {
+  .chat-log-item-end {
     min-height: 2.8rem;
     height: 2.8rem;
   }

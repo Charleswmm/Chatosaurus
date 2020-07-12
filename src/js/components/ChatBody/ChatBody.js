@@ -30,8 +30,8 @@ const ChatBody = ({ title, avatarSrc, backgroundColor }) => {
 
   return (
     <div className="chat-body" ref={refChatBody}>
-      <div className="chat-log chat-log-spacer" />
-      <div className="chat-log chat-log-head">
+      <div className="chat-log-item chat-log-item-spacer" />
+      <div className="chat-log-item chat-log-item-head">
         <div className={avatar()} />
         <div className="log-head-title">{title}</div>
         <div className="log-head-text">
@@ -40,7 +40,7 @@ const ChatBody = ({ title, avatarSrc, backgroundColor }) => {
         </div>
       </div>
       <ChatLogControl />
-      <div className="chat-log chat-log-end" />
+      <div className="chat-log-item chat-log-item-end" />
     </div>
   );
 };

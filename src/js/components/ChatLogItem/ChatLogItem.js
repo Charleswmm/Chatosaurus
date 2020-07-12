@@ -62,7 +62,7 @@ const formatTimeStamp = (timeStamp) => {
 };
 
 const ChatLogItem = ({ timeStamp, body }) => (
-  <div className="chat-log chat-log-item">
+  <div className="chat-log-item chat-log-item-message">
     <div className="message-tab">
       <div className="message-time">
         <span>{formatTime(timeStamp)}</span>
@@ -87,7 +87,7 @@ export const ChatLogItemStart = (props) => {
   } = props;
 
   return (
-    <div className="chat-log chat-log-item chat-log-item-start">
+    <div className="chat-log-item chat-log-item-message chat-log-item-start">
       <div className="message-tab">
         <div className="avatar" style={{ backgroundImage: `url(${avatarSrc})` }} />
       </div>
@@ -112,9 +112,9 @@ export const ChatLogItemStart = (props) => {
 };
 
 export const ChatLogItemDateDivider = ({ timeStamp }) => (
-  <div className="chat-log chat-log-divider">
+  <div className="chat-log-item chat-log-item-divider">
     <div className="log-divider-line" />
-    <div className="log-divider-day">{formatDividerDate(timeStamp)}</div>
+    <div className="log-divider-date">{formatDividerDate(timeStamp)}</div>
     <div className="log-divider-line" />
   </div>
 );
