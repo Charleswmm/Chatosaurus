@@ -4,13 +4,12 @@ import ChatLogItem, { ChatLogItemDateDivider, ChatLogItemStart } from '../ChatLo
 
 const ChatLogControl = () => {
   const { Config } = useContext(GlobalContext);
-  const config = Config.get(['messageLog', 'currentUser', 'initialTimeStamp']);
-  const { messageLog, currentUser, initialTimeStamp } = config;
+  const config = Config.get(['messageLog', 'currentUser']);
+  const { messageLog, currentUser } = config;
   const { UserName, avatar } = currentUser;
-  let prevTimeStamp = new Date(initialTimeStamp);
 
-  // The interval in minutes in which how the chat log will be grouped
-  const chatLogGroupInterval = 10;
+  // The interval in seconds in which how the chat log will be grouped
+  const chatLogGroupInterval = 600;
 
   if (!messageLog) {
     // eslint-disable-next-line no-console
@@ -42,12 +41,21 @@ const ChatLogControl = () => {
   /**
    * Push a new divider object into the message log where required
    */
-  messageLog.forEach((messageData) => {
+  messageLog.forEach((messageData, index) => {
     const { timeStamp } = messageData;
+    let prevTimeStamp = 0;
+
+    if (index) {
+      prevTimeStamp = messageLog[index - 1].timeStamp;
+    }
+
     const logItemDate = new Date(timeStamp);
     logItemDate.setHours(0, 0, 0, 0);
 
-    if (logItemDate > prevTimeStamp) {
+    const prevDate = new Date(prevTimeStamp);
+    prevDate.setHours(0, 0, 0, 0);
+
+    if (logItemDate > prevDate) {
       alteredMessageLog.push({
         divider: true,
         timeStamp: logItemDate.toISOString(),
@@ -55,10 +63,7 @@ const ChatLogControl = () => {
     }
 
     alteredMessageLog.push(messageData);
-    prevTimeStamp = logItemDate;
   });
-
-  prevTimeStamp = new Date(initialTimeStamp);
 
   return alteredMessageLog.map((messageData, index) => {
     const {
@@ -74,12 +79,17 @@ const ChatLogControl = () => {
       );
     }
 
-    const timeStampDateObj = new Date(timeStamp);
+    let prevTimeStamp = 0;
 
-    if (prevTimeStamp < timeStampDateObj) {
-      timeStampDateObj.setMinutes(timeStampDateObj.getMinutes() + chatLogGroupInterval);
-      prevTimeStamp = timeStampDateObj;
+    if (index) {
+      prevTimeStamp = alteredMessageLog[index - 1].timeStamp;
+    }
 
+    const logItemDate = new Date(timeStamp);
+    const prevDateTime = new Date(prevTimeStamp);
+    const breakPoint = new Date(prevDateTime.getTime() + chatLogGroupInterval * 1000);
+
+    if (logItemDate > breakPoint) {
       const avatarSrc = UserName === name ? avatar : null;
 
       return (
@@ -92,9 +102,6 @@ const ChatLogControl = () => {
         />
       );
     }
-
-    timeStampDateObj.setMinutes(timeStampDateObj.getMinutes() + chatLogGroupInterval);
-    prevTimeStamp = timeStampDateObj;
 
     return (
       <ChatLogItem

@@ -2,6 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import '../../../scss/components/ChatLogItem/ChatLogItem.scss';
 
+/**
+ * Formats a ISO string to "Tuesday, July 7, 2020"
+ * @param timeStamp
+ * @returns {string}
+ */
 const formatDate = (timeStamp) => new Date(timeStamp).toLocaleDateString('en-US', {
   weekday: 'long',
   month: 'long',
@@ -9,17 +14,32 @@ const formatDate = (timeStamp) => new Date(timeStamp).toLocaleDateString('en-US'
   year: 'numeric',
 });
 
+/**
+ * Formats a ISO string to "07:15 PM"
+ * @param timeStamp
+ * @returns {string}
+ */
 const formatTime = (timeStamp) => new Date(timeStamp).toLocaleTimeString('en-US', {
   hour: '2-digit',
   minute: '2-digit',
 });
 
+/**
+ * Formats a ISO string to "July 7, 2020"
+ * @param timeStamp
+ * @returns {string}
+ */
 const formatDividerDate = (timeStamp) => new Date(timeStamp).toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric',
   year: 'numeric',
 });
 
+/**
+ * Formats a ISO string depending on today's time
+ * @param timeStamp
+ * @returns {string}
+ */
 const formatTimeStamp = (timeStamp) => {
   const todayDate = new Date();
   const logItemTimeStamp = new Date(timeStamp);

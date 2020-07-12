@@ -106,7 +106,6 @@ export default {
     + ' tellus. Aenean suscipit augue at justo viverra. ',
     'Luctus et ultrices posuere cubilia curae.',
   ],
-  initialTimeStamp: '2000-01-01T00:00:00',
   messageLogTemplate:
     {
       name: 'pytho',

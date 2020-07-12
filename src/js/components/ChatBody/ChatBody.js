@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../../../scss/components/ChatBody/ChatBody.scss';
 import ChatLogControl from '../ChatLogControl/ChatLogControl';
 import { avatarClassNames } from '../GroupNavDMButton/GroupNavDMButton';

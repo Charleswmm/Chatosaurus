@@ -3,7 +3,6 @@ import React from 'react';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import Config from '../../utilities/Config';
 import ChatView from './ChatView';
-import configuration from '../../config/app';
 
 // Mocks react and overrides useEffect with a dummy function
 jest.mock('react', () => ({
@@ -12,24 +11,41 @@ jest.mock('react', () => ({
 }));
 
 describe('ChatView', () => {
-  let fooConfig;
   const foo = 'foo';
 
-  beforeEach(() => {
-    fooConfig = new Config(configuration);
-  });
+  const fooConfiguration = {
+    currentUser:
+      {
+        UserName: 'foo',
+        avatar: 'foo',
+      },
+    messageLog: [
+      {
+        name: 'foo',
+        timeStamp: '2000-01-01T00:00:00',
+        body: 'foo',
+      },
+    ],
+    chatTopButtons: [
+      {
+        title: 'foo',
+        iconClass: 'foo',
+      },
+    ],
+  };
+
+  const fooConfig = new Config(fooConfiguration);
+  const wrapper = mount(
+    <GlobalContext.Provider value={{ Config: fooConfig }}>
+      <ChatView
+        title={foo}
+        avatarSrc={foo}
+        backgroundColor={foo}
+      />
+    </GlobalContext.Provider>,
+  );
 
   it('displays the top bar actions', () => {
-    const wrapper = mount(
-      <GlobalContext.Provider value={{ Config: fooConfig }}>
-        <ChatView
-          title={foo}
-          avatarSrc={foo}
-          backgroundColor={foo}
-        />
-      </GlobalContext.Provider>,
-    );
-
     // Displays a top bar
     expect(wrapper.find('ChatTop').exists()).toBeTruthy();
 
