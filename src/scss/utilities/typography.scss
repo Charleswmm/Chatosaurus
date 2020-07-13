@@ -8,12 +8,13 @@ $h4-color: #8e9297;
 $h5-color: #72767d;
 $para-color: #b9bbbe;
 $cap-color: #72767d;
-$tt-color: #ffffff; //Tool tip`
+$tt-color: #ffffff; //Tool tip
 
 @mixin typo($type, $size) {
   @if $type == h1 {
     font-size: $size;
     color: $h1-color;
+    font-weight: 700;
 
   } @else if $type == h2 {
     font-size: $size;
@@ -49,6 +50,11 @@ $tt-color: #ffffff; //Tool tip`
     font-size: $size;
     color: $tt-color;
     font-weight: 600;
+
+  } @else if $type == message {
+    font-size: $size;
+    color: $h2-color;
+    font-weight: 400;
 
   }
 }

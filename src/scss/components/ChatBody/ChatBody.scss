@@ -1,0 +1,55 @@
+@import "../../utilities/typography";
+@import "../../variables";
+
+.chat-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .chat-log-item {
+    display: flex;
+  }
+
+  .chat-log-item-spacer {
+    flex: 1 1 auto;
+  }
+
+  .chat-log-item-head {
+    padding: 1.6rem 1.6rem 0;
+    flex-direction: column;
+
+    .avatar {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 4rem;
+      height: 8rem;
+      width: 8rem;
+    }
+
+    .svg-people {
+      background-size: 50%;
+    }
+
+    .svg-discord {
+      background-color: $hover-black;
+    }
+
+    .log-head-title {
+      line-height: 4rem;
+      margin: 0.8rem 0;
+      @include typo(h1, 3rem);
+    }
+
+    .log-head-text {
+      line-height: 2rem;
+      @include typo(para, 1.5rem);
+    }
+  }
+
+  .chat-log-item-end {
+    min-height: 2.8rem;
+    height: 2.8rem;
+  }
+}

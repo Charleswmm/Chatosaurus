@@ -1,8 +1,23 @@
 import { uiClassNames, iconClassNames } from '../components/MainNavItem/MainNavItem';
 import { backgroundColorClassNames } from '../components/GroupNavDMButton/GroupNavDMButton';
-import placeHolderImage from '../../img/discord-placeholder.png';
+import placeHolderAvatar from '../../img/discord-placeholder.png';
 
 export default {
+  currentUser:
+    {
+      userName: 'pytho',
+      avatar: placeHolderAvatar,
+    },
+  users: [
+    {
+      userName: 'pytho',
+      avatar: placeHolderAvatar,
+    },
+    {
+      userName: 'jakx',
+      avatar: placeHolderAvatar,
+    },
+  ],
   baseRoute: '/channels/',
   homeRoute: '@me',
   mainNavButtons: [
@@ -79,5 +94,29 @@ export default {
     },
   ],
   insertMainNavButtonsBeforeId: 'add-a-server',
-  mainNavButtonPlaceholderImageSrc: placeHolderImage,
+  mainNavButtonPlaceholderImageSrc: placeHolderAvatar,
+  chatLogPlaceholderText: [
+    'Suspendisse viverra, orci nec eleifend.',
+    'Ok',
+    'In ut lobortis nibh, non rutrum dolor. Vestibulum ante ipsum priimis in faucibus orci'
+    + ' luctus et ultrices posuere cubilia curae; Vivamus ut lectus egeet urna facilisis maximus'
+    + ' a sit amet ex. Cras nunc sem, consectetur vel nunc vel, tempor blandit quam.',
+    'Sed aliquam ipsum nec mauris consequat, id. ',
+    'Lamcorper mauris sed faucibus faucibus. Fusce et rutrum arcu. Suspendisse vitae malesuada'
+    + ' tellus. Aenean suscipit augue at justo viverra. ',
+    'Luctus et ultrices posuere cubilia curae.',
+  ],
+  messageLogTemplate:
+    {
+      name: 'pytho',
+      timeStamp: '2020-07-07T19:15:30',
+      body: 'The random messages are not working',
+    },
+  messageLog: [
+    {
+      name: 'pytho',
+      timeStamp: '2020-07-07T19:15:30',
+      body: 'The Randomizer is not working',
+    },
+  ],
 };

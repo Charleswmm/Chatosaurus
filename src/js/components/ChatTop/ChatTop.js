@@ -50,7 +50,7 @@ export const TopItem = ({ iconClass, title }) => (
 const TopSearch = () => (
   <div className="nav-item">
     <div className="top-search">
-      <input className="search-input" type="text" name="search" defaultValue="Search" />
+      <input className="search-input" type="text" name="search" placeholder="Search" />
       <div className="svg svg-search" />
     </div>
   </div>

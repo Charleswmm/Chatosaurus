@@ -21,7 +21,47 @@ export class GlobalContextWrapper extends Component {
     this.func = {
       joinRoutePath: this.joinRoutePath,
       safeUpdate: this.safeUpdate,
+      createRandomMessageLog: this.createRandomMessageLog,
     };
+  }
+
+  /**
+   * Placeholder function that creates a random message log
+   * @returns {any[]}
+   */
+  createRandomMessageLog = () => {
+    const { Config } = this.props;
+    const config = Config.get(['messageLogTemplate', 'chatLogPlaceholderText']);
+    const { messageLogTemplate, chatLogPlaceholderText } = config;
+
+    const numberOfMessages = 12;
+
+    const numberOfLines = Math.floor(Math.random() * numberOfMessages);
+    const randomArrayLength = new Array(numberOfLines).fill(0);
+    const randomArray = randomArrayLength.map(() => Math.floor(Math.random() * 6));
+
+    const numberOfDays = randomArray.length < (numberOfMessages / 2)
+      ? (numberOfMessages / 6)
+      : (numberOfMessages / 4);
+    const numberOfMinutes = randomArray.length < (numberOfMessages / 2) ? 12 : 24;
+
+    const newRandomMessageLog = randomArray.map((e) => {
+      const randomDay = Math.floor(Math.random() * numberOfDays);
+      const randomMinutes = Math.floor(Math.random() * numberOfMinutes + 1);
+
+      const theTime = new Date();
+      theTime.setDate(theTime.getDate() - randomDay);
+      theTime.setMinutes(theTime.getMinutes() - randomMinutes);
+      const newTime = theTime.toISOString();
+
+      return {
+        ...messageLogTemplate,
+        timeStamp: newTime,
+        body: chatLogPlaceholderText[e],
+      };
+    });
+
+    Config.set({ messageLog: newRandomMessageLog });
   }
 
   /**

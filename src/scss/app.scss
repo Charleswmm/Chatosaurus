@@ -82,6 +82,18 @@
 .svg-add-dm {
     background-image: url("../img/icons/add-dm.svg");
 }
+.svg-emoji {
+    background-image: url("../img/icons/emoji.svg");
+}
+.svg-edit {
+    background-image: url("../img/icons/edit.svg");
+}
+.svg-more {
+    background-image: url("../img/icons/more.svg");
+}
+.svg-reaction {
+    background-image: url("../img/icons/reaction.svg");
+}
 
 .background-brand-blue {
     background-color: $normal-brand-blue;
@@ -108,6 +120,13 @@
 
 .tool-tip-sm {
     transform: translateX(50%);
+
+    .tool-tip-text {
+        font-size: 1.2rem;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        line-height: 1.2rem;
+    }
 }
 
 .tool-tip {
@@ -134,10 +153,7 @@
     }
 
     .tool-tip-text {
-        font-size: 1.2rem;
         color: #ffffff;
-        font-weight: 400;
-        letter-spacing: 0.06em;
         white-space: nowrap;
         margin: 1rem;
         user-select: none;
