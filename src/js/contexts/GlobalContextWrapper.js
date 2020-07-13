@@ -36,7 +36,7 @@ export class GlobalContextWrapper extends Component {
 
     const numberOfMessages = 12;
 
-    const numberOfLines = Math.floor(Math.random() * numberOfMessages + 1);
+    const numberOfLines = Math.floor(Math.random() * numberOfMessages);
     const randomArrayLength = new Array(numberOfLines).fill(0);
     const randomArray = randomArrayLength.map(() => Math.floor(Math.random() * 6));
 

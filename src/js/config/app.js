@@ -5,16 +5,16 @@ import placeHolderAvatar from '../../img/discord-placeholder.png';
 export default {
   currentUser:
     {
-      UserName: 'pytho',
+      userName: 'pytho',
       avatar: placeHolderAvatar,
     },
   users: [
     {
-      UserName: 'pytho',
+      userName: 'pytho',
       avatar: placeHolderAvatar,
     },
     {
-      UserName: 'jakx',
+      userName: 'jakx',
       avatar: placeHolderAvatar,
     },
   ],

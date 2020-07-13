@@ -6,7 +6,7 @@ const ChatLogControl = () => {
   const { Config } = useContext(GlobalContext);
   const config = Config.get(['messageLog', 'currentUser']);
   const { messageLog, currentUser } = config;
-  const { UserName, avatar } = currentUser;
+  const { userName, avatar } = currentUser;
 
   // The interval in seconds in which how the chat log will be grouped
   const chatLogGroupInterval = 600;
@@ -17,7 +17,7 @@ const ChatLogControl = () => {
     return <div className="no-message-log" />;
   }
 
-  if (!messageLog.length) {
+  if (messageLog.length < 1) {
     return (
       <div className="chat-log-empty" />
     );
@@ -90,7 +90,7 @@ const ChatLogControl = () => {
     const breakPoint = new Date(prevDateTime.getTime() + chatLogGroupInterval * 1000);
 
     if (logItemDate > breakPoint) {
-      const avatarSrc = UserName === name ? avatar : null;
+      const avatarSrc = userName === name ? avatar : null;
 
       return (
         <ChatLogItemStart

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 import '../../../scss/components/ChatBody/ChatBody.scss';
 import ChatLogControl from '../ChatLogControl/ChatLogControl';
-import { avatarClassNames } from '../GroupNavDMButton/GroupNavDMButton';
+import { avatarClassNames as avatarClasses } from '../GroupNavDMButton/GroupNavDMButton';
 
 const ChatBody = ({ title, avatarSrc, backgroundColor }) => {
   const refChatBody = useRef(null);
@@ -19,8 +19,8 @@ const ChatBody = ({ title, avatarSrc, backgroundColor }) => {
    * Resolves classes for the avatar
    * @returns {string}
    */
-  const avatar = () => {
-    const { baseAvatar, noAvatar, availableAvatar } = avatarClassNames;
+  const avatarClassNames = () => {
+    const { baseAvatar, noAvatar, availableAvatar } = avatarClasses;
 
     if (!avatarSrc) {
       return [baseAvatar, noAvatar, backgroundColor].join(' ');
@@ -32,11 +32,11 @@ const ChatBody = ({ title, avatarSrc, backgroundColor }) => {
     <div className="chat-body" ref={refChatBody}>
       <div className="chat-log-item chat-log-item-spacer" />
       <div className="chat-log-item chat-log-item-head">
-        <div className={avatar()} />
+        <div className={avatarClassNames()} />
         <div className="log-head-title">{title}</div>
         <div className="log-head-text">
-          This is the beginning of your direct message history with
-          <strong>{` @${title}`}</strong>
+          This is the beginning of your direct message history with&nbsp;
+          <strong>{`@${title}`}</strong>
         </div>
       </div>
       <ChatLogControl />
