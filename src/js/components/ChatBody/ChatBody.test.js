@@ -16,7 +16,7 @@ describe('ChatBody', () => {
   const fooConfiguration = {
     currentUser:
     {
-      UserName: 'foo',
+      userName: 'foo',
       avatar: 'foo',
     },
     initialTimeStamp: '2000-01-01T00:00:00',
