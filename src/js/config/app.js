@@ -6,6 +6,7 @@ export default {
   currentUser:
     {
       userName: 'pytho',
+      userNameSuffix: '1234',
       avatar: placeHolderAvatar,
     },
   users: [

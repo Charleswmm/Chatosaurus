@@ -1,0 +1,91 @@
+@import "../../utilities/typography";
+@import "../../variables";
+
+.user-control-panel {
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+  .svg {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .tool-tip {
+    transform: translateX(-50%);
+    top: -4rem;
+    left: 1.6rem;
+  }
+
+  .user-control-avatar {
+    background-size: contain;
+    height: 3.2rem;
+    width: 3.2rem;
+    cursor: pointer;
+  }
+
+  .user-control-avatar:hover {
+    filter: brightness(85%);
+  }
+
+  .user-control-title {
+    position: relative;
+    flex: 1 1 auto;
+    height: 3.2rem;
+    min-width: 0;
+    cursor: pointer;
+    margin: 0 0.4rem 0 0.8rem;
+
+    .tool-tip {
+      top: -4rem;
+      left: 3.4rem;
+    }
+  }
+
+  .user-control-title:hover {
+    .tool-tip {
+      transition-delay: 0.8s;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .user-control-text {
+    line-height: 1.8rem;
+    text-transform: capitalize;
+    font-size: 1.3rem;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .user-control-subtext {
+    line-height: 1.3rem;
+    @include typo(para, 1.2rem)
+  }
+
+  .user-control-actions {
+    display: flex;
+  }
+
+  .user-control-action {
+    position: relative;
+    height: 3.2rem;
+    width: 3.2rem;
+    padding: 0.6rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .user-control-action:hover {
+    background-color: rgba(79,84,92,0.32);
+
+    .svg {
+      filter: brightness(120%);
+    }
+
+    .tool-tip {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

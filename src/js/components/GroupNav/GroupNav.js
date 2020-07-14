@@ -4,6 +4,7 @@ import '../../../scss/components/GroupNav/GroupNav.scss';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import { btnClasses } from '../GroupNavDMButton/GroupNavDMButton';
 import GroupNavDMButtons from '../GroupNavDMButtons/GroupNavDMButtons';
+import UserControlPanel from '../UserControlPanel/UserControlPanel';
 
 function GroupNav() {
   const { joinRoutePath } = useContext(GlobalContext);
@@ -38,7 +39,7 @@ function GroupNav() {
         <GroupNavDMButtons />
       </div>
       <div className="nav-group nav-group-foot">
-        <div className="nav-foot" />
+        <UserControlPanel />
       </div>
     </div>
   );
