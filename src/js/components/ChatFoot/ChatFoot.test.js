@@ -26,7 +26,12 @@ describe('ChatFoot', () => {
   const fooConfig = new Config(fooConfiguration);
 
   const wrapper = mount(
-    <GlobalContext.Provider value={{ Config: fooConfig, state: { [foo]: { chatInput: foo } }, setChatInputState: bar }}>
+    <GlobalContext.Provider value={{
+      Config: fooConfig,
+      state: { [foo]: { chatInput: foo } },
+      setChatInputState: bar,
+    }}
+    >
       <ChatFoot id={foo} title={foo} />
     </GlobalContext.Provider>,
   );
@@ -44,6 +49,9 @@ describe('ChatFoot', () => {
     wrapper.find('textarea').simulate('change', { target: { value: foo } });
 
     expect(baz).toEqual(foo);
+  });
+
+  it('has my incomplete message still preserved in the DM input', () => {
     expect(wrapper.find('textarea').prop('value')).toEqual(foo);
   });
 
