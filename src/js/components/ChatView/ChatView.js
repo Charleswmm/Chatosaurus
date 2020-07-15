@@ -21,7 +21,7 @@ const ChatView = (props) => {
         avatarSrc={avatarSrc}
         backgroundColor={backgroundColor}
       />
-      <ChatFoot title={title} />
+      <ChatFoot id={id} title={title} />
     </main>
   );
 };

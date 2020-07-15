@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import '../../../scss/components/ChatFoot/ChatFoot.scss';
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
 const ChatFoot = (props) => {
-  const { title } = props;
+  const { id, title } = props;
 
   return (
     <div className="chat-foot">
@@ -12,7 +13,7 @@ const ChatFoot = (props) => {
           <button className="chat-action chat-action-attach" type="button">
             <div className="svg svg-add" />
           </button>
-          <ChatInput title={title} />
+          <ChatInput id={id} title={title} />
           <button className="chat-action chat-action-gift" type="button">
             <div className="tool-tip tool-tip-sm">
               <div className="tool-tip-text">
@@ -35,24 +36,28 @@ const ChatFoot = (props) => {
 };
 
 const ChatInput = (props) => {
-  const { title } = props;
-  const maxInputHeight = 132;
+  const { id, title } = props;
+  const { state, setChatInputState } = useContext(GlobalContext);
   const refInput = useRef(null);
-  const [inputState, setInputState] = useState({
-    chatInput: '',
-    currentInputHeight: 22,
-  });
-  const { chatInput, currentInputHeight } = inputState;
+
+  const maxInputHeight = 132;
+  let chatInput = '';
+  let currentInputHeight = 22;
+
+  if (state[id]) {
+    chatInput = state[id].chatInput;
+  }
+
+  if (state[id]) {
+    currentInputHeight = state[id].currentInputHeight;
+  }
 
   /**
    * Set the state with each key stroke
    * @param evt
    */
-  const setChatInputState = (evt) => {
-    setInputState({
-      ...inputState,
-      [evt.target.name]: evt.target.value,
-    });
+  const setChatInput = (evt) => {
+    setChatInputState(id, evt.target.value, currentInputHeight);
   };
 
   /**
@@ -72,10 +77,7 @@ const ChatInput = (props) => {
       return;
     }
 
-    setInputState({
-      ...inputState,
-      currentInputHeight: scrollHeight,
-    });
+    setChatInputState(id, chatInput, scrollHeight);
   });
 
   return (
@@ -85,25 +87,29 @@ const ChatInput = (props) => {
       style={{ height: `${currentInputHeight}px` }}
       placeholder={`Message @${title}`}
       value={chatInput}
-      onChange={setChatInputState}
+      onChange={setChatInput}
       ref={refInput}
     />
   );
 };
 
 ChatFoot.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
 };
 
 ChatFoot.defaultProps = {
+  id: null,
   title: null,
 };
 
 ChatInput.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
 };
 
 ChatInput.defaultProps = {
+  id: null,
   title: null,
 };
 

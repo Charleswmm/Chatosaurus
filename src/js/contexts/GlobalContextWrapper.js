@@ -21,6 +21,7 @@ export class GlobalContextWrapper extends Component {
     this.func = {
       joinRoutePath: this.joinRoutePath,
       safeUpdate: this.safeUpdate,
+      setChatInputState: this.setChatInputState,
       createRandomMessageLog: this.createRandomMessageLog,
     };
   }
@@ -88,6 +89,22 @@ export class GlobalContextWrapper extends Component {
    */
   safeUpdate = () => {
     this.setState({ key: Math.random() });
+  }
+
+  setChatInputState = (id, input, height) => {
+    if (!id || !input || !height) {
+      // eslint-disable-next-line no-console
+      console.log(
+        'Error: \'setChatInputState\' in \'GlobalContextWrapper\' is missing a parameter',
+      );
+    }
+
+    this.setState({
+      [id]: {
+        chatInput: input,
+        currentInputHeight: height,
+      },
+    });
   }
 
   render() {
