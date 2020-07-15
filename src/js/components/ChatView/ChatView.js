@@ -15,8 +15,9 @@ const ChatView = (props) => {
 
   return (
     <main className="chat">
-      <ChatTop id={id} title={title} />
+      <ChatTop title={title} />
       <ChatBody
+        id={id}
         title={title}
         avatarSrc={avatarSrc}
         backgroundColor={backgroundColor}

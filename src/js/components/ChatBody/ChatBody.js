@@ -4,7 +4,11 @@ import '../../../scss/components/ChatBody/ChatBody.scss';
 import ChatLogControl from '../ChatLogControl/ChatLogControl';
 import { avatarClassNames as avatarClasses } from '../GroupNavDMButton/GroupNavDMButton';
 
-const ChatBody = ({ title, avatarSrc, backgroundColor }) => {
+const ChatBody = (props) => {
+  const {
+    id, title, avatarSrc, backgroundColor,
+  } = props;
+
   const refChatBody = useRef(null);
 
   /**
@@ -39,19 +43,21 @@ const ChatBody = ({ title, avatarSrc, backgroundColor }) => {
           <strong>{`@${title}`}</strong>
         </div>
       </div>
-      <ChatLogControl />
+      <ChatLogControl id={id} />
       <div className="chat-log-item chat-log-item-end" />
     </div>
   );
 };
 
 ChatBody.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
   avatarSrc: PropTypes.string,
   backgroundColor: PropTypes.string,
 };
 
 ChatBody.defaultProps = {
+  id: null,
   title: null,
   avatarSrc: null,
   backgroundColor: null,

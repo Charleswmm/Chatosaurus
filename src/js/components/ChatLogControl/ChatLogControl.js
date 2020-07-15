@@ -2,11 +2,17 @@ import React, { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import ChatLogItem, { ChatLogItemDateDivider, ChatLogItemStart } from '../ChatLogItem/ChatLogItem';
 
-const ChatLogControl = () => {
+const ChatLogControl = ({ id }) => {
   const { Config } = useContext(GlobalContext);
-  const config = Config.get(['messageLog', 'currentUser']);
-  const { messageLog, currentUser } = config;
+  const config = Config.get(['messageLog', 'currentUser', [id]]);
+  const { currentUser } = config;
   const { userName, avatar } = currentUser;
+
+  let messageLog = [];
+
+  if (config[id]) {
+    messageLog = config[id].messageLog;
+  }
 
   // The interval in seconds in which how the chat log will be grouped
   const chatLogGroupInterval = 600;

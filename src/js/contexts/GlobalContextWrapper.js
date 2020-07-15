@@ -30,7 +30,7 @@ export class GlobalContextWrapper extends Component {
    * Placeholder function that creates a random message log
    * @returns {any[]}
    */
-  createRandomMessageLog = () => {
+  createRandomMessageLog = (id) => {
     const { Config } = this.props;
     const config = Config.get(['messageLogTemplate', 'chatLogPlaceholderText']);
     const { messageLogTemplate, chatLogPlaceholderText } = config;
@@ -62,7 +62,11 @@ export class GlobalContextWrapper extends Component {
       };
     });
 
-    Config.set({ messageLog: newRandomMessageLog });
+    Config.set({
+      [id]: {
+        messageLog: newRandomMessageLog,
+      },
+    });
   }
 
   /**
@@ -92,13 +96,6 @@ export class GlobalContextWrapper extends Component {
   }
 
   setChatInputState = (id, input, height) => {
-    if (!id || !input || !height) {
-      // eslint-disable-next-line no-console
-      console.log(
-        'Error: \'setChatInputState\' in \'GlobalContextWrapper\' is missing a parameter',
-      );
-    }
-
     this.setState({
       [id]: {
         chatInput: input,

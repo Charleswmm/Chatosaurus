@@ -34,11 +34,14 @@ class GroupNavDMButtons extends Component {
    */
   addButtonClickHandler = () => {
     const { history } = this.props;
-    const { Config, joinRoutePath } = this.context;
+    const { Config, joinRoutePath, createRandomMessageLog } = this.context;
     const { homeRoute } = Config.get(['homeRoute']);
     const button = this.randomNewGroupNavDMButton();
 
     Config.set({ groupNavDMButtons: [button, ...this.getGroupNavDMButtons()] });
+
+    // Creates a place holder message log and places it on the "config"
+    createRandomMessageLog(button.id);
 
     history.push(joinRoutePath([homeRoute, button.id]));
   }

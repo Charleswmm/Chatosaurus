@@ -7,7 +7,7 @@ import NoChat from '../NoChat/NoChat';
 const ChatControl = (props) => {
   const context = useContext(GlobalContext);
   const { match } = props;
-  const { Config, createRandomMessageLog } = context;
+  const { Config } = context;
   const { groupNavDMButtons } = Config.get(['groupNavDMButtons']);
   const button = groupNavDMButtons.filter((e) => e.id === match.params.id).shift();
 
@@ -21,9 +21,6 @@ const ChatControl = (props) => {
     avatarSrc,
     backgroundColor,
   } = button;
-
-  // Creates a place holder message log and places it on the "config"
-  createRandomMessageLog();
 
   return (
     <ChatView
