@@ -1,12 +1,34 @@
 import { mount } from 'enzyme';
 import React from 'react';
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import Config from '../../utilities/Config';
 import ChatFoot from './ChatFoot';
 
 describe('ChatFoot', () => {
   const foo = 'foo';
+  let baz = '';
+  function bar(id, input) {
+    baz = input;
+  }
+
+  const fooConfiguration = {
+    [foo]: {
+      messageLog: [
+        {
+          name: foo,
+          timeStamp: foo,
+          body: foo,
+        },
+      ],
+    },
+  };
+
+  const fooConfig = new Config(fooConfiguration);
 
   const wrapper = mount(
-    <ChatFoot title="foo" />,
+    <GlobalContext.Provider value={{ Config: fooConfig, state: { [foo]: { chatInput: foo } }, setChatInputState: bar }}>
+      <ChatFoot id={foo} title={foo} />
+    </GlobalContext.Provider>,
   );
 
   it('displays an input bar', () => {
@@ -19,7 +41,9 @@ describe('ChatFoot', () => {
   });
 
   it('has an input where I can input a message', () => {
-    wrapper.find('textarea').simulate('change', { target: { name: 'chatInput', value: foo } });
+    wrapper.find('textarea').simulate('change', { target: { value: foo } });
+
+    expect(baz).toEqual(foo);
     expect(wrapper.find('textarea').prop('value')).toEqual(foo);
   });
 

@@ -4,7 +4,7 @@ import ChatLogItem, { ChatLogItemDateDivider, ChatLogItemStart } from '../ChatLo
 
 const ChatLogControl = ({ id }) => {
   const { Config } = useContext(GlobalContext);
-  const config = Config.get(['messageLog', 'currentUser', [id]]);
+  const config = Config.get(['currentUser', [id]]);
   const { currentUser } = config;
   const { userName, avatar } = currentUser;
 
