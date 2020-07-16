@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import '../../../scss/components/ChatLogItem/ChatLogItem.scss';
+import moment from 'moment';
 
 /**
  * Formats a ISO string to "Tuesday, July 7, 2020"

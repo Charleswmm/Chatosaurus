@@ -31,6 +31,7 @@
     "html-webpack-plugin": "^4.3.0",
     "jest": "^26.0.1",
     "mini-css-extract-plugin": "^0.9.0",
+    "moment-locales-webpack-plugin": "^1.2.0",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "sass-loader": "^8.0.2",
@@ -40,6 +41,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "moment": "^2.27.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
