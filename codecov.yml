@@ -6,10 +6,10 @@ coverage:
     project:
       default:
         target: 70%
-        threshold: 30%
+        threshold: 10%
         base: auto
     patch:
       default:
         target: 70%
-        threshold: 30%
-        base: auto 
+        threshold: 10%
+        base: auto

@@ -12,15 +12,18 @@ describe('ChatFoot', () => {
   }
 
   const fooConfiguration = {
-    [foo]: {
-      messageLog: [
-        {
-          name: foo,
-          timeStamp: foo,
-          body: foo,
-        },
-      ],
-    },
+    chatRoomMessageLog: [
+      {
+        chatRoomId: foo,
+        messageLog: [
+          {
+            name: 'bin',
+            timeStamp: '2020-07-07T19:15:30',
+            body: 'baz',
+          },
+        ],
+      },
+    ],
   };
 
   const fooConfig = new Config(fooConfiguration);
@@ -28,7 +31,14 @@ describe('ChatFoot', () => {
   const wrapper = mount(
     <GlobalContext.Provider value={{
       Config: fooConfig,
-      state: { [foo]: { chatInput: foo } },
+      state: {
+        unSentMessage: [
+          {
+            chatId: foo,
+            chatInput: foo,
+          },
+        ],
+      },
       setChatInputState: bar,
     }}
     >

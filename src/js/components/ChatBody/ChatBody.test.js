@@ -21,15 +21,18 @@ describe('ChatBody', () => {
       avatar: foo,
     },
     initialTimeStamp: '2000-01-01T00:00:00',
-    [foo]: {
-      messageLog: [
-        {
-          name: foo,
-          timeStamp: fooTimeStamp,
-          body: foo,
-        },
-      ],
-    },
+    chatRoomMessageLog: [
+      {
+        chatRoomId: foo,
+        messageLog: [
+          {
+            name: foo,
+            timeStamp: '2020-07-07T19:15:30',
+            body: 'baz',
+          },
+        ],
+      },
+    ],
   };
 
   const fooConfig = new Config(fooConfiguration);

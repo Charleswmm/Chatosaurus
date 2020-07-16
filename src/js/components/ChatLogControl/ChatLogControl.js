@@ -4,14 +4,16 @@ import ChatLogItem, { ChatLogItemDateDivider, ChatLogItemStart } from '../ChatLo
 
 const ChatLogControl = ({ id }) => {
   const { Config } = useContext(GlobalContext);
-  const config = Config.get(['currentUser', [id]]);
-  const { currentUser } = config;
+  const config = Config.get(['currentUser', 'chatRoomMessageLog']);
+  const { currentUser, chatRoomMessageLog } = config;
   const { userName, avatar } = currentUser;
 
-  let messageLog = [];
+  const findChatRoomMessageLog = chatRoomMessageLog.find((e) => e.chatRoomId === id);
 
-  if (config[id]) {
-    messageLog = config[id].messageLog;
+  let messageLog;
+
+  if (findChatRoomMessageLog) {
+    messageLog = findChatRoomMessageLog.messageLog;
   }
 
   // The interval in seconds in which how the chat log will be grouped

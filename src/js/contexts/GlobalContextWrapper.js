@@ -12,6 +12,7 @@ export class GlobalContextWrapper extends Component {
 
   state = {
     key: 0,
+    unSentMessage: [],
   }
 
   func = {}
@@ -62,10 +63,16 @@ export class GlobalContextWrapper extends Component {
       };
     });
 
+    const { chatRoomMessageLog } = Config.get(['chatRoomMessageLog']);
+
     Config.set({
-      [id]: {
-        messageLog: newRandomMessageLog,
-      },
+      chatRoomMessageLog: [
+        ...chatRoomMessageLog,
+        {
+          chatRoomId: id,
+          messageLog: newRandomMessageLog,
+        },
+      ],
     });
   }
 
@@ -95,12 +102,38 @@ export class GlobalContextWrapper extends Component {
     this.setState({ key: Math.random() });
   }
 
-  setChatInputState = (id, input, height) => {
+  /**
+   * Used to set the unsent chat dialogue into state
+   * @param id
+   * @param input
+   */
+  setChatInputState = (id, input) => {
+    const { unSentMessage } = this.state;
+    const findUnSentMessage = unSentMessage.find((e) => e.chatId === id);
+
+    if (findUnSentMessage) {
+      const allOtherUnSentMessage = unSentMessage.filter((e) => e.chatId !== id);
+
+      this.setState({
+        unSentMessage: [
+          ...allOtherUnSentMessage,
+          {
+            ...findUnSentMessage,
+            chatInput: input,
+          },
+        ],
+      });
+      return;
+    }
+
     this.setState({
-      [id]: {
-        chatInput: input,
-        currentInputHeight: height,
-      },
+      unSentMessage: [
+        ...unSentMessage,
+        {
+          chatId: id,
+          chatInput: input,
+        },
+      ],
     });
   }
 

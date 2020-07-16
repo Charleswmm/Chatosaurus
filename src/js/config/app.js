@@ -18,15 +18,18 @@ export default {
       avatar: placeHolderAvatar,
     },
   ],
-  12345: {
-    messageLog: [
-      {
-        name: 'pytho',
-        timeStamp: '2020-07-07T19:15:30',
-        body: 'This is the Pytho chat log',
-      },
-    ],
-  },
+  chatRoomMessageLog: [
+    {
+      chatRoomId: '12345',
+      messageLog: [
+        {
+          name: 'pytho',
+          timeStamp: '2020-07-07T19:15:30',
+          body: 'This is the Pytho chat log',
+        },
+      ],
+    },
+  ],
   baseRoute: '/channels/',
   homeRoute: '@me',
   mainNavButtons: [

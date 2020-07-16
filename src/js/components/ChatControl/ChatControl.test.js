@@ -23,15 +23,18 @@ describe('ChatControl', () => {
         avatar: foo,
       },
     initialTimeStamp: '2000-01-01T00:00:00',
-    [foo]: {
-      messageLog: [
-        {
-          name: foo,
-          timeStamp: fooTimeStamp,
-          body: foo,
-        },
-      ],
-    },
+    chatRoomMessageLog: [
+      {
+        chatRoomId: foo,
+        messageLog: [
+          {
+            name: 'bin',
+            timeStamp: fooTimeStamp,
+            body: 'baz',
+          },
+        ],
+      },
+    ],
     groupNavDMButtons: [
       {
         id: foo,
@@ -48,7 +51,7 @@ describe('ChatControl', () => {
   const fooConfig = new Config(fooConfiguration);
 
   const wrapper = mount(
-    <GlobalContext.Provider value={{ Config: fooConfig, state: foo }}>
+    <GlobalContext.Provider value={{ Config: fooConfig, state: { unSentMessage: ['foo'] } }}>
       <MemoryRouter initialEntries={[`${foo}`]} initialIndex={0}>
         <Route path=":id" component={ChatControl} />
       </MemoryRouter>

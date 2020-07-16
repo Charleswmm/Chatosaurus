@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import '../../../scss/components/ChatFoot/ChatFoot.scss';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
@@ -37,19 +37,24 @@ const ChatFoot = (props) => {
 
 const ChatInput = (props) => {
   const { id, title } = props;
-  const { state, setChatInputState } = useContext(GlobalContext);
+  const { state: { unSentMessage }, setChatInputState } = useContext(GlobalContext);
   const refInput = useRef(null);
 
-  const maxInputHeight = 132;
+  const maxNumberOfLines = 6;
+  const inputLineHeight = 22;
   let chatInput = '';
-  let currentInputHeight = 22;
 
-  if (state[id]) {
-    chatInput = state[id].chatInput;
+  const findUnSentMessage = unSentMessage.find((e) => e.chatId === id);
+
+  if (findUnSentMessage) {
+    chatInput = findUnSentMessage.chatInput;
   }
 
-  if (state[id]) {
-    currentInputHeight = state[id].currentInputHeight;
+  const numberOfLines = chatInput.split('\n').length;
+  let inputHeight = inputLineHeight * numberOfLines;
+
+  if (numberOfLines >= maxNumberOfLines) {
+    inputHeight = inputLineHeight * maxNumberOfLines;
   }
 
   /**
@@ -57,34 +62,14 @@ const ChatInput = (props) => {
    * @param evt
    */
   const setChatInput = (evt) => {
-    setChatInputState(id, evt.target.value, currentInputHeight);
+    setChatInputState(id, evt.target.value);
   };
-
-  /**
-   * The state will be set with the new height when there is a scrollable overflow
-   * useEffect is called at the same time as "componentDidMount"
-   * `refInput.current` will contain the DOM properties of the referenced element
-   * `scrollHeight` is the actual height of the scrollable element
-   */
-  useEffect(() => {
-    const { scrollHeight } = refInput.current;
-
-    if (currentInputHeight >= maxInputHeight) {
-      return;
-    }
-
-    if (scrollHeight <= currentInputHeight) {
-      return;
-    }
-
-    setChatInputState(id, chatInput, scrollHeight);
-  });
 
   return (
     <textarea
       name="chatInput"
       className="chat-textarea flex-grow"
-      style={{ height: `${currentInputHeight}px` }}
+      style={{ height: `${inputHeight}px` }}
       placeholder={`Message @${title}`}
       value={chatInput}
       onChange={setChatInput}
