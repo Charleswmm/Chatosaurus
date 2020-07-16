@@ -1,12 +1,49 @@
 import { mount } from 'enzyme';
 import React from 'react';
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import Config from '../../utilities/Config';
 import ChatFoot from './ChatFoot';
 
 describe('ChatFoot', () => {
   const foo = 'foo';
+  let baz = '';
+  function bar(id, input) {
+    baz = input;
+  }
+
+  const fooConfiguration = {
+    chatRoomMessageLog: [
+      {
+        chatRoomId: foo,
+        messageLog: [
+          {
+            name: 'bin',
+            timeStamp: '2020-07-07T19:15:30',
+            body: 'baz',
+          },
+        ],
+      },
+    ],
+  };
+
+  const fooConfig = new Config(fooConfiguration);
 
   const wrapper = mount(
-    <ChatFoot title="foo" />,
+    <GlobalContext.Provider value={{
+      Config: fooConfig,
+      state: {
+        unSentMessage: [
+          {
+            chatId: foo,
+            chatInput: foo,
+          },
+        ],
+      },
+      setChatInputState: bar,
+    }}
+    >
+      <ChatFoot id={foo} title={foo} />
+    </GlobalContext.Provider>,
   );
 
   it('displays an input bar', () => {
@@ -19,7 +56,12 @@ describe('ChatFoot', () => {
   });
 
   it('has an input where I can input a message', () => {
-    wrapper.find('textarea').simulate('change', { target: { name: 'chatInput', value: foo } });
+    wrapper.find('textarea').simulate('change', { target: { value: foo } });
+
+    expect(baz).toEqual(foo);
+  });
+
+  it('has my incomplete message still preserved in the DM input', () => {
     expect(wrapper.find('textarea').prop('value')).toEqual(foo);
   });
 

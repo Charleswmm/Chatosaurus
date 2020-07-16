@@ -25,7 +25,10 @@ describe('GroupNavDMButtons', () => {
 
   it('displays a “Direct messages” component in the secondary navigation', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinRoutePath: foo, safeUpdate: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{
+        joinRoutePath: foo, safeUpdate: foo, Config: fooConfig, createRandomMessageLog: foo,
+      }}
+      >
         <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
           <GroupNavDMButtons />
         </MemoryRouter>
@@ -37,7 +40,10 @@ describe('GroupNavDMButtons', () => {
 
   it('displays an “add” button', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinRoutePath: foo, safeUpdate: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{
+        joinRoutePath: foo, safeUpdate: foo, Config: fooConfig, createRandomMessageLog: foo,
+      }}
+      >
         <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
           <GroupNavDMButtons />
         </MemoryRouter>
@@ -49,7 +55,10 @@ describe('GroupNavDMButtons', () => {
 
   it('adds a new Direct message placeholder button, when I interact with the “add” button', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinRoutePath: foo, safeUpdate: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{
+        joinRoutePath: foo, safeUpdate: foo, Config: fooConfig, createRandomMessageLog: foo,
+      }}
+      >
         <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
           <GroupNavDMButtons />
         </MemoryRouter>
@@ -80,7 +89,10 @@ describe('GroupNavDMButtons', () => {
 
   it('removes the the DM component item, when I interact with the “remove” button', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinRoutePath: foo, safeUpdate: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{
+        joinRoutePath: foo, safeUpdate: foo, Config: fooConfig, createRandomMessageLog: foo,
+      }}
+      >
         <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
           <GroupNavDMButtons />
         </MemoryRouter>

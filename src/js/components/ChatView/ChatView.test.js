@@ -16,28 +16,34 @@ describe('ChatView', () => {
   const fooConfiguration = {
     currentUser:
       {
-        UserName: 'foo',
-        avatar: 'foo',
+        UserName: foo,
+        avatar: foo,
       },
-    messageLog: [
+    chatRoomMessageLog: [
       {
-        name: 'foo',
-        timeStamp: '2000-01-01T00:00:00',
-        body: 'foo',
+        chatRoomId: foo,
+        messageLog: [
+          {
+            name: 'bin',
+            timeStamp: '2020-07-07T19:15:30',
+            body: 'baz',
+          },
+        ],
       },
     ],
     chatTopButtons: [
       {
-        title: 'foo',
-        iconClass: 'foo',
+        title: foo,
+        iconClass: foo,
       },
     ],
   };
 
   const fooConfig = new Config(fooConfiguration);
   const wrapper = mount(
-    <GlobalContext.Provider value={{ Config: fooConfig }}>
+    <GlobalContext.Provider value={{ Config: fooConfig, state: { unSentMessage: ['foo'] } }}>
       <ChatView
+        id={foo}
         title={foo}
         avatarSrc={foo}
         backgroundColor={foo}

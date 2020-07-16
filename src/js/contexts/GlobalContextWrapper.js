@@ -12,6 +12,7 @@ export class GlobalContextWrapper extends Component {
 
   state = {
     key: 0,
+    unSentMessage: [],
   }
 
   func = {}
@@ -21,6 +22,7 @@ export class GlobalContextWrapper extends Component {
     this.func = {
       joinRoutePath: this.joinRoutePath,
       safeUpdate: this.safeUpdate,
+      setChatInputState: this.setChatInputState,
       createRandomMessageLog: this.createRandomMessageLog,
     };
   }
@@ -29,7 +31,7 @@ export class GlobalContextWrapper extends Component {
    * Placeholder function that creates a random message log
    * @returns {any[]}
    */
-  createRandomMessageLog = () => {
+  createRandomMessageLog = (id) => {
     const { Config } = this.props;
     const config = Config.get(['messageLogTemplate', 'chatLogPlaceholderText']);
     const { messageLogTemplate, chatLogPlaceholderText } = config;
@@ -61,7 +63,17 @@ export class GlobalContextWrapper extends Component {
       };
     });
 
-    Config.set({ messageLog: newRandomMessageLog });
+    const { chatRoomMessageLog } = Config.get(['chatRoomMessageLog']);
+
+    Config.set({
+      chatRoomMessageLog: [
+        ...chatRoomMessageLog,
+        {
+          chatRoomId: id,
+          messageLog: newRandomMessageLog,
+        },
+      ],
+    });
   }
 
   /**
@@ -88,6 +100,41 @@ export class GlobalContextWrapper extends Component {
    */
   safeUpdate = () => {
     this.setState({ key: Math.random() });
+  }
+
+  /**
+   * Used to set the unsent chat dialogue into state
+   * @param id
+   * @param input
+   */
+  setChatInputState = (id, input) => {
+    const { unSentMessage } = this.state;
+    const findUnSentMessage = unSentMessage.find((e) => e.chatId === id);
+
+    if (findUnSentMessage) {
+      const allOtherUnSentMessage = unSentMessage.filter((e) => e.chatId !== id);
+
+      this.setState({
+        unSentMessage: [
+          ...allOtherUnSentMessage,
+          {
+            ...findUnSentMessage,
+            chatInput: input,
+          },
+        ],
+      });
+      return;
+    }
+
+    this.setState({
+      unSentMessage: [
+        ...unSentMessage,
+        {
+          chatId: id,
+          chatInput: input,
+        },
+      ],
+    });
   }
 
   render() {

@@ -12,19 +12,25 @@ jest.mock('react', () => ({
 
 describe('ChatBody', () => {
   const fooTimeStamp = '2020-07-07T19:15:30';
+  const foo = 'foo';
 
   const fooConfiguration = {
     currentUser:
     {
-      userName: 'foo',
-      avatar: 'foo',
+      userName: foo,
+      avatar: foo,
     },
     initialTimeStamp: '2000-01-01T00:00:00',
-    messageLog: [
+    chatRoomMessageLog: [
       {
-        name: 'foo',
-        timeStamp: fooTimeStamp,
-        body: 'foo',
+        chatRoomId: foo,
+        messageLog: [
+          {
+            name: foo,
+            timeStamp: '2020-07-07T19:15:30',
+            body: 'baz',
+          },
+        ],
       },
     ],
   };
@@ -33,7 +39,7 @@ describe('ChatBody', () => {
 
   const wrapper = mount(
     <GlobalContext.Provider value={{ Config: fooConfig }}>
-      <ChatBody />
+      <ChatBody id={foo} />
     </GlobalContext.Provider>,
   );
 

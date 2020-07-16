@@ -15,13 +15,14 @@ const ChatView = (props) => {
 
   return (
     <main className="chat">
-      <ChatTop id={id} title={title} />
+      <ChatTop title={title} />
       <ChatBody
+        id={id}
         title={title}
         avatarSrc={avatarSrc}
         backgroundColor={backgroundColor}
       />
-      <ChatFoot title={title} />
+      <ChatFoot id={id} title={title} />
     </main>
   );
 };
