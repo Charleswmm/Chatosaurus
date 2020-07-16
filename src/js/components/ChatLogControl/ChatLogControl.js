@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import ChatLogItem, { ChatLogItemDateDivider, ChatLogItemStart } from '../ChatLogItem/ChatLogItem';
@@ -57,16 +58,13 @@ const ChatLogControl = ({ id }) => {
       prevTimeStamp = messageLog[index - 1].timeStamp;
     }
 
-    const logItemDate = new Date(timeStamp);
-    logItemDate.setHours(0, 0, 0, 0);
+    const logItemDate = moment(timeStamp).startOf('day');
+    const prevDate = moment(prevTimeStamp).startOf('day');
 
-    const prevDate = new Date(prevTimeStamp);
-    prevDate.setHours(0, 0, 0, 0);
-
-    if (logItemDate > prevDate) {
+    if (logItemDate.isAfter(prevDate)) {
       alteredMessageLog.push({
         divider: true,
-        timeStamp: logItemDate.toISOString(),
+        timeStamp: logItemDate.format(),
       });
     }
 
@@ -93,11 +91,10 @@ const ChatLogControl = ({ id }) => {
       prevTimeStamp = alteredMessageLog[index - 1].timeStamp;
     }
 
-    const logItemDate = new Date(timeStamp);
-    const prevDateTime = new Date(prevTimeStamp);
-    const breakPoint = new Date(prevDateTime.getTime() + chatLogGroupInterval * 1000);
+    const logItemDate = moment(timeStamp);
+    const breakPoint = moment(prevTimeStamp).add(chatLogGroupInterval, 'seconds');
 
-    if (logItemDate > breakPoint) {
+    if (logItemDate.isAfter(breakPoint)) {
       const avatarSrc = userName === name ? avatar : null;
 
       return (
