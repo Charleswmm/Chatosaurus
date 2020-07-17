@@ -42,7 +42,7 @@
     padding: 0.2rem;
   }
 
-  .add-group-dm:hover + .tool-tip {
+  .add-group-dm:hover .tool-tip {
     visibility: visible;
     opacity: 1;
   }
@@ -52,8 +52,9 @@
   }
 
   .tool-tip {
+    transform: translateX(50%);
     top: -2.8rem;
-    right: 0.5rem;
+    right: 0.6rem;
   }
 
   .tool-tip-text {

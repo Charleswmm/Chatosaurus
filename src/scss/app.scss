@@ -109,6 +109,9 @@
 .svg-cog {
     background-image: url("../img/icons/cog.svg");
 }
+.svg-members {
+    background-image: url("../img/icons/members.svg");
+}
 
 .background-brand-blue {
     background-color: $normal-brand-blue;
@@ -133,26 +136,37 @@
     flex: 1 1 auto;
 }
 
-.tool-tip-sm {
-    transform: translateX(50%);
-
-    .tool-tip-text {
-        font-size: 1.2rem;
-        font-weight: 400;
-        letter-spacing: 0.06em;
-        line-height: 1.2rem;
-    }
-}
-
 .tool-tip {
     box-shadow: 4px 6px 15px -2px rgba(0, 0, 0, 0.5);
     position: absolute;
     z-index: 10;
     background-color: $hover-black;
     border-radius: 4px;
-    transition: opacity 0.15s ease-in;
+    transition: opacity 0.2s ease-in;
     visibility: hidden;
     opacity: 0;
+    pointer-events: none;
+
+    .tool-tip-text {
+        width: max-content;
+        color: #ffffff;
+        margin: 1rem;
+        user-select: none;
+    }
+
+    .tool-tip-text-sm {
+        font-size: 1.2rem;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        white-space: normal;
+        line-height: 1.4rem;
+        overflow-wrap: break-word;
+        text-align: left;
+    }
+
+    .tool-tip-text-lg {
+        @include typo(tt, 1.5rem);
+    }
 
     .tool-tip-arrow {
         position: relative;
@@ -165,17 +179,6 @@
 
     .tool-tip-arrow-bottom {
         transform: translateX(-50%);
-    }
-
-    .tool-tip-text {
-        color: #ffffff;
-        white-space: nowrap;
-        margin: 1rem;
-        user-select: none;
-    }
-
-    .tool-tip-text-lg {
-        @include typo(tt, 1.5rem);
     }
 
     .tool-tip-arrow::before {
@@ -194,7 +197,7 @@
     }
 
     .tool-tip-arrow-top::before {
-        top: -0.5rem;
+        top: -3.9rem;
         right: -1rem;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;

@@ -2,6 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import '../../../scss/components/ChatLogItem/ChatLogItem.scss';
 import moment from 'moment';
+import IconButton, {
+  iconButtonSubType,
+  iconButtonToolTipPosition,
+  iconButtonType,
+} from '../IconButton/IconButton';
 
 /**
  * Formats an ISO string to "Tuesday, July 7, 2020 07:15 PM"
@@ -52,8 +57,8 @@ const ChatLogItem = ({ timeStamp, body }) => (
       <div className="message-time">
         <span>{formatTime(timeStamp)}</span>
         <div className="message-tool-tip">
-          <div className="tool-tip tool-tip-sm">
-            <div className="tool-tip-text">{formatDate(timeStamp)}</div>
+          <div className="tool-tip">
+            <div className="tool-tip-text tool-tip-text-sm">{formatDate(timeStamp)}</div>
             <div className="tool-tip-arrow tool-tip-arrow-bottom" />
           </div>
         </div>
@@ -82,8 +87,8 @@ export const ChatLogItemStart = (props) => {
           <div className="message-time">
             <span>{formatTimeStamp(timeStamp)}</span>
             <div className="message-tool-tip">
-              <div className="tool-tip tool-tip-sm">
-                <div className="tool-tip-text">{formatDate(timeStamp)}</div>
+              <div className="tool-tip">
+                <div className="tool-tip-text tool-tip-text-sm">{formatDate(timeStamp)}</div>
                 <div className="tool-tip-arrow tool-tip-arrow-bottom" />
               </div>
             </div>
@@ -104,31 +109,31 @@ export const ChatLogItemDateDivider = ({ timeStamp }) => (
   </div>
 );
 
-const ChatLogItemActions = () => (
-  <div className="message-actions">
-    <div className="message-action">
-      <div className="svg svg-reaction" />
-      <div className="tool-tip tool-tip-sm">
-        <div className="tool-tip-text">Add Reaction</div>
-        <div className="tool-tip-arrow tool-tip-arrow-bottom" />
-      </div>
+const ChatLogItemActions = () => {
+  const { reaction, edit, more } = iconButtonType;
+  const { rounded } = iconButtonSubType;
+  const { above } = iconButtonToolTipPosition;
+
+  return (
+    <div className="message-actions">
+      <IconButton
+        type={reaction}
+        subtype={rounded}
+        toolTipPosition={above}
+      />
+      <IconButton
+        type={edit}
+        subtype={rounded}
+        toolTipPosition={above}
+      />
+      <IconButton
+        type={more}
+        subtype={rounded}
+        toolTipPosition={above}
+      />
     </div>
-    <div className="message-action">
-      <div className="svg svg-edit" />
-      <div className="tool-tip tool-tip-sm">
-        <div className="tool-tip-text">Edit</div>
-        <div className="tool-tip-arrow tool-tip-arrow-bottom" />
-      </div>
-    </div>
-    <div className="message-action">
-      <div className="svg svg-more" />
-      <div className="tool-tip tool-tip-sm">
-        <div className="tool-tip-text">More</div>
-        <div className="tool-tip-arrow tool-tip-arrow-bottom" />
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 ChatLogItem.propTypes = {
   timeStamp: PropTypes.string,

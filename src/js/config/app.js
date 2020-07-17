@@ -73,37 +73,103 @@ export default {
       backgroundColor: backgroundColorClassNames.avatarBlue,
     },
   ],
+  iconButtons: [
+    {
+      type: 'mic',
+      toolTipText: 'Mute',
+      toolTipTextAlt: 'Unmute',
+    },
+    {
+      type: 'deafen',
+      toolTipText: 'Undeafen',
+      toolTipTextAlt: 'Deafen',
+    },
+    {
+      type: 'cog',
+      toolTipText: 'User Settings',
+    },
+    {
+      type: 'add-dm',
+      toolTipText: 'New Group DM',
+    },
+    {
+      type: 'inbox',
+      toolTipText: 'Inbox',
+    },
+    {
+      type: 'help',
+      toolTipText: 'Help',
+    },
+    {
+      type: 'voice-call',
+      toolTipText: 'Start Voice Call',
+    },
+    {
+      type: 'video-call',
+      toolTipText: 'Start Video Call',
+    },
+    {
+      type: 'pin',
+      toolTipText: 'Pinned Messages',
+    },
+    {
+      type: 'add-friend',
+      toolTipText: 'Add Friends to DM',
+    },
+    {
+      type: 'members',
+      toolTipText: 'Member List',
+    },
+    {
+      type: 'add',
+    },
+    {
+      type: 'gift',
+      toolTipText: 'Upgrade your friends! Gift them this awesome chat perks with Nitro',
+    },
+    {
+      type: 'gif',
+    },
+    {
+      type: 'emoji',
+    },
+    {
+      type: 'reaction',
+      toolTipText: 'Add Reaction',
+    },
+    {
+      type: 'more',
+      toolTipText: 'More',
+    },
+    {
+      type: 'edit',
+      toolTipText: 'Edit',
+    },
+  ],
   chatTopButtons: [
     {
-      title: 'Start Voice Call',
-      iconClass: 'svg svg-voice-call',
+      type: 'voice-call',
     },
     {
-      title: 'Start Video Call',
-      iconClass: 'svg svg-video-call',
+      type: 'video-call',
     },
     {
-      title: 'Pinned Messages',
-      iconClass: 'svg svg-pin',
+      type: 'pin',
     },
     {
-      title: 'Add Friends to DM',
-      iconClass: 'svg svg-add-friend',
+      type: 'add-friend',
     },
     {
-      title: 'Member List',
-      iconClass: 'svg svg-people',
+      type: 'members',
     },
     {
       type: 'search',
     },
     {
-      title: 'Inbox',
-      iconClass: 'svg svg-inbox',
+      type: 'inbox',
     },
     {
-      title: 'Help',
-      iconClass: 'svg svg-help',
+      type: 'help',
     },
   ],
   insertMainNavButtonsBeforeId: 'add-a-server',

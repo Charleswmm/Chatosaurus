@@ -5,17 +5,7 @@
   display: flex;
   height: 100%;
   align-items: center;
-
-  .svg {
-    height: 2rem;
-    width: 2rem;
-  }
-
-  .tool-tip {
-    transform: translateX(-50%);
-    top: -4rem;
-    left: 1.6rem;
-  }
+  z-index: 10;
 
   .user-control-avatar {
     background-size: contain;
@@ -37,7 +27,8 @@
     margin: 0 0.4rem 0 0.8rem;
 
     .tool-tip {
-      top: -4rem;
+      transform: translateX(-50%);
+      top: -4.3rem;
       left: 3.4rem;
     }
   }
@@ -65,27 +56,5 @@
 
   .user-control-actions {
     display: flex;
-  }
-
-  .user-control-action {
-    position: relative;
-    height: 3.2rem;
-    width: 3.2rem;
-    padding: 0.6rem;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-
-  .user-control-action:hover {
-    background-color: rgba(79,84,92,0.32);
-
-    .svg {
-      filter: brightness(120%);
-    }
-
-    .tool-tip {
-      visibility: visible;
-      opacity: 1;
-    }
   }
 }

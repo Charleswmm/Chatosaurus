@@ -2,33 +2,42 @@ import PropTypes from 'prop-types';
 import React, { useContext, useRef } from 'react';
 import '../../../scss/components/ChatFoot/ChatFoot.scss';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import IconButton, {
+  iconButtonSubType,
+  iconButtonToolTipPosition,
+  iconButtonType,
+} from '../IconButton/IconButton';
 
 const ChatFoot = (props) => {
   const { id, title } = props;
+  const {
+    addAttachment, addGift, addGif, addEmoji,
+  } = iconButtonType;
+  const { plain } = iconButtonSubType;
+  const { above } = iconButtonToolTipPosition;
 
   return (
     <div className="chat-foot">
       <div className="chat-foot-content">
         <form className="chat-form">
-          <button className="chat-action chat-action-attach" type="button">
-            <div className="svg svg-add" />
-          </button>
+          <IconButton
+            type={addAttachment}
+            subtype={plain}
+          />
           <ChatInput id={id} title={title} />
-          <button className="chat-action chat-action-gift" type="button">
-            <div className="tool-tip tool-tip-sm">
-              <div className="tool-tip-text">
-                Upgrade your friends! Gift them this awesome chat perks with Nitro
-              </div>
-              <div className="tool-tip-arrow tool-tip-arrow-bottom" />
-            </div>
-            <div className="svg svg-gift" />
-          </button>
-          <button className="chat-action chat-action-gif" type="button">
-            <div className="svg svg-gif" />
-          </button>
-          <button className="chat-action chat-action-emoji" type="button">
-            <div className="svg svg-emoji" />
-          </button>
+          <IconButton
+            type={addGift}
+            subtype={plain}
+            toolTipPosition={above}
+          />
+          <IconButton
+            type={addGif}
+            subtype={plain}
+          />
+          <IconButton
+            type={addEmoji}
+            subtype={plain}
+          />
         </form>
       </div>
     </div>
