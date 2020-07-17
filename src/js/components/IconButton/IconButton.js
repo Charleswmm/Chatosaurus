@@ -52,8 +52,6 @@ const IconButton = (props) => {
   const iconButtonProps = iconButtons.find((e) => e.type === type);
 
   if (!iconButtonProps) {
-    // eslint-disable-next-line no-console
-    console.log('Error: Button type not found in the configuration');
     return <div className="icon-button-error" />;
   }
 

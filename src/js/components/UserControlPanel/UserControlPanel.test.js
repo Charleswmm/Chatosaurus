@@ -8,6 +8,11 @@ describe('ChatLogItem', () => {
   const foo = 'foo';
 
   const fooConfiguration = {
+    iconButtons: [
+      { type: 'mic' },
+      { type: 'deafen' },
+      { type: 'cog' },
+    ],
     currentUser:
       {
         userName: foo,

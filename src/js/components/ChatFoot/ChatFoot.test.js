@@ -12,6 +12,12 @@ describe('ChatFoot', () => {
   }
 
   const fooConfiguration = {
+    iconButtons: [
+      { type: 'add' },
+      { type: 'gift' },
+      { type: 'gif' },
+      { type: 'emoji' },
+    ],
     chatRoomMessageLog: [
       {
         chatRoomId: foo,
@@ -66,9 +72,9 @@ describe('ChatFoot', () => {
   });
 
   it('displays an Add attachment, Gift, Gif and Emoji action on the input bar', () => {
-    expect(wrapper.find('.chat-action-attach').exists()).toBeTruthy();
-    expect(wrapper.find('.chat-action-gift').exists()).toBeTruthy();
-    expect(wrapper.find('.chat-action-gif').exists()).toBeTruthy();
-    expect(wrapper.find('.chat-action-emoji').exists()).toBeTruthy();
+    expect(wrapper.find('.svg-add').exists()).toBeTruthy();
+    expect(wrapper.find('.svg-gif').exists()).toBeTruthy();
+    expect(wrapper.find('.svg-gift').exists()).toBeTruthy();
+    expect(wrapper.find('.svg-emoji').exists()).toBeTruthy();
   });
 });

@@ -19,6 +19,7 @@ describe('ChatView', () => {
         UserName: foo,
         avatar: foo,
       },
+    iconButtons: [],
     chatRoomMessageLog: [
       {
         chatRoomId: foo,
@@ -56,6 +57,6 @@ describe('ChatView', () => {
     expect(wrapper.find('ChatTop').exists()).toBeTruthy();
 
     // Displays a top bar actions
-    expect(wrapper.find('TopItems').exists()).toBeTruthy();
+    expect(wrapper.find('TopIcons').exists()).toBeTruthy();
   });
 });

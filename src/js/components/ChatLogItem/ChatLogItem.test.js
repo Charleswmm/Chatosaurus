@@ -1,10 +1,32 @@
 import { mount } from 'enzyme';
 import React from 'react';
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import Config from '../../utilities/Config';
 import ChatLogItem from './ChatLogItem';
 
 describe('ChatLogItem', () => {
+  const fooConfiguration = {
+    iconButtons: [
+      {
+        type: 'reaction',
+        toolTipText: 'Add Reaction',
+      },
+      {
+        type: 'more',
+        toolTipText: 'More',
+      },
+      {
+        type: 'edit',
+        toolTipText: 'Edit',
+      }],
+  };
+
+  const fooConfig = new Config(fooConfiguration);
+
   const wrapper = mount(
-    <ChatLogItem />,
+    <GlobalContext.Provider value={{ Config: fooConfig }}>
+      <ChatLogItem />
+    </GlobalContext.Provider>,
   );
 
   it('log item action menu contains reaction edit and more', () => {
