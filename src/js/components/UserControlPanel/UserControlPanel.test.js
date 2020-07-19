@@ -4,7 +4,7 @@ import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import Config from '../../utilities/Config';
 import UserControlPanel from './UserControlPanel';
 
-describe('ChatLogItem', () => {
+describe('UserControlPanel', () => {
   const foo = 'foo';
 
   const fooConfiguration = {
@@ -62,11 +62,21 @@ describe('ChatLogItem', () => {
     expect(expect.arrayContaining(actionToolTips)).toEqual(['Mute', 'User Settings', 'Deafen', 'Unmute', 'Undeafen']);
   });
 
-  it.skip('toggles to mute or unmute with the mic icon', () => {
-    // to be completed when the button is made into a component
+  it('toggles to mute or unmute with the mic icon', () => {
+    const iconButton = wrapper.find('IconButton').findWhere((e) => e.prop('type') === 'mic');
+    iconButton.simulate('click');
+    const iconButtonUpdated = wrapper.find('IconButton').findWhere((e) => e.prop('type') === 'mic');
+
+    expect(iconButtonUpdated.prop('toggleState')).toEqual('off');
+    expect(iconButtonUpdated.childAt(0).childAt(0).hasClass('svg-mic-off')).toBeTruthy();
   });
 
-  it.skip('toggles to deafen or undeafen with the deafen icon', () => {
-    // to be completed when the button is made into a component
+  it('toggles to deafen or undeafen with the deafen icon', () => {
+    const iconButton = wrapper.find('IconButton').findWhere((e) => e.prop('type') === 'deafen');
+    iconButton.simulate('click');
+    const iconButtonUpdated = wrapper.find('IconButton').findWhere((e) => e.prop('type') === 'deafen');
+
+    expect(iconButtonUpdated.prop('toggleState')).toEqual('on');
+    expect(iconButtonUpdated.childAt(0).childAt(0).hasClass('svg-deafen-on')).toBeTruthy();
   });
 });
