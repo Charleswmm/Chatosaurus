@@ -18,10 +18,12 @@
   }
 
   .user-control-avatar {
-    background-size: contain;
     height: 3.2rem;
     width: 3.2rem;
     cursor: pointer;
+    border-radius: 1.6rem;
+    background-position: center;
+    background-size: 120%;
   }
 
   .user-control-avatar:hover {
