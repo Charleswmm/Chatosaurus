@@ -1,75 +1,42 @@
 import React, { useContext, useState } from 'react';
-import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import '../../../scss/components/UserControlPanel/UserControlPanel.scss';
-
-const micClassNames = {
-  micOn: 'svg-mic-on',
-  micOff: 'svg-mic-off',
-};
-
-const deafenClassNames = {
-  deafenOn: 'svg-deafen-on',
-  deafenOff: 'svg-deafen-off',
-};
-
-const micToolTipText = {
-  micToolTipOn: 'Mute',
-  micToolTipOff: 'Unmute',
-};
-
-const deafenToolTipText = {
-  deafenToolTipOn: 'Undeafen',
-  deafenToolTipOff: 'Deafen',
-};
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import IconButton, {
+  iconButtonSubType,
+  iconButtonToolTipPosition,
+  iconButtonType,
+  toggleStates,
+} from '../IconButton/IconButton';
 
 const UserControlPanel = () => {
   const { Config } = useContext(GlobalContext);
   const { currentUser } = Config.get(['currentUser']);
   const { userName, userNameSuffix, avatar } = currentUser;
-  const { micOn } = micClassNames;
-  const { deafenOff } = deafenClassNames;
-  const { micToolTipOn, micToolTipOff } = micToolTipText;
-  const { deafenToolTipOn, deafenToolTipOff } = deafenToolTipText;
 
-  const [state, setState] = useState({ micClassName: micOn, deafenClassName: deafenOff });
-  const { micClassName, deafenClassName } = state;
+  const { micAction, deafenAction, settings } = iconButtonType;
+  const { rounded } = iconButtonSubType;
+  const { above } = iconButtonToolTipPosition;
+  const { on, off } = toggleStates;
 
-  let micToolTip = micToolTipOn;
-  let deafenToolTip = deafenToolTipOff;
-
-  if (micClassName !== micOn) {
-    micToolTip = micToolTipOff;
-  }
-
-  if (deafenClassName !== deafenOff) {
-    deafenToolTip = deafenToolTipOn;
-  }
+  const [buttonState, setButtonState] = useState({ micState: on, deafenState: off });
+  const { micState, deafenState } = buttonState;
 
   /**
-   * Toggles the svg class of either mic or deafen buttons depending on which was clicked
-   * @param evt
+   * Toggles the mic or deafen buttons
+   * @param action
+   * @param currentState
    */
-  const toggle = (evt) => {
-    const targetClass = evt.target.classList.contains('svg')
-      ? [...evt.target.classList].pop()
-      : [...evt.target.firstChild.classList].pop();
+  const changeButtonState = (action, currentState) => {
+    const toggleState = currentState === on ? off : on;
 
-    const micClassNameValues = Object.values(micClassNames);
+    const actionType = action === micAction
+      ? { micState: toggleState }
+      : { deafenState: toggleState };
 
-    if (micClassNameValues.find((e) => e === targetClass)) {
-      const micClassNameIndex = micClassNameValues.findIndex((e) => e === targetClass);
-      micClassNameValues.splice(micClassNameIndex, 1);
-
-      setState({ ...state, micClassName: micClassNameValues[0] });
-      return;
-    }
-
-    const deafenClassNameValues = Object.values(deafenClassNames);
-
-    const deafenClassNameIndex = deafenClassNameValues.findIndex((e) => e === targetClass);
-    deafenClassNameValues.splice(deafenClassNameIndex, 1);
-
-    setState({ ...state, deafenClassName: deafenClassNameValues[0] });
+    setButtonState({
+      ...buttonState,
+      ...actionType,
+    });
   };
 
   return (
@@ -78,33 +45,31 @@ const UserControlPanel = () => {
       <div className="user-control-title">
         <div className="user-control-text">{userName}</div>
         <div className="user-control-subtext">{`#${userNameSuffix}`}</div>
-        <div className="tool-tip tool-tip-sm">
-          <div className="tool-tip-text">Click to copy username</div>
+        <div className="tool-tip">
+          <div className="tool-tip-text tool-tip-text-sm">Click to copy username</div>
           <div className="tool-tip-arrow tool-tip-arrow-bottom" />
         </div>
       </div>
       <div className="user-control-actions">
-        <button type="button" className="user-control-action" onClick={toggle}>
-          <div className={`svg ${micClassName}`} />
-          <div className="tool-tip tool-tip-sm">
-            <div className="tool-tip-text">{micToolTip}</div>
-            <div className="tool-tip-arrow tool-tip-arrow-bottom" />
-          </div>
-        </button>
-        <button type="button" className="user-control-action" onClick={toggle}>
-          <div className={`svg ${deafenClassName}`} />
-          <div className="tool-tip tool-tip-sm">
-            <div className="tool-tip-text">{deafenToolTip}</div>
-            <div className="tool-tip-arrow tool-tip-arrow-bottom" />
-          </div>
-        </button>
-        <button type="button" className="user-control-action">
-          <div className="svg svg-cog" />
-          <div className="tool-tip tool-tip-sm">
-            <div className="tool-tip-text">User Settings</div>
-            <div className="tool-tip-arrow tool-tip-arrow-bottom" />
-          </div>
-        </button>
+        <IconButton
+          type={micAction}
+          subtype={rounded}
+          toolTipPosition={above}
+          toggleState={micState}
+          changeButtonState={changeButtonState}
+        />
+        <IconButton
+          type={deafenAction}
+          subtype={rounded}
+          toolTipPosition={above}
+          toggleState={deafenState}
+          changeButtonState={changeButtonState}
+        />
+        <IconButton
+          type={settings}
+          subtype={rounded}
+          toolTipPosition={above}
+        />
       </div>
     </div>
   );

@@ -1,0 +1,78 @@
+@import "../../utilities/typography";
+@import "../../variables";
+
+.icon-button {
+  cursor: pointer;
+
+  .tool-tip-text {
+    max-width: 14.2rem;
+  }
+
+  .tip-holder {
+    position: relative;
+    transform: translateX(50%);
+    width: 100%;
+  }
+
+  .tool-tip {
+    transform: translateX(-50%);
+  }
+
+  .tool-tip-above {
+    top: -6.8rem;
+    left: 0;
+  }
+
+  .tool-tip-below {
+    top: 0.8rem;
+    left: 0;
+  }
+
+  .svg-gift ~ .tip-holder {
+    .tool-tip-above {
+      top: -10.6rem;
+    }
+  }
+}
+
+.icon-button:hover {
+  filter: brightness(130%);
+
+  .tool-tip {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.icon-button.icon-button-plain {
+  padding: 0.4rem;
+  margin: 0.6rem 0.4rem;
+
+  .svg {
+    height: 2.4rem;
+    width: 2.4rem;
+  }
+}
+
+.icon-button.icon-button-rounded {
+  padding: 0.6rem;
+  border-radius: 4px;
+
+  .svg {
+    height: 2rem;
+    width: 2rem;
+  }
+}
+
+.icon-button.icon-button-rounded:hover {
+  background-color: rgba(79,84,92,0.15);
+}
+
+.icon-button-error {
+  margin: 0.2rem;
+  height: 3.2rem;
+  width: 3.2rem;
+  background-image: url("../../../img/icons/cross.svg") ;
+  background-position: center;
+}
+

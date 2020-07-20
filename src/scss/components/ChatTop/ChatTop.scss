@@ -16,37 +16,13 @@
   }
 
   .nav-item {
-    display: flex;
     align-items: center;
     margin: 0 0.8rem;
-    position: relative;
   }
 
-  .top-btn {
-    filter: brightness(70%);
-    cursor: pointer;
-  }
-
-  .top-btn:hover {
-    filter: brightness(88%);
-  }
-
-  .tool-tip {
-    top: 3.3rem;
-    right: 1.2rem;
-  }
-
-  .top-btn:hover ~ .tool-tip {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .svg {
+  .svg-people {
     height: 2.4rem;
     width: 2.4rem;
-  }
-
-  .svg-people-grey {
     background-position: center;
     filter: brightness(50%);
   }

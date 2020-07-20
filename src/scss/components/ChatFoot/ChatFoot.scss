@@ -5,12 +5,6 @@
   padding: 0 1.6rem;
   flex: 0 0 auto;
 
-  .svg {
-    height: 2.4rem;
-    width: 2.4rem;
-    filter: brightness(70%);
-  }
-
   .chat-foot-content {
     margin-bottom: 1.8rem;
     position: relative;
@@ -23,43 +17,6 @@
   .chat-form {
     display: flex;
     align-items: flex-start;
-  }
-
-  .chat-action {
-    position: relative;
-    padding: 0.4rem;
-    margin: 0.6rem 0.4rem;
-    cursor: pointer;
-  }
-
-  .chat-action:hover .svg {
-    filter: brightness(88%);
-  }
-
-  .chat-action:hover .svg-emoji {
-    filter: brightness(95%) grayscale(1);
-  }
-
-  .chat-action-attach {
-    padding: 1rem 1.6rem;
-    margin: 0;
-  }
-
-  .chat-action-gift:hover .tool-tip {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .tool-tip {
-    top: -7.6rem;
-    left: 1.4rem;
-    transform: translateX(-50%);
-  }
-
-  .tool-tip-text {
-    width: 15.7rem;
-    white-space: normal;
-    text-align: left;
   }
 
   .chat-textarea {
@@ -81,8 +38,11 @@
   }
 
   .svg-emoji {
-    filter: brightness(80%) grayscale(1);
     background-size: 150%;
     background-position: center;
+  }
+
+  button:first-child {
+    margin: 0.6rem 1.2rem;
   }
 }
