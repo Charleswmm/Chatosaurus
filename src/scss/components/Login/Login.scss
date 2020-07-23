@@ -1,0 +1,36 @@
+@import "../../variables";
+
+.login-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .svg-wumpus-direction {
+    width: 40rem;
+    height: 20rem;
+  }
+
+  .login-button {
+    margin: 4rem 0;
+    padding: 1rem 2rem;
+    border-radius: 0.4rem;
+    background-color: #2F3136;
+    filter: brightness(150%);
+    cursor: pointer;
+    box-shadow: 0 0 1px 1px rgba(4,4,5,0.15);
+
+    span {
+      color: #8e9297;
+      font-size: 1.8rem;
+    }
+  }
+
+  .login-button:hover {
+    box-shadow: 0 0 2px 2px rgba(4,4,5,0.15);
+    filter: brightness(160%);
+  }
+
+  .login-button:active {
+    transform: translateY(1px);
+  }
+}

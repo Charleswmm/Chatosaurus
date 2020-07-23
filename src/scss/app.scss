@@ -135,6 +135,20 @@
     background-color: $normal-brand-yellow;
 }
 
+.landing-page {
+    background-color: $neutral-shadow-grey;
+    height: 100vh;
+    width: 100vw;
+
+    .landing-page-content {
+        height: 100%;
+        width: 40rem;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+    }
+}
+
 .flex-grow {
     flex: 1 1 auto;
 }
