@@ -22,7 +22,7 @@ const LandingPage = () => {
       <div className="landing-page-content">
         <div className="login-content show-content">
           <div className="svg svg-wumpus-direction" />
-          <a className="login-button">
+          <a href="/" className="login-button">
             <span>Login</span>
           </a>
         </div>
