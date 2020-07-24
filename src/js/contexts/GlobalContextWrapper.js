@@ -24,6 +24,7 @@ export class GlobalContextWrapper extends Component {
       safeUpdate: this.safeUpdate,
       setChatInputState: this.setChatInputState,
       createRandomMessageLog: this.createRandomMessageLog,
+      setAuthCodeInState: this.setAuthCodeInState,
     };
   }
 
@@ -134,6 +135,12 @@ export class GlobalContextWrapper extends Component {
           chatInput: input,
         },
       ],
+    });
+  }
+
+  setAuthCodeInState = (code) => {
+    this.setState({
+      authCode: code,
     });
   }
 
