@@ -140,7 +140,7 @@
     height: 100vh;
     width: 100vw;
 
-    .landing-page-content {
+    &-content {
         height: 100%;
         width: 40rem;
         margin: 0 auto;
@@ -164,14 +164,14 @@
     opacity: 0;
     pointer-events: none;
 
-    .tool-tip-text {
+    &-text {
         width: max-content;
         color: #ffffff;
         margin: 1rem;
         user-select: none;
     }
 
-    .tool-tip-text-sm {
+    &-text-sm {
         font-size: 1.2rem;
         font-weight: 400;
         letter-spacing: 0.06em;
@@ -181,31 +181,31 @@
         text-align: left;
     }
 
-    .tool-tip-text-lg {
+    &-text-lg {
         @include typo(tt, 1.5rem);
     }
 
-    .tool-tip-arrow {
+    &-arrow {
         position: relative;
         width: 100%;
     }
 
-    .tool-tip-arrow-top {
+    &-arrow-top {
         transform: translateX(-50%);
     }
 
-    .tool-tip-arrow-bottom {
+    &-arrow-bottom {
         transform: translateX(-50%);
     }
 
-    .tool-tip-arrow::before {
+    &-arrow::before {
         content: '';
         position: absolute;
         width: 0;
         height: 0;
     }
 
-    .tool-tip-arrow-left::before {
+    &-arrow-left::before {
         top: 0.8rem;
         left: -0.5rem;
         border-top: 10px solid transparent;
@@ -213,7 +213,7 @@
         border-right:10px solid $hover-black;
     }
 
-    .tool-tip-arrow-top::before {
+    &-arrow-top::before {
         top: -3.9rem;
         right: -1rem;
         border-left: 10px solid transparent;
@@ -221,7 +221,7 @@
         border-bottom:10px solid $hover-black;
     }
 
-    .tool-tip-arrow-bottom::before {
+    &-arrow-bottom::before {
         top: -0.5rem;
         right: -1rem;
         border-left: 10px solid transparent;

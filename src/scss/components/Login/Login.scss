@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.login-content{
+.login-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,13 +22,13 @@
       color: #fff;
       font-size: 1.6rem;
     }
-  }
 
-  .login-button:hover {
-    background-color: #677bc4;
-  }
+    &:hover {
+      background-color: #677bc4;
+    }
 
-  .login-button:active {
-    transform: translateY(1px);
+    &:active {
+      transform: translateY(1px);
+    }
   }
 }

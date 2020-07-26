@@ -5,25 +5,20 @@ import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import Loading from '../Loading/Loading';
 
 const Oauth = (props) => {
-  const { setAuthCodeInState } = useContext(GlobalContext);
+  const { setAuthCodeInState, Config } = useContext(GlobalContext);
+  const { authDetails: { responseType } } = Config.get(['authDetails']);
   const { location: { search }, history } = props;
-
-  if (!search) {
-    return (
-      <Redirect to="/" />
-    );
-  }
 
   const searchParams = new URLSearchParams(search);
 
-  if (!searchParams.has('code')) {
+  if (!searchParams.has(responseType)) {
     return (
       <Redirect to="/" />
     );
   }
 
   useEffect(() => {
-    setAuthCodeInState(searchParams.get('code'));
+    setAuthCodeInState(searchParams.get(responseType));
     history.push('/login');
   }, []);
 
