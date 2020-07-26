@@ -1,11 +1,18 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Redirect } from 'react-router';
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
 const Auth = ({ children }) => {
-  // Placeholder until "Boot" story
-  const authData = false;
+  const { state: { authCode } } = useContext(GlobalContext);
 
+  // Placeholder until "boot" scope
+  if (authCode) {
+    // eslint-disable-next-line no-console
+    console.log(authCode);
+  }
+
+  const authData = false;
   if (!authData) {
     return (
       <Redirect to="/login" />

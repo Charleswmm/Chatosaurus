@@ -24,7 +24,7 @@ const Oauth = (props) => {
 
   useEffect(() => {
     setAuthCodeInState(searchParams.get('code'));
-    history.push('/');
+    history.push('/login');
   }, []);
 
   return (

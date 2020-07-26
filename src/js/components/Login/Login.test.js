@@ -1,14 +1,32 @@
 import { mount } from 'enzyme';
 import React from 'react';
 import { MemoryRouter, Route } from 'react-router';
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import Config from '../../utilities/Config';
 import Login from './Login';
 
 describe('Login', () => {
-  const callBackUrl = '?code=foo';
+  const fooConfiguration = {
+    clientDetails: {
+      clientId: 'bar',
+    },
+    authDetails: {
+      scope: 'bar',
+      redirectUri: 'bar',
+      responseType: 'bar',
+    },
+    discordUrls: {
+      authUrl: 'foo',
+    },
+  };
 
-  let wrapper = mount(
+  const fooConfig = new Config(fooConfiguration);
+
+  const wrapper = mount(
     <MemoryRouter initialEntries={['foo']} initialIndex={0}>
-      <Route component={Login} />
+      <GlobalContext.Provider value={{ Config: fooConfig }}>
+        <Route component={Login} />
+      </GlobalContext.Provider>
     </MemoryRouter>,
   );
 
@@ -17,18 +35,8 @@ describe('Login', () => {
   });
 
   it('redirects to the OAuth resource', () => {
-    const hrefParts = wrapper.find('a').prop('href').split('/');
+    const hrefParts = wrapper.find('a').prop('href').split('?').shift();
 
-    expect(hrefParts).toEqual(expect.arrayContaining(['https:', 'discord.com', 'api', 'oauth2']));
-  });
-
-  it('captures the OAuth callback data', () => {
-    wrapper = mount(
-      <MemoryRouter initialEntries={[callBackUrl]} initialIndex={0}>
-        <Route component={Login} />
-      </MemoryRouter>,
-    );
-
-    expect(wrapper.find('Login').children().text()).toBe('foo');
+    expect(hrefParts).toBe('foo');
   });
 });
