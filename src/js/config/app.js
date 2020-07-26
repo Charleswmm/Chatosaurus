@@ -3,6 +3,21 @@ import { backgroundColorClassNames } from '../components/GroupNavDMButton/GroupN
 import placeHolderAvatar from '../../img/discord-placeholder.png';
 
 export default {
+  clientDetails: {
+    clientId: '735260432536961114',
+    clientSecret: 'yZS10WNIaQM_X2vDwm2KplGfkj-pbmVL',
+  },
+  authDetails: {
+    scope: 'identify guilds guilds.join',
+    grantType: 'authorization_code',
+    redirectUri: 'https://chatosaurus.dev/oauth',
+    responseType: 'code',
+  },
+  discordUrls: {
+    baseUrl: 'https://discord.com/api',
+    authUrl: 'https://discord.com/api/oauth2/authorize',
+    tokenUrl: 'https://discord.com/api/oauth2/token',
+  },
   currentUser:
     {
       userName: 'pytho',

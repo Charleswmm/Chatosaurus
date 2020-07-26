@@ -1,0 +1,34 @@
+@import "../../variables";
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .svg-wumpus-direction {
+    width: 40rem;
+    height: 20rem;
+  }
+
+  .login-button {
+    margin: 4rem 0;
+    padding: 1rem 2rem;
+    border-radius: 0.4rem;
+    background-color: #7289da;
+    cursor: pointer;
+    transition: background-color .17s ease,color .17s ease;
+
+    span {
+      color: #fff;
+      font-size: 1.6rem;
+    }
+
+    &:hover {
+      background-color: #677bc4;
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+}
