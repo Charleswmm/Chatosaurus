@@ -1,19 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
 const Auth = ({ children }) => {
-  const { state: { authCode } } = useContext(GlobalContext);
+  const { Fetcher } = useContext(GlobalContext);
 
-  // Placeholder until "boot" scope
-  if (authCode) {
-    // eslint-disable-next-line no-console
-    console.log(authCode);
-  }
+  const authCheck = Fetcher.auth();
 
-  const authData = false;
-  if (!authData) {
+  console.log(authCheck);
+
+  if (!authCheck) {
     return (
       <Redirect to="/login" />
     );
@@ -34,4 +31,4 @@ Auth.defaultProps = {
   children: PropTypes.node,
 };
 
-export default Auth;
+export default withRouter(Auth);

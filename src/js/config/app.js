@@ -18,6 +18,13 @@ export default {
     authUrl: 'https://discord.com/api/oauth2/authorize',
     tokenUrl: 'https://discord.com/api/oauth2/token',
   },
+  requestHeaderVars: {
+    contentType: {
+      key: 'Content-Type',
+      json: 'application/json',
+      uri: 'application/x-www-form-urlencoded',
+    },
+  },
   currentUser:
     {
       userName: 'pytho',

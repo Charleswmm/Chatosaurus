@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { Component, createContext } from 'react';
 import ConfigClass from '../utilities/Config';
+import FetcherClass from '../utilities/Fetcher';
 
 export const GlobalContext = createContext('');
 
 export class GlobalContextWrapper extends Component {
   static defaultProps = {
     Config: null,
+    Fetcher: null,
     children: null,
   }
 
@@ -24,7 +26,6 @@ export class GlobalContextWrapper extends Component {
       safeUpdate: this.safeUpdate,
       setChatInputState: this.setChatInputState,
       createRandomMessageLog: this.createRandomMessageLog,
-      setAuthCodeInState: this.setAuthCodeInState,
     };
   }
 
@@ -138,14 +139,8 @@ export class GlobalContextWrapper extends Component {
     });
   }
 
-  setAuthCodeInState = (code) => {
-    this.setState({
-      authCode: code,
-    });
-  }
-
   render() {
-    const { Config, children } = this.props;
+    const { Config, Fetcher, children } = this.props;
 
     return (
       <GlobalContext.Provider
@@ -153,6 +148,7 @@ export class GlobalContextWrapper extends Component {
           ...this.func,
           state: this.state,
           Config,
+          Fetcher,
         }}
       >
         { children }
@@ -163,5 +159,6 @@ export class GlobalContextWrapper extends Component {
 
 GlobalContextWrapper.propTypes = {
   Config: PropTypes.instanceOf(ConfigClass),
+  Fetcher: PropTypes.instanceOf(FetcherClass),
   children: PropTypes.node,
 };
