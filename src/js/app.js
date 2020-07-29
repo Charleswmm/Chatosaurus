@@ -10,22 +10,22 @@ import GroupNav from './components/GroupNav/GroupNav';
 import Loading from './components/Loading/Loading';
 import Login from './components/Login/Login';
 import MainNav from './components/MainNav/MainNav';
-import Oauth from './components/Oauth/Oauth';
+import OAuthCallback from './components/OAuthCallback/OAuthCallback';
 import configuration from './config/app';
 import { GlobalContextWrapper } from './contexts/GlobalContextWrapper';
 import Config from './utilities/Config';
-import Fetcher from './utilities/Fetcher';
+import DiscordStore from './utilities/DiscordStore';
 
 const config = new Config(configuration);
-const fetcher = new Fetcher(config);
+const discordStore = new DiscordStore(config);
 
 const App = () => (
   <BrowserRouter>
-    <GlobalContextWrapper Config={config} Fetcher={fetcher}>
+    <GlobalContextWrapper Config={config} DiscordStore={discordStore}>
       <Switch>
-        <Route exact path="/loading" component={Loading} />
+        <Route exact path="/loading" render={Loading} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/oauth" component={Oauth} />
+        <Route exact path="/oauthcallback" component={OAuthCallback} />
         <Auth>
           <Route exact path={['/', '/channels']} render={() => <Redirect to="/channels/@me" />} />
           <Route path="/channels" component={MainNav} />

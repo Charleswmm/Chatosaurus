@@ -10,20 +10,13 @@ export default {
   authDetails: {
     scope: 'identify guilds guilds.join',
     grantType: 'authorization_code',
-    redirectUri: 'https://chatosaurus.dev/oauth',
+    redirectUri: 'https://chatosaurus.dev/oauthcallback',
     responseType: 'code',
   },
   discordUrls: {
     baseUrl: 'https://discord.com/api',
     authUrl: 'https://discord.com/api/oauth2/authorize',
     tokenUrl: 'https://discord.com/api/oauth2/token',
-  },
-  requestHeaderVars: {
-    contentType: {
-      key: 'Content-Type',
-      json: 'application/json',
-      uri: 'application/x-www-form-urlencoded',
-    },
   },
   currentUser:
     {

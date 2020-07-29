@@ -1,16 +1,53 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
-import { Redirect, withRouter } from 'react-router';
+import React, { useContext, useEffect } from 'react';
+import { Redirect } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+
+const accessTokenContent = [
+  'access_token',
+  'expires_in',
+  'refresh_token',
+  'scope',
+  'token_type',
+];
 
 const Auth = ({ children }) => {
   const { Fetcher } = useContext(GlobalContext);
 
-  const authCheck = Fetcher.auth();
+  const accessTokenData = JSON.parse(sessionStorage.getItem('accessToken'));
 
-  console.log(authCheck);
+  let accessTokenCheck = false;
 
-  if (!authCheck) {
+  if (accessTokenData) {
+    const accessTokenDataKeys = Object.keys(accessTokenData).sort();
+    accessTokenCheck = accessTokenDataKeys.every((e, index) => e === accessTokenContent[index]);
+  }
+
+  // Proof of concept
+
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     let userData = {};
+  //
+  //     try {
+  //       userData = await DiscordStore.get(['users', '@me']);
+  //     } catch (err) {
+  //       // eslint-disable-next-line no-console
+  //       console.log('`userData`', err);
+  //     }
+  //
+  //     console.log(userData);
+  //   };
+  //
+  //   if (authCheck) {
+  //     getUser().catch((err) => {
+  //       // eslint-disable-next-line no-console
+  //       console.log('`getUser`', err);
+  //     });
+  //   }
+  // }, []);
+
+  if (!accessTokenCheck) {
     return (
       <Redirect to="/login" />
     );
@@ -31,4 +68,4 @@ Auth.defaultProps = {
   children: PropTypes.node,
 };
 
-export default withRouter(Auth);
+export default Auth;

@@ -3,9 +3,9 @@ import React from 'react';
 import { MemoryRouter, Route } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import Config from '../../utilities/Config';
-import Oauth from './Oauth';
+import OAuthCallback from './OAuthCallback';
 
-describe('Oauth', () => {
+describe('OAuthCallback', () => {
   let bar;
   const foo = (baz) => {
     bar = baz;
@@ -25,7 +25,7 @@ describe('Oauth', () => {
   mount(
     <MemoryRouter initialEntries={[callBackUrl]} initialIndex={0}>
       <GlobalContext.Provider value={{ setAuthCodeInState: foo, Config: fooConfig }}>
-        <Route component={Oauth} />
+        <Route component={OAuthCallback} />
       </GlobalContext.Provider>
     </MemoryRouter>,
   );

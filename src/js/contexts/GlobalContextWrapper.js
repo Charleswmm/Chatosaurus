@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { Component, createContext } from 'react';
 import ConfigClass from '../utilities/Config';
-import FetcherClass from '../utilities/Fetcher';
+import DiscordStoreClass from '../utilities/DiscordStore';
 
 export const GlobalContext = createContext('');
 
 export class GlobalContextWrapper extends Component {
   static defaultProps = {
     Config: null,
-    Fetcher: null,
+    DiscordStore: null,
     children: null,
   }
 
@@ -140,7 +140,7 @@ export class GlobalContextWrapper extends Component {
   }
 
   render() {
-    const { Config, Fetcher, children } = this.props;
+    const { Config, DiscordStore, children } = this.props;
 
     return (
       <GlobalContext.Provider
@@ -148,7 +148,7 @@ export class GlobalContextWrapper extends Component {
           ...this.func,
           state: this.state,
           Config,
-          Fetcher,
+          DiscordStore,
         }}
       >
         { children }
@@ -159,6 +159,6 @@ export class GlobalContextWrapper extends Component {
 
 GlobalContextWrapper.propTypes = {
   Config: PropTypes.instanceOf(ConfigClass),
-  Fetcher: PropTypes.instanceOf(FetcherClass),
+  DiscordStore: PropTypes.instanceOf(DiscordStoreClass),
   children: PropTypes.node,
 };
