@@ -3,13 +3,12 @@ import { backgroundColorClassNames } from '../components/GroupNavDMButton/GroupN
 import placeHolderAvatar from '../../img/discord-placeholder.png';
 
 export default {
-  clientDetails: {
+  authDetails: {
     clientId: '735260432536961114',
     clientSecret: 'yZS10WNIaQM_X2vDwm2KplGfkj-pbmVL',
-  },
-  authDetails: {
     scope: 'identify guilds guilds.join',
     grantType: 'authorization_code',
+    refreshType: 'refresh_token',
     redirectUri: 'https://chatosaurus.dev/oauthcallback',
     responseType: 'code',
   },
@@ -17,6 +16,20 @@ export default {
     baseUrl: 'https://discord.com/api',
     authUrl: 'https://discord.com/api/oauth2/authorize',
     tokenUrl: 'https://discord.com/api/oauth2/token',
+  },
+  discordAPIResources: {
+    client: 'client',
+    bot: 'bot',
+    user: '/users/@me',
+    guilds: '/users/@me/guilds',
+    channels: '/users/@me/guilds',
+  },
+  tokenTemplate: {
+    accessTokenKey: 'access_token',
+    expiresInKey: 'expires_in',
+    refreshTokenKey: 'refresh_token',
+    scopeKey: 'scope',
+    tokenTypeKey: 'token_type',
   },
   currentUser:
     {
