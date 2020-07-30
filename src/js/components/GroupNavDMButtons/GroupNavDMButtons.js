@@ -38,7 +38,9 @@ class GroupNavDMButtons extends Component {
     const { homeRoute } = Config.get(['homeRoute']);
     const button = this.randomNewGroupNavDMButton();
 
-    Config.set({ groupNavDMButtons: [button, ...this.getGroupNavDMButtons()] });
+    Config.set({
+      groupNavDMButtons: [button, ...this.getGroupNavDMButtons()],
+    });
 
     // Creates a place holder message log and places it on the "config"
     createRandomMessageLog(button.id);
@@ -60,7 +62,9 @@ class GroupNavDMButtons extends Component {
     const { homeRoute } = Config.get(['homeRoute']);
     const newGroupNavDMButtons = this.getGroupNavDMButtons().filter((button) => button.id !== id);
 
-    Config.set({ groupNavDMButtons: newGroupNavDMButtons });
+    Config.set({
+      groupNavDMButtons: newGroupNavDMButtons,
+    });
 
     const currentPageId = location.pathname.split('/').pop();
 

@@ -24,7 +24,10 @@ describe('OAuthCallback', () => {
 
   mount(
     <MemoryRouter initialEntries={[callBackUrl]} initialIndex={0}>
-      <GlobalContext.Provider value={{ setAuthCodeInState: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{
+        setAuthCodeInState: foo, Config: fooConfig,
+      }}
+      >
         <Route component={OAuthCallback} />
       </GlobalContext.Provider>
     </MemoryRouter>,

@@ -20,7 +20,10 @@ describe('IconButton', () => {
   const fooConfig = new Config(fooConfiguration);
 
   const wrapper = mount(
-    <GlobalContext.Provider value={{ Config: fooConfig }}>
+    <GlobalContext.Provider value={{
+      Config: fooConfig,
+    }}
+    >
       <IconButton type="foo" />
     </GlobalContext.Provider>,
   );

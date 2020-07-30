@@ -10,9 +10,7 @@ import IconButton, {
 
 const ChatFoot = (props) => {
   const { id, title } = props;
-  const {
-    addAttachment, addGift, addGif, addEmoji,
-  } = iconButtonType;
+  const { addAttachment, addGift, addGif, addEmoji } = iconButtonType;
   const { plain } = iconButtonSubType;
   const { above } = iconButtonToolTipPosition;
 
@@ -78,7 +76,9 @@ const ChatInput = (props) => {
     <textarea
       name="chatInput"
       className="chat-textarea flex-grow"
-      style={{ height: `${inputHeight}px` }}
+      style={{
+        height: `${inputHeight}px`,
+      }}
       placeholder={`Message @${title}`}
       value={chatInput}
       onChange={setChatInput}

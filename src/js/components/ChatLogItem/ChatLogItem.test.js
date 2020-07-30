@@ -24,7 +24,10 @@ describe('ChatLogItem', () => {
   const fooConfig = new Config(fooConfiguration);
 
   const wrapper = mount(
-    <GlobalContext.Provider value={{ Config: fooConfig }}>
+    <GlobalContext.Provider value={{
+      Config: fooConfig,
+    }}
+    >
       <ChatLogItem />
     </GlobalContext.Provider>,
   );

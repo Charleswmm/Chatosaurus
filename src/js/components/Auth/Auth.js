@@ -97,8 +97,12 @@ const Auth = ({ children }) => {
   );
 };
 
-Auth.propTypes = { children: PropTypes.node };
+Auth.propTypes = {
+  children: PropTypes.node,
+};
 
-Auth.defaultProps = { children: null };
+Auth.defaultProps = {
+  children: null,
+};
 
 export default Auth;

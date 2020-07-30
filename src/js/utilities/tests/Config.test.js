@@ -27,13 +27,17 @@ describe('Config', () => {
   it('can get data', () => {
     const config = new Config(mockData);
 
-    expect(config.get(['foo'])).toMatchObject({ foo: 'foo' });
+    expect(config.get(['foo'])).toMatchObject({
+      foo: 'foo',
+    });
   });
 
   it('ommits undefined fields', () => {
     const config = new Config(mockData);
 
-    expect(config.get(['foo', 'bin'])).toMatchObject({ foo: 'foo' });
+    expect(config.get(['foo', 'bin'])).toMatchObject({
+      foo: 'foo',
+    });
     expect(consoleOut).toContain('\'bin\' is not available in the config');
   });
 

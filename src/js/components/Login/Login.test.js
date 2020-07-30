@@ -24,7 +24,10 @@ describe('Login', () => {
 
   const wrapper = mount(
     <MemoryRouter initialEntries={['foo']} initialIndex={0}>
-      <GlobalContext.Provider value={{ Config: fooConfig }}>
+      <GlobalContext.Provider value={{
+        Config: fooConfig,
+      }}
+      >
         <Route component={Login} />
       </GlobalContext.Provider>
     </MemoryRouter>,

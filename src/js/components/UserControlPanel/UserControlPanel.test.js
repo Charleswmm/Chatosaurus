@@ -9,9 +9,15 @@ describe('UserControlPanel', () => {
 
   const fooConfiguration = {
     iconButtons: [
-      { type: 'mic' },
-      { type: 'deafen' },
-      { type: 'cog' },
+      {
+        type: 'mic',
+      },
+      {
+        type: 'deafen',
+      },
+      {
+        type: 'cog',
+      },
     ],
     currentUser:
       {
@@ -24,7 +30,10 @@ describe('UserControlPanel', () => {
   const fooConfig = new Config(fooConfiguration);
 
   const wrapper = mount(
-    <GlobalContext.Provider value={{ Config: fooConfig }}>
+    <GlobalContext.Provider value={{
+      Config: fooConfig,
+    }}
+    >
       <UserControlPanel />
     </GlobalContext.Provider>,
   );

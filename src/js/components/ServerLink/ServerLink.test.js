@@ -9,7 +9,10 @@ describe('ServerLink', () => {
     const foo = () => '';
 
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinRoutePath: foo }}>
+      <GlobalContext.Provider value={{
+        joinRoutePath: foo,
+      }}
+      >
         <MemoryRouter initialEntries={['/channels/foo']} initialIndex={0}>
           <ServerLink id="foo" />
         </MemoryRouter>

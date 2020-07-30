@@ -39,7 +39,10 @@ describe('ChatBody', () => {
   const fooConfig = new Config(fooConfiguration);
 
   const wrapper = mount(
-    <GlobalContext.Provider value={{ Config: fooConfig }}>
+    <GlobalContext.Provider value={{
+      Config: fooConfig,
+    }}
+    >
       <ChatBody id={foo} />
     </GlobalContext.Provider>,
   );

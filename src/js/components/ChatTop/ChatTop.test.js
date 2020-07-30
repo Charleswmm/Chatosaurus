@@ -9,7 +9,10 @@ describe('ChatTop', () => {
   const fooConfig = new Config(configuration);
 
   const wrapper = mount(
-    <GlobalContext.Provider value={{ Config: fooConfig }}>
+    <GlobalContext.Provider value={{
+      Config: fooConfig,
+    }}
+    >
       <ChatTop />
     </GlobalContext.Provider>,
   );

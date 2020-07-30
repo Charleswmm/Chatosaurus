@@ -101,7 +101,9 @@ export class GlobalContextWrapper extends Component {
    * Used to rerender, useful when changing data in the configuration and not setting state
    */
   safeUpdate = () => {
-    this.setState({ key: Math.random() });
+    this.setState({
+      key: Math.random(),
+    });
   }
 
   /**
