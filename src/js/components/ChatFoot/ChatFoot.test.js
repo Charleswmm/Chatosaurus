@@ -13,10 +13,18 @@ describe('ChatFoot', () => {
 
   const fooConfiguration = {
     iconButtons: [
-      { type: 'add' },
-      { type: 'gift' },
-      { type: 'gif' },
-      { type: 'emoji' },
+      {
+        type: 'add',
+      },
+      {
+        type: 'gift',
+      },
+      {
+        type: 'gif',
+      },
+      {
+        type: 'emoji',
+      },
     ],
     chatRoomMessageLog: [
       {
@@ -62,7 +70,11 @@ describe('ChatFoot', () => {
   });
 
   it('has an input where I can input a message', () => {
-    wrapper.find('textarea').simulate('change', { target: { value: foo } });
+    wrapper.find('textarea').simulate('change', {
+      target: {
+        value: foo,
+      },
+    });
 
     expect(baz).toEqual(foo);
   });

@@ -45,7 +45,9 @@ class AddServerButton extends MainNavButton {
       sort: (b.sort >= sort ? b.sort + 1 : b.sort),
     }));
 
-    this.context.Config.set({ mainNavButtons: [button, ...sortedMainNavButtons] });
+    this.context.Config.set({
+      mainNavButtons: [button, ...sortedMainNavButtons],
+    });
 
     // this.props.history is made available when this component is wrapped by withRouter()
     this.props.history.push(joinRoutePath([button.id]));

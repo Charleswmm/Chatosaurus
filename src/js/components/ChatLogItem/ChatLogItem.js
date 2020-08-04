@@ -72,14 +72,17 @@ const ChatLogItem = ({ timeStamp, body }) => (
 );
 
 export const ChatLogItemStart = (props) => {
-  const {
-    timeStamp, userName, avatarSrc, body,
-  } = props;
+  const { timeStamp, userName, avatarSrc, body } = props;
 
   return (
     <div className="chat-log-item chat-log-item-message chat-log-item-start">
       <div className="message-tab">
-        <div className="avatar" style={{ backgroundImage: `url(${avatarSrc})` }} />
+        <div
+          className="avatar"
+          style={{
+            backgroundImage: `url(${avatarSrc})`,
+          }}
+        />
       </div>
       <div className="message-content">
         <div className="message-title">

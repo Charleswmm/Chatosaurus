@@ -35,15 +35,17 @@ class GroupNavDMButtons extends Component {
   addButtonClickHandler = () => {
     const { history } = this.props;
     const { Config, joinRoutePath, createRandomMessageLog } = this.context;
-    const { homeRoute } = Config.get(['homeRoute']);
+    const { paths: { homePath } } = Config.get(['paths']);
     const button = this.randomNewGroupNavDMButton();
 
-    Config.set({ groupNavDMButtons: [button, ...this.getGroupNavDMButtons()] });
+    Config.set({
+      groupNavDMButtons: [button, ...this.getGroupNavDMButtons()],
+    });
 
     // Creates a place holder message log and places it on the "config"
     createRandomMessageLog(button.id);
 
-    history.push(joinRoutePath([homeRoute, button.id]));
+    history.push(joinRoutePath([homePath, button.id]));
   }
 
   /**
@@ -57,15 +59,17 @@ class GroupNavDMButtons extends Component {
     }
     const { location, history } = this.props;
     const { Config, safeUpdate, joinRoutePath } = this.context;
-    const { homeRoute } = Config.get(['homeRoute']);
+    const { paths: { homePath } } = Config.get(['paths']);
     const newGroupNavDMButtons = this.getGroupNavDMButtons().filter((button) => button.id !== id);
 
-    Config.set({ groupNavDMButtons: newGroupNavDMButtons });
+    Config.set({
+      groupNavDMButtons: newGroupNavDMButtons,
+    });
 
     const currentPageId = location.pathname.split('/').pop();
 
     if (id === currentPageId) {
-      history.push(joinRoutePath([homeRoute]));
+      history.push(joinRoutePath([homePath]));
     }
     safeUpdate();
   }

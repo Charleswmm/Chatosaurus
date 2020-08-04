@@ -4,9 +4,9 @@ import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
 const Login = () => {
   const { Config } = useContext(GlobalContext);
-  const config = Config.get(['clientDetails', 'authDetails', 'discordUrls']);
-  const { clientDetails: { clientId }, authDetails, discordUrls: { authUrl } } = config;
-  const { scope, redirectUri, responseType } = authDetails;
+  const config = Config.get(['authDetails', 'discordUrls']);
+  const { authDetails, discordUrls: { authUrl } } = config;
+  const { scope, redirectUri, responseType, clientId } = authDetails;
 
   const scopeUrlEncoded = encodeURIComponent(scope);
   const redirectUriEncoded = encodeURIComponent(redirectUri);

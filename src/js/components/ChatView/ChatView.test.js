@@ -42,7 +42,13 @@ describe('ChatView', () => {
 
   const fooConfig = new Config(fooConfiguration);
   const wrapper = mount(
-    <GlobalContext.Provider value={{ Config: fooConfig, state: { unSentMessage: ['foo'] } }}>
+    <GlobalContext.Provider value={{
+      Config: fooConfig,
+      state: {
+        unSentMessage: ['foo'],
+      },
+    }}
+    >
       <ChatView
         id={foo}
         title={foo}

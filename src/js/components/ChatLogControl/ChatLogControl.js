@@ -72,9 +72,7 @@ const ChatLogControl = ({ id }) => {
   });
 
   return alteredMessageLog.map((messageData, index) => {
-    const {
-      name, timeStamp, body, divider,
-    } = messageData;
+    const { name, timeStamp, body, divider } = messageData;
 
     if (divider) {
       return (

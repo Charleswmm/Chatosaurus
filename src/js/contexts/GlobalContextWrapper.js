@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { Component, createContext } from 'react';
 import ConfigClass from '../utilities/Config';
+import DiscordStoreClass from '../utilities/DiscordStore';
 
 export const GlobalContext = createContext('');
 
 export class GlobalContextWrapper extends Component {
   static defaultProps = {
     Config: null,
+    DiscordStore: null,
     children: null,
   }
 
@@ -24,7 +26,6 @@ export class GlobalContextWrapper extends Component {
       safeUpdate: this.safeUpdate,
       setChatInputState: this.setChatInputState,
       createRandomMessageLog: this.createRandomMessageLog,
-      setAuthCodeInState: this.setAuthCodeInState,
     };
   }
 
@@ -88,10 +89,11 @@ export class GlobalContextWrapper extends Component {
     }
 
     const { Config } = this.props;
-    const { baseRoute } = Config.get(['baseRoute']);
+    const { paths: { mainPath } } = Config.get(['paths']);
 
     return [
-      baseRoute.replace(/\/$/, ''),
+      '',
+      mainPath,
       ...params,
     ].join('/');
   }
@@ -100,7 +102,9 @@ export class GlobalContextWrapper extends Component {
    * Used to rerender, useful when changing data in the configuration and not setting state
    */
   safeUpdate = () => {
-    this.setState({ key: Math.random() });
+    this.setState({
+      key: Math.random(),
+    });
   }
 
   /**
@@ -138,14 +142,8 @@ export class GlobalContextWrapper extends Component {
     });
   }
 
-  setAuthCodeInState = (code) => {
-    this.setState({
-      authCode: code,
-    });
-  }
-
   render() {
-    const { Config, children } = this.props;
+    const { Config, DiscordStore, children } = this.props;
 
     return (
       <GlobalContext.Provider
@@ -153,6 +151,7 @@ export class GlobalContextWrapper extends Component {
           ...this.func,
           state: this.state,
           Config,
+          DiscordStore,
         }}
       >
         { children }
@@ -163,5 +162,6 @@ export class GlobalContextWrapper extends Component {
 
 GlobalContextWrapper.propTypes = {
   Config: PropTypes.instanceOf(ConfigClass),
+  DiscordStore: PropTypes.instanceOf(DiscordStoreClass),
   children: PropTypes.node,
 };

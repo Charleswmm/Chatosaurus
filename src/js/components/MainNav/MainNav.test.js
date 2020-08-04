@@ -9,15 +9,25 @@ import { MainNavButtons } from './MainNav';
 describe('MainNavButtons', () => {
   const fooConfiguration = {
     mainNavButtons: [
-      { type: 'add-server-button' },
+      {
+        type: 'add-server-button',
+      },
       {
         type: 'link',
         id: 'bar',
       },
-      { sort: 4 },
-      { sort: 2 },
-      { sort: 3 },
-      { sort: 1 },
+      {
+        sort: 4,
+      },
+      {
+        sort: 2,
+      },
+      {
+        sort: 3,
+      },
+      {
+        sort: 1,
+      },
     ],
   };
 
@@ -30,7 +40,10 @@ describe('MainNavButtons', () => {
 
   it('sorts mainNavButtons in order of the buttons sort value', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinRoutePath: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{
+        joinRoutePath: foo, Config: fooConfig,
+      }}
+      >
         <BrowserRouter>
           <MainNavButtons />
         </BrowserRouter>
@@ -44,7 +57,10 @@ describe('MainNavButtons', () => {
 
   it('adds a server button component', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinRoutePath: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{
+        joinRoutePath: foo, Config: fooConfig,
+      }}
+      >
         <BrowserRouter>
           <MainNavButtons />
         </BrowserRouter>
@@ -56,14 +72,19 @@ describe('MainNavButtons', () => {
 
   it('navigated to a section in the app, when I clicked on the button', () => {
     const wrapper = mount(
-      <GlobalContext.Provider value={{ joinRoutePath: foo, Config: fooConfig }}>
+      <GlobalContext.Provider value={{
+        joinRoutePath: foo, Config: fooConfig,
+      }}
+      >
         <MemoryRouter initialEntries={['/foo']} initialIndex={0}>
           <MainNavButtons />
         </MemoryRouter>
       </GlobalContext.Provider>,
     );
 
-    wrapper.find('a').simulate('click', { button: 0 });
+    wrapper.find('a').simulate('click', {
+      button: 0,
+    });
 
     expect(wrapper.find('Router').prop('history').location.pathname).toEqual('/channels/bar');
   });

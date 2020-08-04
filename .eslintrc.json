@@ -30,6 +30,12 @@
         "react/no-unused-state": "off",
         "react/static-property-placement": "off",
         "jsx-a11y/click-events-have-key-events": "off",
-        "jsx-a11y/no-static-element-interactions": "off"
+        "jsx-a11y/no-static-element-interactions": "off",
+        "object-curly-newline": ["error", {
+            "ObjectExpression": { "multiline": true, "minProperties": 1 },
+            "ObjectPattern": { "multiline": true, "minProperties": 7 },
+            "ImportDeclaration": { "multiline": true },
+            "ExportDeclaration": "never"
+        }]
     }
 }

@@ -18,7 +18,9 @@ const UserControlPanel = () => {
   const { above } = iconButtonToolTipPosition;
   const { on, off } = toggleStates;
 
-  const [buttonState, setButtonState] = useState({ micState: on, deafenState: off });
+  const [buttonState, setButtonState] = useState({
+    micState: on, deafenState: off,
+  });
   const { micState, deafenState } = buttonState;
 
   /**
@@ -30,8 +32,12 @@ const UserControlPanel = () => {
     const toggleState = currentState === on ? off : on;
 
     const actionType = action === micAction
-      ? { micState: toggleState }
-      : { deafenState: toggleState };
+      ? {
+        micState: toggleState,
+      }
+      : {
+        deafenState: toggleState,
+      };
 
     setButtonState({
       ...buttonState,
@@ -41,7 +47,12 @@ const UserControlPanel = () => {
 
   return (
     <div className="user-control-panel">
-      <div className="user-control-avatar" style={{ backgroundImage: `url(${avatar})` }} />
+      <div
+        className="user-control-avatar"
+        style={{
+          backgroundImage: `url(${avatar})`,
+        }}
+      />
       <div className="user-control-title">
         <div className="user-control-text">{userName}</div>
         <div className="user-control-subtext">{`#${userNameSuffix}`}</div>

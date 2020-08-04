@@ -42,9 +42,7 @@ export const toggleStates = {
 };
 
 const IconButton = (props) => {
-  const {
-    type, subtype, toolTipPosition, toggleState, changeButtonState,
-  } = props;
+  const { type, subtype, toolTipPosition, toggleState, changeButtonState } = props;
   const { Config } = useContext(GlobalContext);
   const { iconButtons } = Config.get(['iconButtons']);
   const { off } = toggleStates;

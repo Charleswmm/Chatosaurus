@@ -52,7 +52,13 @@ describe('ChatControl', () => {
   const fooConfig = new Config(fooConfiguration);
 
   const wrapper = mount(
-    <GlobalContext.Provider value={{ Config: fooConfig, state: { unSentMessage: ['foo'] } }}>
+    <GlobalContext.Provider value={{
+      Config: fooConfig,
+      state: {
+        unSentMessage: ['foo'],
+      },
+    }}
+    >
       <MemoryRouter initialEntries={[`${foo}`]} initialIndex={0}>
         <Route path=":id" component={ChatControl} />
       </MemoryRouter>

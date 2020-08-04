@@ -42,7 +42,9 @@ export class Config {
    * @param {{}} data
    */
   set(data) {
-    this.data = { ...this.data, ...data };
+    this.data = {
+      ...this.data, ...data,
+    };
   }
 }
 

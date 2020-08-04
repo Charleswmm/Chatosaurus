@@ -166,7 +166,7 @@
 
     &-text {
         width: max-content;
-        color: #ffffff;
+        color: $text-white;
         margin: 1rem;
         user-select: none;
     }
@@ -242,4 +242,10 @@
 
 .nav-item {
     display: flex;
+}
+
+.error-text {
+    color: $text-white;
+    line-height: 2.2rem;
+    font-size: 1.6rem;
 }

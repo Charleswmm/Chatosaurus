@@ -5,9 +5,7 @@ import ChatLogControl from '../ChatLogControl/ChatLogControl';
 import { avatarClassNames as avatarClasses } from '../GroupNavDMButton/GroupNavDMButton';
 
 const ChatBody = (props) => {
-  const {
-    id, title, avatarSrc, backgroundColor,
-  } = props;
+  const { id, title, avatarSrc, backgroundColor } = props;
 
   const refChatBody = useRef(null);
 
