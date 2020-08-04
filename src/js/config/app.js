@@ -31,6 +31,10 @@ export default {
     scopeKey: 'scope',
     tokenTypeKey: 'token_type',
   },
+  paths: {
+    mainPath: 'channels',
+    homePath: '@me',
+  },
   currentUser:
     {
       userName: 'pytho',
@@ -59,8 +63,6 @@ export default {
       ],
     },
   ],
-  baseRoute: '/channels/',
-  homeRoute: '@me',
   mainNavButtons: [
     {
       id: '@me',

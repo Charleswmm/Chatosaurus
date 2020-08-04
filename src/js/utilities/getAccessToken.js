@@ -1,7 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 
-const getAccessToken = async (config, history, token, refresh) => {
+const getAccessToken = (config, token, refresh) => {
   const { authDetails, tokenTemplate, discordUrls: { tokenUrl } } = config;
   const { expiresInKey, accessTokenKey } = tokenTemplate;
   const { scope, redirectUri, grantType, clientId, clientSecret, refreshType } = authDetails;
@@ -32,22 +32,22 @@ const getAccessToken = async (config, history, token, refresh) => {
 
   const body = Object.entries(bodyData).map(([key, value]) => `${key}=${value}`).join('&');
 
-  const accessTokenResponse = await axios.post(tokenUrl, body, {
+  return axios.post(tokenUrl, body, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
+  }).then((response) => {
+    let responseData = response.data;
+    const newExpireTime = responseData[expiresInKey] + moment().unix();
+
+    // Modify the response data to include the new expire time
+    responseData = {
+      ...responseData, [expiresInKey]: newExpireTime,
+    };
+
+    // Set the access token data in the session
+    sessionStorage.setItem(accessTokenKey, JSON.stringify(responseData));
   });
-
-  let responseData = accessTokenResponse.data;
-  const newExpireTime = responseData[expiresInKey] + moment().unix();
-
-  // Modify the response data to include the new expire time
-  responseData = {
-    ...responseData, [expiresInKey]: newExpireTime,
-  };
-
-  sessionStorage.setItem(accessTokenKey, JSON.stringify(responseData));
-  history.push('/');
 };
 
 export default getAccessToken;

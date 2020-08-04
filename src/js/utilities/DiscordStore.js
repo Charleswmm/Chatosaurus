@@ -62,25 +62,29 @@ class DiscordStore {
     }
 
     // Request the resource from Discord's API
-    return axios.get((requestUrl), {
-      headers: {
-        Authorization: token,
-      },
-    }).then((data) => {
-      if (typeof data !== 'object') {
-        throw new Error('Unexpected data structure found in response.');
-      }
+    return axios
+      .get((requestUrl), {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((data) => {
+        if (typeof data !== 'object') {
+          throw new Error('Unexpected data structure found in response.');
+        }
 
-      return data;
-    }).finally(() => {
+        return data;
+      })
+      .finally(() => {
       // Remove promise from queue
-      this.removeQueue({
-        resourceKey,
-      });
-    }).catch((err) => {
+        this.removeQueue({
+          resourceKey,
+        });
+      })
+      .catch((err) => {
       // eslint-disable-next-line no-console
-      console.log('DiscordStore axios get', err);
-    });
+        console.log('DiscordStore axios get', err);
+      });
   }
 
   /**
@@ -117,7 +121,7 @@ class DiscordStore {
 
     return promise.then((response) => {
       const { data, headers, status, statusText } = response;
-      const maxAge = moment().unix() + 3;
+      const maxAge = moment().unix() + 120;
 
       const entry = {
         resourceKey,

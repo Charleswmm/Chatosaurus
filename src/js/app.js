@@ -5,9 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import '../scss/app.scss';
 import Auth from './components/Auth/Auth';
 import ChatControl from './components/ChatControl/ChatControl';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 import Friends from './components/Friends/Friends';
 import GroupNav from './components/GroupNav/GroupNav';
-import Loading from './components/Loading/Loading';
 import Login from './components/Login/Login';
 import MainNav from './components/MainNav/MainNav';
 import OAuthCallback from './components/OAuthCallback/OAuthCallback';
@@ -23,8 +23,8 @@ const App = () => (
   <BrowserRouter>
     <GlobalContextWrapper Config={config} DiscordStore={discordStore}>
       <Switch>
-        <Route exact path="/loading" render={Loading} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/error" component={ErrorPage} />
         <Route exact path="/oauthcallback" component={OAuthCallback} />
         <Auth>
           <Route exact path={['/', '/channels']} render={() => <Redirect to="/channels/@me" />} />

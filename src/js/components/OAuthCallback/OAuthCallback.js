@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
-import { Redirect } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import getAccessToken from '../../utilities/getAccessToken';
-import Loading from '../Loading/Loading';
 
 const OAuthCallback = ({ location: { search }, history }) => {
   const { Config } = useContext(GlobalContext);
@@ -17,23 +15,35 @@ const OAuthCallback = ({ location: { search }, history }) => {
 
   useEffect(() => {
     if (callbackCode) {
-      getAccessToken(config, history, callbackCode).catch((err) => {
-        // eslint-disable-next-line no-console
-        console.log('`getAccessToken` initial auth', err);
-        history.push('/');
-      });
+      getAccessToken(config, callbackCode)
+        .then(() => {
+          history.push('/');
+        })
+        .catch((e) => {
+          const error = `OAuthCallback - getAccessToken - ${e.toString()}`;
+
+          history.push({
+            pathname: '/error',
+            state: {
+              error,
+            },
+          });
+        });
     }
   }, []);
 
   if (!callbackCode) {
-    return (
-      <Redirect to="/" />
-    );
+    const error = 'OAuthCallback - No callbackCode';
+
+    history.push({
+      pathname: '/error',
+      state: {
+        error,
+      },
+    });
   }
 
-  return (
-    <Loading />
-  );
+  return <></>;
 };
 
 OAuthCallback.propTypes = {

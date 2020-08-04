@@ -7,7 +7,9 @@ import GroupNavDMButtons from './GroupNavDMButtons';
 
 describe('GroupNavDMButtons', () => {
   const fooConfiguration = {
-    homeRoute: '',
+    paths: {
+      mainPath: '',
+    },
     groupNavDMButtons: [
       {
         id: 'foo',

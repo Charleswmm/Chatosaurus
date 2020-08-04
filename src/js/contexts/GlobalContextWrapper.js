@@ -89,10 +89,11 @@ export class GlobalContextWrapper extends Component {
     }
 
     const { Config } = this.props;
-    const { baseRoute } = Config.get(['baseRoute']);
+    const { paths: { mainPath } } = Config.get(['paths']);
 
     return [
-      baseRoute.replace(/\/$/, ''),
+      '',
+      mainPath,
       ...params,
     ].join('/');
   }
