@@ -7,8 +7,7 @@ import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 const Auth = ({ children }) => {
   const { Config } = useContext(GlobalContext);
 
-  const config = Config.get(['authDetails', 'discordUrls', 'discordAPIResources', 'tokenTemplate']);
-  const { tokenTemplate } = config;
+  const { tokenTemplate } = Config.get(['tokenTemplate']);
   const { expiresInKey, accessTokenKey } = tokenTemplate;
 
   const accessTokenTemplateKeys = Object.values(tokenTemplate);
