@@ -158,7 +158,8 @@ class DiscordStore {
     const filterOldData = this.data.filter((e) => e.resourceKey !== data.resourceKey);
 
     this.data = [
-      ...filterOldData, data,
+      ...filterOldData,
+      data,
     ];
   }
 }

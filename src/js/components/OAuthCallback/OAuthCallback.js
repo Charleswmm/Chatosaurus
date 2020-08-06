@@ -17,7 +17,12 @@ const OAuthCallback = ({ location: { search }, history }) => {
     if (callbackCode) {
       getAccessToken(config, callbackCode)
         .then(() => {
-          history.push('/');
+          history.push({
+            pathname: '/',
+            state: {
+              loading: false,
+            },
+          });
         })
         .catch((e) => {
           const error = `OAuthCallback - getAccessToken - ${e.toString()}`;

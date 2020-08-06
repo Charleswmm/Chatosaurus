@@ -1,24 +1,21 @@
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Redirect, withRouter } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
-import getAccessToken from '../../utilities/getAccessToken';
-import Loading from '../Loading/Loading';
 
-const Auth = ({ children, history }) => {
+const Auth = ({ children }) => {
   const { Config } = useContext(GlobalContext);
 
   const config = Config.get(['authDetails', 'discordUrls', 'discordAPIResources', 'tokenTemplate']);
   const { tokenTemplate } = config;
-  const { expiresInKey, refreshTokenKey, accessTokenKey } = tokenTemplate;
+  const { expiresInKey, accessTokenKey } = tokenTemplate;
 
   const accessTokenTemplateKeys = Object.values(tokenTemplate);
   const accessTokenData = JSON.parse(sessionStorage.getItem(accessTokenKey));
 
   let accessTokenCheck = false;
   let accessTokenValid = false;
-  let refreshToken = '';
 
   if (accessTokenData) {
     const accessTokenDataKeys = Object.keys(accessTokenData).sort();
@@ -27,38 +24,29 @@ const Auth = ({ children, history }) => {
     ));
 
     accessTokenValid = accessTokenData[expiresInKey] >= moment().unix();
-    refreshToken = accessTokenData[refreshTokenKey];
   }
 
-  useEffect(() => {
-    if (accessTokenCheck && !accessTokenValid) {
-      // Refresh access token if it is invalid
-      getAccessToken(config, refreshToken, true)
-        .then(() => {
-          history.push('/');
-        })
-        .catch((e) => {
-          const error = `Auth - getAccessToken - ${e.toString()}`;
-
-          history.push({
-            pathname: '/error',
-            state: {
-              error,
-            },
-          });
-        });
-    }
-  });
-
-  if (!accessTokenCheck) {
+  if (accessTokenCheck && !accessTokenValid) {
     return (
-      <Redirect to="/login" />
+      <Redirect to={{
+        pathname: '/oauthrefresh',
+        state: {
+          loading: true,
+        },
+      }}
+      />
     );
   }
 
-  if (!accessTokenValid) {
+  if (!accessTokenCheck) {
     return (
-      <Loading />
+      <Redirect to={{
+        pathname: '/login',
+        state: {
+          loading: false,
+        },
+      }}
+      />
     );
   }
 
@@ -71,12 +59,10 @@ const Auth = ({ children, history }) => {
 
 Auth.propTypes = {
   children: PropTypes.node,
-  history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 Auth.defaultProps = {
   children: null,
-  history: null,
 };
 
 export default withRouter(Auth);
