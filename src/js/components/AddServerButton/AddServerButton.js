@@ -50,7 +50,12 @@ class AddServerButton extends MainNavButton {
     });
 
     // this.props.history is made available when this component is wrapped by withRouter()
-    this.props.history.push(joinRoutePath([button.id]));
+    this.props.history.push({
+      pathname: joinRoutePath([button.id]),
+      state: {
+        loading: false,
+      },
+    });
   }
 }
 

@@ -30,7 +30,7 @@ describe('OAuthCallback', () => {
   };
 
   const historyMock = {
-    push: bar,
+    replace: bar,
   };
 
   const setItemMock = (fooParam, barParam) => {

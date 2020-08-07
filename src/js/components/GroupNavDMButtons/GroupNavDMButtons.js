@@ -45,7 +45,12 @@ class GroupNavDMButtons extends Component {
     // Creates a place holder message log and places it on the "config"
     createRandomMessageLog(button.id);
 
-    history.push(joinRoutePath([homePath, button.id]));
+    history.push({
+      pathname: joinRoutePath([homePath, button.id]),
+      state: {
+        loading: false,
+      },
+    });
   }
 
   /**
@@ -69,7 +74,12 @@ class GroupNavDMButtons extends Component {
     const currentPageId = location.pathname.split('/').pop();
 
     if (id === currentPageId) {
-      history.push(joinRoutePath([homePath]));
+      history.push({
+        pathname: joinRoutePath([homePath]),
+        state: {
+          loading: false,
+        },
+      });
     }
     safeUpdate();
   }

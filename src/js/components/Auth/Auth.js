@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { Redirect, withRouter } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
-const Auth = ({ children }) => {
+const Auth = ({ children, location }) => {
   const { Config } = useContext(GlobalContext);
 
   const { tokenTemplate } = Config.get(['tokenTemplate']);
@@ -38,6 +38,10 @@ const Auth = ({ children }) => {
   }
 
   if (!accessTokenCheck) {
+    const { pathname } = location;
+
+    sessionStorage.setItem('origin', pathname);
+
     return (
       <Redirect to={{
         pathname: '/login',
@@ -57,10 +61,12 @@ const Auth = ({ children }) => {
 };
 
 Auth.propTypes = {
+  location: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   children: PropTypes.node,
 };
 
 Auth.defaultProps = {
+  location: null,
   children: null,
 };
 

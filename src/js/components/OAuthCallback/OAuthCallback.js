@@ -17,7 +17,7 @@ const OAuthCallback = ({ location: { search }, history }) => {
     if (callbackCode) {
       getAccessToken(config, callbackCode)
         .then(() => {
-          history.push({
+          history.replace({
             pathname: '/',
             state: {
               loading: false,
@@ -27,7 +27,7 @@ const OAuthCallback = ({ location: { search }, history }) => {
         .catch((e) => {
           const error = `OAuthCallback - getAccessToken - ${e.toString()}`;
 
-          history.push({
+          history.replace({
             pathname: '/error',
             state: {
               error,
@@ -40,7 +40,7 @@ const OAuthCallback = ({ location: { search }, history }) => {
   if (!callbackCode) {
     const error = 'OAuthCallback - No callbackCode';
 
-    history.push({
+    history.replace({
       pathname: '/error',
       state: {
         error,

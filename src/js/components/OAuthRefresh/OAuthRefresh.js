@@ -14,7 +14,7 @@ const OAuthRefresh = ({ history }) => {
   useEffect(() => {
     getAccessToken(config, refreshToken, true)
       .then(() => {
-        history.push({
+        history.replace({
           pathname: '/',
           state: {
             loading: false,
@@ -24,7 +24,7 @@ const OAuthRefresh = ({ history }) => {
       .catch((e) => {
         const error = `OAuthRefresh - getAccessToken - ${e.toString()} - Please re-login`;
 
-        history.push({
+        history.replace({
           pathname: '/error',
           state: {
             error,

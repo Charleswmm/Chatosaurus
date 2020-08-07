@@ -79,7 +79,12 @@ class GroupNavDMButton extends Component {
       <div className="nav-item nav-item-dm">
         <NavLink
           className={btnClasses.btnBase}
-          to={joinRoutePath(['@me', id])}
+          to={{
+            pathname: joinRoutePath(['@me', id]),
+            state: {
+              loading: false,
+            },
+          }}
           activeClassName={btnClasses.btnActive}
         >
           <div className={this.avatar()} />
