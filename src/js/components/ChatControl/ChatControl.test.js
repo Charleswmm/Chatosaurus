@@ -17,6 +17,7 @@ describe('ChatControl', () => {
   const bar = 'bar';
 
   const fooConfiguration = {
+    discordAPIResources: '',
     currentUser:
       {
         UserName: foo,
@@ -66,7 +67,7 @@ describe('ChatControl', () => {
   );
 
   it('can see the current DM recipient displayed in the top bar', () => {
-    expect(wrapper.find('.nav-text').text()).toBe(bar);
+    expect(wrapper.find('.nav-text').text()).toBe('...');
   });
 
   it('displays the details in the URL to reflect the current DM log', () => {

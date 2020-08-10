@@ -15,7 +15,7 @@ const UserControlPanel = ({ history }) => {
   const { Config, DiscordStore } = useContext(GlobalContext);
   const [userData, setUserData] = useState(null);
 
-  const config = Config.get(['currentUser', 'discordAPIResources', 'discordUrls']);
+  const config = Config.get(['discordAPIResources', 'discordUrls']);
   const { discordAPIResources, discordUrls: { appCDN } } = config;
   const { client, user, avatarPath } = discordAPIResources;
 
