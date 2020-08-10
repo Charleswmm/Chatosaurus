@@ -9,6 +9,7 @@ const Loading = ({ location }) => {
     error: '',
   };
 
+  // Check there is something in state, if not, use the above default
   const getState = state || defaultState;
   const { loading, error } = getState;
 

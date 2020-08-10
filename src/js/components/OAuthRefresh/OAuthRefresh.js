@@ -8,9 +8,11 @@ const OAuthRefresh = ({ history }) => {
   const config = Config.get(['authDetails', 'discordUrls', 'tokenTemplate']);
   const { tokenTemplate: { accessTokenKey, refreshTokenKey } } = config;
 
+  // Get the refresh token from the access token data in the session storage
   const accessTokenData = JSON.parse(sessionStorage.getItem(accessTokenKey));
   const refreshToken = accessTokenData[refreshTokenKey];
 
+  // Get the access token after the components' first render
   useEffect(() => {
     getAccessToken(config, refreshToken, true)
       .then(() => {

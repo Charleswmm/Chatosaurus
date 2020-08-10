@@ -29,7 +29,9 @@ const UserControlPanel = ({ history }) => {
   });
   const { micState, deafenState } = buttonState;
 
+  // Get user data after the components' first render
   useEffect(() => {
+    // A flag to make sure state does not change when the component is not mounted
     let isMounted = true;
 
     DiscordStore.getData(user, client).then((res) => {
@@ -47,6 +49,7 @@ const UserControlPanel = ({ history }) => {
       });
     });
 
+    // The return function is called when the component has unmounted
     return () => {
       isMounted = false;
     };
@@ -56,12 +59,14 @@ const UserControlPanel = ({ history }) => {
   let userDiscriminator = '...';
   let avatarUrl = defaultAvatar;
 
+  // If there is userData, replace the "skeleton" ("...") with userData
   if (userData) {
     const { username, discriminator, avatar, id } = userData;
     userName = username;
     userDiscriminator = discriminator;
 
     if (avatar) {
+      // Build the avatar URL from the `userData`
       avatarUrl = [appCDN, avatarPath, id, avatar].join('/');
     }
   }

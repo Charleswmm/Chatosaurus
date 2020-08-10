@@ -19,6 +19,7 @@ const Login = () => {
     redirect_uri: redirectUriEncoded,
   };
 
+  // Build the query string required by the Discord API
   const authQuery = Object.entries(authQueryData).map(([key, value]) => `${key}=${value}`).join('&');
 
   return (

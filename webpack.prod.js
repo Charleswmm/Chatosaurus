@@ -1,5 +1,5 @@
 const path = require('path');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');

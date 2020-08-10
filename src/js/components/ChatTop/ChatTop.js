@@ -11,7 +11,9 @@ const ChatTop = ({ history }) => {
 
   const { discordAPIResources: { client, user } } = Config.get(['discordAPIResources']);
 
+  // Get user data after the components' first render
   useEffect(() => {
+    // A flag to make sure state does not change when the component is not mounted
     let isMounted = true;
 
     DiscordStore.getData(user, client).then((res) => {
@@ -29,6 +31,7 @@ const ChatTop = ({ history }) => {
       });
     });
 
+    // The return function is called when the component has unmounted
     return () => {
       isMounted = false;
     };

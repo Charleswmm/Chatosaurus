@@ -11,6 +11,8 @@ const Auth = ({ children, location }) => {
   const { expiresInKey, accessTokenKey } = tokenTemplate;
 
   const accessTokenTemplateKeys = Object.values(tokenTemplate);
+
+  // Get the token data from the session storage
   const accessTokenData = JSON.parse(sessionStorage.getItem(accessTokenKey));
 
   let accessTokenCheck = false;
@@ -18,14 +20,18 @@ const Auth = ({ children, location }) => {
 
   if (accessTokenData) {
     const accessTokenDataKeys = Object.keys(accessTokenData).sort();
+
+    // Check the content of the token to be the required structure
     accessTokenCheck = accessTokenDataKeys.every((property, index) => (
       property === accessTokenTemplateKeys[index]
     ));
 
+    // Check the token is still valid
     accessTokenValid = accessTokenData[expiresInKey] >= moment().unix();
   }
 
   if (accessTokenCheck && !accessTokenValid) {
+    // Refresh token if invalid
     return (
       <Redirect to={{
         pathname: '/oauthrefresh',
@@ -42,6 +48,7 @@ const Auth = ({ children, location }) => {
 
     sessionStorage.setItem('origin', pathname);
 
+    // Redirect to login is there is no access token
     return (
       <Redirect to={{
         pathname: '/login',
