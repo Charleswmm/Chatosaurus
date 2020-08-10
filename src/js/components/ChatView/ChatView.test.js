@@ -1,5 +1,6 @@
 import { mount } from 'enzyme';
 import React from 'react';
+import { MemoryRouter } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import Config from '../../utilities/Config';
 import ChatView from './ChatView';
@@ -14,6 +15,7 @@ describe('ChatView', () => {
   const foo = 'foo';
 
   const fooConfiguration = {
+    discordAPIResources: '',
     currentUser:
       {
         UserName: foo,
@@ -42,20 +44,22 @@ describe('ChatView', () => {
 
   const fooConfig = new Config(fooConfiguration);
   const wrapper = mount(
-    <GlobalContext.Provider value={{
-      Config: fooConfig,
-      state: {
-        unSentMessage: ['foo'],
-      },
-    }}
-    >
-      <ChatView
-        id={foo}
-        title={foo}
-        avatarSrc={foo}
-        backgroundColor={foo}
-      />
-    </GlobalContext.Provider>,
+    <MemoryRouter>
+      <GlobalContext.Provider value={{
+        Config: fooConfig,
+        state: {
+          unSentMessage: ['foo'],
+        },
+      }}
+      >
+        <ChatView
+          id={foo}
+          title={foo}
+          avatarSrc={foo}
+          backgroundColor={foo}
+        />
+      </GlobalContext.Provider>
+    </MemoryRouter>,
   );
 
   it('displays the top bar actions', () => {

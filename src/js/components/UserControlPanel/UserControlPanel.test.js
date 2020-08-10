@@ -1,14 +1,22 @@
 import { mount } from 'enzyme';
 import React from 'react';
+import { MemoryRouter } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import Config from '../../utilities/Config';
 import UserControlPanel from './UserControlPanel';
+import DiscordStore from '../../utilities/DiscordStore';
 
 describe('UserControlPanel', () => {
-  const foo = 'foo';
+  const spy = jest.spyOn(console, 'error');
+  spy.mockImplementation(() => {});
 
   const fooConfiguration = {
-    discordAPIResources: '',
+    discordAPIResources: {
+      avatarPath: 'avatars',
+    },
+    discordUrls: {
+      appCDN: 'foo',
+    },
     iconButtons: [
       {
         type: 'mic',
@@ -20,37 +28,38 @@ describe('UserControlPanel', () => {
         type: 'cog',
       },
     ],
-    currentUser:
-      {
-        userName: foo,
-        userNameSuffix: foo,
-        avatar: foo,
-      },
   };
 
   const fooConfig = new Config(fooConfiguration);
+  const fooDiscordStore = new DiscordStore(fooConfig);
 
-  const wrapper = mount(
-    <GlobalContext.Provider value={{
-      Config: fooConfig,
-    }}
-    >
-      <UserControlPanel />
-    </GlobalContext.Provider>,
-  );
-
-  it('displays a user profile image', () => {
-    const avatarUrl = wrapper.find('.user-control-avatar').prop('style').backgroundImage;
-
-    expect((avatarUrl)).toEqual('url(foo)');
+  const mockPromise = Promise.resolve({
+    avatar: 'avatar',
+    username: 'username',
+    discriminator: 'discriminator',
+    id: 'id',
   });
 
+  jest.spyOn(fooDiscordStore, 'getData').mockImplementation(() => mockPromise);
+
+  const wrapper = mount(
+    <MemoryRouter>
+      <GlobalContext.Provider value={{
+        Config: fooConfig,
+        DiscordStore: fooDiscordStore,
+      }}
+      >
+        <UserControlPanel />
+      </GlobalContext.Provider>
+    </MemoryRouter>,
+  );
+
   it('displays a user name', () => {
-    expect(wrapper.find('.user-control-text').text()).toEqual(foo);
+    expect(wrapper.find('.user-control-text').text()).toEqual('username');
   });
 
   it('displays a user ID', () => {
-    expect(wrapper.find('.user-control-subtext').text()).toEqual(`#${foo}`);
+    expect(wrapper.find('.user-control-subtext').text()).toEqual('#discriminator');
   });
 
   it('displays control actions, their tooltips', () => {
@@ -88,5 +97,10 @@ describe('UserControlPanel', () => {
 
     expect(iconButtonUpdated.prop('toggleState')).toEqual('on');
     expect(iconButtonUpdated.childAt(0).childAt(0).hasClass('svg-deafen-on')).toBeTruthy();
+  });
+
+  it('displays a user profile image', () => {
+    const avatarUrl = wrapper.find('.user-control-avatar').prop('style').backgroundImage;
+    expect(avatarUrl).toEqual('url(foo/avatars/id/avatar)');
   });
 });
