@@ -1,11 +1,44 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../../../scss/components/ChatTop/ChatTop.scss';
+import { withRouter } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import IconButton, { iconButtonSubType, iconButtonToolTipPosition } from '../IconButton/IconButton';
 
-const ChatTop = (props) => {
-  const { title } = props;
+const ChatTop = ({ history }) => {
+  const { Config, DiscordStore } = useContext(GlobalContext);
+  const [userData, setUserData] = useState(null);
+
+  const { discordAPIResources: { client, user } } = Config.get(['discordAPIResources']);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    DiscordStore.getData(user, client).then((res) => {
+      if (isMounted) {
+        setUserData(res);
+      }
+    }).catch((e) => {
+      const error = `ChatTop - DiscordStore.getData - "${e.toString()}"`;
+
+      history.push({
+        pathname: '/error',
+        state: {
+          error,
+        },
+      });
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [setUserData]);
+
+  let userName = '...';
+
+  if (userData) {
+    userName = userData.username;
+  }
 
   return (
     <div className="chat-top">
@@ -13,7 +46,7 @@ const ChatTop = (props) => {
         <div className="nav-group">
           <div className="nav-item flex-grow">
             <div className="svg svg-people" />
-            <div className="nav-text">{title}</div>
+            <div className="nav-text">{userName}</div>
           </div>
           <div className="nav-item">
             <TopIcons />
@@ -57,11 +90,11 @@ const TopSearch = () => (
 );
 
 ChatTop.propTypes = {
-  title: PropTypes.string,
+  history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 ChatTop.defaultProps = {
-  title: null,
+  history: null,
 };
 
-export default ChatTop;
+export default withRouter(ChatTop);
