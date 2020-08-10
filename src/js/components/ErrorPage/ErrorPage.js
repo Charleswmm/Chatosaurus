@@ -4,7 +4,7 @@ import React from 'react';
 const ErrorPage = ({ location }) => {
   const { state } = location;
 
-  // Check if the pages was redirected with an error
+  // Check if the pages was redirected without an error
   const error = state ? state.error : '404';
 
   return (

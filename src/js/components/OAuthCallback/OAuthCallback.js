@@ -13,6 +13,7 @@ const OAuthCallback = ({ location: { search }, history }) => {
   // Get the callback code from the URL Params
   const callbackCode = searchParams.get(responseType);
 
+  // Get the access token after the components' first render
   useEffect(() => {
     if (callbackCode) {
       getAccessToken(config, callbackCode)

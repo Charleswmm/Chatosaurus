@@ -10,6 +10,10 @@ const Director = ({ children, history }) => {
   const origin = sessionStorage.getItem('origin');
   sessionStorage.removeItem('origin');
 
+  // There are 2 types of redirects, home and origin
+  // Home is @me
+  // Origin is where the user first entered the site
+
   const home = ['', mainPath, homePath].join('/');
 
   let redirect = home;
@@ -17,12 +21,14 @@ const Director = ({ children, history }) => {
   if (origin) {
     redirect = origin;
 
+    // Check origin is root, then redirects to home
     if (origin === '/') {
       redirect = home;
     }
 
     const originSplit = origin.split('/');
 
+    // Checks origin is exclusively the "channels" path, then redirects to home
     if (originSplit[1] === mainPath && !originSplit[2]) {
       redirect = home;
     }

@@ -51,6 +51,7 @@ class DiscordStore {
 
     let token;
 
+    // Check userType is the client which will use the 'Bearer' token
     if (userType === client) {
       const sessionToken = JSON.parse(sessionStorage.getItem(accessTokenKey));
       token = [sessionToken[tokenTypeKey], sessionToken[accessTokenKey]].join(' ');
@@ -112,6 +113,7 @@ class DiscordStore {
       // Establish an fresh promise
       promise = this.createAPIPromise(resourceKey);
 
+      // Add promise to promise Queue
       this.addQueue({
         resourceKey,
         promise,
@@ -120,6 +122,8 @@ class DiscordStore {
 
     return promise.then((response) => {
       const { data, headers, status, statusText } = response;
+
+      // Sets a validation time stamp, set to 120 seconds
       const maxAge = moment().unix() + 120;
 
       const entry = {
@@ -133,6 +137,7 @@ class DiscordStore {
         },
       };
 
+      // Set the response data into memory
       this.set(entry);
 
       return entry;
