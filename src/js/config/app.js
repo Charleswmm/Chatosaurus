@@ -16,10 +16,13 @@ export default {
     baseUrl: 'https://discord.com/api',
     authUrl: 'https://discord.com/api/oauth2/authorize',
     tokenUrl: 'https://discord.com/api/oauth2/token',
+    appCDN: 'https://cdn.discordapp.com',
   },
   discordAPIResources: {
     client: 'client',
     bot: 'bot',
+    avatarPath: 'avatars',
+    icon: 'icons',
     user: '/users/@me',
     guilds: '/users/@me/guilds',
     channels: '/users/@me/guilds',

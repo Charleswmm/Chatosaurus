@@ -1,20 +1,38 @@
 import { mount } from 'enzyme';
 import React from 'react';
+import { MemoryRouter } from 'react-router';
 import configuration from '../../config/app';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import Config from '../../utilities/Config';
+import DiscordStore from '../../utilities/DiscordStore';
 import ChatTop from './ChatTop';
 
 describe('ChatTop', () => {
+  const spy = jest.spyOn(console, 'error');
+  spy.mockImplementation(() => {});
+
   const fooConfig = new Config(configuration);
+  const fooDiscordStore = new DiscordStore(fooConfig);
+
+  const mockPromise = Promise.resolve({
+    avatar: 'avatar',
+    username: 'username',
+    discriminator: 'discriminator',
+    id: 'id',
+  });
+
+  jest.spyOn(fooDiscordStore, 'getData').mockImplementation(() => mockPromise);
 
   const wrapper = mount(
-    <GlobalContext.Provider value={{
-      Config: fooConfig,
-    }}
-    >
-      <ChatTop />
-    </GlobalContext.Provider>,
+    <MemoryRouter>
+      <GlobalContext.Provider value={{
+        Config: fooConfig,
+        DiscordStore: fooDiscordStore,
+      }}
+      >
+        <ChatTop />
+      </GlobalContext.Provider>
+    </MemoryRouter>,
   );
 
   it('shows a tooltip that displays the action label in the top bar', () => {
