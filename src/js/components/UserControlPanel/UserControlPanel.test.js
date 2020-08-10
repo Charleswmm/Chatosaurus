@@ -8,6 +8,7 @@ describe('UserControlPanel', () => {
   const foo = 'foo';
 
   const fooConfiguration = {
+    discordAPIResources: '',
     iconButtons: [
       {
         type: 'mic',

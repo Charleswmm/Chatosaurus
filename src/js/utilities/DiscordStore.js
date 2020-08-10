@@ -16,19 +16,19 @@ class DiscordStore {
 
   /**
    * Adds a promise entry to the promise queue
-   * @param promiseEntry
+   * @param entry
    */
-  addQueue = (promiseEntry) => {
-    this.queue.push(promiseEntry);
+  addQueue = (entry) => {
+    this.queue.push(entry);
   }
 
   /**
    * Removes a promise entry from the promise queue
-   * @param promiseEntry
+   * @param entry
    */
-  removeQueue = (promiseEntry) => {
+  removeQueue = (entry) => {
     const filteredQueue = this.queue.filter((e) => (
-      e.resourceKey !== promiseEntry.resourceKey
+      e.resourceKey !== entry.resourceKey
     ));
 
     this.queue = [
@@ -82,7 +82,7 @@ class DiscordStore {
         });
       })
       .catch((err) => {
-      // eslint-disable-next-line no-console
+        // eslint-disable-next-line no-console
         console.log('DiscordStore axios get', err);
       });
   }
@@ -101,7 +101,7 @@ class DiscordStore {
 
     if (resourceData && resourceData.maxAge >= moment().unix()) {
       // Return the existing store
-      return resourceData;
+      return Promise.resolve(resourceData);
     }
 
     // Check if the promise exists in the queue
@@ -112,7 +112,6 @@ class DiscordStore {
       // Establish an fresh promise
       promise = this.createAPIPromise(resourceKey);
 
-      // Add the promise to the queue
       this.addQueue({
         resourceKey,
         promise,
