@@ -7,9 +7,6 @@ import Login from './Login';
 
 describe('Login', () => {
   const fooConfiguration = {
-    clientDetails: {
-      clientId: 'bar',
-    },
     authDetails: {
       scope: 'bar',
       redirectUri: 'bar',

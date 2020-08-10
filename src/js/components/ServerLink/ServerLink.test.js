@@ -6,7 +6,7 @@ import ServerLink from './ServerLink';
 
 describe('ServerLink', () => {
   it('displays an active state', () => {
-    const foo = () => '';
+    const foo = () => '/channels/foo';
 
     const wrapper = mount(
       <GlobalContext.Provider value={{

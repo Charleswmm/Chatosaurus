@@ -16,7 +16,12 @@ class ServerLink extends MainNavItem {
           style={this.backgroundImageStyle()}
           className={this.channelClassNames()}
           onClick={this.onClickHandler}
-          to={joinRoutePath([id])}
+          to={{
+            pathname: joinRoutePath([id]),
+            state: {
+              loading: false,
+            },
+          }}
           activeClassName={uiClassNames.active}
         >
           <div className={this.contentClassNames()}>{this.titleInitials()}</div>

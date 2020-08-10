@@ -22,7 +22,12 @@ function GroupNav() {
             <NavLink
               exact
               className="nav-link"
-              to={joinRoutePath(['@me'])}
+              to={{
+                pathname: joinRoutePath(['@me']),
+                state: {
+                  loading: false,
+                },
+              }}
               activeClassName={btnClasses.btnActive}
             >
               <div className="svg svg-friend" />
