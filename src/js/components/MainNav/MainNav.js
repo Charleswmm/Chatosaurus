@@ -23,7 +23,7 @@ const MainNav = () => {
 
   const guildData = useDiscordData(guilds, client);
 
-  let addGuildData;
+  let buttons = mainNavButtons;
 
   if (guildData) {
     // Sort guilds in alphabetical order
@@ -40,7 +40,7 @@ const MainNav = () => {
     });
 
     // Add sort, button type, and the icon url to each guild
-    addGuildData = guildData.map((data, index) => {
+    const addGuildData = guildData.map((data, index) => {
       const { id, icon } = data;
 
       const iconUrl = icon ? [appCDN, icons, id, icon].join('/') : null;
@@ -65,31 +65,23 @@ const MainNav = () => {
       sort: e.sort + utilityButtonPosition,
     }));
 
-    // Set the new buttons in "Config"
-    if (homeButton && addGuildData && utilityButtons) {
-      Config.set({
-        mainNavButtons: [
-          ...homeButton,
-          ...addGuildData,
-          ...utilityButtons,
-        ],
-      });
-    }
+    buttons = [
+      ...homeButton,
+      ...addGuildData,
+      ...utilityButtons,
+    ];
   }
 
   return (
     <div className="nav-column nav-column-server">
       <div className="nav-group">
-        <MainNavButtons />
+        <MainNavButtons buttons={buttons} />
       </div>
     </div>
   );
 };
 
-const MainNavButtons = () => {
-  const { Config } = useContext(GlobalContext);
-  const { mainNavButtons } = Config.get(['mainNavButtons']);
-
+const MainNavButtons = ({ buttons }) => {
   const customButtons = [
     {
       type: 'link',
@@ -101,9 +93,9 @@ const MainNavButtons = () => {
     },
   ];
 
-  mainNavButtons.sort((a, b) => a.sort - b.sort);
+  buttons.sort((a, b) => a.sort - b.sort);
 
-  return mainNavButtons.map((button, index) => {
+  return buttons.map((button, index) => {
     // Check if the button id is listed in our custom buttons
     const match = customButtons.find((x) => x.type === button.type);
 
