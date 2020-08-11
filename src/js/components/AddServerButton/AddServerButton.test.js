@@ -24,7 +24,8 @@ describe('AddServerButton', () => {
 
     const wrapper = mount(
       <GlobalContext.Provider value={{
-        joinRoutePath: foo, Config: fooConfig,
+        joinRoutePath: foo,
+        Config: fooConfig,
       }}
       >
         <BrowserRouter>
@@ -45,16 +46,14 @@ describe('AddServerButton', () => {
 
     // check button properties
     expect(newButtonAdded).toHaveProperty('id');
-    expect(newButtonAdded).toHaveProperty('title');
-    expect(newButtonAdded).toHaveProperty('imageSrc');
+    expect(newButtonAdded).toHaveProperty('name');
     expect(newButtonAdded).toHaveProperty('channelExtraClassNames');
     expect(newButtonAdded).toHaveProperty('sort');
 
     // check button value types
     expect(typeof newButtonAdded.id).toBe('string');
-    expect(typeof newButtonAdded.title).toBe('string');
-    expect(newButtonAdded.title).toMatch(/New Server/);
-    expect(typeof newButtonAdded.imageSrc).toBe('string');
+    expect(typeof newButtonAdded.name).toBe('string');
+    expect(newButtonAdded.name).toMatch(/New Server/);
     expect(typeof newButtonAdded.channelExtraClassNames).toBe('object');
     expect(typeof newButtonAdded.channelExtraClassNames[0]).toBe('string');
     expect(typeof newButtonAdded.sort).toBe('number');
