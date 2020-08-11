@@ -15,12 +15,12 @@ class MainNavButton extends MainNavItem {
         style={this.backgroundImageStyle()}
         onClick={this.onClickHandler}
       >
-        <div className={this.contentClassNames()}>{this.titleInitials()}</div>
+        <div className={this.contentClassNames()}>{this.nameInitials()}</div>
       </button>
       <div className="pip" />
       <div className="tool-tip">
         <div className="tool-tip-arrow tool-tip-arrow-left" />
-        <div className="tool-tip-text tool-tip-text-lg">{this.title()}</div>
+        <div className="tool-tip-text tool-tip-text-lg">{this.name()}</div>
       </div>
     </div>
   );

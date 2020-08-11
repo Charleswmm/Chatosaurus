@@ -13,18 +13,15 @@ class AddServerButton extends MainNavButton {
     const config = Config.get([
       'mainNavButtons',
       'insertMainNavButtonsBeforeId',
-      'mainNavButtonPlaceholderImageSrc',
     ]);
 
     const {
       mainNavButtons,
       insertMainNavButtonsBeforeId,
-      mainNavButtonPlaceholderImageSrc,
     } = config;
 
     // Random number for placeholder IDs and random imageSrc
     let randomId = Math.floor(Math.random() * 10000);
-    const addImageSrc = randomId > 7000 ? mainNavButtonPlaceholderImageSrc : '';
     randomId = randomId.toString();
 
     // Determine the sort at entry-point
@@ -32,8 +29,7 @@ class AddServerButton extends MainNavButton {
 
     const button = {
       id: randomId,
-      title: `New Server ${randomId}`,
-      imageSrc: addImageSrc,
+      name: `New Server ${randomId}`,
       channelExtraClassNames: [uiClassNames.blue],
       type: 'link',
       sort,
