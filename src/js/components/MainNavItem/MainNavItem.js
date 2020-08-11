@@ -35,9 +35,9 @@ class MainNavItem extends Component {
   backgroundImageStyle = () => {
     const { icon } = this.props;
 
-    return icon ? {
-      backgroundImage: `url(${icon})`,
-    } : null;
+    return icon
+        ? { backgroundImage: `url(${icon})` }
+        : null;
   }
 
   /**
