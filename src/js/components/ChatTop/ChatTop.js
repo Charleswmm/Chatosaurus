@@ -1,41 +1,15 @@
-import PropTypes from 'prop-types';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import '../../../scss/components/ChatTop/ChatTop.scss';
-import { withRouter } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import useDiscordData from '../../hooks/useDiscordData';
 import IconButton, { iconButtonSubType, iconButtonToolTipPosition } from '../IconButton/IconButton';
 
-const ChatTop = ({ history }) => {
-  const { Config, DiscordStore } = useContext(GlobalContext);
-  const [userData, setUserData] = useState(null);
+const ChatTop = () => {
+  const { Config } = useContext(GlobalContext);
 
   const { discordAPIResources: { client, user } } = Config.get(['discordAPIResources']);
 
-  // Get user data after the components' first render
-  useEffect(() => {
-    // A flag to make sure state does not change when the component is not mounted
-    let isMounted = true;
-
-    DiscordStore.getData(user, client).then((res) => {
-      if (isMounted) {
-        setUserData(res);
-      }
-    }).catch((e) => {
-      const error = `ChatTop - DiscordStore.getData - "${e.toString()}"`;
-
-      history.push({
-        pathname: '/error',
-        state: {
-          error,
-        },
-      });
-    });
-
-    // The return function is called when the component has unmounted
-    return () => {
-      isMounted = false;
-    };
-  }, [setUserData]);
+  const userData = useDiscordData(user, client);
 
   let userName = '...';
 
@@ -92,12 +66,4 @@ const TopSearch = () => (
   </div>
 );
 
-ChatTop.propTypes = {
-  history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-};
-
-ChatTop.defaultProps = {
-  history: null,
-};
-
-export default withRouter(ChatTop);
+export default ChatTop;

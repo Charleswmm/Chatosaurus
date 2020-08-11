@@ -1,14 +1,13 @@
-import PropTypes from 'prop-types';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import '../../../scss/components/MainNav/MainNav.scss';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import AddServerButton from '../AddServerButton/AddServerButton';
 import MainNavButton from '../MainNavButton/MainNavButton';
 import ServerLink from '../ServerLink/ServerLink';
+import useDiscordData from '../../hooks/useDiscordData';
 
-const MainNav = ({ history }) => {
-  const { Config, DiscordStore } = useContext(GlobalContext);
-  const [guildData, setGuildData] = useState(null);
+const MainNav = () => {
+  const { Config } = useContext(GlobalContext);
 
   const config = Config.get([
     'discordAPIResources',
@@ -22,9 +21,24 @@ const MainNav = ({ history }) => {
   const { client, guilds, icons } = discordAPIResources;
   const { appCDN } = discordUrls;
 
+  const guildData = useDiscordData(guilds, client);
+
   let addGuildData;
 
   if (guildData) {
+    // Sort guilds in alphabetical order
+    guildData.sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+
     // Add sort, button type, and the icon url to each guild
     addGuildData = guildData.map((data, index) => {
       const { id, icon } = data;
@@ -62,43 +76,6 @@ const MainNav = ({ history }) => {
       });
     }
   }
-
-  // Get user guild data after the components' first render
-  useEffect(() => {
-    // A flag to make sure state does not change when the component is not mounted
-    let isMounted = true;
-
-    DiscordStore.getData(guilds, client).then((res) => {
-      if (isMounted) {
-        res.sort((a, b) => {
-          const nameA = a.name.toUpperCase();
-          const nameB = b.name.toUpperCase();
-          if (nameA < nameB) {
-            return -1;
-          }
-          if (nameA > nameB) {
-            return 1;
-          }
-          return 0;
-        });
-        setGuildData(res);
-      }
-    }).catch((e) => {
-      const error = `MainNav - DiscordStore.getData - "${e.toString()}"`;
-
-      history.push({
-        pathname: '/error',
-        state: {
-          error,
-        },
-      });
-    });
-
-    // The return function is called when the component has unmounted
-    return () => {
-      isMounted = false;
-    };
-  }, [setGuildData]);
 
   return (
     <div className="nav-column nav-column-server">
@@ -140,14 +117,6 @@ const MainNavButtons = () => {
       ...button,
     });
   });
-};
-
-MainNav.propTypes = {
-  history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-};
-
-MainNav.defaultProps = {
-  history: null,
 };
 
 export default MainNav;
