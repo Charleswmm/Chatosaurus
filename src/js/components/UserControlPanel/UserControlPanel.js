@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../../../scss/components/UserControlPanel/UserControlPanel.scss';
-import { withRouter } from 'react-router';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import useDiscordData from '../../hooks/useDiscordData';
 import IconButton, {
   iconButtonSubType,
   iconButtonToolTipPosition,
@@ -11,13 +10,14 @@ import IconButton, {
 } from '../IconButton/IconButton';
 import defaultAvatar from '../../../img/discord-placeholder.png';
 
-const UserControlPanel = ({ history }) => {
-  const { Config, DiscordStore } = useContext(GlobalContext);
-  const [userData, setUserData] = useState(null);
+const UserControlPanel = () => {
+  const { Config } = useContext(GlobalContext);
 
   const config = Config.get(['discordAPIResources', 'discordUrls']);
   const { discordAPIResources, discordUrls: { appCDN } } = config;
   const { client, user, avatarPath } = discordAPIResources;
+
+  const userData = useDiscordData(user, client);
 
   const { micAction, deafenAction, settings } = iconButtonType;
   const { rounded } = iconButtonSubType;
@@ -28,32 +28,6 @@ const UserControlPanel = ({ history }) => {
     micState: on, deafenState: off,
   });
   const { micState, deafenState } = buttonState;
-
-  // Get user data after the components' first render
-  useEffect(() => {
-    // A flag to make sure state does not change when the component is not mounted
-    let isMounted = true;
-
-    DiscordStore.getData(user, client).then((res) => {
-      if (isMounted) {
-        setUserData(res);
-      }
-    }).catch((e) => {
-      const error = `UserControlPanel - DiscordStore.getData - ${e.toString()}`;
-
-      history.push({
-        pathname: '/error',
-        state: {
-          error,
-        },
-      });
-    });
-
-    // The return function is called when the component has unmounted
-    return () => {
-      isMounted = false;
-    };
-  }, [setUserData]);
 
   let userName = '...';
   let userDiscriminator = '...';
@@ -134,12 +108,4 @@ const UserControlPanel = ({ history }) => {
   );
 };
 
-UserControlPanel.propTypes = {
-  history: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-};
-
-UserControlPanel.defaultProps = {
-  history: null,
-};
-
-export default withRouter(UserControlPanel);
+export default UserControlPanel;

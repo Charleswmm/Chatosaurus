@@ -22,7 +22,7 @@ export default {
     client: 'client',
     bot: 'bot',
     avatarPath: 'avatars',
-    icon: 'icons',
+    icons: 'icons',
     user: '/users/@me',
     guilds: '/users/@me/guilds',
     channels: '/users/@me/guilds',
@@ -66,10 +66,14 @@ export default {
       ],
     },
   ],
+  mainNavButtonTypes: {
+    link: 'link',
+    addServerButton: 'add-server-button',
+  },
   mainNavButtons: [
     {
       id: '@me',
-      title: 'Home',
+      name: 'Home',
       iconClassName: iconClassNames.home,
       channelExtraClassNames: [uiClassNames.blue, uiClassNames.separator],
       type: 'link',
@@ -77,7 +81,7 @@ export default {
     },
     {
       id: 'add-a-server',
-      title: 'Add a Server',
+      name: 'Add a Server',
       iconClassName: iconClassNames.add,
       channelExtraClassNames: [uiClassNames.green],
       type: 'add-server-button',
@@ -85,19 +89,20 @@ export default {
     },
     {
       id: 'download-apps',
-      title: 'Download Apps',
+      name: 'Download Apps',
       iconClassName: iconClassNames.download,
       channelExtraClassNames: [uiClassNames.green],
       sort: 3,
     },
     {
       id: 'server-discovery',
-      title: 'Server Discovery',
+      name: 'Server Discovery',
       iconClassName: iconClassNames.discover,
       channelExtraClassNames: [uiClassNames.green, uiClassNames.separator],
       sort: 2,
     },
   ],
+  insertMainNavButtonsBeforeId: 'add-a-server',
   groupNavDMButtons: [
     {
       id: '12345',
@@ -205,8 +210,6 @@ export default {
       type: 'help',
     },
   ],
-  insertMainNavButtonsBeforeId: 'add-a-server',
-  mainNavButtonPlaceholderImageSrc: placeHolderAvatar,
   chatLogPlaceholderText: [
     'Suspendisse viverra, orci nec eleifend.',
     'Ok',
