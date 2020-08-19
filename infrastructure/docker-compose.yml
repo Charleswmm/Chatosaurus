@@ -2,14 +2,25 @@ version: '3'
 
 services:
   website:
-    container_name: ${CONTAINER_NAME}
+    container_name: ${WEBSITE_NAME}
     image: nginx:latest
     volumes:
       - ${FRONT_END_FOLDER}:/usr/share/nginx/html:ro
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./website/nginx.conf:/etc/nginx/nginx.conf
     environment:
       VIRTUAL_HOST: ${FRONT_END_HOST}
       VIRTUAL_PORT: ${FRONT_END_PORT}
+    expose:
+      - 80
+
+  proxy:
+    container_name: ${PROXY_NAME}
+    image: nginx:latest
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf
+    environment:
+      VIRTUAL_HOST: ${PROXY_FRONT_END_HOST}
+      VIRTUAL_PORT: ${PROXY_FRONT_END_PORT}
     expose:
       - 80
 
