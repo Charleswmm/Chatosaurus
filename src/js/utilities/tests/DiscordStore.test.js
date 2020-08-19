@@ -9,6 +9,7 @@ describe('DiscordStore', () => {
     discordUrls: '',
     discordAPIResources: {
       client: 'bar',
+      wait: '',
     },
     tokenTemplate: '',
   };
@@ -40,6 +41,6 @@ describe('DiscordStore', () => {
   });
 
   it('can get data', () => expect(
-    discordStore.getData('foo', 'bar').then((e) => e),
+    discordStore.getData(['foo'], 'bar').then((e) => e),
   ).resolves.toBe('bin'));
 });
