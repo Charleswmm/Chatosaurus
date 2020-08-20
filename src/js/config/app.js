@@ -4,8 +4,8 @@ import placeHolderAvatar from '../../img/discord-placeholder.png';
 
 export default {
   authDetails: {
-    clientId: '735260432536961114',
-    clientSecret: 'yZS10WNIaQM_X2vDwm2KplGfkj-pbmVL',
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
     scope: 'identify guilds guilds.join',
     grantType: 'authorization_code',
     refreshType: 'refresh_token',
@@ -20,7 +20,7 @@ export default {
   },
   discordAPIResources: {
     client: 'client',
-    bot: 'bot',
+    bot: process.env.BOT,
     avatarPath: 'avatars',
     icons: 'icons',
     user: '/users/@me',
