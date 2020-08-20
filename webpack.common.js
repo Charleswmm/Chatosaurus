@@ -1,10 +1,12 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   plugins: [
     new MomentLocalesPlugin(),
+    new Dotenv(),
   ],
   module: {
     rules: [
