@@ -6,7 +6,7 @@ import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import Config from '../../utilities/Config';
 import Auth from './Auth';
 
-describe('OAuthCallback', () => {
+describe('Auth', () => {
   const fooConfiguration = {
     tokenTemplate: {
       accessTokenKey: 'access_token',

