@@ -7,9 +7,9 @@ import IconButton, { iconButtonSubType, iconButtonToolTipPosition } from '../Ico
 const ChatTop = () => {
   const { Config } = useContext(GlobalContext);
 
-  const { discordAPIResources: { client, user } } = Config.get(['discordAPIResources']);
+  const { discordAPIResources: { client, users, atMe } } = Config.get(['discordAPIResources']);
 
-  const userData = useDiscordData(user, client);
+  const userData = useDiscordData([users, atMe], client);
 
   let userName = '...';
 

@@ -16,7 +16,7 @@ const useDiscordData = (resource, userType) => {
         setData(res);
       }
     }).catch((e) => {
-      const error = `${userType + resource} - DiscordStore.getData - "${e.toString()}"`;
+      const error = `${resource.toString()} - DiscordStore.getData - "${e.toString()}"`;
 
       history.push({
         pathname: '/error',
@@ -30,7 +30,7 @@ const useDiscordData = (resource, userType) => {
     return () => {
       isMounted = false;
     };
-  }, [setData]);
+  });
 
   return data;
 };

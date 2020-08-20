@@ -18,10 +18,10 @@ const MainNav = () => {
 
   const { discordAPIResources, mainNavButtons, mainNavButtonTypes, discordUrls } = config;
   const { link, addServerButton } = mainNavButtonTypes;
-  const { client, guilds, icons } = discordAPIResources;
+  const { client, guilds, icons, users, atMe } = discordAPIResources;
   const { appCDN } = discordUrls;
 
-  const guildData = useDiscordData(guilds, client);
+  const guildData = useDiscordData([users, atMe, guilds], client);
 
   let buttons = mainNavButtons;
 

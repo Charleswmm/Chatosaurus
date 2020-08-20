@@ -4,9 +4,9 @@ import placeHolderAvatar from '../../img/discord-placeholder.png';
 
 export default {
   authDetails: {
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    scope: 'identify guilds guilds.join',
+    clientId: '735260432536961114',
+    clientSecret: 'yZS10WNIaQM_X2vDwm2KplGfkj-pbmVL',
+    scope: 'identify guilds guilds.join bot',
     grantType: 'authorization_code',
     refreshType: 'refresh_token',
     redirectUri: 'https://chatosaurus.dev/oauthcallback',
@@ -19,17 +19,20 @@ export default {
     appCDN: 'https://cdn.discordapp.com',
   },
   discordAPIResources: {
+    pending: 'pending',
+    bot: 'Bot NzM1MjYwNDMyNTM2OTYxMTE0.Xxdqow.MyM1z4ZIVh8GLusf-8nrvktgg9E',
     client: 'client',
-    bot: process.env.BOT,
+    atMe: '@me',
     avatarPath: 'avatars',
     icons: 'icons',
-    user: '/users/@me',
-    guilds: '/users/@me/guilds',
-    channels: '/users/@me/guilds',
+    users: 'users',
+    guilds: 'guilds',
+    channels: 'channels',
   },
   tokenTemplate: {
     accessTokenKey: 'access_token',
     expiresInKey: 'expires_in',
+    guild: 'guild',
     refreshTokenKey: 'refresh_token',
     scopeKey: 'scope',
     tokenTypeKey: 'token_type',
@@ -37,6 +40,8 @@ export default {
   paths: {
     mainPath: 'channels',
     homePath: '@me',
+    loginPath: 'login',
+    errorPath: 'error',
   },
   currentUser:
     {

@@ -38,21 +38,23 @@ class DiscordStore {
 
   /**
    * Creates an axios get request to the Discord API for the requested resource
-   * @param resourceKey
+   * @param resource
+   * @param userType
    * @returns {Promise}
    */
-  createAPIPromise = (resourceKey) => {
+  createAPIPromise = (resource, userType) => {
     const config = this.Config.get(['discordUrls', 'discordAPIResources', 'tokenTemplate']);
-    const { discordUrls: { baseUrl }, discordAPIResources: { client }, tokenTemplate } = config;
+    const { discordUrls: { baseUrl }, discordAPIResources, tokenTemplate } = config;
+    const { client, bot } = discordAPIResources;
     const { accessTokenKey, tokenTypeKey } = tokenTemplate;
 
-    const [userType, resource] = resourceKey.split('_');
-    const requestUrl = [baseUrl, resource].join('/');
+    const resourceKey = [userType, ...resource].join('_');
+    const requestUrl = [baseUrl, ...resource].join('/');
 
-    let token;
+    let token = bot;
 
     // Check userType is the client which will use the 'Bearer' token
-    if (userType === client) {
+    if (resourceKey.includes(client)) {
       const sessionToken = JSON.parse(sessionStorage.getItem(accessTokenKey));
       token = [sessionToken[tokenTypeKey], sessionToken[accessTokenKey]].join(' ');
     }
@@ -65,6 +67,7 @@ class DiscordStore {
     // Request the resource from Discord's API
     return axios
       .get((requestUrl), {
+        withCredentials: true,
         headers: {
           Authorization: token,
         },
@@ -95,7 +98,7 @@ class DiscordStore {
    * @returns {Promise}
    */
   get = (resource, userType) => {
-    const resourceKey = [userType, resource].join('_');
+    const resourceKey = [userType, ...resource].join('_');
 
     // Find the resource data in memory
     const resourceData = this.data.find((e) => e.resourceKey === resourceKey);
@@ -111,7 +114,7 @@ class DiscordStore {
 
     if (!promise) {
       // Establish an fresh promise
-      promise = this.createAPIPromise(resourceKey);
+      promise = this.createAPIPromise(resource, userType);
 
       // Add promise to promise Queue
       this.addQueue({
@@ -150,9 +153,19 @@ class DiscordStore {
    * @param userType
    * @returns {Promise}
    */
-  getData = (resource, userType) => (
-    this.get(resource, userType).then((resourceFull) => resourceFull.response.data)
-  )
+  getData = (resource = [], userType) => {
+    const { discordAPIResources: { pending } } = this.Config.get(['discordAPIResources']);
+
+    const requestPending = resource.find((e) => e === pending);
+
+    if (requestPending) {
+      return Promise.resolve(null);
+    }
+
+    return (
+      this.get(resource, userType).then((resourceFull) => resourceFull.response.data)
+    );
+  }
 
   /**
    * Removes duplicate data then adds the data passed to it to memory

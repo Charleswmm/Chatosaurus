@@ -1,11 +1,21 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import '../../../scss/components/Loading/Loading.scss';
+import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
 const Loading = ({ location }) => {
-  const { state } = location;
+  const { Config } = useContext(GlobalContext);
+  const { paths: { errorPath, loginPath } } = Config.get(['paths']);
+  const { state, pathname } = location;
+  const currentPath = pathname.replace('/', '');
+  let loadingState = true
+
+  if (currentPath === errorPath || currentPath === loginPath) {
+    loadingState = false
+  }
+
   const defaultState = {
-    loading: true,
+    loading: loadingState,
     error: '',
   };
 

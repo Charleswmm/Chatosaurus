@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import '../scss/app.scss';
 import Auth from './components/Auth/Auth';
+import ChannelNav from './components/ChannelNav/ChannelNav';
 import ChatControl from './components/ChatControl/ChatControl';
 import Director from './components/Director/Director';
 import ErrorPage from './components/ErrorPage/ErrorPage';
@@ -34,13 +35,10 @@ const App = () => (
         <Auth>
           <Director>
             <Route path="/channels" component={MainNav} />
-            <Route path="/channels/@me">
-              <GroupNav />
-              <Switch>
-                <Route path="/channels/@me/:id" component={ChatControl} />
-                <Route component={Friends} />
-              </Switch>
-            </Route>
+            <Route path="/channels/@me" component={GroupNav} />
+            <Route exact path="/channels/@me" component={Friends} />
+            <Route exact path="/channels/:guild([0-9]+)" component={ChannelNav} />
+            <Route exact path="/channels/:guild([0-9]+)/:id([0-9]+)" component={ChatControl} />
           </Director>
         </Auth>
       </Switch>

@@ -8,9 +8,9 @@ const Auth = ({ children, location }) => {
   const { Config } = useContext(GlobalContext);
 
   const { tokenTemplate } = Config.get(['tokenTemplate']);
-  const { expiresInKey, accessTokenKey } = tokenTemplate;
+  const { expiresInKey, accessTokenKey, guild } = tokenTemplate;
 
-  const accessTokenTemplateKeys = Object.values(tokenTemplate);
+  let accessTokenTemplateKeys = Object.values(tokenTemplate);
 
   // Get the token data from the session storage
   const accessTokenData = JSON.parse(sessionStorage.getItem(accessTokenKey));
@@ -19,6 +19,9 @@ const Auth = ({ children, location }) => {
   let accessTokenValid = false;
 
   if (accessTokenData) {
+    if (Object.keys(accessTokenData).length <= 5) {
+      accessTokenTemplateKeys = accessTokenTemplateKeys.filter((e) => e !== guild);
+    }
     const accessTokenDataKeys = Object.keys(accessTokenData).sort();
 
     // Check the content of the token to be the required structure
