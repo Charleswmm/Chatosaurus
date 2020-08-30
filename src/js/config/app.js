@@ -4,8 +4,8 @@ import placeHolderAvatar from '../../img/discord-placeholder.png';
 
 export default {
   authDetails: {
-    clientId: '735260432536961114',
-    clientSecret: 'yZS10WNIaQM_X2vDwm2KplGfkj-pbmVL',
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
     scope: 'identify guilds guilds.join bot',
     grantType: 'authorization_code',
     refreshType: 'refresh_token',
@@ -19,8 +19,11 @@ export default {
     appCDN: 'https://cdn.discordapp.com',
   },
   discordAPIResources: {
+    currentUser: 'users/@me',
+    userGuilds: 'users/@me/guilds',
+    userChannels: 'users/@me/channels',
     pending: 'pending',
-    bot: 'Bot NzM1MjYwNDMyNTM2OTYxMTE0.Xxdqow.MyM1z4ZIVh8GLusf-8nrvktgg9E',
+    bot: process.env.BOT,
     client: 'client',
     atMe: '@me',
     avatarPath: 'avatars',
@@ -28,6 +31,11 @@ export default {
     users: 'users',
     guilds: 'guilds',
     channels: 'channels',
+    messages: 'messages',
+    parentChannel: 4,
+    textChannel: 0,
+    voiceChannel: 2,
+    dmChannel: 99,
   },
   tokenTemplate: {
     accessTokenKey: 'access_token',
@@ -42,6 +50,14 @@ export default {
     homePath: '@me',
     loginPath: 'login',
     errorPath: 'error',
+  },
+  channelNavButtonClasses: {
+    svgBase: 'svg',
+    svgHashWhite: 'svg-hash-white',
+    svgHash: 'svg-hash',
+    svgSpeaker: 'svg-speaker',
+    svgPeople: 'svg-people',
+    svgBackground: backgroundColorClassNames.avatarGrey,
   },
   currentUser:
     {
@@ -65,8 +81,8 @@ export default {
       messageLog: [
         {
           name: 'pytho',
-          timeStamp: '2020-07-07T19:15:30',
-          body: 'This is the Pytho chat log',
+          timestamp: '2020-07-07T19:15:30',
+          content: 'This is the Pytho chat log',
         },
       ],
     },
@@ -111,7 +127,7 @@ export default {
   groupNavDMButtons: [
     {
       id: '12345',
-      title: 'Pytho',
+      name: 'Pytho',
       avatarSrc: 'url',
       backgroundColor: backgroundColorClassNames.avatarBlue,
     },
@@ -226,17 +242,21 @@ export default {
     + ' tellus. Aenean suscipit augue at justo viverra. ',
     'Luctus et ultrices posuere cubilia curae.',
   ],
+  chatHeadText: {
+    dmText: 'This is the beginning of your direct message history with ',
+    channelText: 'This is the start of the #',
+  },
   messageLogTemplate:
     {
       name: 'pytho',
-      timeStamp: '2020-07-07T19:15:30',
-      body: 'The random messages are not working',
+      timestamp: '2020-07-07T19:15:30',
+      content: 'The random messages are not working',
     },
   messageLog: [
     {
       name: 'pytho',
-      timeStamp: '2020-07-07T19:15:30',
-      body: 'The Randomizer is not working',
+      timestamp: '2020-07-07T19:15:30',
+      content: 'The Randomizer is not working',
     },
   ],
 };

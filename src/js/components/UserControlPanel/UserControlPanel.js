@@ -15,9 +15,9 @@ const UserControlPanel = () => {
 
   const config = Config.get(['discordAPIResources', 'discordUrls']);
   const { discordAPIResources, discordUrls: { appCDN } } = config;
-  const { client, users, atMe, avatarPath } = discordAPIResources;
+  const { client, currentUser, avatarPath } = discordAPIResources;
 
-  const userData = useDiscordData([users, atMe], client);
+  const userData = useDiscordData(currentUser, client);
 
   const { micAction, deafenAction, settings } = iconButtonType;
   const { rounded } = iconButtonSubType;

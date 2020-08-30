@@ -18,29 +18,18 @@ const MainNav = () => {
 
   const { discordAPIResources, mainNavButtons, mainNavButtonTypes, discordUrls } = config;
   const { link, addServerButton } = mainNavButtonTypes;
-  const { client, guilds, icons, users, atMe } = discordAPIResources;
+  const { client, userGuilds, icons } = discordAPIResources;
   const { appCDN } = discordUrls;
 
-  const guildData = useDiscordData([users, atMe, guilds], client);
+  const guildData = useDiscordData(userGuilds, client);
 
   let buttons = mainNavButtons;
 
   if (guildData) {
-    // Sort guilds in alphabetical order
-    guildData.sort((a, b) => {
-      const nameA = a.name.toUpperCase();
-      const nameB = b.name.toUpperCase();
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
+    const orderGuildData = [...guildData].reverse();
 
     // Add sort, button type, and the icon url to each guild
-    const addGuildData = guildData.map((data, index) => {
+    const addGuildData = orderGuildData.map((data, index) => {
       const { id, icon } = data;
 
       const iconUrl = icon ? [appCDN, icons, id, icon].join('/') : null;

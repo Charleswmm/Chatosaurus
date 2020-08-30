@@ -6,37 +6,42 @@ import ChatFoot from '../ChatFoot/ChatFoot';
 import ChatTop from '../ChatTop/ChatTop';
 
 const ChatView = (props) => {
-  const {
-    id,
-    title,
-    avatarSrc,
-    backgroundColor,
-  } = props;
+  const { id, name, avatarSrc, backgroundColor, type } = props;
 
   return (
     <main className="chat">
-      <ChatTop />
+      <ChatTop
+        name={name}
+        type={type}
+      />
       <ChatBody
         id={id}
-        title={title}
+        type={type}
+        name={name}
         avatarSrc={avatarSrc}
         backgroundColor={backgroundColor}
       />
-      <ChatFoot id={id} title={title} />
+      <ChatFoot
+        id={id}
+        name={name}
+        type={type}
+      />
     </main>
   );
 };
 
 ChatView.propTypes = {
   id: PropTypes.string,
-  title: PropTypes.string,
+  type: PropTypes.number,
+  name: PropTypes.string,
   avatarSrc: PropTypes.string,
   backgroundColor: PropTypes.string,
 };
 
 ChatView.defaultProps = {
   id: null,
-  title: null,
+  type: null,
+  name: null,
   avatarSrc: null,
   backgroundColor: null,
 };

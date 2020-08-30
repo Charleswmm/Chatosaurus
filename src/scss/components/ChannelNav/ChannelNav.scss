@@ -67,10 +67,37 @@
       filter: brightness(150%);
     }
 
+    &:active {
+      transform: translateY(0.1rem);
+    }
+
     .svg-arrow-grey {
       height: 1.2rem;
       width: 1.2rem;
       margin: 0 0.2rem;
+    }
+
+    .svg-plus {
+      height: 1.2rem;
+      width: 1.2rem;
+      filter: grayscale(100%);
+      background-size: 160%;
+      background-position: center;
+      margin: 0 0.2rem;
+      position: relative;
+
+      .tool-tip {
+        transform: translateX(-50%);
+        top: -4.2rem;
+        left: 0.6rem;
+      }
+    }
+
+    .svg-plus:hover {
+      .tool-tip {
+        visibility: visible;
+        opacity: 1;
+      }
     }
 
     .btn-text {
@@ -101,6 +128,35 @@
       height: 1.6rem;
       width: 1.6rem;
       display: none;
+      position: relative;
+    }
+
+    .svg-add-friend:hover {
+      .tool-tip {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    .svg-cog {
+      height: 1.6rem;
+      width: 1.6rem;
+      display: none;
+      position: relative;
+      margin-left: 0.4rem;
+    }
+
+    .svg-cog:hover {
+      .tool-tip {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    .tool-tip {
+      transform: translateX(-50%);
+      top: -4.2rem;
+      left: 0.8rem;
     }
 
     .btn {
@@ -119,6 +175,10 @@
         .svg-add-friend {
           display: block;
         }
+
+        .svg-cog {
+          display: block;
+        }
       }
     }
 
@@ -131,6 +191,10 @@
       }
 
       .svg-add-friend {
+        display: block;
+      }
+
+      .svg-cog {
         display: block;
       }
     }

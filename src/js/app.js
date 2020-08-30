@@ -36,9 +36,10 @@ const App = () => (
           <Director>
             <Route path="/channels" component={MainNav} />
             <Route path="/channels/@me" component={GroupNav} />
+            <Route path="/channels/@me/:id([0-9]+)" component={ChatControl} />
             <Route exact path="/channels/@me" component={Friends} />
-            <Route exact path="/channels/:guild([0-9]+)" component={ChannelNav} />
-            <Route exact path="/channels/:guild([0-9]+)/:id([0-9]+)" component={ChatControl} />
+            <Route path="/channels/:guild([0-9]+)" component={ChannelNav} />
+            <Route path="/channels/:guild([0-9]+)/:id([0-9]+)" component={ChatControl} />
           </Director>
         </Auth>
       </Switch>

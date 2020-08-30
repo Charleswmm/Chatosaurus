@@ -1,33 +1,50 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import useDiscordData from '../../hooks/useDiscordData';
 import ChatView from '../ChatView/ChatView';
 import NoChat from '../NoChat/NoChat';
 
 const ChatControl = (props) => {
-  const context = useContext(GlobalContext);
-  const { match } = props;
-  const { Config } = context;
-  const { groupNavDMButtons } = Config.get(['groupNavDMButtons']);
-  const button = groupNavDMButtons.filter((e) => e.id === match.params.id).shift();
+  const { match: { params: { id: channelId } } } = props;
 
-  if (!button) {
+  const { Config } = useContext(GlobalContext);
+  const config = Config.get(['groupNavDMButtons', 'discordAPIResources', 'channelNavButtonClasses']);
+  const { groupNavDMButtons, discordAPIResources, channelNavButtonClasses } = config;
+  const { channels, dmChannel } = discordAPIResources;
+  const { svgBackground } = channelNavButtonClasses;
+
+  const dmButton = groupNavDMButtons.filter((e) => e.id === channelId).shift();
+
+  if (dmButton) {
+    const { id, name, avatarSrc, backgroundColor } = dmButton;
+
+    return (
+      <ChatView
+        id={id}
+        name={name}
+        type={dmChannel}
+        avatarSrc={avatarSrc}
+        backgroundColor={backgroundColor}
+      />
+    );
+  }
+
+  const channelResource = [channels, channelId].join('/');
+  const channel = useDiscordData(channelResource);
+
+  if (!channel) {
     return <NoChat />;
   }
 
-  const {
-    id,
-    title,
-    avatarSrc,
-    backgroundColor,
-  } = button;
+  const { id, name, type } = channel;
 
   return (
     <ChatView
       id={id}
-      title={title}
-      avatarSrc={avatarSrc}
-      backgroundColor={backgroundColor}
+      name={name}
+      type={type}
+      backgroundColor={svgBackground}
     />
   );
 };

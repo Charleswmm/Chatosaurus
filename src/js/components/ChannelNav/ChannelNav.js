@@ -1,37 +1,41 @@
+import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import '../../../scss/components/ChannelNav/ChannelNav.scss';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 import useDiscordData from '../../hooks/useDiscordData';
+import ChannelNavButton, { ChannelNavParent } from '../ChannelNavButton/ChannelNavButton';
 import UserControlPanel from '../UserControlPanel/UserControlPanel';
 
 const ChannelNav = () => {
+  const history = useHistory();
+  const { guild } = useParams();
+
   const { Config } = useContext(GlobalContext);
-  const params = useParams();
-  const { guild } = params;
+  const { discordAPIResources: { userGuilds, pending } } = Config.get(['discordAPIResources']);
 
-  const config = Config.get(['discordAPIResources']);
+  let guildName = '';
+  let guildId = pending;
 
-  const { discordAPIResources } = config;
-  const { guilds, users, atMe, channels, pending } = discordAPIResources;
-
-  const [guildId, setGuildId] = useState(pending);
-
-  const guildChannels = useDiscordData([guilds, guildId, channels]);
-  const guildData = useDiscordData([users, atMe, guilds]);
-
-  console.log('guildId', guildId);
-  console.log('guildData', guildData);
-  console.log('guildChannels', guildChannels);
+  const guildData = useDiscordData(userGuilds);
 
   if (guildData) {
     const findGuild = guildData.find((e) => e.id === guild);
-    console.log('findGuild', findGuild);
 
-    if (guildId !== findGuild.id) {
-      const { id } = findGuild;
-      console.log('id', id);
-      setGuildId(id);
+    if (findGuild) {
+      if (guild !== findGuild.id) {
+        history.push({
+          pathname: '/error',
+          state: {
+            error: 'Guild ID does not match user guilds',
+          },
+        });
+      }
+
+      const { id, name } = findGuild;
+
+      guildName = name;
+      guildId = id;
     }
   }
 
@@ -39,11 +43,13 @@ const ChannelNav = () => {
     <div className="nav-column nav-column-channels">
       <div className="nav-group nav-group-top">
         <button type="button" className="btn btn-top">
-          <h1>Guild Server</h1>
+          <h1>{guildName}</h1>
           <div className="svg svg-arrow" />
         </button>
       </div>
-      <ChannelNavButtons />
+      <div className="nav-group nav-group-channels">
+        <ChannelNavButtons guildId={guildId} />
+      </div>
       <div className="nav-group nav-group-foot">
         <UserControlPanel />
       </div>
@@ -51,41 +57,74 @@ const ChannelNav = () => {
   );
 };
 
-const ChannelNavButtons = () => {
-  let block;
+const ChannelNavButtons = ({ guildId }) => {
+  const { Config } = useContext(GlobalContext);
+  const { discordAPIResources } = Config.get(['discordAPIResources']);
+  const { guilds, channels, parentChannel } = discordAPIResources;
+  const [hideChildrenId, setHideChildrenId] = useState([]);
 
-  return (
-    <ChannelNavButton />
-  );
+  const channelsResource = [guilds, guildId, channels].join('/');
+  const guildChannels = useDiscordData(channelsResource);
+
+  const orderChannels = [];
+
+  if (guildChannels) {
+    const { guild_id: guildTestId } = guildChannels[0];
+
+    if (guildTestId !== guildId) {
+      return <></>;
+    }
+
+    const parents = guildChannels.filter((e) => e.type === parentChannel);
+    const filteredChannels = guildChannels.filter((e) => e.type !== parentChannel);
+
+    parents.forEach((parent) => {
+      orderChannels.push(parent);
+
+      filteredChannels.forEach((e) => {
+        const { parent_id: parentId } = e;
+
+        if (parentId === parent.id) {
+          orderChannels.push(e);
+        }
+      });
+    });
+  }
+
+  const hideChildren = (id) => {
+    const showId = hideChildrenId.find((e) => e === id);
+    const hiddenIds = showId ? hideChildrenId.filter((e) => e !== id) : [...hideChildrenId, id];
+
+    setHideChildrenId(hiddenIds);
+  };
+
+  return orderChannels.map((button, index) => {
+    if (button.type === parentChannel) {
+      return (
+        <ChannelNavParent
+          key={index.toString()}
+          button={button}
+          hideChildren={hideChildren}
+          hideChildrenId={hideChildrenId}
+        />
+      );
+    }
+    return (
+      <ChannelNavButton
+        key={index.toString()}
+        button={button}
+        hideChildrenId={hideChildrenId}
+      />
+    );
+  });
 };
 
-const ChannelNavButton = () => {
-  let block;
+ChannelNavButtons.propTypes = {
+  guildId: PropTypes.string,
+};
 
-  return (
-    <div className="nav-group nav-group-channels">
-      <div className="nav-item nav-item-parent">
-        <button type="button" className="btn">
-          <div className="svg svg-arrow-grey" />
-          <div className="btn-text">Text Channels</div>
-        </button>
-      </div>
-      <div className="nav-item nav-item-channel">
-        <button type="button" className="btn btn-active">
-          <div className="svg svg-hash" />
-          <div className="btn-text">general</div>
-          <div className="svg svg-add-friend" />
-        </button>
-      </div>
-      <div className="nav-item nav-item-channel">
-        <button type="button" className="btn">
-          <div className="svg svg-speaker" />
-          <div className="btn-text">General</div>
-          <div className="svg svg-add-friend" />
-        </button>
-      </div>
-    </div>
-  );
+ChannelNavButtons.defaultProps = {
+  guildId: null,
 };
 
 export default ChannelNav;

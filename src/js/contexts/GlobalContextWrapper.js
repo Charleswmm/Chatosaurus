@@ -60,8 +60,8 @@ export class GlobalContextWrapper extends Component {
 
       return {
         ...messageLogTemplate,
-        timeStamp: newTime,
-        body: chatLogPlaceholderText[e],
+        timestamp: newTime,
+        content: chatLogPlaceholderText[e],
       };
     });
 

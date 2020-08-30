@@ -48,8 +48,9 @@ class DiscordStore {
     const { client, bot } = discordAPIResources;
     const { accessTokenKey, tokenTypeKey } = tokenTemplate;
 
-    const resourceKey = [userType, ...resource].join('_');
-    const requestUrl = [baseUrl, ...resource].join('/');
+    const resourceParts = resource.split('/');
+    const resourceKey = [userType, ...resourceParts].join('_');
+    const requestUrl = [baseUrl, resource].join('/');
 
     let token = bot;
 
@@ -97,8 +98,9 @@ class DiscordStore {
    * @param userType
    * @returns {Promise}
    */
-  get = (resource, userType) => {
-    const resourceKey = [userType, ...resource].join('_');
+  get = (resource, userType = 'bot') => {
+    const resourceParts = resource.split('/');
+    const resourceKey = [userType, ...resourceParts].join('_');
 
     // Find the resource data in memory
     const resourceData = this.data.find((e) => e.resourceKey === resourceKey);
@@ -126,8 +128,8 @@ class DiscordStore {
     return promise.then((response) => {
       const { data, headers, status, statusText } = response;
 
-      // Sets a validation time stamp, set to 120 seconds
-      const maxAge = moment().unix() + 120;
+      // Sets a validation time stamp, set to 300 seconds
+      const maxAge = moment().unix() + 300;
 
       const entry = {
         resourceKey,
@@ -153,19 +155,9 @@ class DiscordStore {
    * @param userType
    * @returns {Promise}
    */
-  getData = (resource = [], userType) => {
-    const { discordAPIResources: { pending } } = this.Config.get(['discordAPIResources']);
-
-    const requestPending = resource.find((e) => e === pending);
-
-    if (requestPending) {
-      return Promise.resolve(null);
-    }
-
-    return (
-      this.get(resource, userType).then((resourceFull) => resourceFull.response.data)
-    );
-  }
+  getData = (resource, userType) => (
+    this.get(resource, userType).then((resourceFull) => resourceFull.response.data)
+  )
 
   /**
    * Removes duplicate data then adds the data passed to it to memory

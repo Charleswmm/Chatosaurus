@@ -10,7 +10,7 @@ class GroupNavDMButtons extends Component {
 
   /**
    * Placeholder function to create new random buttons
-   * @returns {{backgroundColor: *, avatarSrc: string, id: string, title: string}}
+   * @returns {{backgroundColor: *, avatarSrc: string, id: string, name: string}}
    */
   randomNewGroupNavDMButton = () => {
     let randomId = Math.floor(Math.random() * 90000 + 10000);
@@ -22,7 +22,7 @@ class GroupNavDMButtons extends Component {
 
     return {
       id: randomId,
-      title: 'Unnamed',
+      name: 'Unnamed',
       avatarSrc: `${addAvatarSrc}`,
       members: randomMembers,
       backgroundColor: `${randomBackgroundColor}`,
@@ -125,7 +125,7 @@ const CreateGroupNavDMButtons = (props) => {
       key={index.toString()}
       removeButtonFunc={removeButtonFunc}
       id={button.id}
-      title={button.title}
+      name={button.name}
       members={button.members}
       avatarSrc={button.avatarSrc}
       backgroundColor={button.backgroundColor}

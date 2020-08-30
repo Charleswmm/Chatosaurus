@@ -1,29 +1,29 @@
+import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import '../../../scss/components/ChatTop/ChatTop.scss';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
-import useDiscordData from '../../hooks/useDiscordData';
 import IconButton, { iconButtonSubType, iconButtonToolTipPosition } from '../IconButton/IconButton';
 
-const ChatTop = () => {
+const ChatTop = ({ name, type }) => {
   const { Config } = useContext(GlobalContext);
+  const config = Config.get(['channelNavButtonClasses', 'discordAPIResources']);
+  const { channelNavButtonClasses, discordAPIResources: { dmChannel } } = config;
+  const { svgBase, svgHash, svgPeople } = channelNavButtonClasses;
 
-  const { discordAPIResources: { client, users, atMe } } = Config.get(['discordAPIResources']);
-
-  const userData = useDiscordData([users, atMe], client);
-
-  let userName = '...';
-
-  if (userData) {
-    userName = userData.username;
-  }
+  const iconClass = () => {
+    if (type !== dmChannel) {
+      return [svgBase, svgHash].join(' ');
+    }
+    return [svgBase, svgPeople].join(' ');
+  };
 
   return (
     <div className="chat-top">
       <nav className="nav-row">
         <div className="nav-group">
           <div className="nav-item flex-grow">
-            <div className="svg svg-people" />
-            <div className="nav-text">{userName}</div>
+            <div className={iconClass()} />
+            <div className="nav-text">{name}</div>
           </div>
           <div className="nav-item">
             <TopIcons />
@@ -65,5 +65,15 @@ const TopSearch = () => (
     </div>
   </div>
 );
+
+ChatTop.propTypes = {
+  type: PropTypes.number,
+  name: PropTypes.string,
+};
+
+ChatTop.defaultProps = {
+  type: null,
+  name: null,
+};
 
 export default ChatTop;

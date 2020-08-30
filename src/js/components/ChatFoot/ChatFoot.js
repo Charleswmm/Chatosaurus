@@ -8,8 +8,7 @@ import IconButton, {
   iconButtonType,
 } from '../IconButton/IconButton';
 
-const ChatFoot = (props) => {
-  const { id, title } = props;
+const ChatFoot = ({ id, name, type }) => {
   const { addAttachment, addGift, addGif, addEmoji } = iconButtonType;
   const { plain } = iconButtonSubType;
   const { above } = iconButtonToolTipPosition;
@@ -22,7 +21,11 @@ const ChatFoot = (props) => {
             type={addAttachment}
             subtype={plain}
           />
-          <ChatInput id={id} title={title} />
+          <ChatInput
+            id={id}
+            name={name}
+            type={type}
+          />
           <IconButton
             type={addGift}
             subtype={plain}
@@ -42,10 +45,17 @@ const ChatFoot = (props) => {
   );
 };
 
-const ChatInput = (props) => {
-  const { id, title } = props;
-  const { state: { unSentMessage }, setChatInputState } = useContext(GlobalContext);
+const ChatInput = ({ id, name, type }) => {
+  const { state: { unSentMessage }, setChatInputState, Config } = useContext(GlobalContext);
+  const { discordAPIResources: { dmChannel } } = Config.get(['discordAPIResources']);
+
   const refInput = useRef(null);
+
+  let placeholderMessage = `@${name}`;
+
+  if (type !== dmChannel) {
+    placeholderMessage = `#${name}`;
+  }
 
   const maxNumberOfLines = 6;
   const inputLineHeight = 22;
@@ -79,7 +89,7 @@ const ChatInput = (props) => {
       style={{
         height: `${inputHeight}px`,
       }}
-      placeholder={`Message @${title}`}
+      placeholder={`Message ${placeholderMessage}`}
       value={chatInput}
       onChange={setChatInput}
       ref={refInput}
@@ -89,22 +99,26 @@ const ChatInput = (props) => {
 
 ChatFoot.propTypes = {
   id: PropTypes.string,
-  title: PropTypes.string,
+  name: PropTypes.string,
+  type: PropTypes.number,
 };
 
 ChatFoot.defaultProps = {
   id: null,
-  title: null,
+  name: null,
+  type: null,
 };
 
 ChatInput.propTypes = {
   id: PropTypes.string,
-  title: PropTypes.string,
+  name: PropTypes.string,
+  type: PropTypes.number,
 };
 
 ChatInput.defaultProps = {
   id: null,
-  title: null,
+  name: null,
+  type: null,
 };
 
 export default ChatFoot;
