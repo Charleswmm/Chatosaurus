@@ -14,10 +14,12 @@ jest.mock('react', () => ({
 describe('ChatControl', () => {
   const fooTimeStamp = '2020-07-07T19:15:30';
   const foo = 'foo';
-  const bar = 'bar';
 
   const fooConfiguration = {
+    channelNavButtonClasses: '',
     discordAPIResources: '',
+    discordUrls: '',
+    chatHeadText: '',
     currentUser:
       {
         UserName: foo,
@@ -31,8 +33,8 @@ describe('ChatControl', () => {
         messageLog: [
           {
             name: 'bin',
-            timeStamp: fooTimeStamp,
-            body: 'baz',
+            timestamp: fooTimeStamp,
+            content: 'baz',
           },
         ],
       },
@@ -40,7 +42,7 @@ describe('ChatControl', () => {
     groupNavDMButtons: [
       {
         id: foo,
-        title: bar,
+        name: foo,
       },
     ],
     chatTopButtons: [
@@ -67,7 +69,7 @@ describe('ChatControl', () => {
   );
 
   it('can see the current DM recipient displayed in the top bar', () => {
-    expect(wrapper.find('.nav-text').text()).toBe('...');
+    expect(wrapper.find('.nav-text').text()).toBe('foo');
   });
 
   it('displays the details in the URL to reflect the current DM log', () => {

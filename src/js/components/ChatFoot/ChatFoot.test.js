@@ -26,14 +26,15 @@ describe('ChatFoot', () => {
         type: 'emoji',
       },
     ],
+    discordAPIResources: '',
     chatRoomMessageLog: [
       {
         chatRoomId: foo,
         messageLog: [
           {
             name: 'bin',
-            timeStamp: '2020-07-07T19:15:30',
-            body: 'baz',
+            timestamp: '2020-07-07T19:15:30',
+            content: 'baz',
           },
         ],
       },
@@ -56,7 +57,7 @@ describe('ChatFoot', () => {
       setChatInputState: bar,
     }}
     >
-      <ChatFoot id={foo} title={foo} />
+      <ChatFoot id={foo} name={foo} />
     </GlobalContext.Provider>,
   );
 
@@ -66,7 +67,7 @@ describe('ChatFoot', () => {
   });
 
   it('displays a placeholder message on the input bar when the input bar is empty', () => {
-    expect(wrapper.find('textarea').prop('placeholder')).toEqual('Message @foo');
+    expect(wrapper.find('textarea').prop('placeholder')).toEqual('Message #foo');
   });
 
   it('has an input where I can input a message', () => {
