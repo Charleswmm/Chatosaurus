@@ -75,15 +75,15 @@ describe('GroupNavDMButtons', () => {
 
     // check button properties
     expect(newButtonAdded).toHaveProperty('id');
-    expect(newButtonAdded).toHaveProperty('title');
+    expect(newButtonAdded).toHaveProperty('name');
     expect(newButtonAdded).toHaveProperty('avatarSrc');
     expect(newButtonAdded).toHaveProperty('members');
     expect(newButtonAdded).toHaveProperty('backgroundColor');
 
     // check button value types
     expect(typeof newButtonAdded.id).toBe('string');
-    expect(typeof newButtonAdded.title).toBe('string');
-    expect(newButtonAdded.title).toMatch(/Unnamed/);
+    expect(typeof newButtonAdded.name).toBe('string');
+    expect(newButtonAdded.name).toMatch(/Unnamed/);
     expect(typeof newButtonAdded.avatarSrc).toBe('string');
     expect(typeof newButtonAdded.members).toBe('number');
     expect(typeof newButtonAdded.backgroundColor).toBe('string');

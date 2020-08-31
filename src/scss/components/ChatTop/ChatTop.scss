@@ -27,6 +27,12 @@
     filter: brightness(50%);
   }
 
+  .svg-hash {
+    height: 2.4rem;
+    width: 2.4rem;
+    background-position: center;
+  }
+
   .nav-text {
     padding: 0 0.7rem;
     @include typo(h2, 1.5rem);

@@ -10,69 +10,69 @@ import IconButton, {
 
 /**
  * Formats an ISO string to "Tuesday, July 7, 2020 07:15 PM"
- * @param timeStamp
+ * @param timestamp
  * @returns {string}
  */
-const formatDate = (timeStamp) => moment(timeStamp).format('dddd, MMMM D, YYYY h:mm A');
+const formatDate = (timestamp) => moment(timestamp).format('dddd, MMMM D, YYYY h:mm A');
 
 /**
  * Formats an ISO string to "07:15 PM"
- * @param timeStamp
+ * @param timestamp
  * @returns {string}
  */
-const formatTime = (timeStamp) => moment(timeStamp).format('h:mm A');
+const formatTime = (timestamp) => moment(timestamp).format('h:mm A');
 
 /**
  * Formats an ISO string to "July 7, 2020"
- * @param timeStamp
+ * @param timestamp
  * @returns {string}
  */
-const formatDividerDate = (timeStamp) => moment(timeStamp).format('MMMM D, YYYY');
+const formatDividerDate = (timestamp) => moment(timestamp).format('MMMM D, YYYY');
 
 /**
  * Formats an ISO string depending on today's time
- * @param timeStamp
+ * @param timestamp
  * @returns {string}
  */
-const formatTimeStamp = (timeStamp) => {
+const formatTimeStamp = (timestamp) => {
   const todayDate = moment();
-  const logItemTimeStamp = moment(timeStamp);
+  const logItemTimeStamp = moment(timestamp);
 
   if (logItemTimeStamp.isSame(todayDate, 'day')) {
-    return `Today at ${formatTime(timeStamp)}`;
+    return `Today at ${formatTime(timestamp)}`;
   }
 
   todayDate.subtract(1, 'day');
 
   if (logItemTimeStamp.isSame(todayDate, 'day')) {
-    return `Yesterday at ${formatTime(timeStamp)}`;
+    return `Yesterday at ${formatTime(timestamp)}`;
   }
 
   return moment(logItemTimeStamp).format('DD/MM/YYYY');
 };
 
-const ChatLogItem = ({ timeStamp, body }) => (
+const ChatLogItem = ({ timestamp, content }) => (
   <div className="chat-log-item chat-log-item-message">
     <div className="message-tab">
       <div className="message-time">
-        <span>{formatTime(timeStamp)}</span>
+        <span>{formatTime(timestamp)}</span>
         <div className="message-tool-tip">
           <div className="tool-tip">
-            <div className="tool-tip-text tool-tip-text-sm">{formatDate(timeStamp)}</div>
+            <div className="tool-tip-text tool-tip-text-sm">{formatDate(timestamp)}</div>
             <div className="tool-tip-arrow tool-tip-arrow-bottom" />
           </div>
         </div>
       </div>
     </div>
     <div className="message-content">
-      <div className="message-text">{body}</div>
+      <div className="message-text">{content}</div>
     </div>
     <ChatLogItemActions />
   </div>
 );
 
 export const ChatLogItemStart = (props) => {
-  const { timeStamp, userName, avatarSrc, body } = props;
+  const { timestamp, userName, avatarSrc, content } = props;
 
   return (
     <div className="chat-log-item chat-log-item-message chat-log-item-start">
@@ -88,26 +88,26 @@ export const ChatLogItemStart = (props) => {
         <div className="message-title">
           <div className="message-user">{userName}</div>
           <div className="message-time">
-            <span>{formatTimeStamp(timeStamp)}</span>
+            <span>{formatTimeStamp(timestamp)}</span>
             <div className="message-tool-tip">
               <div className="tool-tip">
-                <div className="tool-tip-text tool-tip-text-sm">{formatDate(timeStamp)}</div>
+                <div className="tool-tip-text tool-tip-text-sm">{formatDate(timestamp)}</div>
                 <div className="tool-tip-arrow tool-tip-arrow-bottom" />
               </div>
             </div>
           </div>
         </div>
-        <div className="message-text">{body}</div>
+        <div className="message-text">{content}</div>
       </div>
       <ChatLogItemActions />
     </div>
   );
 };
 
-export const ChatLogItemDateDivider = ({ timeStamp }) => (
+export const ChatLogItemDateDivider = ({ timestamp }) => (
   <div className="chat-log-item chat-log-item-divider">
     <div className="log-divider-line" />
-    <div className="log-divider-date">{formatDividerDate(timeStamp)}</div>
+    <div className="log-divider-date">{formatDividerDate(timestamp)}</div>
     <div className="log-divider-line" />
   </div>
 );
@@ -139,35 +139,35 @@ const ChatLogItemActions = () => {
 };
 
 ChatLogItem.propTypes = {
-  timeStamp: PropTypes.string,
-  body: PropTypes.string,
+  timestamp: PropTypes.string,
+  content: PropTypes.string,
 };
 
 ChatLogItem.defaultProps = {
-  timeStamp: null,
-  body: null,
+  timestamp: null,
+  content: null,
 };
 
 ChatLogItemStart.propTypes = {
-  timeStamp: PropTypes.string,
+  timestamp: PropTypes.string,
   userName: PropTypes.string,
   avatarSrc: PropTypes.string,
-  body: PropTypes.string,
+  content: PropTypes.string,
 };
 
 ChatLogItemStart.defaultProps = {
-  timeStamp: null,
+  timestamp: null,
   userName: null,
   avatarSrc: null,
-  body: null,
+  content: null,
 };
 
 ChatLogItemDateDivider.propTypes = {
-  timeStamp: PropTypes.string,
+  timestamp: PropTypes.string,
 };
 
 ChatLogItemDateDivider.defaultProps = {
-  timeStamp: null,
+  timestamp: null,
 };
 
 export default ChatLogItem;

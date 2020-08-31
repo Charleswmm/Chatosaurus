@@ -15,6 +15,10 @@ describe('ChatBody', () => {
   const foo = 'foo';
 
   const fooConfiguration = {
+    channelNavButtonClasses: '',
+    discordAPIResources: '',
+    chatHeadText: '',
+    discordUrls: '',
     currentUser:
     {
       userName: foo,
@@ -28,8 +32,8 @@ describe('ChatBody', () => {
         messageLog: [
           {
             name: foo,
-            timeStamp: '2020-07-07T19:15:30',
-            body: 'baz',
+            timestamp: '2020-07-07T19:15:30',
+            content: 'baz',
           },
         ],
       },

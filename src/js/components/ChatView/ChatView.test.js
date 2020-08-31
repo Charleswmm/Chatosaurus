@@ -15,7 +15,10 @@ describe('ChatView', () => {
   const foo = 'foo';
 
   const fooConfiguration = {
+    channelNavButtonClasses: '',
     discordAPIResources: '',
+    chatHeadText: '',
+    discordUrls: '',
     currentUser:
       {
         UserName: foo,

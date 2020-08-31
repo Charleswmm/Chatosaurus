@@ -1,0 +1,226 @@
+@import "../../utilities/media";
+@import "../../utilities/typography";
+@import "../../variables";
+
+.nav-column-channels {
+  background-color: $neutral-shadow-grey;
+  height: 100%;
+  width: 24rem;
+  flex: 0 0 auto;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    color: $text-white;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex: 1 1 auto;
+  }
+
+  .nav-group {
+    flex-direction: column;
+  }
+
+  .nav-group-top {
+    height: 4.8rem;
+    min-height: 4.8rem;
+
+    .svg-arrow {
+      height: 2.4rem;
+      width: 2.4rem;
+      margin-left: 0.4rem;
+    }
+  }
+
+  .btn {
+    cursor: pointer;
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+  }
+
+  .btn-top {
+    height: 100%;
+    padding: 0 1.2rem 0 1.6rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-group-channels {
+    padding: 0 0.8rem 0 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1 1 auto;
+  }
+
+  .nav-item-parent {
+    height: 3.8rem;
+    padding: 1.6rem 0.8rem 0 0;
+
+    &:hover {
+      filter: brightness(150%);
+    }
+
+    &:active {
+      transform: translateY(0.1rem);
+    }
+
+    .svg-arrow-grey {
+      height: 1.2rem;
+      width: 1.2rem;
+      margin: 0 0.2rem;
+    }
+
+    .svg-plus {
+      height: 1.2rem;
+      width: 1.2rem;
+      filter: grayscale(100%);
+      background-size: 160%;
+      background-position: center;
+      margin: 0 0.2rem;
+      position: relative;
+
+      .tool-tip {
+        transform: translateX(-50%);
+        top: -4.2rem;
+        left: 0.6rem;
+      }
+    }
+
+    .svg-plus:hover {
+      .tool-tip {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    .btn-text {
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+
+  .nav-item-channel {
+    height: 3.4rem;
+    padding: 0.1rem 0;
+    cursor: pointer;
+
+    .svg-hash {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 0.6rem;
+    }
+
+    .svg-speaker {
+      height: 2rem;
+      width: 2rem;
+      margin-right: 0.6rem;
+    }
+
+    .svg-add-friend {
+      height: 1.6rem;
+      width: 1.6rem;
+      display: none;
+      position: relative;
+    }
+
+    .svg-add-friend:hover {
+      .tool-tip {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    .svg-cog {
+      height: 1.6rem;
+      width: 1.6rem;
+      display: none;
+      position: relative;
+      margin-left: 0.4rem;
+    }
+
+    .svg-cog:hover {
+      .tool-tip {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    .tool-tip {
+      transform: translateX(-50%);
+      top: -4.2rem;
+      left: 0.8rem;
+    }
+
+    .btn {
+      height: 3.2rem;
+      margin-left: 0.8rem;
+      padding: 0 0.8rem;
+      border-radius: 0.4rem;
+
+      &:hover {
+        background-color: $dark-surround-grey;
+
+        .btn-text {
+          color: $hover-grey;
+        }
+
+        .svg-add-friend {
+          display: block;
+        }
+
+        .svg-cog {
+          display: block;
+        }
+      }
+    }
+
+    .btn-active {
+      background-color: $neutral-surround-grey;
+
+      &:hover {
+        background-color: $neutral-surround-grey;
+
+        .btn-text {
+          color: $text-white;
+        }
+      }
+
+      .btn-text {
+        color: $text-white;
+      }
+
+      .svg-add-friend {
+        display: block;
+      }
+
+      .svg-cog {
+        display: block;
+      }
+    }
+  }
+
+  .btn-text {
+    text-align: left;
+    color: $lightest-shadow-grey;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-grow: 1;
+  }
+
+  .nav-group-foot {
+    height: 5.3rem;
+    min-height: 5.3rem;
+    background-color: $dark-shadow-grey;
+    padding: 0 0.8rem;
+  }
+}

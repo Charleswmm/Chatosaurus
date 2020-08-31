@@ -1,17 +1,30 @@
 import moment from 'moment';
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
+import useDiscordData from '../../hooks/useDiscordData';
 import ChatLogItem, { ChatLogItemDateDivider, ChatLogItemStart } from '../ChatLogItem/ChatLogItem';
 
-const ChatLogControl = ({ id }) => {
+const ChatLogControl = ({ id, type }) => {
   const { Config } = useContext(GlobalContext);
-  const config = Config.get(['currentUser', 'chatRoomMessageLog']);
-  const { currentUser, chatRoomMessageLog } = config;
-  const { userName, avatar } = currentUser;
+  const config = Config.get(['currentUser', 'chatRoomMessageLog', 'discordAPIResources', 'discordUrls']);
+
+  const { currentUser, chatRoomMessageLog, discordAPIResources, discordUrls } = config;
+  const { channels, messages, dmChannel, pending, avatarPath } = discordAPIResources;
+  const { userName: currentUserName, avatar: currentUserAvatar } = currentUser;
+  const { appCDN } = discordUrls;
+
+  const chatStatus = type === dmChannel ? pending : id;
+  const channelMessagesResource = [channels, chatStatus, messages].join('/');
+
+  const channelMessages = useDiscordData(channelMessagesResource);
+
+  let messageLog = [];
+
+  if (channelMessages) {
+    messageLog = channelMessages.filter((message) => message.type === 0);
+  }
 
   const findChatRoomMessageLog = chatRoomMessageLog.find((e) => e.chatRoomId === id);
-
-  let messageLog;
 
   if (findChatRoomMessageLog) {
     messageLog = findChatRoomMessageLog.messageLog;
@@ -36,10 +49,10 @@ const ChatLogControl = ({ id }) => {
    * Sort the message log into chronological order
    */
   messageLog.sort((a, b) => {
-    if (a.timeStamp < b.timeStamp) {
+    if (a.timestamp < b.timestamp) {
       return -1;
     }
-    if (a.timeStamp > b.timeStamp) {
+    if (a.timestamp > b.timestamp) {
       return 1;
     }
     return 0;
@@ -51,20 +64,20 @@ const ChatLogControl = ({ id }) => {
    * Push a new divider object into the message log where required
    */
   messageLog.forEach((messageData, index) => {
-    const { timeStamp } = messageData;
-    let prevTimeStamp = 0;
+    const { timestamp } = messageData;
+    let prevTimestamp = 0;
 
     if (index) {
-      prevTimeStamp = messageLog[index - 1].timeStamp;
+      prevTimestamp = messageLog[index - 1].timestamp;
     }
 
-    const logItemDate = moment(timeStamp).startOf('day');
-    const prevDate = moment(prevTimeStamp).startOf('day');
+    const logItemDate = moment(timestamp).startOf('day');
+    const prevDate = moment(prevTimestamp).startOf('day');
 
     if (logItemDate.isAfter(prevDate)) {
       alteredMessageLog.push({
         divider: true,
-        timeStamp: logItemDate.format(),
+        timestamp: logItemDate.format(),
       });
     }
 
@@ -72,36 +85,43 @@ const ChatLogControl = ({ id }) => {
   });
 
   return alteredMessageLog.map((messageData, index) => {
-    const { name, timeStamp, body, divider } = messageData;
+    const { name, timestamp, content, divider, author } = messageData;
 
     if (divider) {
       return (
         <ChatLogItemDateDivider
           key={index.toString()}
-          timeStamp={timeStamp}
+          timestamp={timestamp}
         />
       );
     }
 
-    let prevTimeStamp = 0;
+    let prevTimestamp = 0;
 
     if (index) {
-      prevTimeStamp = alteredMessageLog[index - 1].timeStamp;
+      prevTimestamp = alteredMessageLog[index - 1].timestamp;
     }
 
-    const logItemDate = moment(timeStamp);
-    const breakPoint = moment(prevTimeStamp).add(chatLogGroupInterval, 'seconds');
+    const logItemDate = moment(timestamp);
+    const breakPoint = moment(prevTimestamp).add(chatLogGroupInterval, 'seconds');
 
     if (logItemDate.isAfter(breakPoint)) {
-      const avatarSrc = userName === name ? avatar : null;
+      let userName = name;
+      let avatarUrl = currentUserName === userName ? currentUserAvatar : null;
+
+      if (author) {
+        const { avatar, username, id: userId } = author;
+        avatarUrl = avatar ? [appCDN, avatarPath, userId, avatar].join('/') : currentUserAvatar;
+        userName = username;
+      }
 
       return (
         <ChatLogItemStart
           key={index.toString()}
-          userName={name}
-          avatarSrc={avatarSrc}
-          body={body}
-          timeStamp={timeStamp}
+          userName={userName}
+          avatarSrc={avatarUrl}
+          content={content}
+          timestamp={timestamp}
         />
       );
     }
@@ -109,8 +129,8 @@ const ChatLogControl = ({ id }) => {
     return (
       <ChatLogItem
         key={index.toString()}
-        timeStamp={timeStamp}
-        body={body}
+        timestamp={timestamp}
+        content={content}
       />
     );
   });

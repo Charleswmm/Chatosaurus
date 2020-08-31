@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContextWrapper';
 
 export const avatarClassNames = {
-  baseAvatar: 'avatar',
+  baseClass: 'icon',
   noAvatar: 'svg-people',
   availableAvatar: 'svg-discord',
 };
@@ -22,6 +22,7 @@ export const backgroundColorClassNames = {
   avatarPurple: 'background-brand-purple',
   avatarRed: 'background-brand-red',
   avatarYellow: 'background-brand-yellow',
+  avatarGrey: 'background-brand-grey',
 };
 
 class GroupNavDMButton extends Component {
@@ -29,7 +30,7 @@ class GroupNavDMButton extends Component {
 
   static defaultProps = {
     id: null,
-    title: 'Unnamed',
+    name: 'Unnamed',
     members: null,
     avatarSrc: null,
     backgroundColor: backgroundColorClassNames.avatarBlue,
@@ -44,7 +45,7 @@ class GroupNavDMButton extends Component {
     const { avatarSrc, backgroundColor } = this.props;
 
     return [
-      avatarClassNames.baseAvatar,
+      avatarClassNames.baseClass,
       ...(
         avatarSrc
           ? [avatarClassNames.availableAvatar]
@@ -53,10 +54,10 @@ class GroupNavDMButton extends Component {
     ].join(' ');
   }
 
-  title = () => {
-    const { title } = this.props;
+  name = () => {
+    const { name } = this.props;
 
-    return title;
+    return name;
   }
 
   members = () => {
@@ -89,7 +90,7 @@ class GroupNavDMButton extends Component {
         >
           <div className={this.avatar()} />
           <div className="link-text">
-            <div className="link-title">{this.title()}</div>
+            <div className="link-title">{this.name()}</div>
             <div className="link-subtitle">{this.members()}</div>
           </div>
         </NavLink>
@@ -103,7 +104,7 @@ class GroupNavDMButton extends Component {
 
 GroupNavDMButton.propTypes = {
   id: PropTypes.string,
-  title: PropTypes.string,
+  name: PropTypes.string,
   members: PropTypes.number,
   avatarSrc: PropTypes.string,
   backgroundColor: PropTypes.string,

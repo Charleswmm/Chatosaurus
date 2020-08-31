@@ -28,6 +28,7 @@
         "import/no-named-as-default": "off",
         "react/state-in-constructor": "off",
         "react/no-unused-state": "off",
+        "react/no-array-index-key": "off",
         "react/static-property-placement": "off",
         "jsx-a11y/click-events-have-key-events": "off",
         "jsx-a11y/no-static-element-interactions": "off",
