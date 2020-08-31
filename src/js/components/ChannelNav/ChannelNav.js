@@ -81,7 +81,7 @@ const ChannelNavButtons = ({ guildId }) => {
     const parents = guildChannels.filter((e) => e.type === parentChannel);
     const filteredChannels = guildChannels.filter((e) => e.type !== parentChannel);
 
-    // Sorts channels so that then come after their parent
+    // Sorts channels so that they come after their parent
     parents.forEach((parent) => {
       orderChannels.push(parent);
 
