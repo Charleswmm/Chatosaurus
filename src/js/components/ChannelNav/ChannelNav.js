@@ -85,11 +85,11 @@ const ChannelNavButtons = ({ guildId }) => {
     parents.forEach((parent) => {
       orderChannels.push(parent);
 
-      filteredChannels.forEach((e) => {
-        const { parent_id: parentId } = e;
+      filteredChannels.forEach((channel) => {
+        const { parent_id: parentId } = channel;
 
         if (parentId === parent.id) {
-          orderChannels.push(e);
+          orderChannels.push(channel);
         }
       });
     });
