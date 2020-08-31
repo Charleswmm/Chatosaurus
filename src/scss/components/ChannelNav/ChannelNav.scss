@@ -185,9 +185,16 @@
     .btn-active {
       background-color: $neutral-surround-grey;
 
+      &:hover {
+        background-color: $neutral-surround-grey;
+
+        .btn-text {
+          color: $text-white;
+        }
+      }
+
       .btn-text {
         color: $text-white;
-
       }
 
       .svg-add-friend {

@@ -20,6 +20,7 @@ const ChannelNav = () => {
   const guildData = useDiscordData(userGuilds);
 
   if (guildData) {
+    // Checks that the URL param guild id matches the discordAPI user guild id
     const findGuild = guildData.find((e) => e.id === guild);
 
     if (findGuild) {
@@ -71,13 +72,16 @@ const ChannelNavButtons = ({ guildId }) => {
   if (guildChannels) {
     const { guild_id: guildTestId } = guildChannels[0];
 
+    // Checks the channels received from the Discord API belongs to the current guild in view
     if (guildTestId !== guildId) {
       return <></>;
     }
 
+    // Filters out "parents" and "channels" for easier sorting
     const parents = guildChannels.filter((e) => e.type === parentChannel);
     const filteredChannels = guildChannels.filter((e) => e.type !== parentChannel);
 
+    // Sorts channels so that then come after their parent
     parents.forEach((parent) => {
       orderChannels.push(parent);
 
@@ -91,6 +95,8 @@ const ChannelNavButtons = ({ guildId }) => {
     });
   }
 
+  // When a "parent" is clicked the parent ID is added to the `HideChildrenId` array so that the
+  // children will hide
   const hideChildren = (id) => {
     const showId = hideChildrenId.find((e) => e === id);
     const hiddenIds = showId ? hideChildrenId.filter((e) => e !== id) : [...hideChildrenId, id];

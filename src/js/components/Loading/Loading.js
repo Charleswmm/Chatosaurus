@@ -8,10 +8,10 @@ const Loading = ({ location }) => {
   const { paths: { errorPath, loginPath } } = Config.get(['paths']);
   const { state, pathname } = location;
   const currentPath = pathname.replace('/', '');
-  let loadingState = true
+  let loadingState = true;
 
   if (currentPath === errorPath || currentPath === loginPath) {
-    loadingState = false
+    loadingState = false;
   }
 
   const defaultState = {

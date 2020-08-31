@@ -16,6 +16,7 @@ export const ChannelNavButton = ({ button, hideChildrenId }) => {
   const pathNames = pathname.split('/');
   const matchId = pathNames.find((e) => e === id);
 
+  // Changes class name depending if the button is a text or voice button
   const svgType = type === voiceChannel ? svgSpeaker : svgHash;
   const svgClass = [svgBase, svgType].join(' ');
 
@@ -25,8 +26,10 @@ export const ChannelNavButton = ({ button, hideChildrenId }) => {
 
   const isHidden = hideChildrenId.find((e) => e === parentId);
 
+  // The button will hide depending on if the button ID matches an ID in the "hideChildrenId" array
   const hide = isHidden && id !== matchId ? hideStyle : null;
 
+  // Prevents interaction with voice channel buttons
   const voiceChannelLink = (e) => {
     if (type === voiceChannel) {
       e.preventDefault();
